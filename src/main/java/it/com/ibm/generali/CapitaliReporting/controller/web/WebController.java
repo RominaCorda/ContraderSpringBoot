@@ -7,11 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Home page Capitali Reporting controller
  */
 @Controller
-public class WebController
+public class WebController extends SessionController
 {
 
     private Logger logger = LoggerFactory.getLogger(WebController.class);
@@ -26,9 +28,15 @@ public class WebController
      * @return the home page
      */
     @RequestMapping("/index")
-    public String index(Model model)
+    public String index(Model model, HttpSession session)
     {
+        if (!this.isLogged(session))
+        {
+            return "redirect:login";
+        }
+
         logger.info("/index page");
+        model.addAttribute("user", this.getCurrentUser(session));
         model.addAttribute("title", WebController.APP_TITLE);
         model.addAttribute("version", CapitaliReportingApplication.getVersion());
         return "index";
@@ -40,10 +48,9 @@ public class WebController
      * @return redirect to the index page
      **/
     @RequestMapping("/")
-    public String home()
+    public String home(HttpSession session)
     {
-        // If already logged in....
-        return "redirect:login";
+        return "redirect:index";
     }
 
 

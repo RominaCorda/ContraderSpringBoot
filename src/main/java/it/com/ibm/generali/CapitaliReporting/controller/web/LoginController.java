@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Login Capitali Reporting controller
  */
 @Controller
-public class LoginController
+public class LoginController extends SessionController
 {
 
     private Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -31,11 +33,7 @@ public class LoginController
     }
 
     /**
-     * the REST request for / resource.
-     *
-     * @param model the HTTP request attributes. it will updated
-     *              with application's version.
-     * @return the home page
+     * Login page GET with error message
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET, params = {"error"})
     public String loginWithError(Model model, @RequestParam("error") String error)
@@ -48,10 +46,19 @@ public class LoginController
         return "login";
     }
 
+    /**
+     * Login page GET
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model)
+    public String login(Model model, HttpSession session)
     {
         logger.info("/login page");
+
+        if (session.getAttribute("loggedUser") != null)
+        {
+            logger.warn("A user is already logged!");
+            return "redirect:index";
+        }
 
         this.listKnownUsers();
 
@@ -60,9 +67,12 @@ public class LoginController
         return "login";
     }
 
+    /**
+     * Login page POST
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String doLogin(@RequestParam("username") String username,
-                          @RequestParam("password") String password)
+                          @RequestParam("password") String password, HttpSession session)
     {
         String errorMsg;
 
@@ -76,6 +86,7 @@ public class LoginController
             if (knownUser.getPassword().equals(password))
             {
                 logger.info("Password is OK");
+                this.saveUserSession(session, knownUser);
                 return "redirect:index";
             }
             else

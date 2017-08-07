@@ -40,7 +40,7 @@
                 <p class="help-text" id="help2">Enter your password here</p>
 
             <#if error??>
-                <span class="label alert"><i class="fi-x-circle"></i>&nbsp;${error}</span>
+                <span id="errorPopup" class="label alert"><i class="fi-x-circle"></i>&nbsp;${error}</span>
             </#if>
 
                 <div class="button-group float-right">
@@ -59,6 +59,19 @@
 <script src="js/foundation.min.js"></script>
 <script>
     $(document).foundation();
+
+    $("#errorPopup").click(function () {
+        $("#errorPopup").hide()
+    });
+
+    $("#username").click(function () {
+        $("#errorPopup").hide()
+    });
+
+    $("#password").click(function () {
+        $("#errorPopup").hide()
+    });
+
 </script>
 
 </body>
