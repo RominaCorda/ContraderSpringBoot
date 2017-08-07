@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="css/foundation-float.min.css">
+    <link rel="stylesheet" href="css/foundation-icons.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -27,17 +28,24 @@
     <div class="small-6 large-6 columns">
         <div class="callout large secondary clearfix">
             <h3>Login</h3>
-            <form>
 
-                <input type="text" placeholder="Username" aria-describedby="help1">
+            <form id="loginform" method="post" action="">
+
+                <input id="username" name="username" type="text" placeholder="Username" aria-describedby="help1"
+                       required>
                 <p class="help-text" id="help1">Enter your username here</p>
 
-                <input type="password" placeholder="Password" aria-describedby="help2">
+                <input id="password" name="password" type="password" placeholder="Password" aria-describedby="help2"
+                       required>
                 <p class="help-text" id="help2">Enter your password here</p>
+
+            <#if error??>
+                <span class="label alert"><i class="fi-x-circle"></i>&nbsp;${error}</span>
+            </#if>
 
                 <div class="button-group float-right">
                     <a class="secondary button">Cancel</a>
-                    <a href="/index" class="primary button">Submit</a>
+                    <input type="submit" class="primary button">
                 </div>
 
             </form>

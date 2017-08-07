@@ -38,4 +38,5 @@ public class CapitaliReportingApplication
         logger.info("  Generali Capitali Reporting App v." + version);
         logger.info("**********************************************");
     }
+
 }
