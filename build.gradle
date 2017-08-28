@@ -1,5 +1,4 @@
 group 'it.com.ibm.generali.CapitaliReporting'
-version application_version
 
 buildscript {
 	ext {
