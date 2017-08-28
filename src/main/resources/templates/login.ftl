@@ -50,7 +50,7 @@
 
                 <div class="button-group float-right">
                     <a class="secondary button">Cancel</a>
-                    <input type="submit" class="primary button">
+                    <input type="submit" value="Log in" class="primary button">
                 </div>
 
             </form>
