@@ -68,6 +68,22 @@ public class LoginController extends SessionController
     }
 
     /**
+     * Logout page GET
+     */
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session)
+    {
+        logger.info("/logout page");
+
+        if (session.getAttribute("loggedUser") != null)
+        {
+            session.removeAttribute("loggedUser");
+        }
+
+        return "redirect:login";
+    }
+
+    /**
      * Login page POST
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)

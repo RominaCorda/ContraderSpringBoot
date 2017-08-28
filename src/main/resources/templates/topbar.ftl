@@ -13,7 +13,7 @@
                     <li><a href="/report">Reporting</a></li>
                     <li><a href="#0">Analysis</a></li>
                     <li><a href="#0">Do Yourself</a></li>
-                    <li><a href="/login">Logout</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 </ul>
             </li>
             <li><a href="#0">Reporting</a></li>
