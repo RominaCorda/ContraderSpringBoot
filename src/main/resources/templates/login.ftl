@@ -17,11 +17,16 @@
 <div class="top-bar">
     <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
-            <li class="menu-text">${title}</li>
+            <li class="menu-text">
+                <img src="img/generali.png" width="60px"/>
+                &nbsp;&nbsp;
+            ${title}
+            </li>
         </ul>
     </div>
 </div>
 <!-- TOP BAR -->
+
 
 <div class="loginform row">
     <div class="small-3 large-3 columns">&nbsp;</div>
@@ -54,11 +59,9 @@
     <div class="small-3 large-3 columns">&nbsp;</div>
 </div>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/what-input.min.js"></script>
-<script src="js/foundation.min.js"></script>
+<#include "foundation.ftl">
+
 <script>
-    $(document).foundation();
 
     $("#errorPopup").click(function () {
         $("#errorPopup").hide()

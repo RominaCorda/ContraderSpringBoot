@@ -45,6 +45,28 @@ public class WebController extends SessionController
     /**
      * the REST request for / resource.
      *
+     * @param model the HTTP request attributes. it will updated
+     *              with application's version.
+     * @return the home page
+     */
+    @RequestMapping("/report")
+    public String report(Model model, HttpSession session)
+    {
+        if (!this.isLogged(session))
+        {
+            return "redirect:login";
+        }
+
+        logger.info("/report page");
+        model.addAttribute("user", this.getCurrentUser(session));
+        model.addAttribute("title", WebController.APP_TITLE);
+        model.addAttribute("version", CapitaliReportingApplication.getVersion());
+        return "report";
+    }
+
+    /**
+     * the REST request for / resource.
+     *
      * @return redirect to the index page
      **/
     @RequestMapping("/")

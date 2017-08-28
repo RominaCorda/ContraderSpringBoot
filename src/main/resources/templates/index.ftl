@@ -59,7 +59,7 @@
             </div>
         </div>
 
-        <a href="#" class="button large expanded">Calculate now</a>
+        <a href="/report" class="button large expanded">Calculate now</a>
 
         <div class="small secondary expanded button-group">
             <a class="button">Excel</a>
@@ -161,17 +161,13 @@
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
         <li class="float-right">
-            <small>Copyright &copy IBM CORPORATION 2017</small>
+            <small>Copyright &copy; IBM CORPORATION 2017</small>
         </li>
     </ul>
 </div>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/what-input.min.js"></script>
-<script src="js/foundation.min.js"></script>
-<script>
-    $(document).foundation();
-</script>
+<#include "foundation.ftl">
+
 
 </body>
 </html>
