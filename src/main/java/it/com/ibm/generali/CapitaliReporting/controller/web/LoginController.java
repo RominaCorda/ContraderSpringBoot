@@ -24,8 +24,6 @@ public class LoginController extends SessionController
     private Logger logger = LoggerFactory.getLogger(LoginController.class);
     private UserDao users;
 
-    private static final String APP_TITLE = "GENERALI ASSICURAZIONI";
-
     @Autowired
     public LoginController(UserDao userDao)
     {
@@ -41,7 +39,7 @@ public class LoginController extends SessionController
         logger.info("/login page with error =" + error);
 
         model.addAttribute("error", error);
-        model.addAttribute("title", LoginController.APP_TITLE);
+        model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitaliReportingApplication.getVersion());
         return "login";
     }
@@ -62,7 +60,7 @@ public class LoginController extends SessionController
 
         this.listKnownUsers();
 
-        model.addAttribute("title", LoginController.APP_TITLE);
+        model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitaliReportingApplication.getVersion());
         return "login";
     }

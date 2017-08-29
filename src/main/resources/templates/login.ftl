@@ -1,26 +1,13 @@
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>${title} - Login</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="css/foundation-float.min.css">
-    <link rel="stylesheet" href="css/foundation-icons.css">
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
+<#include "header.ftl">
 
 <!-- TOP BAR -->
 <div class="top-bar">
     <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
             <li class="menu-text">
+                <a href="#" class="generali">
                 <img src="img/generali.png" width="60px"/>
-                &nbsp;&nbsp;
-            ${title}
+                    &nbsp;&nbsp;${title}</a>
             </li>
         </ul>
     </div>

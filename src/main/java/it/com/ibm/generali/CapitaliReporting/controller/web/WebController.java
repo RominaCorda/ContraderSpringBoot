@@ -18,8 +18,6 @@ public class WebController extends SessionController
 
     private Logger logger = LoggerFactory.getLogger(WebController.class);
 
-    private static final String APP_TITLE = "GENERALI ASSICURAZIONI";
-
     /**
      * the REST request for / resource.
      *
@@ -37,7 +35,7 @@ public class WebController extends SessionController
 
         logger.info("/index page");
         model.addAttribute("user", this.getCurrentUser(session));
-        model.addAttribute("title", WebController.APP_TITLE);
+        model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitaliReportingApplication.getVersion());
         return "index";
     }
@@ -59,7 +57,7 @@ public class WebController extends SessionController
 
         logger.info("/report page");
         model.addAttribute("user", this.getCurrentUser(session));
-        model.addAttribute("title", WebController.APP_TITLE);
+        model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitaliReportingApplication.getVersion());
         return "report";
     }
