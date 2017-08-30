@@ -2,26 +2,39 @@
 <#include "topbar.ftl">
 
 
-<div class="loginform row">
+<div class="row">
     <div class="small-3 large-3 columns">
 
-        <form id="loginform" method="post" action="">
+        <h3>${user.username?capitalize} profile</h3>
 
-            <input id="username" name="username" type="text" placeholder="Username" aria-describedby="help1"
-                   required>
-            <p class="help-text" id="help1">Enter your username here</p>
+        <p>Change password:</p>
 
-            <input id="password" name="password" type="password" placeholder="Password" aria-describedby="help2"
-                   required>
-            <p class="help-text" id="help2">Enter your password here</p>
+        <form id="changepwdform" method="post" action="">
 
+            <label>Your current password:
+                <input id="curpwd" name="curpwd" type="password" value="" aria-describedby="help1" required>
+                <p class="help-text" id="help1">Enter your current password here</p>
+            </label>
+
+            <hr>
+
+            <label>Type here your new password:
+                <input id="newpwd1" name="newpwd1" type="password" value="" aria-describedby="help2" required>
+                <p class="help-text" id="help2">Enter your new password here</p>
+            </label>
+            <label>Please re-type your new password:
+                <input id="newpwd2" name="newpwd2" type="password" value="" aria-describedby="help3" required>
+                <p class="help-text" id="help3">Enter your new password for validation purposes</p>
+            </label>
+            <br>
         <#if error??>
             <span id="errorPopup" class="label alert"><i class="fi-x-circle"></i>&nbsp;${error}</span>
         </#if>
+            <br>
 
             <div class="button-group float-right">
-                <a class="secondary button">Cancel</a>
-                <input type="submit" value="Log in" class="primary button">
+                <a class="secondary button" href="/home">Cancel</a>
+                <input type="submit" value="Submit" class="primary button">
             </div>
 
         </form>
@@ -34,6 +47,22 @@
 </div>
 
 <#include "foundation.ftl">
+
+<script>
+
+    $("#errorPopup").click(function () {
+        $("#errorPopup").hide()
+    });
+
+    $("#curpwd").click(function () {
+        $("#errorPopup").hide()
+    });
+
+    $("#newpwd1").click(function () {
+        $("#errorPopup").hide()
+    });
+
+</script>
 
 
 </body>

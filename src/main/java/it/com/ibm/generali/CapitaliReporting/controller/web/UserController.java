@@ -18,14 +18,14 @@ import javax.servlet.http.HttpSession;
  * Login Capitali Reporting controller
  */
 @Controller
-public class LoginController extends SessionController
+public class UserController extends SessionController
 {
 
-    private Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
     private UserDao users;
 
     @Autowired
-    public LoginController(UserDao userDao)
+    public UserController(UserDao userDao)
     {
         this.users = userDao;
     }
@@ -79,6 +79,64 @@ public class LoginController extends SessionController
         }
 
         return "redirect:login";
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public String doChangePassword(@RequestParam("curpwd") String oldPassword,
+                                   @RequestParam("newpwd1") String newPassword1,
+                                   @RequestParam("newpwd2") String newPassword2, HttpSession session)
+    {
+
+        String errorMsg = "";
+        User currentUser = this.getCurrentUser(session);
+        String username = currentUser.getUsername();
+
+        logger.info("Received POST for user = " + username);
+        logger.info("Received old password = " + oldPassword);
+
+        User knownUser = this.users.findOne(username);
+        if (knownUser != null)
+        {
+            logger.info("Ok, found user " + username);
+            if (knownUser.getPassword().equals(oldPassword))
+            {
+                logger.info("Old Password is OK");
+                if (newPassword1.equals(newPassword2))
+                {
+                    try
+                    {
+                        knownUser.setPassword(newPassword1);
+                        this.users.save(knownUser);
+                    }
+                    catch (Exception exc)
+                    {
+                        errorMsg = exc.getLocalizedMessage();
+                    }
+                }
+                else
+                {
+                    errorMsg = "Your new password does not match.";
+                }
+            }
+            else
+            {
+                errorMsg = "Your old password is wrong.";
+            }
+        }
+        else
+        {
+            errorMsg = "Unknown user";
+        }
+
+        if (errorMsg.length() > 0)
+        {
+            logger.error(errorMsg);
+            return "redirect:/profile?error=" + errorMsg;
+        }
+
+        return "redirect:pwdchanged";
+
+
     }
 
     /**
