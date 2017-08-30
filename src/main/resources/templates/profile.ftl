@@ -33,7 +33,7 @@
             <br>
 
             <div class="button-group float-right">
-                <a class="secondary button" href="/home">Cancel</a>
+                <a class="secondary button" href="/index">Cancel</a>
                 <input type="submit" value="Submit" class="primary button">
             </div>
 
