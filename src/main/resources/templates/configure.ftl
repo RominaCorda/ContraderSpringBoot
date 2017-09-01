@@ -76,3 +76,10 @@
 
 
 </div>
+
+<#include "footer.ftl">
+<#include "foundation.ftl">
+
+
+</body>
+</html>
