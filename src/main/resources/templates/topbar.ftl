@@ -16,6 +16,17 @@
                     <li><a href="/logout">Logout</a></li>
                 </ul>
             </li>
+        <#if user=="admin">
+            <li class="has-submenu">
+                <a href="#0"><i class="fi-crown"></i>&nbsp;Admin Tools</a>
+                <ul class="submenu menu vertical" data-submenu>
+                    <li><a href="/configure">Configure User</a></li>
+                    <li><a href="#0">Export user list</a></li>
+                    <li><a href="#0">Manage Templates</a></li>
+                    <li><a href="#0">Official simulations</a></li>
+                </ul>
+            </li>
+        </#if>
             <li><a href="#0">Reporting</a></li>
             <li><a href="#0">Contacts</a></li>
         </ul>

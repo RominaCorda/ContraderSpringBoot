@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * Home page Capitali Reporting controller
  */
 @Controller
-public class WebController extends SessionController
+public class WebController extends SessionHelper
 {
 
     private Logger logger = LoggerFactory.getLogger(WebController.class);

@@ -18,10 +18,10 @@ import javax.servlet.http.HttpSession;
  * Login Capitali Reporting controller
  */
 @Controller
-public class UserController extends SessionController
+public class UserController extends SessionHelper
 {
 
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
+    private Logger logger = LoggerFactory.getLogger(SessionHelper.class);
     private UserDao users;
 
     @Autowired

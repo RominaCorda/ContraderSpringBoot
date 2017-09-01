@@ -19,6 +19,6 @@ public class DbLoader implements ApplicationRunner
 
     public void run(ApplicationArguments args)
     {
-        this.dbService.initializeUsersDb();
+        //
     }
 }
