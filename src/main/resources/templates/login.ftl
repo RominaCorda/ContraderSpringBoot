@@ -35,10 +35,7 @@
                 <span id="errorPopup" class="label alert"><i class="fi-x-circle"></i>&nbsp;${error}</span>
             </#if>
 
-                <div class="button-group float-right">
-                    <a class="secondary button">Cancel</a>
-                    <input type="submit" value="Log in" class="primary button">
-                </div>
+                <input type="submit" value="Log in" class="primary button float-right">
 
             </form>
         </div>
