@@ -1,15 +1,17 @@
 package it.com.ibm.generali.CapitaliReporting.controller.web;
 
+import it.com.ibm.generali.CapitaliReporting.CapitaliReportingApplication;
 import it.com.ibm.generali.CapitaliReporting.model.User;
+import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 
-class SessionHelper
+public class SessionHelper
 {
 
-    private static final String LOGGED_USER = "loggedUser";
+    protected static final String LOGGED_USER = "loggedUser";
 
-    public User getCurrentUser(HttpSession session)
+    protected User getCurrentUser(HttpSession session)
     {
         if (session.getAttribute(LOGGED_USER) != null)
         {
@@ -19,12 +21,12 @@ class SessionHelper
         return null;
     }
 
-    public void saveUserSession(HttpSession session, User user)
+    protected void saveUserSession(HttpSession session, User user)
     {
         session.setAttribute(LOGGED_USER, user);
     }
 
-    public boolean isAdmin(HttpSession session)
+    protected boolean isAdmin(HttpSession session)
     {
         if (session.getAttribute(LOGGED_USER) != null)
         {
@@ -35,9 +37,31 @@ class SessionHelper
         return false;
     }
 
-    public boolean isLogged(HttpSession session)
+    protected boolean isLogged(HttpSession session)
     {
         return (this.getCurrentUser(session) != null);
+    }
+
+    protected String pageSetup(String template, Model model, HttpSession session)
+    {
+        if (!this.isLogged(session))
+        {
+            return "redirect:login";
+        }
+
+        model.addAttribute("user", this.getCurrentUser(session));
+        model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
+        model.addAttribute("version", CapitaliReportingApplication.getVersion());
+
+        return template;
+
+    }
+
+    protected String pageSetup(String template, Model model)
+    {
+        model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
+        model.addAttribute("version", CapitaliReportingApplication.getVersion());
+        return template;
     }
 
 }

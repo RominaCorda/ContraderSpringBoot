@@ -112,8 +112,13 @@ public class AdminController extends SessionHelper
      * Roles with delete
      */
     @RequestMapping(value = "/roles", method = RequestMethod.GET, params = {"delete"})
-    public String deleteRole(@RequestParam("delete") String roleId)
+    public String deleteRole(@RequestParam("delete") String roleId, HttpSession session)
     {
+        if (!this.isAdmin(session))
+        {
+            return "redirect:login";
+        }
+
         this.roles.delete(Long.parseLong(roleId));
         return "redirect:roles";
     }
@@ -210,5 +215,6 @@ public class AdminController extends SessionHelper
         return "configure";
 
     }
+
 
 }

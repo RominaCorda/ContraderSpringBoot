@@ -1,6 +1,5 @@
 package it.com.ibm.generali.CapitaliReporting.controller.web;
 
-import it.com.ibm.generali.CapitaliReporting.CapitaliReportingApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -102,20 +101,7 @@ public class WebController extends SessionHelper
         return "redirect:index";
     }
 
-    private String pageSetup(String template, Model model, HttpSession session)
-    {
-        if (!this.isLogged(session))
-        {
-            return "redirect:login";
-        }
 
-        model.addAttribute("user", this.getCurrentUser(session));
-        model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
-        model.addAttribute("version", CapitaliReportingApplication.getVersion());
-
-        return template;
-
-    }
 
 
 }

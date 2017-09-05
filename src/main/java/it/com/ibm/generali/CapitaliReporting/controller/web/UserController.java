@@ -37,11 +37,8 @@ public class UserController extends SessionHelper
     public String loginWithError(Model model, @RequestParam("error") String error)
     {
         logger.info("/login page with error =" + error);
-
         model.addAttribute("error", error);
-        model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
-        model.addAttribute("version", CapitaliReportingApplication.getVersion());
-        return "login";
+        return this.pageSetup("login", model);
     }
 
     /**

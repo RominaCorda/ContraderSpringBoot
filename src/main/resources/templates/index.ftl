@@ -46,12 +46,7 @@
         </div>
 
         <a href="/report" class="button large expanded">Calculate now</a>
-
-        <div class="small secondary expanded button-group">
-            <a class="button">Excel</a>
-            <a class="button">CSV</a>
-            <a class="button">PDF</a>
-        </div>
+        <a href="/browse" class="small secondary expanded button">Browse Reports</a>
     </div>
 </div>
 
