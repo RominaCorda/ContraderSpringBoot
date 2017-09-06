@@ -36,16 +36,6 @@ public class AdminController extends SessionHelper
     }
 
     /**
-     * Configure GET with selected user
-     */
-    @RequestMapping(value = "/configure", method = RequestMethod.GET, params = {"selecteduser"})
-    public String configureWithUsername(Model model, HttpSession session, @RequestParam("selecteduser") String username)
-    {
-        logger.info("/configure page with selecteduser =" + username);
-        return this.configureTemplate(model, session, username);
-    }
-
-    /**
      * Configure GET
      *
      * @param model the HTTP request attributes. it will updated
@@ -60,6 +50,16 @@ public class AdminController extends SessionHelper
     }
 
     /**
+     * Configure GET with selected user
+     */
+    @RequestMapping(value = "/configure", method = RequestMethod.GET, params = {"selecteduser"})
+    public String configureWithUsername(Model model, HttpSession session, @RequestParam("selecteduser") String username)
+    {
+        logger.info("/configure page with selecteduser =" + username);
+        return this.configureTemplate(model, session, username);
+    }
+
+    /**
      * Configure GET with mode
      *
      */
@@ -71,7 +71,7 @@ public class AdminController extends SessionHelper
     }
 
     /**
-     * Configure with delete
+     * Configure GET with delete
      */
     @RequestMapping(value = "/configure", method = RequestMethod.GET, params = {"delete"})
     public String deleteUser(Model model, HttpSession session, @RequestParam("delete") String username)
@@ -82,9 +82,10 @@ public class AdminController extends SessionHelper
 
     /**
      * Configure POST
+     * Add or modify user
      */
     @RequestMapping(value = "/configure", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user)
+    public String addOrModifyUser(@ModelAttribute("user") User user)
     {
         logger.info("/configure POST");
         String username = user.getUsername();
@@ -96,6 +97,7 @@ public class AdminController extends SessionHelper
             modUser.setEmail(user.getEmail());
             modUser.setFullName(user.getFullName());
             modUser.setActive(user.getActive());
+            modUser.setRole(user.getRole());
             mode = "ok_modified";
         }
         else
@@ -175,32 +177,34 @@ public class AdminController extends SessionHelper
             return "redirect:login";
         }
 
-        User selectedUser;
         final Iterable<User> users = this.users.findAll();
         final Iterable<Role> roles = this.roles.findAll();
 
         List<User> allUsersExceptAdmin = new ArrayList<>();
         users.forEach(allUsersExceptAdmin::add);
-        allUsersExceptAdmin = allUsersExceptAdmin.stream().filter(user -> !user.username.equals("admin")).collect(Collectors.toList());
+        allUsersExceptAdmin = allUsersExceptAdmin.stream().filter(
+                user -> !user.username.equals("admin")).collect(Collectors.toList());
+        User selectedUser = allUsersExceptAdmin.iterator().next();
 
-        if (mode.equals("new") || (mode.startsWith("ok")))
+        if (mode.equals("new"))
         {
             selectedUser = new User();
             selectedUser.username = "";
             selectedUser.password = "";
             selectedUser.email = "";
             selectedUser.fullName = "";
+            selectedUser.role = roles.iterator().next();
             selectedUser.setActive(false);
         }
         else
         {
-            if (mode.equals("none"))
-            {
-                selectedUser = allUsersExceptAdmin.iterator().next();
-            }
-            else
+            if (!mode.equals("none"))
             {
                 selectedUser = this.users.findOne(mode);
+                if (selectedUser == null)
+                {
+                    selectedUser = allUsersExceptAdmin.iterator().next();
+                }
             }
         }
 

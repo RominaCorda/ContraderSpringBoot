@@ -3,6 +3,8 @@ package it.com.ibm.generali.CapitaliReporting.model
 import java.io.Serializable
 import javax.persistence.Entity
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 
 @Entity
 open class User : Serializable
@@ -12,9 +14,16 @@ open class User : Serializable
     lateinit var password: String
     lateinit var fullName: String
     lateinit var email: String
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    lateinit var role: Role
+
     var active: Boolean = true
 
-    override fun toString(): String = this.username
+    fun toDetailedString(): String = "$fullName ($username)"
+
+    override fun toString(): String = "$username"
 
     companion object Factory
     {
@@ -25,6 +34,7 @@ open class User : Serializable
             newUser.password = user.password
             newUser.fullName = user.fullName
             newUser.email = user.email
+            newUser.role = user.role
             return newUser
         }
     }

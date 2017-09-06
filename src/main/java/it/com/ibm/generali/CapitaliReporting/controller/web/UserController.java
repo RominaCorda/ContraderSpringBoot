@@ -55,8 +55,6 @@ public class UserController extends SessionHelper
             return "redirect:index";
         }
 
-        this.listKnownUsers();
-
         model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitaliReportingApplication.getVersion());
         return "login";
@@ -171,15 +169,6 @@ public class UserController extends SessionHelper
         logger.error(errorMsg);
         return "redirect:/login?error=" + errorMsg;
 
-    }
-
-    private void listKnownUsers()
-    {
-        this.logger.info("Known users: ");
-        for (User user : this.users.findAll())
-        {
-            this.logger.info(">> " + user);
-        }
     }
 
 

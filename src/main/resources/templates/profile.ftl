@@ -21,6 +21,12 @@
                 </label>
             </div>
 
+            <div class="row">
+                <label>Role:
+                    <input id="role" name="role" type="text" value="${user.role.description}" disabled>
+                </label>
+            </div>
+
             <ul class="accordion pwdchanger" data-accordion data-allow-all-closed="true">
                 <li class="accordion-item" data-accordion-item>
                     <!-- Accordion tab title -->

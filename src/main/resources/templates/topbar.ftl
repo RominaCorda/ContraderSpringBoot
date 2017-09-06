@@ -28,7 +28,7 @@
                 </ul>
             </li>
         </#if>
-            <li><a href="#0">Reporting</a></li>
+            <li><a href="/index">Reporting</a></li>
             <li><a href="#0">Contacts</a></li>
         </ul>
     </div>

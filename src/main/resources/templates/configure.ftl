@@ -1,3 +1,7 @@
+<#-- @ftlvariable name="roles" type="java.util.Collection<it.com.ibm.generali.CapitaliReporting.model.Role>" -->
+<#-- @ftlvariable name="selecteduser" type="it.com.ibm.generali.CapitaliReporting.model.User" -->
+<#-- @ftlvariable name="users" type="java.util.Collection<it.com.ibm.generali.CapitaliReporting.model.User>" -->
+<#-- @ftlvariable name="mode" type="String" -->
 <#include "header.ftl">
 <#include "topbar.ftl">
 
@@ -23,7 +27,6 @@
         </div>
     </#if>
 
-
         <div class="row">
         <#if mode == "none" || mode == "ok_added" || mode=="ok_modified" || mode=="ok_deleted">
             <h3>Configure users</h3>
@@ -39,7 +42,13 @@
             <label>Select User
                 <select onchange="if (this.value) window.location.href='/configure?selecteduser='+this.value">
                     <#list users as user>
-                        <option value="${user.username}">${user.fullName}</option>
+                        <#if selecteduser.username==user.username>
+                        <option value="${user.username}" selected="selected">
+                        <#else>
+                        <option value="${user.username}">
+                        </#if>
+                    ${user.fullName}
+                    </option>
                     </#list>
                 </select>
             </label>
@@ -85,7 +94,13 @@
                 <label>Role:
                     <select id="role" name="role">
                     <#list roles as role>
-                        <option value="${role.description}">${role.description}</option>
+                        <#if selecteduser.role.id==role.id>
+                        <option value="${role.id}" selected="selected">
+                        <#else>
+                        <option value="${role.id}">
+                        </#if>
+                    ${role.description}
+                    </option>
                     </#list>
                     </select>
                 </label>
