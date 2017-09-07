@@ -15,7 +15,7 @@
         <button class="small button expanded">No problems</button>
     </div>
     <div class="medium-11 columns">
-        <img src="img/FreeReporting.jpg">
+        <img src="img/freereporting.jpg">
     </div>
 </div>
 
