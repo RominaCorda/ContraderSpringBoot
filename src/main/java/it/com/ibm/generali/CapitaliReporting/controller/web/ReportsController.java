@@ -17,6 +17,16 @@ public class ReportsController extends SessionHelper
     private Logger logger = LoggerFactory.getLogger(ReportsController.class);
 
     /**
+     * FreeReporting GET
+     */
+    @RequestMapping("/freereporting")
+    public String freeReporting(Model model, HttpSession session)
+    {
+        logger.info("/freereporting page");
+        return this.pageSetup("freereporting", model, session);
+    }
+
+    /**
      * Browse GET
      */
     @RequestMapping("/browse")
