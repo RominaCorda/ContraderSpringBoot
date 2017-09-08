@@ -9,14 +9,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CapitalReportingApplication
 {
 
-    public static final String APP_TITLE = "CAPITALI REPORTING";
+    public static final String APP_TITLE = "CAPITAL REPORTING";
 
     private static Logger logger = LoggerFactory.getLogger(CapitalReportingApplication.class);
 
     /**
      * Version. It must be the same as that found in gradle.properties
      */
-    private static final String version = "0.1.2";
+    private static final String version = "0.1.7";
 
     /**
      * Get the application's version.
