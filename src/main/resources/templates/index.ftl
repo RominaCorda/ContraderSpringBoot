@@ -46,7 +46,7 @@
         </div>
 
         <a href="/report" class="button large expanded">Calculate now</a>
-        <a href="/browse" class="small secondary expanded button">Browse Reports</a>
+        <a href="/browse" class="small secondary expanded button">Analysis</a>
     </div>
 </div>
 

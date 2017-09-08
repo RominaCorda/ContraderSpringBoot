@@ -1,4 +1,4 @@
-package it.com.ibm.generali.CapitaliReporting.controller.web;
+package it.com.ibm.generali.CapitalReporting.controller.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 
 /**
- * Home page Capitali Reporting controller
+ * Home page Capital Reporting controller
  */
 @Controller
 public class WebController extends SessionHelper

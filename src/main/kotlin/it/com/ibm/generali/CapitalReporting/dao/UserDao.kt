@@ -1,6 +1,6 @@
-package it.com.ibm.generali.CapitaliReporting.dao
+package it.com.ibm.generali.CapitalReporting.dao
 
-import it.com.ibm.generali.CapitaliReporting.model.User
+import it.com.ibm.generali.CapitalReporting.model.User
 import org.springframework.data.repository.CrudRepository
 
 interface UserDao : CrudRepository<User, String>

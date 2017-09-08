@@ -1,4 +1,4 @@
-package it.com.ibm.generali.CapitaliReporting.controller.web;
+package it.com.ibm.generali.CapitalReporting.controller.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,18 +53,10 @@ public class ReportsController extends SessionHelper
         logger.info("/Months page for year = " + year);
 
         List<String> months = new ArrayList<>();
-        months.add("Jan");
-        months.add("Feb");
-        months.add("Mar");
-        months.add("Apr");
-        months.add("May");
-        months.add("Jun");
-        months.add("Jul");
-        months.add("Aug");
-        months.add("Sep");
-        months.add("Oct");
-        months.add("Nov");
-        months.add("Dec");
+        months.add("Analyst Meeting");
+        months.add("Closure SCR");
+        months.add("ORSA Reports");
+        months.add("Convergence");
 
         model.addAttribute("year", year);
         model.addAttribute("months", months);
@@ -83,9 +75,9 @@ public class ReportsController extends SessionHelper
 
         Random seed = new Random();
 
-        String[] words = {"Statistics", "End of Quarter", "Financial R2", "Expected Results",
-                "Manoeuvre 12", "Minerals", "Adaptation", "Strong Results", "Fake Results",
-                "End of semester", "Transactions", "Half transations", "Masters"};
+        String[] words = {"Group", "Germany", "Italy", "Italy Solo",
+                "France", "Czech Republic", "Spain", "Spain Solo", "United Kingdom",
+                "Finland", "Sweden", "Romania", "Croatia"};
 
         Map<String, String> archive = new HashMap<>();
         int numberOfReports = seed.nextInt(10) + 2;

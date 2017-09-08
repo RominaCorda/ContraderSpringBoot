@@ -1,6 +1,6 @@
-<#-- @ftlvariable name="roles" type="java.util.Collection<it.com.ibm.generali.CapitaliReporting.model.Role>" -->
-<#-- @ftlvariable name="selecteduser" type="it.com.ibm.generali.CapitaliReporting.model.User" -->
-<#-- @ftlvariable name="users" type="java.util.Collection<it.com.ibm.generali.CapitaliReporting.model.User>" -->
+<#-- @ftlvariable name="roles" type="java.util.Collection<it.com.ibm.generali.CapitalReporting.model.Role>" -->
+<#-- @ftlvariable name="selecteduser" type="it.com.ibm.generali.CapitalReporting.model.User" -->
+<#-- @ftlvariable name="users" type="java.util.Collection<it.com.ibm.generali.CapitalReporting.model.User>" -->
 <#-- @ftlvariable name="mode" type="String" -->
 <#include "header.ftl">
 <#include "topbar.ftl">

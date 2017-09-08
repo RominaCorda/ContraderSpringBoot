@@ -1,7 +1,7 @@
 applications:
-- name: CapitaliReporting
+- name: CapitalReporting
   instances: 1
   memory: 768M
-  path: CapitaliReporting.jar
+  path: CapitalReporting.jar
   disk_quota: 512M
   buildpack: https://github.com/cloudfoundry/java-buildpack.git

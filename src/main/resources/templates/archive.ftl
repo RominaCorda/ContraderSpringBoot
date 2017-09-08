@@ -25,18 +25,24 @@
         <table>
             <thead>
             <tr>
-                <th width="200">Report Name</th>
+                <th>Report</th>
+                <th width="200">Reporting Period</th>
+                <th width="200">Simulation ID</th>
                 <th width="150">View</th>
-                <th width="150">Run</th>
+                <th width="150">Download</th>
+                <th width="50"></th>
             </tr>
             </thead>
             <tbody>
 
             <#list archive as key, value>
             <tr>
-                <td>${key} ${value}</td>
-                <td><a href="#">View in Cognos</a></td>
-                <td><a href="#">Download Excel</a></td>
+                <td>${key}</td>
+                <td>${year}</td>
+                <td>${value}</td>
+                <td><a href="/freereporting">View in Cognos</a></td>
+                <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
+                <td><a href="#"><i class="fi-x"></i></a>&nbsp;</td>
             </tr>
             </#list>
 

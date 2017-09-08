@@ -1,8 +1,8 @@
-package it.com.ibm.generali.CapitaliReporting.controller.web;
+package it.com.ibm.generali.CapitalReporting.controller.web;
 
-import it.com.ibm.generali.CapitaliReporting.CapitaliReportingApplication;
-import it.com.ibm.generali.CapitaliReporting.dao.UserDao;
-import it.com.ibm.generali.CapitaliReporting.model.User;
+import it.com.ibm.generali.CapitalReporting.CapitalReportingApplication;
+import it.com.ibm.generali.CapitalReporting.dao.UserDao;
+import it.com.ibm.generali.CapitalReporting.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 
 /**
- * Login Capitali Reporting controller
+ * Login Capital Reporting controller
  */
 @Controller
 public class UserController extends SessionHelper
@@ -55,8 +55,8 @@ public class UserController extends SessionHelper
             return "redirect:index";
         }
 
-        model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
-        model.addAttribute("version", CapitaliReportingApplication.getVersion());
+        model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
+        model.addAttribute("version", CapitalReportingApplication.getVersion());
         return "login";
     }
 

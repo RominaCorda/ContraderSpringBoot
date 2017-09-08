@@ -1,7 +1,7 @@
-package it.com.ibm.generali.CapitaliReporting.service;
+package it.com.ibm.generali.CapitalReporting.service;
 
 
-import it.com.ibm.generali.CapitaliReporting.dao.UserDao;
+import it.com.ibm.generali.CapitalReporting.dao.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

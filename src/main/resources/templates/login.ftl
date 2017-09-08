@@ -16,8 +16,8 @@
 
 
 <div class="loginform row">
-    <div class="small-3 large-3 columns">&nbsp;</div>
-    <div class="small-6 large-6 columns">
+    <div class="small-1 large-3 columns">&nbsp;</div>
+    <div class="small-10 large-6 columns">
         <div class="callout large secondary clearfix">
             <h3>Login</h3>
 
@@ -35,12 +35,12 @@
                 <span id="errorPopup" class="label alert"><i class="fi-x-circle"></i>&nbsp;${error}</span>
             </#if>
 
-                <input type="submit" value="Log in" class="primary button float-right">
+                <input type="submit" value="Log in" class="button float-right">
 
             </form>
         </div>
     </div>
-    <div class="small-3 large-3 columns">&nbsp;</div>
+    <div class="small-1 large-3 columns">&nbsp;</div>
 </div>
 
 <#include "foundation.ftl">

@@ -11,7 +11,7 @@
                 <a href="#0"><i class="fi-torso"></i>&nbsp;${user.username?capitalize}</a>
                 <ul class="submenu menu vertical" data-submenu>
                     <li><a href="/profile">Profile</a></li>
-                    <li><a href="#0">Analysis</a></li>
+                    <li><a href="#0">My reports</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
             </li>
@@ -28,11 +28,12 @@
             </li>
         </#if>
             <li><a href="/freereporting">Free Reporting</a></li>
-            <li><a href="#0">Contacts</a></li>
+            <li><a href="/browse">Analysis</a></li>
+            <li><a href="#0">Official</a></li>
         </ul>
     </div>
     <div class="top-bar-right">
-        <ul class="menu" style="margin-top: 15px">
+        <ul class="menu" style="margin-top: 30px; margin-right: 50px">
             <li><input type="search" placeholder="Search"></li>
             <li>
                 <button type="button" class="button">Search</button>

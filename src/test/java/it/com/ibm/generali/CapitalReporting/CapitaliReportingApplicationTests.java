@@ -1,4 +1,4 @@
-package it.com.ibm.generali.CapitaliReporting;
+package it.com.ibm.generali.CapitalReporting;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CapitaliReportingApplicationTests
+public class CapitalReportingApplicationTests
 {
 
     @Test

@@ -6,7 +6,7 @@
 
 <div class="row column">
     <div class="row">
-        <h3>Browse reports:</h3>
+        <h3>Analysis</h3>
     </div>
 
     <div class="row">

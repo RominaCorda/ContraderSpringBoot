@@ -1,7 +1,7 @@
-package it.com.ibm.generali.CapitaliReporting.controller.web;
+package it.com.ibm.generali.CapitalReporting.controller.web;
 
-import it.com.ibm.generali.CapitaliReporting.CapitaliReportingApplication;
-import it.com.ibm.generali.CapitaliReporting.model.User;
+import it.com.ibm.generali.CapitalReporting.CapitalReportingApplication;
+import it.com.ibm.generali.CapitalReporting.model.User;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
@@ -50,8 +50,8 @@ public class SessionHelper
         }
 
         model.addAttribute("user", this.getCurrentUser(session));
-        model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
-        model.addAttribute("version", CapitaliReportingApplication.getVersion());
+        model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
+        model.addAttribute("version", CapitalReportingApplication.getVersion());
 
         return template;
 
@@ -59,8 +59,8 @@ public class SessionHelper
 
     protected String pageSetup(String template, Model model)
     {
-        model.addAttribute("title", CapitaliReportingApplication.APP_TITLE);
-        model.addAttribute("version", CapitaliReportingApplication.getVersion());
+        model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
+        model.addAttribute("version", CapitalReportingApplication.getVersion());
         return template;
     }
 

@@ -1,4 +1,4 @@
-package it.com.ibm.generali.CapitaliReporting.service;
+package it.com.ibm.generali.CapitalReporting.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;

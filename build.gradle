@@ -1,4 +1,4 @@
-group 'it.com.ibm.generali.CapitaliReporting'
+group 'it.com.ibm.generali.CapitalReporting'
 
 buildscript {
 	ext {

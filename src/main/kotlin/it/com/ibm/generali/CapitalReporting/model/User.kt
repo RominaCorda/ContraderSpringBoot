@@ -1,4 +1,4 @@
-package it.com.ibm.generali.CapitaliReporting.model
+package it.com.ibm.generali.CapitalReporting.model
 
 import java.io.Serializable
 import javax.persistence.Entity

@@ -1,4 +1,4 @@
-# Capitali Reporting App
+# Capital Reporting App
 
 ### Setup
 
@@ -15,5 +15,5 @@ Run
     
 #### SEE LOGS
     
-    cf logs CapitaliReporting
+    cf logs CapitalReporting
     

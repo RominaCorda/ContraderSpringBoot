@@ -1,4 +1,4 @@
-package it.com.ibm.generali.CapitaliReporting;
+package it.com.ibm.generali.CapitalReporting;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,12 +6,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CapitaliReportingApplication
+public class CapitalReportingApplication
 {
 
     public static final String APP_TITLE = "CAPITALI REPORTING";
 
-    private static Logger logger = LoggerFactory.getLogger(CapitaliReportingApplication.class);
+    private static Logger logger = LoggerFactory.getLogger(CapitalReportingApplication.class);
 
     /**
      * Version. It must be the same as that found in gradle.properties
@@ -25,19 +25,19 @@ public class CapitaliReportingApplication
      */
     public static String getVersion()
     {
-        return CapitaliReportingApplication.version;
+        return CapitalReportingApplication.version;
     }
 
     public static void main(String[] args)
     {
         hello();
-        SpringApplication.run(CapitaliReportingApplication.class, args);
+        SpringApplication.run(CapitalReportingApplication.class, args);
     }
 
     private static void hello()
     {
         logger.info("**********************************************");
-        logger.info("  Generali Capitali Reporting App v." + version);
+        logger.info("  Generali Capital Reporting App v." + version);
         logger.info("**********************************************");
     }
 

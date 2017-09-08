@@ -1,15 +1,21 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+ul {
+  color: #c11e0d;
+}
+
+li {
+  color: #c11e0d;
+}
 .loginform {
   margin-top: 100px;
 }
-
 .userprofile {
   margin-left: -15px;
   margin-top: 20px;
 }
-
 .pwdchanger {
   margin-left: -15px;
   margin-top: 10px;
@@ -22,7 +28,7 @@ body {
 }
 .loader {
   border: 16px solid #f3f3f3;
-  border-top: 16px solid #3498db;
+  border-top: 16px solid #c11e0d;
   border-radius: 50%;
   width: 120px;
   height: 120px;
