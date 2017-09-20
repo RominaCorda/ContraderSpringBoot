@@ -29,7 +29,7 @@
         </#if>
             <li><a href="/freereporting">Free Reporting</a></li>
             <li><a href="/browse">Analysis</a></li>
-            <li><a href="#0">Official</a></li>
+            <li><a href="swagger-ui.html">API</a></li>
         </ul>
     </div>
     <div class="top-bar-right">
