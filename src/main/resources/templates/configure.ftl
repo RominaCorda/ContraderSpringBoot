@@ -8,7 +8,7 @@
 
 <div class="row">
 
-    <div class="small-6 large-6 columns">
+    <div class="small-5 large-5 columns">
 
     <#if mode?starts_with("ok")>
         <div class="row">
@@ -33,7 +33,7 @@
         <#elseif mode == "new">
             <h3>Add new user</h3>
         <#else>
-            <h3>Configure user ${mode}</h3>
+            <h3>Configure user <b>${mode}</b></h3>
         </#if>
         </div>
 
@@ -59,7 +59,17 @@
         </div>
     </#if>
 
-        <form name="user" action="" method="post">
+
+
+
+    </div>
+
+    <div class="small-1 large-1 columns">
+        &nbsp;
+    </div>
+
+    <div class="small-5 large-5 columns">
+        <form name="user" action="" method="post" style="margin-top: 60px">
         <#if mode != "new">
             <div class="row">
                 <p>Last modified: <i>August 28th, 2017</i></p>
@@ -117,12 +127,6 @@
                 </div>
             </div>
         </form>
-
-
-    </div>
-
-    <div class="small-6 large-6 columns">
-        &nbsp;
     </div>
 
 

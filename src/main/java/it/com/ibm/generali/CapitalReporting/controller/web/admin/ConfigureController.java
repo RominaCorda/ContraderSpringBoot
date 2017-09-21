@@ -1,6 +1,7 @@
-package it.com.ibm.generali.CapitalReporting.controller.web;
+package it.com.ibm.generali.CapitalReporting.controller.web.admin;
 
 import it.com.ibm.generali.CapitalReporting.CapitalReportingApplication;
+import it.com.ibm.generali.CapitalReporting.controller.web.SessionHelper;
 import it.com.ibm.generali.CapitalReporting.dao.RoleDao;
 import it.com.ibm.generali.CapitalReporting.dao.UserDao;
 import it.com.ibm.generali.CapitalReporting.model.Role;
@@ -21,15 +22,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-public class AdminController extends SessionHelper
+public class ConfigureController extends SessionHelper
 {
-    private Logger logger = LoggerFactory.getLogger(AdminController.class);
+    private Logger logger = LoggerFactory.getLogger(ConfigureController.class);
 
     private UserDao users;
     private RoleDao roles;
 
     @Autowired
-    public AdminController(UserDao userDao, RoleDao roleDao)
+    public ConfigureController(UserDao userDao, RoleDao roleDao)
     {
         this.users = userDao;
         this.roles = roleDao;
@@ -61,7 +62,6 @@ public class AdminController extends SessionHelper
 
     /**
      * Configure GET with mode
-     *
      */
     @RequestMapping(value = "/configure", method = RequestMethod.GET, params = {"mode"})
     public String configureWithMode(Model model, @RequestParam("mode") String mode, HttpSession session)
@@ -108,66 +108,6 @@ public class AdminController extends SessionHelper
 
         this.users.save(modUser);
         return "redirect:configure?mode=" + mode;
-    }
-
-    /**
-     * Roles with delete
-     */
-    @RequestMapping(value = "/roles", method = RequestMethod.GET, params = {"delete"})
-    public String deleteRole(@RequestParam("delete") String roleId, HttpSession session)
-    {
-        if (!this.isAdmin(session))
-        {
-            return "redirect:login";
-        }
-
-        this.roles.delete(Long.parseLong(roleId));
-        return "redirect:roles";
-    }
-
-    /**
-     * Roles GET
-     */
-    @RequestMapping("/roles")
-    public String roles(Model model, HttpSession session)
-    {
-        logger.info("/roles page");
-
-        if (!this.isAdmin(session))
-        {
-            return "redirect:login";
-        }
-
-        final Iterable<Role> roles = this.roles.findAll();
-
-        model.addAttribute("roles", roles);
-        model.addAttribute("user", this.getCurrentUser(session));
-        model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
-        model.addAttribute("version", CapitalReportingApplication.getVersion());
-
-        return "roles";
-    }
-
-    /**
-     * Roles POST
-     */
-    @RequestMapping(value = "/roles", method = RequestMethod.POST)
-    public String addRole(@RequestParam("description") String description, HttpSession session)
-    {
-        if (!this.isAdmin(session))
-        {
-            return "redirect:login";
-        }
-
-        logger.info("Received POST for description = " + description);
-
-        Role newrole = new Role();
-        newrole.setDescription(description);
-
-        this.roles.save(newrole);
-
-        return "redirect:roles";
-
     }
 
     private String configureTemplate(Model model, HttpSession session, String mode)

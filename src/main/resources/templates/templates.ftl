@@ -5,22 +5,24 @@
 <div class="row">
     <div class="small-6 large-6 columns">
         <div class="row">
-            <h3>Manage Roles</h3>
+            <h3>Manage templates</h3>
         </div>
         <div class="row">
-            <form id="addroleform" method="post" action="">
-                <table id="rolestable">
+            <form id="addtemplateform" method="post" action="">
+                <table id="templatestable">
                     <thead>
                     <tr>
-                        <th width="330">Role</th>
+                        <th width="30">&nbsp;</th>
+                        <th width="330">Template</th>
                         <th width="30">&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <#list roles as role>
+                    <#list templates as template>
                     <tr>
-                        <td>${role.description}</td>
-                        <td><a href="/roles?delete=${role.id}"><i class="fi-x"></i></td>
+                        <td>${template.id}</td>
+                        <td>${template.name}</td>
+                        <td><a href="/templates?delete=${template.id}"><i class="fi-x"></i></td>
                     </tr>
                     </#list>
                     </tbody>
@@ -50,9 +52,9 @@
 <script>
     $("#addnew").click(function () {
         $("#addnew").prop("disabled", true);
-        $("#rolestable").append('' +
-                '<tr><td>\n' +
-                '<input id="description" name="description" type="text" placeholder="Enter role name">\n' +
+        $("#templatestable").append('' +
+                '<tr><td>&nbsp;</td><td>\n' +
+                '<input id="name" name="name" type="text" placeholder="Enter template name">\n' +
                 '</td>\n' +
                 '<td><input class="button" type="submit" value="OK"></td>\n' +
                 '</tr>');

@@ -23,7 +23,7 @@ open class User : Serializable
 
     fun toDetailedString(): String = "$fullName ($username)"
 
-    override fun toString(): String = "$username"
+    override fun toString(): String = username
 
     companion object Factory
     {

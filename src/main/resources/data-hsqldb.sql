@@ -1,3 +1,9 @@
+INSERT INTO template (name) VALUES
+  ('Template 01'),
+  ('Template 02'),
+  ('Template 03'),
+  ('Template 04'),
+  ('Template 05');
 INSERT INTO role (description) VALUES
   ('System Administrator'),
   ('Power User'),
