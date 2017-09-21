@@ -5,7 +5,7 @@
 
 <div class="row column">
     <div class="row">
-        <h3>Select report's month</h3>
+        <h3>Select report's scope</h3>
     </div>
 
     <div class="row">
@@ -20,8 +20,8 @@
     </div>
 
     <div class="row">
-    <#list months as month>
-        <a href="/archive?year=${year}&month=${month}" class="button primary">${month} ${year}</a>
+    <#list scopes as scope>
+        <a href="/archive?year=${year}&month=${scope.id}" class="button primary">${scope.name} ${year}</a>
     </#list>
     </div>
 

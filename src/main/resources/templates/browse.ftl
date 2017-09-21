@@ -21,7 +21,7 @@
 
     <div class="row">
     <#list years as year>
-        <a href="/months?year=${year?c}" class="button primary">${year?c}</a>
+        <a href="/scopes?year=${year?c}" class="button primary">${year?c}</a>
     </#list>
     </div>
 

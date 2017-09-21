@@ -13,6 +13,9 @@ open class Scope : Serializable
     lateinit var name: String
     var published: Boolean = false
 
+    var parent: Long = 0L
+    var level: Int = 0
+
     @OneToMany
     var template: MutableSet<Template>? = null
 

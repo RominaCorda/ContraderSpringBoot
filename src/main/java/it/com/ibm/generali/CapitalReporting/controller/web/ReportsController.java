@@ -1,7 +1,10 @@
 package it.com.ibm.generali.CapitalReporting.controller.web;
 
+import it.com.ibm.generali.CapitalReporting.dao.ScopeDao;
+import it.com.ibm.generali.CapitalReporting.model.Scope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,12 +12,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 @Controller
 public class ReportsController extends SessionHelper
 {
     private Logger logger = LoggerFactory.getLogger(ReportsController.class);
+
+    private ScopeDao scopes;
+
+    @Autowired
+    public ReportsController(ScopeDao scopeDao)
+    {
+        this.scopes = scopeDao;
+    }
 
     /**
      * FreeReporting GET
@@ -32,35 +46,23 @@ public class ReportsController extends SessionHelper
     @RequestMapping("/browse")
     public String browse(Model model, HttpSession session)
     {
-        logger.info("/browse page");
-
-        List<Integer> years = new ArrayList<>();
-        for (int year = 2012; year < 2018; year++)
-        {
-            years.add(year);
-        }
-        model.addAttribute("years", years);
-
+        logger.info("/browse = Scope Level 0");
+        List<Scope> scopesZero = this.scopes.findByParent(-1);
+        model.addAttribute("years", scopesZero);
         return this.pageSetup("browse", model, session);
     }
 
     /**
      * Months GET
      */
-    @RequestMapping(value = "/months", method = RequestMethod.GET, params = {"year"})
-    public String months(Model model, @RequestParam("year") String year, HttpSession session)
+    @RequestMapping(value = "/scopes", method = RequestMethod.GET, params = {"parent"})
+    public String scopes(Model model, @RequestParam("parent") Long parentId, HttpSession session)
     {
-        logger.info("/Months page for year = " + year);
-
-        List<String> months = new ArrayList<>();
-        months.add("Analyst Meeting");
-        months.add("Closure SCR");
-        months.add("ORSA Reports");
-        months.add("Convergence");
-
-        model.addAttribute("year", year);
-        model.addAttribute("months", months);
-
+        logger.info("/Scopes for parent = " + parentId);
+        List<Scope> scopes = this.scopes.findByParent(parentId);
+        Scope parent = this.scopes.findOne(parentId);
+        model.addAttribute("year", parent.getName());
+        model.addAttribute("months", scopes);
         return this.pageSetup("months", model, session);
     }
 

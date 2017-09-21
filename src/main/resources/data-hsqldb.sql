@@ -1,3 +1,4 @@
+-- auto generated Ids are 1 based
 INSERT INTO template (name) VALUES
   ('Template 01'),
   ('Template 02'),
@@ -17,5 +18,4 @@ INSERT INTO user (username, password, full_name, email, active, role_id) VALUES
   ('lorenzo', 'pass', 'Lorenzo Brandimarte', 'lorenzo@capitalireporting.info', TRUE, 2),
   ('michela', 'pass', 'Michela Da Ros', 'michela@capitalireporting.info', TRUE, 2),
   ('alessio', 'doctor', 'Alessio Saltarin', 'alessio@capitalireporting.info', TRUE, 2);
-
 
