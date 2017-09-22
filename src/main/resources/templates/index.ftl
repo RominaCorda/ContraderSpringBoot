@@ -5,45 +5,13 @@
 
 <div class="row">
     <div class="medium-6 columns">
-        <img class="thumbnail" src="http://placehold.it/650x350">
-        <div class="row small-up-4">
-            <div class="column">
-                <img class="thumbnail" src="http://placehold.it/250x200">
-            </div>
-            <div class="column">
-                <img class="thumbnail" src="http://placehold.it/250x200">
-            </div>
-            <div class="column">
-                <img class="thumbnail" src="http://placehold.it/250x200">
-            </div>
-            <div class="column">
-                <img class="thumbnail" src="http://placehold.it/250x200">
-            </div>
-        </div>
+        <img class="thumbnail" src="http://placehold.it/650x320">
     </div>
     <div class="medium-6 large-5 columns">
         <h3>Capital Reporting</h3>
         <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque
             faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus
             in.</p>
-
-        <label>Choose Report
-            <select>
-                <option value="husker"> A-38902</option>
-                <option value="starbuck">B-39287</option>
-                <option value="hotdog"> B-57958</option>
-                <option value="apollo"> K-37897</option>
-            </select>
-        </label>
-
-        <div class="row">
-            <div class="small-3 columns">
-                <label for="middle-label" class="middle">Correction:</label>
-            </div>
-            <div class="small-9 columns">
-                <input type="text" id="middle-label" placeholder="One fish two fish">
-            </div>
-        </div>
 
         <a href="/report" class="button large expanded">Calculate now</a>
         <a href="/browse" class="small secondary expanded button">Analysis</a>
@@ -53,12 +21,13 @@
 <div class="column row">
     <hr>
     <ul class="tabs" data-tabs id="example-tabs">
-        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Latest reports</a></li>
-        <li class="tabs-title"><a href="#panel2">Other reports</a></li>
+        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">My reports</a></li>
+        <li class="tabs-title"><a href="#panel2">Recent reporting periods</a></li>
+        <li class="tabs-title"><a href="#panel3">Recent scopes</a></li>
     </ul>
     <div class="tabs-content" data-tabs-content="example-tabs">
         <div class="tabs-panel is-active" id="panel1">
-            <h4>Latest reports</h4>
+            <h4>My reports</h4>
             <div class="media-object stack-for-small">
                 <div class="media-object-section">
                     <img class="thumbnail" src="http://placehold.it/200x200">
@@ -130,6 +99,44 @@
                     <a href="#" class="button hollow tiny expanded">Run Now</a>
                 </div>
             </div>
+        </div>
+        <div class="tabs-panel" id="panel3">
+
+            <table>
+                <thead>
+                <tr>
+                    <th width="200">Date</th>
+                    <th>Report Name</th>
+                    <th width="150">Scope</th>
+                    <th width="100">&nbsp;</th>
+                    <th width="100">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>19.03.2017</td>
+                    <td>Experimental Report A23</td>
+                    <td>Analysis | YE17</td>
+                    <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
+                    <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>22.02.2017</td>
+                    <td>Scenario Beta</td>
+                    <td>Analysis | YE17</td>
+                    <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
+                    <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>17.07.2016</td>
+                    <td>Report A32</td>
+                    <td>Analysis | YE17</td>
+                    <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
+                    <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
 </div>

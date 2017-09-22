@@ -9,4 +9,6 @@
             <small>Copyright &copy; IBM CORPORATION 2017</small>
         </li>
     </ul>
+    <br>
+    <br>
 </div>
