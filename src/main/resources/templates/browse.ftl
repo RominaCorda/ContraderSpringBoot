@@ -20,8 +20,8 @@
     </div>
 
     <div class="row">
-    <#list years as year>
-        <a href="/scopes?year=${year?c}" class="button primary">${year?c}</a>
+    <#list scopes as scope>
+        <a href="/scopes?parent=${scope.id}" class="button primary">${scope.name}</a>
     </#list>
     </div>
 

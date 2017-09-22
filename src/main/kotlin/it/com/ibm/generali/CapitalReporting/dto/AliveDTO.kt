@@ -5,3 +5,4 @@ open class AliveDTO(val version: String, val message: String)
     constructor() : this("", "")
 }
 
+
