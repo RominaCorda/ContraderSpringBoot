@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CapitalReportingApplication
 {
 
-    public static final String APP_TITLE = "CAPITAL REPORTING";
+    public static final String APP_TITLE = "ANNA REPORTING";
 
     private static Logger logger = LoggerFactory.getLogger(CapitalReportingApplication.class);
 
