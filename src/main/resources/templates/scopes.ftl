@@ -1,3 +1,5 @@
+<#-- @ftlvariable name="scopes" type="java.util.List<it.com.ibm.generali.CapitalReporting.model.Scope>" -->
+<#-- @ftlvariable name="parent" type="it.com.ibm.generali.CapitalReporting.model.Scope" -->
 <#include "header.ftl">
 <#include "topbar.ftl">
 
@@ -13,7 +15,7 @@
             <ul class="breadcrumbs">
                 <li><a href="/browse">Years</a></li>
                 <li>
-                    Year ${year}
+                    Year ${parent.name}
                 </li>
             </ul>
         </nav>
@@ -21,7 +23,7 @@
 
     <div class="row">
     <#list scopes as scope>
-        <a href="/archive?year=${year}&month=${scope.id}" class="button primary">${scope.name} ${year}</a>
+        <a href="/archive?parent=${parent.id}&scope=${scope.id}" class="button primary">${scope.name} ${parent.name}</a>
     </#list>
     </div>
 

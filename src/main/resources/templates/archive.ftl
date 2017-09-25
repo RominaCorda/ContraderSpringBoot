@@ -1,3 +1,5 @@
+<#-- @ftlvariable name="parent" type="it.com.ibm.generali.CapitalReporting.model.Scope" -->
+<#-- @ftlvariable name="scope" type="it.com.ibm.generali.CapitalReporting.model.Scope" -->
 <#include "header.ftl">
 <#include "topbar.ftl">
 
@@ -5,16 +7,16 @@
 
 <div class="row column">
     <div class="row">
-        <h3>Available reports for ${month} ${year}</h3>
+        <h3>Available reports for ${scope.name} ${parent.name}</h3>
     </div>
 
     <div class="row">
         <nav aria-label="You are here:" role="navigation">
             <ul class="breadcrumbs">
                 <li><a href="/browse">Years</a></li>
-                <li><a href="/months?year=${year}">${year}</a></li>
+                <li><a href="/scopes?parent=${parent.id}">${parent.name}</a></li>
                 <li>
-                ${month}
+                ${scope.name}
                 </li>
             </ul>
         </nav>
@@ -38,7 +40,7 @@
             <#list archive as key, value>
             <tr>
                 <td>${key}</td>
-                <td>${year}</td>
+                <td>${parent.name}</td>
                 <td>${value}</td>
                 <td><a href="/freereporting">View in Cognos</a></td>
                 <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>

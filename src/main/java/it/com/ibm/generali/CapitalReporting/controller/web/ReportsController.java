@@ -48,7 +48,7 @@ public class ReportsController extends SessionHelper
     {
         logger.info("/browse = Scope Level 0");
         List<Scope> scopesZero = this.scopes.findByParent(-1);
-        model.addAttribute("years", scopesZero);
+        model.addAttribute("scopes", scopesZero);
         return this.pageSetup("browse", model, session);
     }
 
@@ -61,19 +61,23 @@ public class ReportsController extends SessionHelper
         logger.info("/Scopes for parent = " + parentId);
         List<Scope> scopes = this.scopes.findByParent(parentId);
         Scope parent = this.scopes.findOne(parentId);
-        model.addAttribute("year", parent.getName());
-        model.addAttribute("months", scopes);
-        return this.pageSetup("months", model, session);
+        model.addAttribute("parent", parent);
+        model.addAttribute("scopes", scopes);
+        return this.pageSetup("scopes", model, session);
     }
 
     /**
      * Months GET
      */
-    @RequestMapping(value = "/archive", method = RequestMethod.GET, params = {"year", "month"})
-    public String archive(Model model, @RequestParam("year") String year,
-                          @RequestParam("month") String month, HttpSession session)
+    @RequestMapping(value = "/archive", method = RequestMethod.GET, params = {"parent", "scope"})
+    public String archive(Model model,
+                          @RequestParam("parent") Long parentId,
+                          @RequestParam("scope") Long scopeId, HttpSession session)
     {
-        logger.info("/Archive page for year = " + year + " and month = " + month);
+        logger.info("/Archive page for parent ID = " + parentId + " and scope ID = " + scopeId);
+
+        Scope parent = this.scopes.findOne(parentId);
+        Scope scope = this.scopes.findOne(scopeId);
 
         Random seed = new Random();
 
@@ -90,8 +94,8 @@ public class ReportsController extends SessionHelper
             archive.put(title, reportID);
         }
 
-        model.addAttribute("year", year);
-        model.addAttribute("month", month);
+        model.addAttribute("parent", parent);
+        model.addAttribute("scope", scope);
         model.addAttribute("archive", archive);
 
         return this.pageSetup("archive", model, session);
