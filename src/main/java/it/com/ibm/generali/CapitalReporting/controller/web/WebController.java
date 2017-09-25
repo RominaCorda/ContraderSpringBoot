@@ -34,6 +34,21 @@ public class WebController extends SessionHelper
     }
 
     /**
+     * the REST request for /search resource.
+     *
+     * @param model the HTTP request attributes. it will updated
+     *              with application's version.
+     * @return the home page
+     */
+    @RequestMapping(value = "/search", method = RequestMethod.GET, params = {"search"})
+    public String search(Model model, @RequestParam("search") String search, HttpSession session)
+    {
+        logger.info("/search page");
+        model.addAttribute("search", search);
+        return this.pageSetup("search", model, session);
+    }
+
+    /**
      * the REST request for /profile resource.
      *
      * @param model the HTTP request attributes. it will updated

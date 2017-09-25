@@ -29,14 +29,27 @@
         </#if>
             <li><a href="/freereporting">Free Reporting</a></li>
             <li><a href="/browse">Analysis</a></li>
-            <li><a href="swagger-ui.html">API</a></li>
+            <li><a href="/browse">Official</a></li>
+            <li class="has-submenu">
+                <a href="/browse">Add-ons</a>
+                <ul class="submenu menu vertical" data-submenu>
+                    <li><a href="#0">Upload</a></li>
+                    <li><a href="#0">Manage</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <div class="top-bar-right">
         <ul class="menu" style="margin-top: 30px; margin-right: 50px">
-            <li><input type="search" placeholder="Search"></li>
+            <li><input id="searchwhat" name="searchwhat" type="search" placeholder="Search"></li>
             <li>
-                <button type="button" class="button">Search</button>
+                <script>
+                    function doSearch() {
+                        var searchWhat = $('#searchwhat').val();
+                        window.location.href = "/search?search=" + searchWhat;
+                    }
+                </script>
+                <button type="button" class="button" onclick="doSearch()">Search</button>
             </li>
         </ul>
     </div>

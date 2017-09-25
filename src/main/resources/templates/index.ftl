@@ -4,140 +4,119 @@
 <br>
 
 <div class="row">
-    <div class="medium-6 columns">
-        <img class="thumbnail" src="http://placehold.it/650x320">
-    </div>
-    <div class="medium-6 large-5 columns">
-        <h3>Capital Reporting</h3>
-        <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque
-            faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus
-            in.</p>
+    <div class="medium-5 large-5 columns">
+        <h5>News</h5>
 
-        <a href="/report" class="button large expanded">Calculate now</a>
-        <a href="/browse" class="small secondary expanded button">Analysis</a>
+        <div class="callout">
+            <h5>Reporting is online!! - 25 Set 2017</h5>
+            <p>Wow, reporting is online!.</p>
+            <a href="#0">It's dangerous to go alone, take this.</a>
+        </div>
+
+        <div class="callout">
+            <h5>New report A32980 available - 20 Set 2017.</h5>
+            <p>It has an easy to override visual style, and is appropriately subdued.</p>
+            <a href="#0">It's dangerous to go alone, take this.</a>
+        </div>
+
+    </div>
+    <div class="medium-7 large-7 columns">
+
+        <h5>My reports</h5>
+
+        <table>
+            <thead>
+            <tr>
+                <th width="100">Date</th>
+                <th width="200">Report Name</th>
+                <th>Scope</th>
+                <th width="70">&nbsp;</th>
+                <th width="70">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>19.03.2017</td>
+                <td>Experimental Report A23</td>
+                <td><span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false'
+                          title="Analysis | YE17">Analysis | YE17</span></td>
+                <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
+                <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>22.02.2017</td>
+                <td>Scenario Beta</td>
+                <td><span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false'
+                          title="Official | YE17 | Closure SCR | Germany ">Official | YE17 | Closure &hellip;</td>
+                <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
+                <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>17.07.2016</td>
+                <td>Report A32</td>
+                <td><span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false'
+                          title="Analysis | YE17">Analysis | YE17</span></td>
+                <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
+                <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>19.03.2017</td>
+                <td>Experimental Report A23</td>
+                <td><span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false'
+                          title="Analysis | YE17">Analysis | YE17</span></td>
+                <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
+                <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>22.02.2017</td>
+                <td>Scenario Beta</td>
+                <td><span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false'
+                          title="Official | YE17">Official | YE17</span></td>
+                <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
+                <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>17.07.2016</td>
+                <td>Report A32</td>
+                <td><span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false'
+                          title="Analysis | YE17">Analysis | YE17</span></td>
+                <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
+                <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
+            </tr>
+            </tbody>
+        </table>
+
     </div>
 </div>
 
 <div class="column row">
     <hr>
     <ul class="tabs" data-tabs id="example-tabs">
-        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">My reports</a></li>
-        <li class="tabs-title"><a href="#panel2">Recent reporting periods</a></li>
-        <li class="tabs-title"><a href="#panel3">Recent scopes</a></li>
+        <li class="tabs-title is-active"><a href="#panel1">Recent reporting periods</a></li>
+        <li class="tabs-title"><a href="#panel2">Recent scopes</a></li>
     </ul>
     <div class="tabs-content" data-tabs-content="example-tabs">
         <div class="tabs-panel is-active" id="panel1">
-            <h4>My reports</h4>
-            <div class="media-object stack-for-small">
-                <div class="media-object-section">
-                    <img class="thumbnail" src="http://placehold.it/200x200">
-                </div>
-                <div class="media-object-section">
-                    <h5>A-380323 23-07-2017</h5>
-                    <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An
-                        idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It
-                        can grow to define or destroy you.</p>
-                </div>
-            </div>
-            <div class="media-object stack-for-small">
-                <div class="media-object-section">
-                    <img class="thumbnail" src="http://placehold.it/200x200">
-                </div>
-                <div class="media-object-section">
-                    <h5>B-893922 19-07-2017</h5>
-                    <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An
-                        idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It
-                        can grow to define or destroy you</p>
-                </div>
-            </div>
+            <h4>Recent Reporting Periods</h4>
+            <ul>
+                <li><a href="#">YE2015</a></li>
+                <li><a href="#">YE2016</a></li>
+                <li><a href="#">YE2017</a></li>
+            </ul>
         </div>
         <div class="tabs-panel" id="panel2">
-            <div class="row medium-up-3 large-up-5">
-                <div class="column">
-                    <img class="thumbnail" src="http://placehold.it/350x200">
-                    <h5>Report
-                        <small>A22</small>
-                    </h5>
-                    <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac
-                        euismod semper, magna diam.</p>
-                    <a href="#" class="button hollow tiny expanded">Run Now</a>
-                </div>
-                <div class="column">
-                    <img class="thumbnail" src="http://placehold.it/350x200">
-                    <h5>Report
-                        <small>B22</small>
-                    </h5>
-                    <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac
-                        euismod semper, magna diam.</p>
-                    <a href="#" class="button hollow tiny expanded">Run Now</a>
-                </div>
-                <div class="column">
-                    <img class="thumbnail" src="http://placehold.it/350x200">
-                    <h5>Report
-                        <small>C22</small>
-                    </h5>
-                    <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac
-                        euismod semper, magna diam.</p>
-                    <a href="#" class="button hollow tiny expanded">Run Now</a>
-                </div>
-                <div class="column">
-                    <img class="thumbnail" src="http://placehold.it/350x200">
-                    <h5>Report
-                        <small>D22</small>
-                    </h5>
-                    <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac
-                        euismod semper, magna diam.</p>
-                    <a href="#" class="button hollow tiny expanded">Run Now</a>
-                </div>
-                <div class="column">
-                    <img class="thumbnail" src="http://placehold.it/350x200">
-                    <h5>Report
-                        <small>E22</small>
-                    </h5>
-                    <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac
-                        euismod semper, magna diam.</p>
-                    <a href="#" class="button hollow tiny expanded">Run Now</a>
-                </div>
-            </div>
-        </div>
-        <div class="tabs-panel" id="panel3">
-
-            <table>
-                <thead>
-                <tr>
-                    <th width="200">Date</th>
-                    <th>Report Name</th>
-                    <th width="150">Scope</th>
-                    <th width="100">&nbsp;</th>
-                    <th width="100">&nbsp;</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>19.03.2017</td>
-                    <td>Experimental Report A23</td>
-                    <td>Analysis | YE17</td>
-                    <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
-                    <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>22.02.2017</td>
-                    <td>Scenario Beta</td>
-                    <td>Analysis | YE17</td>
-                    <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
-                    <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>17.07.2016</td>
-                    <td>Report A32</td>
-                    <td>Analysis | YE17</td>
-                    <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
-                    <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
-                </tr>
-                </tbody>
-            </table>
+            <h4>Recent Scopes</h4>
+            <ul>
+                <li><a href="#">Analysis</a> | <a href="scopes?parent=4">YE2014</a> | <a href="#">Closure SCR</a></li>
+                <li><a href="#">Official</a> | <a href="scopes?parent=5">YE2015</a> | <a href="#">Closure SCR</a> | <a
+                        href="#">Germany</a></li>
+                <li><a href="#">Analysis</a> | <a href="scopes?parent=6">YE2016</a></li>
+            </ul>
 
         </div>
+
+
+    </div>
     </div>
 </div>
 

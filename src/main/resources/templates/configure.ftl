@@ -72,58 +72,85 @@
         <form name="user" action="" method="post" style="margin-top: 60px">
         <#if mode != "new">
             <div class="row">
-                <p>Last modified: <i>August 28th, 2017</i></p>
+                <div class="columns">
+                    <p>Last modified: <i>August 28th, 2017</i></p>
+                </div>
+
             </div>
         </#if>
             <div class="row">
-                <label>User ID:
-                    <input id="username" name="username" type="text" value="${selecteduser.username}">
-                    <input id="password" name="password" type="hidden" value="***">
-                </label>
+                <div class="columns">
+                    <label>User ID:
+                        <input id="username" name="username" type="text" value="${selecteduser.username}">
+                        <input id="password" name="password" type="hidden" value="***">
+                    </label>
+                </div>
             </div>
             <div class="row">
-                <label>Full Name:
-                    <input id="fullName" name="fullName" type="text" value="${selecteduser.fullName}">
-                </label>
+                <div class="columns">
+                    <label>Full Name:
+                        <input id="fullName" name="fullName" type="text" value="${selecteduser.fullName}">
+                    </label>
+                </div>
             </div>
             <div class="row">
-                <label>eMail Address:
-                    <input id="email" name="email" type="email" value="${selecteduser.email}">
-                </label>
+                <div class="columns">
+                    <label>eMail Address:
+                        <input id="email" name="email" type="email" value="${selecteduser.email}">
+                    </label>
+                </div>
             </div>
             <div class="row">
-                <label>Active:
-                <#if selecteduser.active>
-                    <input id="active" name="active" type="checkbox" checked="checked">
-                <#else>
-                    <input id="active" name="active" type="checkbox">
-                </#if>
-                </label>
+                <div class="columns">
+                    <label>Active:
+                    <#if selecteduser.active>
+                        <input id="active" name="active" type="checkbox" checked="checked">
+                    <#else>
+                        <input id="active" name="active" type="checkbox">
+                    </#if>
+                    </label>
+                </div>
             </div>
             <div class="row">
-                <label>Role:
-                    <select id="role" name="role">
-                    <#list roles as role>
-                        <#if selecteduser.role.id==role.id>
-                        <option value="${role.id}" selected="selected">
-                        <#else>
-                        <option value="${role.id}">
-                        </#if>
-                    ${role.description}
-                    </option>
-                    </#list>
-                    </select>
-                </label>
+                <div class="column medium-11 large-11">
+                    <label>Role:
+                        <select id="role" name="role">
+                        <#list roles as role>
+                            <#if selecteduser.role.id==role.id>
+                            <option value="${role.id}" selected="selected">
+                            <#else>
+                            <option value="${role.id}">
+                            </#if>
+                        ${role.description}
+                        </option>
+                        </#list>
+                        </select>
+                    </label>
+                </div>
+                <div class="column medium-1 large-1">
+
+                    <div style="margin-top: 30px" data-tooltip aria-haspopup="true" class="has-tip"
+                         data-disable-hover="false" title="Edit roles">
+                        <a href="/roles"><i class="fi-pencil"></i></a>
+                    </div>
+
+                </div>
+
             </div>
             <div class="row">
-                <label>Tags:
-                    <input id="tags" name="tags" type="text" placeholder="Input tags separated by comma.">
-                </label>
+                <div class="columns">
+                    <label>Tags:
+                        <input id="tags" name="tags" type="text" placeholder="Input tags separated by comma.">
+                    </label>
+                </div>
+
             </div>
             <div class="row">
-                <div class="button-group float-right">
-                    <a class="secondary button" href="/index">Cancel</a>
-                    <input type="submit" value="Submit" class="primary button">
+                <div class="columns">
+                    <div class="button-group float-right">
+                        <a class="secondary button" href="/index">Cancel</a>
+                        <input type="submit" value="Submit" class="primary button">
+                    </div>
                 </div>
             </div>
         </form>

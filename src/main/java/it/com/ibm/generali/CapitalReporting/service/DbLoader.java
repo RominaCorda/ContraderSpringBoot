@@ -34,7 +34,7 @@ public class DbLoader implements ApplicationRunner
         for (int year = 2012; year < 2018; year++)
         {
             Scope tempScope = new Scope();
-            tempScope.setName(String.valueOf(year));
+            tempScope.setName(String.valueOf("YE" + String.valueOf(year)));
             tempScope.setParent(-1L);
             tempScope.setPublished(true);
             tempScope.setLevel(0);
