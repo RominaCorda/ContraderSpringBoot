@@ -9,10 +9,13 @@ import it.com.ibm.generali.CapitalReporting.CapitalReportingApplication;
 import it.com.ibm.generali.CapitalReporting.dto.AliveDTO;
 import it.com.ibm.generali.CapitalReporting.dto.ReportAvailabilityReqDTO;
 import it.com.ibm.generali.CapitalReporting.dto.ReportAvailabilityRespDTO;
+import it.com.ibm.generali.CapitalReporting.service.Availability;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,6 +26,14 @@ import javax.validation.Valid;
 public class ReportingController
 {
     private static Logger logger = LoggerFactory.getLogger(ReportingController.class);
+    private Availability availability;
+
+    @Autowired
+    public ReportingController(Availability availability)
+    {
+        Assert.notNull(availability, "Availability is NULL");
+        this.availability = availability;
+    }
 
     /**
      * Check service
@@ -63,10 +74,7 @@ public class ReportingController
     public ResponseEntity<ReportAvailabilityRespDTO> checkAvailable(
             @Valid @RequestBody ReportAvailabilityReqDTO request)
     {
-        ReportAvailabilityRespDTO responseDTO;
-        String message = request.getEnvironmentId() + " " + request.getReportId() + " > " +
-                request.getReportFile();
-        responseDTO = new ReportAvailabilityRespDTO(true, message);
+        ReportAvailabilityRespDTO responseDTO = this.availability.checkAvailable(request);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }
