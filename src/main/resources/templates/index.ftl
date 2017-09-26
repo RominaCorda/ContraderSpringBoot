@@ -89,35 +89,43 @@
     </div>
 </div>
 
-<div class="column row">
+<div class="row">
     <hr>
-    <ul class="tabs" data-tabs id="example-tabs">
-        <li class="tabs-title is-active"><a href="#panel1">Recent reporting periods</a></li>
-        <li class="tabs-title"><a href="#panel2">Recent scopes</a></li>
-    </ul>
-    <div class="tabs-content" data-tabs-content="example-tabs">
-        <div class="tabs-panel is-active" id="panel1">
-            <h4>Recent Reporting Periods</h4>
-            <ul>
-                <li><a href="#">YE2015</a></li>
-                <li><a href="#">YE2016</a></li>
-                <li><a href="#">YE2017</a></li>
-            </ul>
-        </div>
-        <div class="tabs-panel" id="panel2">
-            <h4>Recent Scopes</h4>
-            <ul>
-                <li><a href="#">Analysis</a> | <a href="scopes?parent=4">YE2014</a> | <a href="#">Closure SCR</a></li>
-                <li><a href="#">Official</a> | <a href="scopes?parent=5">YE2015</a> | <a href="#">Closure SCR</a> | <a
-                        href="#">Germany</a></li>
-                <li><a href="#">Analysis</a> | <a href="scopes?parent=6">YE2016</a></li>
-            </ul>
+    <div class="medium-7 large-7 columns">
+        <ul class="tabs" data-tabs id="example-tabs">
+            <li class="tabs-title is-active"><a href="#panel1">Recent reporting periods</a></li>
+            <li class="tabs-title"><a href="#panel2">Recent scopes</a></li>
+        </ul>
+        <div class="tabs-content" data-tabs-content="example-tabs">
+            <div class="tabs-panel is-active" id="panel1">
+                <h5>Reporting Periods</h5>
+                <ul>
+                    <li><a href="#">YE2015</a></li>
+                    <li><a href="#">YE2016</a></li>
+                    <li><a href="#">YE2017</a></li>
+                </ul>
+            </div>
+            <div class="tabs-panel" id="panel2">
+                <h5>Scopes</h5>
+                <ul>
+                    <li><a href="#">Analysis</a> | <a href="scopes?parent=4">YE2014</a> | <a href="#">Closure SCR</a>
+                    </li>
+                    <li><a href="#">Official</a> | <a href="scopes?parent=5">YE2015</a> | <a href="#">Closure SCR</a> |
+                        <a
+                                href="#">Germany</a></li>
+                    <li><a href="#">Analysis</a> | <a href="scopes?parent=6">YE2016</a></li>
+                </ul>
+
+            </div>
+
 
         </div>
-
-
     </div>
+
+    <div class="medium-5 large-5 columns">
+        <img class="thumbnail" src="http://placehold.it/600x270">
     </div>
+
 </div>
 
 

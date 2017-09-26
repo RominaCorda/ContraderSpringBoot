@@ -52,7 +52,7 @@
                     <td>${report.created?date}</td>
                     <td>${report.user.fullName}</td>
                     <td>${report.reportingPeriod}</td>
-                    <td>${report.simulationId}</td>
+                    <td>${report.simulationId?c}</td>
                     <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
                     <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
                 </tr>
