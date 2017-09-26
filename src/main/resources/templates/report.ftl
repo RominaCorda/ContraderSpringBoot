@@ -44,11 +44,6 @@
                 </div>
             </div>
         </label>
-        <label>
-            Notes
-            <textarea placeholder="None"></textarea>
-        </label>
-
         <button class="button large expanded" data-open="runReport" onclick="doReport()">
             <i class="fi-play"></i>&nbsp;Run
         </button>

@@ -1,6 +1,6 @@
-<#-- @ftlvariable name="roles" type="java.util.Collection<it.com.ibm.generali.CapitalReporting.model.Role>" -->
-<#-- @ftlvariable name="selecteduser" type="it.com.ibm.generali.CapitalReporting.model.User" -->
-<#-- @ftlvariable name="users" type="java.util.Collection<it.com.ibm.generali.CapitalReporting.model.User>" -->
+<#-- @ftlvariable name="roles" type="java.util.Collection<it.com.ibm.generali.capitalreporting.model.Role>" -->
+<#-- @ftlvariable name="selecteduser" type="it.com.ibm.generali.capitalreporting.model.User" -->
+<#-- @ftlvariable name="users" type="java.util.Collection<it.com.ibm.generali.capitalreporting.model.User>" -->
 <#-- @ftlvariable name="mode" type="String" -->
 <#include "header.ftl">
 <#include "topbar.ftl">
@@ -128,12 +128,10 @@
                     </label>
                 </div>
                 <div class="column medium-1 large-1">
-
                     <div style="margin-top: 30px" data-tooltip aria-haspopup="true" class="has-tip"
                          data-disable-hover="false" title="Edit roles">
                         <a href="/roles"><i class="fi-pencil"></i></a>
                     </div>
-
                 </div>
 
             </div>

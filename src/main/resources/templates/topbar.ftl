@@ -1,10 +1,12 @@
+<#-- @ftlvariable name="user" type="java.lang.String" -->
+<#-- @ftlvariable name="title" type="java.lang.String" -->
 <!-- TOP BAR -->
 <div class="top-bar">
     <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
             <li class="menu-text">
                 <a href="/index" class="generali">
-                <img src="img/generali.png" width="60px"/>
+                    <img src="img/generali.png" width="60px"/>
                 ${title}</a>
             </li>
             <li class="has-submenu">
@@ -29,7 +31,7 @@
         </#if>
             <li><a href="/freereporting">Free Reporting</a></li>
             <li><a href="/browse">Analysis</a></li>
-            <li><a href="/browse">Official</a></li>
+            <li><a href="/browse?mode=Official">Official</a></li>
             <li class="has-submenu">
                 <a href="/browse">Add-ons</a>
                 <ul class="submenu menu vertical" data-submenu>
@@ -41,15 +43,8 @@
     </div>
     <div class="top-bar-right">
         <ul class="menu" style="margin-top: 30px; margin-right: 50px">
-            <li><input id="searchwhat" name="searchwhat" type="search" placeholder="Search"></li>
             <li>
-                <script>
-                    function doSearch() {
-                        var searchWhat = $('#searchwhat').val();
-                        window.location.href = "/search?search=" + searchWhat;
-                    }
-                </script>
-                <button type="button" class="button" onclick="doSearch()">Search</button>
+                <a href="/search" class="button">Search</a>
             </li>
         </ul>
     </div>

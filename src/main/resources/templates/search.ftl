@@ -5,7 +5,7 @@
 
 <div class="row column">
     <div class="row">
-        <h3>Results for ${search}</h3>
+        <h3>Search results</h3>
     </div>
 
     <div class="row">
