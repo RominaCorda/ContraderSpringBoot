@@ -23,4 +23,38 @@ open class ScopeService
         }
         return parents
     }
+
+    fun getChildren(scope: Scope): List<Scope>?
+    {
+        return this.scopes.findByParent(scope.id)
+    }
+
+    fun hasChildren(scope: Scope): Boolean
+    {
+        val children = this.getChildren(scope)
+        if (children != null)
+        {
+            if (children.isNotEmpty())
+                return true
+        }
+        return false
+    }
+
+    fun getSiblings(scope: Scope): LinkedList<Scope>
+    {
+        val siblings = LinkedList<Scope>()
+        val parent: Scope? = this.scopes.findOne(scope.parent)
+        val tempSiblings = if (parent != null)
+        {
+            // Siblings have the same parent
+            this.scopes.findByParent(parent.id)
+        }
+        else
+        {
+            // Level 0 have no parents
+            this.scopes.findByLevel(0)
+        }
+        tempSiblings.forEach { s -> siblings.add(s) }
+        return siblings
+    }
 }

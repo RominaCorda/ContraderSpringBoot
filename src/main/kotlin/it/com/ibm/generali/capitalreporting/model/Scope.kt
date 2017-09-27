@@ -14,7 +14,7 @@ open class Scope : Serializable
     lateinit var name: String
     var published: Boolean = false
 
-    var parent: Long = 0L
+    var parent: Long = -1L
     var level: Int = 0
 
     @OneToMany(mappedBy = "scope", cascade = arrayOf(CascadeType.ALL))

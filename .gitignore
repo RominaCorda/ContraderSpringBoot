@@ -5,3 +5,6 @@ build/
 out/
 gradlew*
 .DS_Store
+/capitalreporting.db.*
+
+
