@@ -67,7 +67,10 @@ public class ManageScopeController extends SessionHelper
         model.addAttribute("parents", parents);
         model.addAttribute("scopes", siblings);
         model.addAttribute("children", hasChildren);
-        model.addAttribute("tags", this.tags.findAll());
+        if (scopeObj.getLevel() > 0)
+        {
+            model.addAttribute("tags", this.tags.findAll());
+        }
         return this.configureTemplate(model, session);
     }
 
@@ -79,7 +82,7 @@ public class ManageScopeController extends SessionHelper
                             @RequestParam("id") long id,
                             @RequestParam("name") String name,
                             @RequestParam(value = "published", defaultValue = "false") boolean published,
-                            @RequestParam("tags") String[] tags)
+                            @RequestParam(value = "tags", required = false) String[] tags)
     {
         logger.info("/managescopes POST with scope=" + id);
         logger.info("/managescopes POST with name=" + name);
@@ -87,7 +90,10 @@ public class ManageScopeController extends SessionHelper
         Scope scopeObj = this.scopes.findOne(id);
         scopeObj.setName(name);
         scopeObj.setPublished(published);
-        scopeObj.setAllTags(Arrays.asList(tags));
+        if (tags != null)
+        {
+            scopeObj.setAllTags(Arrays.asList(tags));
+        }
         this.scopes.save(scopeObj);
         return "redirect:/managescope?scope=" + id;
     }

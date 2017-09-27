@@ -1,13 +1,19 @@
+<#-- @ftlvariable name="version" type="java.lang.String" -->
 <div class="row column">
-    <hr>
     <ul class="menu">
-        <li>CAPITAL REPORTING</li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><span style="color:black">CAPITAL REPORTING <i>v.${version}</i></span>&nbsp;&nbsp;</li>
+        <li><a href="#">
+            <small>Home</small>
+        </a></li>
+        <li><a href="#">
+            <small>About</small>
+        </a></li>
+        <li><a href="#">
+            <small>Contact</small>
+        </a></li>
         <li><a href="swagger-ui.html">API</a></li>
         <li class="float-right">
-            <small>Copyright &copy; IBM CORPORATION 2017</small>
+            <small style="color:black">Copyright &copy; IBM CORPORATION 2017</small>
         </li>
     </ul>
     <br>
