@@ -6,12 +6,18 @@ import javax.persistence.*
 @Entity
 open class Scope : Serializable
 {
+    companion object
+    {
+        val TAG_DELIMITER = ';'
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long = 0L
         private set
 
     lateinit var name: String
+    var tags: String = ""
     var published: Boolean = false
 
     var parent: Long = -1L
@@ -23,6 +29,18 @@ open class Scope : Serializable
     fun addReport(report: Report)
     {
         this.reports.add(report)
+    }
+
+    fun setAllTags(tags: List<String>)
+    {
+        var allTags = ""
+        tags.forEach { tag -> allTags += tag + Scope.TAG_DELIMITER }
+        this.tags = allTags.substring(0, allTags.length - 1)
+    }
+
+    fun getAllTags(): List<String>
+    {
+        return this.tags.split(Scope.TAG_DELIMITER)
     }
 
 }

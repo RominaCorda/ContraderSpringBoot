@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="tags" type="java.lang.String" -->
 <#-- @ftlvariable name="children" type="java.lang.Boolean" -->
 <#-- @ftlvariable name="mode" type="java.lang.String" -->
 <#-- @ftlvariable name="selscope" type="it.com.ibm.generali.capitalreporting.model.Scope" -->
@@ -47,25 +48,50 @@
             </div>
         </#list>
 
+            <button class="button secondary"><i class="fi-plus"></i>&nbsp;Add new</button>
+
         </div>
         <div class="column medium-7 large-8">
             <div class="callout secondary">
             <#if selscope??>
-                <h5>${selscope.name}</h5>
-                <form>
-                    <label>Name:
-                        <input type="text" value="${selscope.name}">
-                    </label>
-                    <label for="chkPublished">Published
-                        <#if selscope.published>
-                            <input id="chkPublished" type="checkbox" checked="checked"">
-                        <#else>
-                            <input id="chkPublished" type="checkbox">
-                        </#if>
-                    </label>
-                    <br>
-                    <input type="submit" class="button" value="Save">
-                    <button class="button secondary">Add new child</button>
+                <div class="row columns">
+                    <h5>${selscope.name}</h5>
+                </div>
+                <form id="scopeform" method="post" action="">
+                    <div class="row">
+                        <div class="column medium-6 large-6">
+                            <input id="id" name="id" type="hidden" value="${selscope.id}">
+                            <label>Name:
+                                <input id="name" name="name" type="text" value="${selscope.name}">
+                            </label>
+                            <label>Published
+                                <#if selscope.published>
+                                    <input id="published" name="published" type="checkbox" checked="checked">
+                                <#else>
+                                    <input id="published" name="published" type="checkbox">
+                                </#if>
+                            </label>
+                        </div>
+                        <div class="column medium-6 large-6">
+                            <#if tags??>
+                                <fieldset>
+                                    <legend>Tags:</legend>
+                                    <#list tags as tag>
+                                        <#if selscope.tags?contains(tag.name)>
+                                            <input id="chk${tag.name}" name="tags" type="checkbox" value="${tag.name}"
+                                                   checked="checked">
+                                        <#else>
+                                            <input id="chk${tag.name}" name="tags" type="checkbox" value="${tag.name}">
+                                        </#if>
+                                        <label for="chk${tag.name}">${tag.name}</label>
+                                    </#list>
+                                </fieldset>
+                            </#if>
+                        </div>
+                    </div>
+                    <div class="row columns">
+                        <input type="submit" class="button" value="Save">
+                    </div>
                 </form>
             </#if>
             </div>

@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="user" type="java.lang.String" -->
+<#-- @ftlvariable name="user" type="it.com.ibm.generali.capitalreporting.model.User" -->
 <#-- @ftlvariable name="title" type="java.lang.String" -->
 <!-- TOP BAR -->
 <div class="top-bar">
@@ -13,12 +13,13 @@
                 <a href="#0"><i class="fi-torso"></i>&nbsp;${user.username?capitalize}</a>
                 <ul class="submenu menu vertical" data-submenu>
                     <li><a href="/profile">Profile</a></li>
-                <#if user=="admin">
+                <#if user.username=="admin">
                     <li class="has-submenu">
                         <a href="#0"><i class="fi-crown"></i>&nbsp;Admin Tools</a>
                         <ul class="submenu menu vertical" data-submenu>
                             <li><a href="/configure">Configure User</a></li>
-                            <li><a href="/roles">Define Roles</a></li>
+                            <li><a href="/roles">Manage Roles</a></li>
+                            <li><a href="/tags">Manage Tags</a></li>
                             <li><a href="/managescopes">Manage Scopes</a></li>
                             <li><a href="/templates">Manage Templates</a></li>
                             <li><a href="#0">Official simulations</a></li>

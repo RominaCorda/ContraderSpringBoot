@@ -3,6 +3,7 @@ package it.com.ibm.generali.capitalreporting.controller.web.admin;
 import it.com.ibm.generali.capitalreporting.CapitalReportingApplication;
 import it.com.ibm.generali.capitalreporting.controller.web.SessionHelper;
 import it.com.ibm.generali.capitalreporting.dao.ScopeDao;
+import it.com.ibm.generali.capitalreporting.dao.TagDao;
 import it.com.ibm.generali.capitalreporting.model.Scope;
 import it.com.ibm.generali.capitalreporting.service.ScopeService;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -23,13 +25,16 @@ public class ManageScopeController extends SessionHelper
     private Logger logger = LoggerFactory.getLogger(ManageScopeController.class);
 
     private ScopeDao scopes;
+    private TagDao tags;
     private ScopeService scopeService;
 
     @Autowired
     public ManageScopeController(ScopeDao scopeDao,
+                                 TagDao tagDao,
                                  ScopeService scopeService)
     {
         this.scopes = scopeDao;
+        this.tags = tagDao;
         this.scopeService = scopeService;
     }
 
@@ -62,7 +67,29 @@ public class ManageScopeController extends SessionHelper
         model.addAttribute("parents", parents);
         model.addAttribute("scopes", siblings);
         model.addAttribute("children", hasChildren);
+        model.addAttribute("tags", this.tags.findAll());
         return this.configureTemplate(model, session);
+    }
+
+    /**
+     * Manage scope POST
+     */
+    @RequestMapping(value = "/managescope", method = RequestMethod.POST)
+    public String editScope(Model model,
+                            @RequestParam("id") long id,
+                            @RequestParam("name") String name,
+                            @RequestParam(value = "published", defaultValue = "false") boolean published,
+                            @RequestParam("tags") String[] tags)
+    {
+        logger.info("/managescopes POST with scope=" + id);
+        logger.info("/managescopes POST with name=" + name);
+        logger.info("/managescopes POST with published=" + published);
+        Scope scopeObj = this.scopes.findOne(id);
+        scopeObj.setName(name);
+        scopeObj.setPublished(published);
+        scopeObj.setAllTags(Arrays.asList(tags));
+        this.scopes.save(scopeObj);
+        return "redirect:/managescope?scope=" + id;
     }
 
     /**

@@ -1,13 +1,7 @@
 package it.com.ibm.generali.capitalreporting.service;
 
-import it.com.ibm.generali.capitalreporting.dao.ReportDao;
-import it.com.ibm.generali.capitalreporting.dao.RoleDao;
-import it.com.ibm.generali.capitalreporting.dao.ScopeDao;
-import it.com.ibm.generali.capitalreporting.dao.UserDao;
-import it.com.ibm.generali.capitalreporting.model.Report;
-import it.com.ibm.generali.capitalreporting.model.Role;
-import it.com.ibm.generali.capitalreporting.model.Scope;
-import it.com.ibm.generali.capitalreporting.model.User;
+import it.com.ibm.generali.capitalreporting.dao.*;
+import it.com.ibm.generali.capitalreporting.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,24 +19,32 @@ public class DbLoader implements ApplicationRunner
     private ReportDao reports;
     private UserDao users;
     private RoleDao roles;
+    private TemplateDao templates;
+    private TagDao tags;
+
     final private Random seed = new Random();
 
     @Autowired
     public DbLoader(ScopeDao scopeDao,
                     ReportDao reportDao,
                     UserDao userDao,
-                    RoleDao roleDao)
+                    RoleDao roleDao,
+                    TemplateDao templateDao,
+                    TagDao tagDao)
     {
         this.scopes = scopeDao;
         this.reports = reportDao;
         this.users = userDao;
         this.roles = roleDao;
+        this.templates = templateDao;
+        this.tags = tagDao;
     }
 
     public void run(ApplicationArguments args)
     {
-
         this.createRoles();
+        this.createTemplates();
+        this.createTags();
         this.createUsers();
         this.createScopesLevelRoot();
         this.createScopesLevelOne();
@@ -63,6 +65,41 @@ public class DbLoader implements ApplicationRunner
             Role tempRole = new Role();
             tempRole.setDescription(role);
             this.roles.save(tempRole);
+        }
+    }
+
+    private void createTemplates()
+    {
+        logger.info("Creating default templates");
+        List<String> templates = new ArrayList<>();
+        templates.add("Template 01");
+        templates.add("Template 02");
+        templates.add("Template 03");
+        templates.add("Template 0x");
+        for (String templ : templates)
+        {
+            Template temp = new Template();
+            temp.setName(templ);
+            this.templates.save(temp);
+        }
+    }
+
+    private void createTags()
+    {
+        logger.info("Creating default tags");
+        List<String> tags = new ArrayList<>();
+        tags.add("Risk");
+        tags.add("Life");
+        tags.add("Auto");
+        tags.add("Moto");
+        tags.add("Fire");
+        tags.add("Earthquake");
+        tags.add("Vandalism");
+        for (String templ : tags)
+        {
+            Tag temp = new Tag();
+            temp.setName(templ);
+            this.tags.save(temp);
         }
     }
 

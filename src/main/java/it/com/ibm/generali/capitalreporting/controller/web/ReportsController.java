@@ -50,7 +50,7 @@ public class ReportsController extends SessionHelper
     public String browse(Model model, HttpSession session)
     {
         logger.info("/browse = Scope Level 0");
-        List<Scope> scopesZero = this.scopes.findByParent(-1);
+        List<Scope> scopesZero = this.scopes.findByParentAndPublishedIsTrue(-1);
         model.addAttribute("mode", "Analysis");
         model.addAttribute("scopes", scopesZero);
         return this.pageSetup("browse", model, session);
@@ -63,7 +63,7 @@ public class ReportsController extends SessionHelper
     public String browseMode(Model model, @RequestParam("mode") String mode, HttpSession session)
     {
         logger.info("/browse = Scope Level 0 with mode = " + mode);
-        List<Scope> scopesZero = this.scopes.findByParent(-1);
+        List<Scope> scopesZero = this.scopes.findByParentAndPublishedIsTrue(-1);
         model.addAttribute("mode", mode);
         model.addAttribute("scopes", scopesZero);
         return this.pageSetup("browse", model, session);
@@ -81,7 +81,7 @@ public class ReportsController extends SessionHelper
                          HttpSession session)
     {
         logger.info("/scopes for parent = " + parentId);
-        List<Scope> scopes = this.scopes.findByParent(parentId);
+        List<Scope> scopes = this.scopes.findByParentAndPublishedIsTrue(parentId);
         Scope parent = this.scopes.findOne(parentId);
         List<Scope> parents = this.scopeService.getScopeParents(parent);
 
