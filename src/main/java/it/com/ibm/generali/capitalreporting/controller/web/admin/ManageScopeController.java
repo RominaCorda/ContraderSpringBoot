@@ -53,6 +53,30 @@ public class ManageScopeController extends SessionHelper
     }
 
     /**
+     * Roles with delete
+     */
+    @RequestMapping(value = "/deletescope", method = RequestMethod.GET, params = {"id"})
+    public String deleteScope(Model model, @RequestParam("id") String scopeId, HttpSession session)
+    {
+        String redirect = "redirect:/managescopes";
+        try
+        {
+            long scopeKey = Long.parseLong(scopeId);
+            Scope scope = this.scopes.findOne(scopeKey);
+            Scope firstSibling = this.scopeService.getSiblings(scope).getFirst();
+            this.scopes.delete(scopeKey);
+            redirect = "redirect:/managescope?scope=" + firstSibling.getId();
+
+        }
+        catch (Exception exc)
+        {
+            logger.error(exc.getMessage());
+        }
+
+        return redirect;
+    }
+
+    /**
      * Manage scope GET with scope id
      */
     @RequestMapping(value = "/managescope", method = RequestMethod.GET, params = {"scope"})
@@ -60,17 +84,30 @@ public class ManageScopeController extends SessionHelper
     {
         logger.info("/managescopes GET with scope=" + scopeId);
         Scope scopeObj = this.scopes.findOne(scopeId);
-        List<Scope> parents = this.scopeService.getScopeParents(scopeObj);
+        List<Scope> parents = this.scopeService.getParents(scopeObj);
         List<Scope> siblings = this.scopeService.getSiblings(scopeObj);
-        boolean hasChildren = this.scopeService.hasChildren(scopeObj);
         model.addAttribute("selscope", scopeObj);
         model.addAttribute("parents", parents);
         model.addAttribute("scopes", siblings);
-        model.addAttribute("children", hasChildren);
-        if (scopeObj.getLevel() > 0)
+        if (this.scopeService.getLevel(scopeObj) > 0)
         {
             model.addAttribute("tags", this.tags.findAll());
         }
+        return this.configureTemplate(model, session);
+    }
+
+    /**
+     * Manage scope GET - special case for new scopes
+     */
+    @RequestMapping(value = "/managescope", method = RequestMethod.GET, params = {"parent"})
+    public String manageScopeNew(Model model, @RequestParam("parent") long scopeId, HttpSession session)
+    {
+        logger.info("/managescopes GET for new scopes with parent = " + scopeId);
+        Scope parent = this.scopes.findOne(scopeId);
+        List<Scope> parents = this.scopeService.getParents(parent);
+        parents.add(parent);
+        model.addAttribute("parents", parents);
+        model.addAttribute("tags", this.tags.findAll());
         return this.configureTemplate(model, session);
     }
 
@@ -80,22 +117,30 @@ public class ManageScopeController extends SessionHelper
     @RequestMapping(value = "/managescope", method = RequestMethod.POST)
     public String editScope(Model model,
                             @RequestParam("id") long id,
+                            @RequestParam("parent") long parent,
                             @RequestParam("name") String name,
                             @RequestParam(value = "published", defaultValue = "false") boolean published,
                             @RequestParam(value = "tags", required = false) String[] tags)
     {
         logger.info("/managescopes POST with scope=" + id);
-        logger.info("/managescopes POST with name=" + name);
-        logger.info("/managescopes POST with published=" + published);
-        Scope scopeObj = this.scopes.findOne(id);
+        Scope scopeObj;
+        if (id > 0)
+        {
+            scopeObj = this.scopes.findOne(id);
+        }
+        else
+        {
+            scopeObj = new Scope();
+            scopeObj.setParent(parent);
+        }
         scopeObj.setName(name);
         scopeObj.setPublished(published);
         if (tags != null)
         {
             scopeObj.setAllTags(Arrays.asList(tags));
         }
-        this.scopes.save(scopeObj);
-        return "redirect:/managescope?scope=" + id;
+        final Scope savedScope = this.scopes.save(scopeObj);
+        return "redirect:/managescope?scope=" + savedScope.getId();
     }
 
     /**
@@ -107,9 +152,9 @@ public class ManageScopeController extends SessionHelper
         logger.info("/managechild GET with scope=" + scopeId);
         Scope scopeObj = this.scopes.findOne(scopeId);
         List<Scope> children = this.scopeService.getChildren(scopeObj);
-        if (children == null)
+        if (children == null || children.size() == 0)
         {
-            return "redirect:/managescope?scope=" + scopeId;
+            return "redirect:/managescope?parent=" + scopeId;
         }
         Scope selScope = children.get(0);
         return "redirect:/managescope?scope=" + selScope.getId();

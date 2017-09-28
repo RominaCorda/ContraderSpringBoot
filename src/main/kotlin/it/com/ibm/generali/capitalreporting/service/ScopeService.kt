@@ -12,7 +12,7 @@ open class ScopeService
     @Autowired
     lateinit var scopes: ScopeDao
 
-    fun getScopeParents(scope: Scope): LinkedList<Scope>
+    fun getParents(scope: Scope): LinkedList<Scope>
     {
         var parent: Scope? = scope
         val parents = LinkedList<Scope>()
@@ -29,17 +29,6 @@ open class ScopeService
         return this.scopes.findByParent(scope.id)
     }
 
-    fun hasChildren(scope: Scope): Boolean
-    {
-        val children = this.getChildren(scope)
-        if (children != null)
-        {
-            if (children.isNotEmpty())
-                return true
-        }
-        return false
-    }
-
     fun getSiblings(scope: Scope): LinkedList<Scope>
     {
         val siblings = LinkedList<Scope>()
@@ -52,9 +41,36 @@ open class ScopeService
         else
         {
             // Level 0 have no parents
-            this.scopes.findByLevel(0)
+            this.getRoots()
         }
         tempSiblings.forEach { s -> siblings.add(s) }
         return siblings
     }
+
+    fun getLevel(scope: Scope): Int
+    {
+        return this.getParents(scope).size - 1
+    }
+
+    fun hasChildren(scope: Scope): Boolean
+    {
+        val children = this.getChildren(scope)
+        if (children != null)
+        {
+            if (children.isNotEmpty())
+                return true
+        }
+        return false
+    }
+
+    /**
+     * Get all root scopes.
+     * A root scope is a scope without parent.
+     */
+    fun getRoots(): List<Scope>
+    {
+        return this.scopes.findByParent(-1)
+    }
+
+
 }

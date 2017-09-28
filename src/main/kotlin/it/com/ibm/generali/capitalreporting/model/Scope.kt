@@ -21,7 +21,6 @@ open class Scope : Serializable
     var published: Boolean = false
 
     var parent: Long = -1L
-    var level: Int = 0
 
     @OneToMany(mappedBy = "scope", cascade = arrayOf(CascadeType.ALL))
     var reports: MutableSet<Report> = mutableSetOf()
@@ -30,6 +29,9 @@ open class Scope : Serializable
     {
         this.reports.add(report)
     }
+
+    fun hasChildren(): Boolean =
+            this.reports.size == 0
 
     fun setAllTags(tags: List<String>)
     {

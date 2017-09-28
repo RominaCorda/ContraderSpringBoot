@@ -83,7 +83,7 @@ public class ReportsController extends SessionHelper
         logger.info("/scopes for parent = " + parentId);
         List<Scope> scopes = this.scopes.findByParentAndPublishedIsTrue(parentId);
         Scope parent = this.scopes.findOne(parentId);
-        List<Scope> parents = this.scopeService.getScopeParents(parent);
+        List<Scope> parents = this.scopeService.getParents(parent);
 
         if (scopes.size() == 0 && parent.getReports().size() > 0)
         {
@@ -107,7 +107,7 @@ public class ReportsController extends SessionHelper
     {
         logger.info("/Report page for scope ID = " + scopeId + " in mode = " + mode);
         Scope scope = this.scopes.findOne(scopeId);
-        List<Scope> parents = this.scopeService.getScopeParents(scope);
+        List<Scope> parents = this.scopeService.getParents(scope);
         Set<Report> reports = scope.getReports();
 
         model.addAttribute("mode", mode);
