@@ -43,7 +43,7 @@
 
 </div>
 
-<div class="row column" style="margin-top: 400px">
+<div class="row column" style="margin-top: 100px">
     &nbsp;
 </div>
 

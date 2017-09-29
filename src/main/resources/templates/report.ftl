@@ -1,34 +1,28 @@
+<#-- @ftlvariable name="report" type="it.com.ibm.generali.capitalreporting.model.Report" -->
 <#include "header.ftl">
 <#include "topbar.ftl">
 
 <br>
 
 <!-- REPORT FORM -->
+<div class="row columns">
+    <h3>REPORT #${report.id}</h3>
+</div>
 <div class="row">
     <div class="medium-6 columns">
-        <h3>REPORT A-38902</h3>
-        <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque
-            faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus
-            in.</p>
-
-        <fieldset>
-            <legend>Output</legend>
-            <input type="radio" name="output" value="csv" id="csv" required><label for="csv">CSV</label>
-            <input type="radio" name="output" value="excel" id="excel" checked="checked" aria-selected="true"><label
-                for="excel">Excel</label>
-            <input type="radio" name="output" value="pdf" id="pdf"><label for="pdf">PDF</label>
-        </fieldset>
-        <label>Algorithm
-            <select>
-                <option value="excel"> Buzen's</option>
-                <option value="pdf"> Chi-square</option>
-                <option value="csv"> Lander-Green</option>
-            </select>
+        <label>
+            Simulation ID
+            <input type="text" value="${report.simulationId?c}" readonly>
         </label>
         <label>
-            Correction delta
-            <input type="text" placeholder="100.0">
+            Template
+            <input type="text" value="${report.template}" readonly>
         </label>
+        <label>
+            Scope:
+            <input type="text" value="${report.scope.name}" readonly>
+        </label>
+
         <label>
             Number of iterations
             <div class="row">
@@ -44,22 +38,36 @@
                 </div>
             </div>
         </label>
-        <button class="button large expanded" data-open="runReport" onclick="doReport()">
+
+    </div>
+    <div class="medium-6 large-5 columns">
+        <label>
+            Creation Date:
+            <input type="text" value="${report.created}" readonly>
+        </label>
+        <label>
+            Created by:
+            <input type="text" value="${report.user.fullName}" readonly>
+        </label>
+        <label>
+            Tags:
+            <input type="text" value="${report.scope.tags}" readonly>
+        </label>
+        <button style="margin-top: 150px" class="button large expanded" data-open="runReport" onclick="doReport()">
             <i class="fi-play"></i>&nbsp;Run
         </button>
-
-
     </div>
-
-    <div class="medium-6 large-5 columns">
-        <img class="thumbnail" src="http://placehold.it/650x350">
-    </div>
+</div>
+<div class="row columns">
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
 </div>
 <!-- END REPORT FORM -->
 
 <!-- MODAL WINDOW -->
 <div class="reveal" id="runReport" data-reveal>
-    <h1>Computing A-38902</h1>
+    <h1>Computing report #${report.id}</h1>
     <p id="message" class="lead">Please wait...</p>
     <div id="loader" class="loader"></div>
     <button class="close-button" data-close aria-label="Close modal" type="button">

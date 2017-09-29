@@ -54,6 +54,7 @@
         <div class="column medium-7 large-8">
             <div class="callout secondary">
             <#if selscope??>
+                <!-- A SCOPE EXISTS AND HAVE BEEN SELECTED -->
                 <div class="row columns">
                     <h5 id="scopename">${selscope.name}</h5>
                 </div>
@@ -96,9 +97,19 @@
                         <a href="/deletescope?id=${selscope.id}" class="warning button">
                             <i class="fi-x"></i>&nbsp;Delete
                         </a>
+                        <#if !selscope.hasChildren()>
+                            <div class="button-group float-right">
+                                <a href="/reports?scope=${selscope.id}&mode=Analysis"
+                                   class="button secondary">Reports</a>
+                                <a href="/addnewreport?scopeid=${selscope.id}" class="success button float-right">
+                                    <i class="fi-plus">&nbsp;</i>
+                                </a>
+                            </div>
+                        </#if>
                     </div>
                 </form>
             <#else>
+                <!-- A SCOPE DOES NOT EXIST -->
                 <div class="row columns">
                     <h5 id="scopename">Add new scope</h5>
                 </div>

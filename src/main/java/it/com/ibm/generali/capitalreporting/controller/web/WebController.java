@@ -1,7 +1,10 @@
 package it.com.ibm.generali.capitalreporting.controller.web;
 
+import it.com.ibm.generali.capitalreporting.dao.ReportDao;
+import it.com.ibm.generali.capitalreporting.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,14 @@ public class WebController extends SessionHelper
 
     private Logger logger = LoggerFactory.getLogger(WebController.class);
 
+    private ReportDao reports;
+
+    @Autowired
+    public WebController(ReportDao reportDao)
+    {
+        this.reports = reportDao;
+    }
+
     /**
      * the REST request for / resource.
      *
@@ -30,6 +41,8 @@ public class WebController extends SessionHelper
     public String index(Model model, HttpSession session)
     {
         logger.info("/index page");
+        User currentUser = this.getCurrentUser(session);
+        model.addAttribute("reports", this.reports.findTop5ByUserOrderByCreated(currentUser));
         return this.pageSetup("index", model, session);
     }
 
@@ -88,20 +101,6 @@ public class WebController extends SessionHelper
     {
         logger.info("/pwdchanged page");
         return this.pageSetup("pwdchanged", model, session);
-    }
-
-    /**
-     * the REST request for / resource.
-     *
-     * @param model the HTTP request attributes. it will updated
-     *              with application's version.
-     * @return the home page
-     */
-    @RequestMapping("/report")
-    public String report(Model model, HttpSession session)
-    {
-        logger.info("/report page");
-        return this.pageSetup("report", model, session);
     }
 
     /**

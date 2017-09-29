@@ -1,10 +1,12 @@
 package it.com.ibm.generali.capitalreporting.service
 
 import it.com.ibm.generali.capitalreporting.dao.ScopeDao
+import it.com.ibm.generali.capitalreporting.model.Report
 import it.com.ibm.generali.capitalreporting.model.Scope
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
+import kotlin.collections.HashMap
 
 @Service
 open class ScopeService
@@ -22,6 +24,17 @@ open class ScopeService
             parent = this.scopes.findOne(parent.parent)
         }
         return parents
+    }
+
+    fun getParentsDescription(scope: Scope): String
+    {
+        val parents = this.getParents(scope).reversed()
+        var parentsDescription = ""
+        parents.forEach { tempscope ->
+            parentsDescription += tempscope.name
+            parentsDescription += " | "
+        }
+        return parentsDescription.substring(0, parentsDescription.length - 3)
     }
 
     fun getChildren(scope: Scope): List<Scope>?
@@ -61,6 +74,21 @@ open class ScopeService
                 return true
         }
         return false
+    }
+
+    /**
+     * Get a list of reports with
+     * a description of the parent scopes
+     * @return a Map of (report -> description)
+     */
+    fun getScopedReports(reports: List<Report>): HashMap<Report, String>
+    {
+        val scopedReports = HashMap<Report, String>()
+        reports.forEach { report ->
+            val description = this.getParentsDescription(report.scope)
+            scopedReports[report] = description
+        }
+        return scopedReports
     }
 
     /**

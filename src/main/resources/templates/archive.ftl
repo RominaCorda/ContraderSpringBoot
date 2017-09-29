@@ -1,6 +1,7 @@
 <#-- @ftlvariable name="mode" type="java.lang.String" -->
+<#-- @ftlvariable name="selscope" type="it.com.ibm.generali.capitalreporting.model.Scope" -->
 <#-- @ftlvariable name="parents" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
-<#-- @ftlvariable name="reports" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Report>" -->
+<#-- @ftlvariable name="reports" type="java.util.List<it.com.ibm.generali.capitalreporting.framework.Report>" -->
 <#include "header.ftl">
 <#include "topbar.ftl">
 
@@ -27,16 +28,14 @@
     </div>
 
     <div class="row">
-
         <div class="columns">
-            <h3>Reports</h3>
             <table class="hover">
                 <thead>
                 <tr>
                     <th width="50">ID</th>
                     <th width="150">Template</th>
                     <th width="150">Date Created</th>
-                    <th>User</th>
+                    <th>Created by</th>
                     <th width="200">Reporting Period</th>
                     <th width="150">Simulation ID</th>
                     <th width="50">View</th><!-- View -->
@@ -47,13 +46,13 @@
 
                 <#list reports as report>
                 <tr>
-                    <td>${report.id}</td>
+                    <td><a href="/report?id=${report.id}">${report.id}</a></td>
                     <td>${report.template}</td>
                     <td>${report.created?date}</td>
                     <td>${report.user.fullName}</td>
                     <td>${report.reportingPeriod}</td>
                     <td>${report.simulationId?c}</td>
-                    <td><a href="/report"><i class="fi-play"></i></a>&nbsp;</td>
+                    <td><a href="/report?id=${report.id}"><i class="fi-play"></i></a>&nbsp;</td>
                     <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
                 </tr>
                 </#list>
@@ -61,7 +60,12 @@
                 </tbody>
             </table>
         </div>
+    </div>
 
+    <div class="row columns">
+        <a href="/addnewreport?scopeid=${selscope.id}" class="success button float-right">
+            <i class="fi-plus">&nbsp;</i>
+        </a>
     </div>
 
     <div class="row columns">
