@@ -37,7 +37,7 @@ public class SwaggerConfig
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("it.com.ibm.generali.CapitalReporting.controller.rest"))
+                .apis(RequestHandlerSelectors.basePackage("it.com.ibm.generali.capitalreporting.controller.rest"))
                 .paths(PathSelectors.any())
                 .build()
                 .pathProvider(new BasePathAwareRelativePathProvider(basePath))

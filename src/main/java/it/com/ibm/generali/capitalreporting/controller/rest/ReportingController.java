@@ -9,7 +9,9 @@ import it.com.ibm.generali.capitalreporting.CapitalReportingApplication;
 import it.com.ibm.generali.capitalreporting.dto.AliveDTO;
 import it.com.ibm.generali.capitalreporting.dto.ReportAvailabilityReqDTO;
 import it.com.ibm.generali.capitalreporting.dto.ReportAvailabilityRespDTO;
+import it.com.ibm.generali.capitalreporting.dto.SquareRespDTO;
 import it.com.ibm.generali.capitalreporting.service.Availability;
+import it.com.ibm.generali.capitalreporting.service.NumberCruncher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +29,15 @@ public class ReportingController
 {
     private static Logger logger = LoggerFactory.getLogger(ReportingController.class);
     private Availability availability;
+    private NumberCruncher numberCruncher;
 
     @Autowired
-    public ReportingController(Availability availability)
+    public ReportingController(Availability availability,
+                               NumberCruncher nc)
     {
         Assert.notNull(availability, "Availability is NULL");
         this.availability = availability;
+        this.numberCruncher = nc;
     }
 
     /**
@@ -48,12 +53,38 @@ public class ReportingController
 
     })
     @RequestMapping(value = "/alive", method = RequestMethod.GET)
+    @CrossOrigin
     public AliveDTO alive()
     {
         logger.info("Called Alive Service.");
         String version = CapitalReportingApplication.getVersion();
         String message = "Servicing.";
         return new AliveDTO(version, message);
+    }
+
+    /**
+     * Service square
+     *
+     * @param number to be squared
+     * @return square of input param
+     */
+    @ApiOperation(value = "Square", notes = "Square the number.", response = SquareRespDTO.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Square returned.", response = SquareRespDTO.class),
+            @ApiResponse(code = 403, message = "Invalid session."),
+            @ApiResponse(code = 503, message = "Service unavailable")
+
+    })
+    @RequestMapping(value = "/square", method = RequestMethod.GET, params = {"number"})
+    @CrossOrigin
+    public SquareRespDTO getSquare(@RequestParam("number") int number)
+    {
+        logger.info("Called Square Service.");
+        int response = this.numberCruncher.square(number);
+        SquareRespDTO srp = new SquareRespDTO();
+        srp.setMessage("Ok, the square of " + String.valueOf(number) + " is " + String.valueOf(response));
+        srp.setSquare(response);
+        return srp;
     }
 
     /**
