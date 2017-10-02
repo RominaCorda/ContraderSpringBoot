@@ -1,17 +1,12 @@
 group 'it.com.ibm.generali.capitalreporting'
 
 buildscript {
-	ext {
-        kotlinVersion = '1.1.50'
-		springBootVersion = '1.5.6.RELEASE'
-		swaggerVersion = '2.7.0'
-	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:$springboot_version")
 	}
 }
 
@@ -27,15 +22,15 @@ repositories {
 }
 
 dependencies {
-	compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlinVersion
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springBootVersion
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: springBootVersion
-	compile group: 'io.springfox', name: 'springfox-swagger2', version: swaggerVersion
-	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: swaggerVersion
+	compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlin_version
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springboot_version
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springboot_version
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: springboot_version
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: swagger_version
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: swagger_version
 
     runtime group: 'org.hsqldb', name: 'hsqldb'
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile(group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: kotlinVersion)
+	testCompile(group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: kotlin_version)
 }

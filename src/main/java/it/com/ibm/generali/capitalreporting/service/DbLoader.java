@@ -193,14 +193,15 @@ public class DbLoader implements ApplicationRunner
     private List<Scope> createScopes(List<Scope> parents, String[] names, int maxItems)
     {
         List<Scope> createdScopes = new ArrayList<>();
-        Set<String> scopeNames = new HashSet<>();
-        for (int j = 0; j < seed.nextInt(maxItems) + 3; j++)
-        {
-            scopeNames.add(names[seed.nextInt(names.length)]);
-        }
 
         for (Scope parent : parents)
         {
+            Set<String> scopeNames = new HashSet<>();
+            for (int j = 0; j < seed.nextInt(maxItems) + 3; j++)
+            {
+                scopeNames.add(names[seed.nextInt(names.length)]);
+            }
+
             for (String scopeName : scopeNames)
             {
                 long parentScope = parent.getId();

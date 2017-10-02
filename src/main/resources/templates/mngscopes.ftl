@@ -1,5 +1,5 @@
 <#-- @ftlvariable name="tags" type="java.lang.String" -->
-<#-- @ftlvariable name="children" type="java.lang.Boolean" -->
+<#-- @ftlvariable name="canAddReports" type="java.lang.Boolean" -->
 <#-- @ftlvariable name="mode" type="java.lang.String" -->
 <#-- @ftlvariable name="selscope" type="it.com.ibm.generali.capitalreporting.model.Scope" -->
 <#-- @ftlvariable name="parents" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
@@ -40,7 +40,7 @@
                     <a href="/managescope?scope=${scope.id}" class="button" style="width: 200px">
                     ${scope.name}
                     </a>
-                    <#if scope.hasChildren()>
+                    <#if scope.hasNoReports()>
                         <a href="/managechild?scope=${scope.id}" class="button arrow-only warning">
                             <i class="fi-arrow-right" aria-hidden="true"></i>
                             <span class="show-for-sr">Children</span>
@@ -97,7 +97,8 @@
                         <a href="/deletescope?id=${selscope.id}" class="warning button">
                             <i class="fi-x"></i>&nbsp;Delete
                         </a>
-                        <#if !selscope.hasChildren()>
+                        <#if canAddReports??>
+                            <#if canAddReports>
                             <div class="button-group float-right">
                                 <a href="/reports?scope=${selscope.id}&mode=Analysis"
                                    class="button secondary">Reports</a>
@@ -105,6 +106,7 @@
                                     <i class="fi-plus">&nbsp;</i>
                                 </a>
                             </div>
+                            </#if>
                         </#if>
                     </div>
                 </form>

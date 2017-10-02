@@ -30,7 +30,7 @@ open class Scope : Serializable
         this.reports.add(report)
     }
 
-    fun hasChildren(): Boolean =
+    fun hasNoReports(): Boolean =
             this.reports.size == 0
 
     fun setAllTags(tags: List<String>)

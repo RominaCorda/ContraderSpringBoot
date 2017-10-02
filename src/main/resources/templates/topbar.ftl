@@ -34,7 +34,7 @@
             <li><a href="/browse">Analysis</a></li>
             <li><a href="/browse?mode=Official">Official</a></li>
             <li class="has-submenu">
-                <a href="/browse">Add-ons</a>
+                <a href="/browse">Manual Adjustment</a>
                 <ul class="submenu menu vertical" data-submenu>
                     <li><a href="#0">Upload</a></li>
                     <li><a href="#0">Manage</a></li>

@@ -91,6 +91,14 @@ open class ScopeService
         return scopedReports
     }
 
+    fun canAddReports(scope: Scope): Boolean
+    {
+        if (this.hasChildren(scope))
+            return false
+
+        return true
+    }
+
     /**
      * Get all root scopes.
      * A root scope is a scope without parent.

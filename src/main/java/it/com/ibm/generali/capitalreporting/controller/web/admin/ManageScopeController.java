@@ -86,6 +86,7 @@ public class ManageScopeController extends SessionHelper
         Scope scopeObj = this.scopes.findOne(scopeId);
         List<Scope> parents = this.scopeService.getParents(scopeObj);
         List<Scope> siblings = this.scopeService.getSiblings(scopeObj);
+        model.addAttribute("canAddReports", this.scopeService.canAddReports(scopeObj));
         model.addAttribute("selscope", scopeObj);
         model.addAttribute("parents", parents);
         model.addAttribute("scopes", siblings);
@@ -95,6 +96,7 @@ public class ManageScopeController extends SessionHelper
         }
         return this.configureTemplate(model, session);
     }
+
 
     /**
      * Manage scope GET - special case for new scopes
