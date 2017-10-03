@@ -4,9 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 public class CapitalReportingApplication
+        extends SpringBootServletInitializer
 {
 
     public static final String APP_TITLE = "CAPITAL REPORTING";
@@ -39,6 +42,16 @@ public class CapitalReportingApplication
         logger.info("**********************************************");
         logger.info("  Generali Capital Reporting App v." + version);
         logger.info("**********************************************");
+    }
+
+    /**
+     * When used as a WAR
+     */
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder)
+    {
+        hello();
+        return builder.sources(CapitalReportingApplication.class);
     }
 
 }

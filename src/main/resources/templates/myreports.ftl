@@ -1,6 +1,5 @@
 <#-- @ftlvariable name="reports" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Report>" -->
 <h5>My last reports</h5>
-
 <table class="hover">
     <thead>
     <tr>
@@ -27,6 +26,5 @@
         <td colspan="5">No reports found for ${user.username?capitalize}</td>
     </tr>
     </#if>
-
     </tbody>
 </table>

@@ -14,8 +14,13 @@ apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
 
 sourceCompatibility = 1.8
+
+war {
+	archiveName 'capitalreporting.war'
+}
 
 repositories {
 	mavenCentral()
@@ -28,6 +33,10 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: springboot_version
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: swagger_version
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: swagger_version
+
+	providedCompile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat',
+			version: springboot_version
+	providedCompile group: 'javax', name: 'javaee-api', version: '7.0'
 
     runtime group: 'org.hsqldb', name: 'hsqldb'
 

@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="tags" type="java.lang.String" -->
+<#-- @ftlvariable name="tags" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Tag>" -->
 <#-- @ftlvariable name="canAddReports" type="java.lang.Boolean" -->
 <#-- @ftlvariable name="mode" type="java.lang.String" -->
 <#-- @ftlvariable name="selscope" type="it.com.ibm.generali.capitalreporting.model.Scope" -->
@@ -102,8 +102,6 @@
                             <div class="button-group float-right">
                                 <a href="/reports?scope=${selscope.id}&mode=Analysis"
                                    class="button secondary">Reports</a>
-                                <a href="/addnewreport?scopeid=${selscope.id}" class="success button float-right">
-                                    <i class="fi-plus">&nbsp;</i>
                                 </a>
                             </div>
                             </#if>
