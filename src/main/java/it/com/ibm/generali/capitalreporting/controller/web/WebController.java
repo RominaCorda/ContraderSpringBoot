@@ -1,7 +1,7 @@
 package it.com.ibm.generali.capitalreporting.controller.web;
 
 import it.com.ibm.generali.capitalreporting.dao.ReportDao;
-import it.com.ibm.generali.capitalreporting.model.User;
+import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +41,8 @@ public class WebController extends SessionHelper
     public String index(Model model, HttpSession session)
     {
         logger.info("/index page");
-        User currentUser = this.getCurrentUser(session);
-        model.addAttribute("reports", this.reports.findTop5ByUserOrderByCreated(currentUser));
+        CapitalUser currentUser = this.getCurrentUser(session);
+        model.addAttribute("reports", this.reports.findTop5ByCapitalUserOrderByCreated(currentUser));
         return this.pageSetup("index", model, session);
     }
 

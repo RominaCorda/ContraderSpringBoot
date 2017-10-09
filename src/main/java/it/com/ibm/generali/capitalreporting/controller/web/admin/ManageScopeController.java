@@ -44,8 +44,20 @@ public class ManageScopeController extends SessionHelper
     @RequestMapping("/managescopes")
     public String manageScopes(Model model, HttpSession session)
     {
-        logger.info("/managescopes");
+        return "redirect:/managescopes?mode=analysis";
+    }
+
+    /**
+     * Manage scopes initial page GET with MODE
+     */
+    @RequestMapping(value = "/managescopes", method = RequestMethod.GET, params = {"mode"})
+    public String manageScopesWithMode(Model model,
+                                       HttpSession session,
+                                       @RequestParam("mode") String mode)
+    {
+        logger.info("/managescopes MODE=" + mode);
         List<Scope> scopesZero = this.scopes.findByParent(-1);
+        model.addAttribute("mode", mode);
         model.addAttribute("selscope", scopesZero.get(0));
         model.addAttribute("scopes", scopesZero);
         model.addAttribute("children", true);
@@ -56,7 +68,7 @@ public class ManageScopeController extends SessionHelper
      * Roles with delete
      */
     @RequestMapping(value = "/deletescope", method = RequestMethod.GET, params = {"id"})
-    public String deleteScope(Model model, @RequestParam("id") String scopeId, HttpSession session)
+    public String deleteScope(Model model, HttpSession session, @RequestParam("id") String scopeId)
     {
         String redirect = "redirect:/managescopes";
         try
@@ -169,7 +181,7 @@ public class ManageScopeController extends SessionHelper
             return "redirect:login";
         }
 
-        model.addAttribute("user", this.getCurrentUser(session));
+        model.addAttribute("capitalUser", this.getCurrentUser(session));
         model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitalReportingApplication.getVersion());
 

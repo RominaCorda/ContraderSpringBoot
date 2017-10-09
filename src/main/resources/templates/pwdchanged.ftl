@@ -4,7 +4,7 @@
 <div class="row">
     <div class="small-3 large-3 columns">
 
-        <h3>${user.username?capitalize} profile</h3>
+        <h3>${capitalUser.username?capitalize} profile</h3>
 
         <div class="callout primary">
             <h5>Password saved.</h5>

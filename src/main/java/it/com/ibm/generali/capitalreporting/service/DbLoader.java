@@ -60,9 +60,9 @@ public class DbLoader implements ApplicationRunner
         logger.info("Creating default roles");
         List<String> roles = new ArrayList<>();
         roles.add("System Administrator");
-        roles.add("Power User");
-        roles.add("Analyst User");
-        roles.add("Business User");
+        roles.add("Power CapitalUser");
+        roles.add("Analyst CapitalUser");
+        roles.add("Business CapitalUser");
         roles.add("Guest");
         for (String role : roles)
         {
@@ -106,7 +106,7 @@ public class DbLoader implements ApplicationRunner
             this.tags.save(temp);
         }
 
-        logger.info("Creating default user tags");
+        logger.info("Creating default capitalUser tags");
         List<String> usertags = new ArrayList<>();
         usertags.add("Italy");
         usertags.add("Germany");
@@ -124,23 +124,23 @@ public class DbLoader implements ApplicationRunner
 
     private void createUsers()
     {
-        logger.info("Creating default users");
+        logger.info("Creating default capitalUsers");
         Role admin = this.roles.findByDescription("System Administrator");
-        Role analyst = this.roles.findByDescription("Analyst User");
-        List<User> users = new ArrayList<>();
-        users.add(new User("admin", "pass", "Administrator", "admin@capitalireporting.info", admin));
-        users.add(new User("gian", "pass", "Gianmaria Borgonovo", "gian@capitalireporting.info", analyst));
-        users.add(new User("john", "pass", "John Brunello", "john@capitalireporting.info", analyst));
-        users.add(new User("lorenzo", "pass", "Lorenzo Brandimarte", "lorenzo@capitalireporting.info", analyst));
-        users.add(new User("michela", "pass", "Michela Da Ros", "michela@capitalireporting.info", analyst));
-        users.add(new User("alessio", "doctor", "Alessio Saltarin", "alessio@capitalireporting.info", analyst));
+        Role analyst = this.roles.findByDescription("Analyst CapitalUser");
+        List<CapitalUser> users = new ArrayList<>();
+        users.add(new CapitalUser("admin", "pass", "Administrator", "admin@capitalireporting.info", admin));
+        users.add(new CapitalUser("gian", "pass", "Gianmaria Borgonovo", "gian@capitalireporting.info", analyst));
+        users.add(new CapitalUser("john", "pass", "John Brunello", "john@capitalireporting.info", analyst));
+        users.add(new CapitalUser("lorenzo", "pass", "Lorenzo Brandimarte", "lorenzo@capitalireporting.info", analyst));
+        users.add(new CapitalUser("michela", "pass", "Michela Da Ros", "michela@capitalireporting.info", analyst));
+        users.add(new CapitalUser("alessio", "doctor", "Alessio Saltarin", "alessio@capitalireporting.info", analyst));
         this.users.save(users);
     }
 
-    private User getRandomUser()
+    private CapitalUser getRandomUser()
     {
-        final Iterable<User> all = this.users.findAll();
-        List<User> users = new ArrayList<>();
+        final Iterable<CapitalUser> all = this.users.findAll();
+        List<CapitalUser> users = new ArrayList<>();
         all.forEach(users::add);
         return users.get(this.seed.nextInt(users.size() - 1) + 1);
     }
@@ -203,7 +203,7 @@ public class DbLoader implements ApplicationRunner
         report.setReportingPeriod(period);
         report.setSimulationId(seed.nextInt(99999));
         report.setTemplate("Template 0" + seed.nextInt(9));
-        report.setUser(this.getRandomUser());
+        report.setCapitalUser(this.getRandomUser());
         this.reports.save(report);
         return report;
     }

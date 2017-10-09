@@ -1,6 +1,6 @@
 <#-- @ftlvariable name="roles" type="java.util.Collection<it.com.ibm.generali.capitalreporting.model.Role>" -->
-<#-- @ftlvariable name="selecteduser" type="it.com.ibm.generali.capitalreporting.model.User" -->
-<#-- @ftlvariable name="users" type="java.util.Collection<it.com.ibm.generali.capitalreporting.model.User>" -->
+<#-- @ftlvariable name="selecteduser" type="it.com.ibm.generali.capitalreporting.model.CapitalUser" -->
+<#-- @ftlvariable name="users" type="java.util.Collection<it.com.ibm.generali.capitalreporting.model.CapitalUser>" -->
 <#-- @ftlvariable name="mode" type="String" -->
 <#include "header.ftl">
 <#include "topbar.ftl">
@@ -31,9 +31,9 @@
         <#if mode == "none" || mode == "ok_added" || mode=="ok_modified" || mode=="ok_deleted">
             <h3>Configure users</h3>
         <#elseif mode == "new">
-            <h3>Add new user</h3>
+            <h3>Add new capitalUser</h3>
         <#else>
-            <h3>Configure user <b>${mode}</b></h3>
+            <h3>Configure capitalUser <b>${mode}</b></h3>
         </#if>
         </div>
 
@@ -41,13 +41,13 @@
         <div class="row">
             <label>Select User
                 <select onchange="if (this.value) window.location.href='/configure?selecteduser='+this.value">
-                    <#list users as user>
-                        <#if selecteduser.username==user.username>
-                        <option value="${user.username}" selected="selected">
+                    <#list users as capitalUser>
+                        <#if selecteduser.username==capitalUser.username>
+                        <option value="${capitalUser.username}" selected="selected">
                         <#else>
-                        <option value="${user.username}">
+                        <option value="${capitalUser.username}">
                         </#if>
-                    ${user.fullName}
+                    ${capitalUser.fullName}
                     </option>
                     </#list>
                 </select>
@@ -66,7 +66,7 @@
     </div>
 
     <div class="small-9 medium-8 large-8 columns">
-        <form name="user" action="" method="post" style="margin-top: 60px">
+        <form name="capitalUser" action="" method="post" style="margin-top: 60px">
         <#if mode != "new">
             <div class="row">
                 <div class="columns">
@@ -147,7 +147,7 @@
                 </div>
                 <div class="column medium-1 large-1">
                     <div style="margin-top: 30px" data-tooltip aria-haspopup="true" class="has-tip"
-                         data-disable-hover="false" title="Edit user tags">
+                         data-disable-hover="false" title="Edit capitalUser tags">
                         <span class="float-left">
                             <a href="/usertags"><i class="fi-pencil"></i></a>
                         </span>

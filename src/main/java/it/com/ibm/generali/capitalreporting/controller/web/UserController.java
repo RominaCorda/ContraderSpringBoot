@@ -2,7 +2,7 @@ package it.com.ibm.generali.capitalreporting.controller.web;
 
 import it.com.ibm.generali.capitalreporting.CapitalReportingApplication;
 import it.com.ibm.generali.capitalreporting.dao.UserDao;
-import it.com.ibm.generali.capitalreporting.model.User;
+import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class UserController extends SessionHelper
 
         if (session.getAttribute("loggedUser") != null)
         {
-            logger.warn("A user is already logged!");
+            logger.warn("A capitalUser is already logged!");
             return "redirect:index";
         }
 
@@ -83,16 +83,16 @@ public class UserController extends SessionHelper
     {
 
         String errorMsg = "";
-        User currentUser = this.getCurrentUser(session);
+        CapitalUser currentUser = this.getCurrentUser(session);
         String username = currentUser.getUsername();
 
-        logger.info("Received POST for user = " + username);
+        logger.info("Received POST for capitalUser = " + username);
         logger.info("Received old password = " + oldPassword);
 
-        User knownUser = this.users.findOne(username);
+        CapitalUser knownUser = this.users.findOne(username);
         if (knownUser != null)
         {
-            logger.info("Ok, found user " + username);
+            logger.info("Ok, found capitalUser " + username);
             if (knownUser.getPassword().equals(oldPassword))
             {
                 logger.info("Old Password is OK");
@@ -120,7 +120,7 @@ public class UserController extends SessionHelper
         }
         else
         {
-            errorMsg = "Unknown user";
+            errorMsg = "Unknown capitalUser";
         }
 
         if (errorMsg.length() > 0)
@@ -143,13 +143,13 @@ public class UserController extends SessionHelper
     {
         String errorMsg;
 
-        logger.info("Received POST for user = " + username);
+        logger.info("Received POST for capitalUser = " + username);
         logger.info("Received password = **********" + password.substring(password.length() - 3));
 
-        User knownUser = this.users.findOne(username);
+        CapitalUser knownUser = this.users.findOne(username);
         if (knownUser != null)
         {
-            logger.info("Ok, found user " + username);
+            logger.info("Ok, found capitalUser " + username);
             if (knownUser.getPassword().equals(password))
             {
                 logger.info("Password is OK");
@@ -163,7 +163,7 @@ public class UserController extends SessionHelper
         }
         else
         {
-            errorMsg = "Unknown user";
+            errorMsg = "Unknown capitalUser";
         }
 
         logger.error(errorMsg);

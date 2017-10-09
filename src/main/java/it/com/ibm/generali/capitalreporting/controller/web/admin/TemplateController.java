@@ -57,7 +57,7 @@ public class TemplateController extends SessionHelper
         }
 
         model.addAttribute("templates", this.templates.findAll());
-        model.addAttribute("user", this.getCurrentUser(session));
+        model.addAttribute("capitalUser", this.getCurrentUser(session));
         model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitalReportingApplication.getVersion());
 

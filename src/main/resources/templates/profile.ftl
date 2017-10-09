@@ -7,23 +7,23 @@
 
         <form id="changepwdform" method="post" action="">
 
-            <h3 class="userprofile">${user.username?capitalize} profile</h3>
+            <h3 class="userprofile">${capitalUser.username?capitalize} profile</h3>
 
             <div class="row">
                 <label>Full Name:
-                    <input id="fullname" name="fullname" type="text" value="${user.fullName}" disabled>
+                    <input id="fullname" name="fullname" type="text" value="${capitalUser.fullName}" disabled>
                 </label>
             </div>
 
             <div class="row">
                 <label>eMail Address:
-                    <input id="email" name="email" type="email" value="${user.email}" disabled>
+                    <input id="email" name="email" type="email" value="${capitalUser.email}" disabled>
                 </label>
             </div>
 
             <div class="row">
                 <label>Role:
-                    <input id="role" name="role" type="text" value="${user.role.description}" disabled>
+                    <input id="role" name="role" type="text" value="${capitalUser.role.description}" disabled>
                 </label>
             </div>
 

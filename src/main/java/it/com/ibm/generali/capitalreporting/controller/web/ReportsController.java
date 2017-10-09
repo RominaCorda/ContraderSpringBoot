@@ -99,7 +99,7 @@ public class ReportsController extends SessionHelper
 
         logger.info("Received POST for addnewreport with scope = " + scopeId);
         Report newReport = new Report();
-        newReport.setUser(this.getCurrentUser(session));
+        newReport.setCapitalUser(this.getCurrentUser(session));
         newReport.setTemplate(template);
         newReport.setSimulationId(simulationId);
         newReport.setReportingPeriod(reportingPeriod);

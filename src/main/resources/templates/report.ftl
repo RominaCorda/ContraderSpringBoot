@@ -47,7 +47,7 @@
         </label>
         <label>
             Created by:
-            <input type="text" value="${report.user.fullName}" readonly>
+            <input type="text" value="${report.capitalUser.fullName}" readonly>
         </label>
         <label>
             Tags:

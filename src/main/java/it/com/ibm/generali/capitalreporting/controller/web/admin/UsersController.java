@@ -5,8 +5,8 @@ import it.com.ibm.generali.capitalreporting.controller.web.SessionHelper;
 import it.com.ibm.generali.capitalreporting.dao.RoleDao;
 import it.com.ibm.generali.capitalreporting.dao.UserDao;
 import it.com.ibm.generali.capitalreporting.dao.UserTagDao;
+import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import it.com.ibm.generali.capitalreporting.model.Role;
-import it.com.ibm.generali.capitalreporting.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +55,7 @@ public class UsersController extends SessionHelper
     }
 
     /**
-     * Configure GET with selected user
+     * Configure GET with selected capitalUser
      */
     @RequestMapping(value = "/configure", method = RequestMethod.GET, params = {"selecteduser"})
     public String configureWithUsername(Model model, HttpSession session, @RequestParam("selecteduser") String username)
@@ -88,16 +88,16 @@ public class UsersController extends SessionHelper
 
     /**
      * Configure POST
-     * Add or modify user
+     * Add or modify capitalUser
      */
     @RequestMapping(value = "/configure", method = RequestMethod.POST)
-    public String addOrModifyUser(@ModelAttribute("user") User user)
+    public String addOrModifyUser(@ModelAttribute("capitalUser") CapitalUser user)
     {
         logger.info("/configure POST");
         String username = user.getUsername();
         String mode;
 
-        User modUser = this.users.findOne(username);
+        CapitalUser modUser = this.users.findOne(username);
         if (modUser != null)
         {
             modUser.setEmail(user.getEmail());
@@ -108,7 +108,7 @@ public class UsersController extends SessionHelper
         }
         else
         {
-            modUser = User.Factory.copy(user);
+            modUser = CapitalUser.Factory.copy(user);
             mode = "ok_added";
         }
 
@@ -123,18 +123,18 @@ public class UsersController extends SessionHelper
             return "redirect:login";
         }
 
-        final Iterable<User> users = this.users.findAll();
+        final Iterable<CapitalUser> users = this.users.findAll();
         final Iterable<Role> roles = this.roles.findAll();
 
-        List<User> allUsersExceptAdmin = new ArrayList<>();
+        List<CapitalUser> allUsersExceptAdmin = new ArrayList<>();
         users.forEach(allUsersExceptAdmin::add);
         allUsersExceptAdmin = allUsersExceptAdmin.stream().filter(
                 user -> !user.username.equals("admin")).collect(Collectors.toList());
-        User selectedUser = allUsersExceptAdmin.iterator().next();
+        CapitalUser selectedUser = allUsersExceptAdmin.iterator().next();
 
         if (mode.equals("new"))
         {
-            selectedUser = new User();
+            selectedUser = new CapitalUser();
             selectedUser.username = "";
             selectedUser.password = "";
             selectedUser.email = "";
@@ -154,10 +154,10 @@ public class UsersController extends SessionHelper
             }
         }
 
-        model.addAttribute("users", allUsersExceptAdmin);
+        model.addAttribute("capitalUsers", allUsersExceptAdmin);
         model.addAttribute("mode", mode);
         model.addAttribute("roles", roles);
-        model.addAttribute("user", this.getCurrentUser(session));
+        model.addAttribute("capitalUser", this.getCurrentUser(session));
         model.addAttribute("selecteduser", selectedUser);
         model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitalReportingApplication.getVersion());

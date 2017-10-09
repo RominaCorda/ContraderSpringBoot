@@ -1,7 +1,7 @@
 package it.com.ibm.generali.capitalreporting.controller.web;
 
 import it.com.ibm.generali.capitalreporting.CapitalReportingApplication;
-import it.com.ibm.generali.capitalreporting.model.User;
+import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
@@ -11,17 +11,17 @@ public class SessionHelper
 
     protected static final String LOGGED_USER = "loggedUser";
 
-    protected User getCurrentUser(HttpSession session)
+    protected CapitalUser getCurrentUser(HttpSession session)
     {
         if (session.getAttribute(LOGGED_USER) != null)
         {
-            return (User) session.getAttribute(LOGGED_USER);
+            return (CapitalUser) session.getAttribute(LOGGED_USER);
         }
 
         return null;
     }
 
-    protected void saveUserSession(HttpSession session, User user)
+    protected void saveUserSession(HttpSession session, CapitalUser user)
     {
         session.setAttribute(LOGGED_USER, user);
     }
@@ -30,7 +30,7 @@ public class SessionHelper
     {
         if (session.getAttribute(LOGGED_USER) != null)
         {
-            User currentUser = (User) session.getAttribute(LOGGED_USER);
+            CapitalUser currentUser = (CapitalUser) session.getAttribute(LOGGED_USER);
             if (currentUser.username.equals("admin"))
                 return true;
         }
@@ -49,7 +49,7 @@ public class SessionHelper
             return "redirect:login";
         }
 
-        model.addAttribute("user", this.getCurrentUser(session));
+        model.addAttribute("capitalUser", this.getCurrentUser(session));
         model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitalReportingApplication.getVersion());
 

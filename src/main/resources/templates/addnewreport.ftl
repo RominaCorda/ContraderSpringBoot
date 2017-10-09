@@ -47,7 +47,7 @@
         <div class="medium-6 large-7 columns">
             <label>
                 Created by:
-                <input type="text" value="${user.fullName}" readonly>
+                <input type="text" value="${capitalUser.fullName}" readonly>
             </label>
             <label>
                 Tags:

@@ -23,7 +23,7 @@
         </#list>
     <#else>
     <tr>
-        <td colspan="5">No reports found for ${user.username?capitalize}</td>
+        <td colspan="5">No reports found for ${capitalUser.username?capitalize}</td>
     </tr>
     </#if>
     </tbody>
