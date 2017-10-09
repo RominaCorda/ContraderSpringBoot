@@ -4,6 +4,7 @@ import it.com.ibm.generali.capitalreporting.CapitalReportingApplication;
 import it.com.ibm.generali.capitalreporting.controller.web.SessionHelper;
 import it.com.ibm.generali.capitalreporting.dao.RoleDao;
 import it.com.ibm.generali.capitalreporting.dao.UserDao;
+import it.com.ibm.generali.capitalreporting.dao.UserTagDao;
 import it.com.ibm.generali.capitalreporting.model.Role;
 import it.com.ibm.generali.capitalreporting.model.User;
 import org.slf4j.Logger;
@@ -22,18 +23,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-public class ConfigureController extends SessionHelper
+public class UsersController extends SessionHelper
 {
-    private Logger logger = LoggerFactory.getLogger(ConfigureController.class);
+    private Logger logger = LoggerFactory.getLogger(UsersController.class);
 
     private UserDao users;
     private RoleDao roles;
+    private UserTagDao tags;
 
     @Autowired
-    public ConfigureController(UserDao userDao, RoleDao roleDao)
+    public UsersController(UserDao userDao, RoleDao roleDao, UserTagDao tagDao)
     {
         this.users = userDao;
         this.roles = roleDao;
+        this.tags = tagDao;
     }
 
     /**
@@ -47,6 +50,7 @@ public class ConfigureController extends SessionHelper
     public String configure(Model model, HttpSession session)
     {
         logger.info("/configure GET");
+        model.addAttribute("tags", this.tags.findAll());
         return this.configureTemplate(model, session, "none");
     }
 
@@ -57,6 +61,7 @@ public class ConfigureController extends SessionHelper
     public String configureWithUsername(Model model, HttpSession session, @RequestParam("selecteduser") String username)
     {
         logger.info("/configure page with selecteduser =" + username);
+        model.addAttribute("tags", this.tags.findAll());
         return this.configureTemplate(model, session, username);
     }
 
@@ -67,6 +72,7 @@ public class ConfigureController extends SessionHelper
     public String configureWithMode(Model model, @RequestParam("mode") String mode, HttpSession session)
     {
         logger.info("/configure GET with mode=" + mode);
+        model.addAttribute("tags", this.tags.findAll());
         return this.configureTemplate(model, session, mode);
     }
 

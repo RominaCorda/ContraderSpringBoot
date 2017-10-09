@@ -17,10 +17,23 @@
                     <li class="has-submenu">
                         <a href="#0"><i class="fi-crown"></i>&nbsp;Admin Tools</a>
                         <ul class="submenu menu vertical" data-submenu>
-                            <li><a href="/configure">Configure User</a></li>
+                            <li><a href="/configure">Configure Users</a></li>
                             <li><a href="/roles">Manage Roles</a></li>
-                            <li><a href="/tags">Manage Tags</a></li>
-                            <li><a href="/managescopes">Manage Scopes</a></li>
+                            <li class="has-submenu">
+                                <a href="#0">Manage Tags</a>
+                                <ul class="submenu menu vertical" data-submenu>
+                                    <li><a href="/tags">Report</a></li>
+                                    <li><a href="/usertags">User</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/usertags">Manage User Tags</a></li>
+                            <li class="has-submenu">
+                                <a href="#0">Manage Scopes</a>
+                                <ul class="submenu menu vertical" data-submenu>
+                                    <li><a href="/managescopes">Analysis</a></li>
+                                    <li><a href="/managescopes">Official</a></li>
+                                </ul>
+                            </li>
                             <li><a href="/templates">Manage Templates</a></li>
                             <li><a href="#0">Official simulations</a></li>
                         </ul>

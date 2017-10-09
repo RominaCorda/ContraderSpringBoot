@@ -21,6 +21,7 @@ public class DbLoader implements ApplicationRunner
     private RoleDao roles;
     private TemplateDao templates;
     private TagDao tags;
+    private UserTagDao userTags;
 
     final private Random seed = new Random();
 
@@ -30,7 +31,8 @@ public class DbLoader implements ApplicationRunner
                     UserDao userDao,
                     RoleDao roleDao,
                     TemplateDao templateDao,
-                    TagDao tagDao)
+                    TagDao tagDao,
+                    UserTagDao userTagDao)
     {
         this.scopes = scopeDao;
         this.reports = reportDao;
@@ -38,6 +40,7 @@ public class DbLoader implements ApplicationRunner
         this.roles = roleDao;
         this.templates = templateDao;
         this.tags = tagDao;
+        this.userTags = userTagDao;
     }
 
     public void run(ApplicationArguments args)
@@ -101,6 +104,21 @@ public class DbLoader implements ApplicationRunner
             Tag temp = new Tag();
             temp.setName(templ);
             this.tags.save(temp);
+        }
+
+        logger.info("Creating default user tags");
+        List<String> usertags = new ArrayList<>();
+        usertags.add("Italy");
+        usertags.add("Germany");
+        usertags.add("Spain");
+        usertags.add("Europe");
+        usertags.add("World");
+        usertags.add("Universe");
+        for (String templ : usertags)
+        {
+            UserTag temp = new UserTag();
+            temp.setName(templ);
+            this.userTags.save(temp);
         }
     }
 

@@ -8,7 +8,7 @@
 
 <div class="row">
 
-    <div class="small-5 large-5 columns">
+    <div class="small-3 medium-3 large-3 columns">
 
     <#if mode?starts_with("ok")>
         <div class="row">
@@ -59,16 +59,13 @@
         </div>
     </#if>
 
-
-
-
     </div>
 
-    <div class="small-1 large-1 columns">
+    <div class="medium-1 medium-1 large-1 columns">
         &nbsp;
     </div>
 
-    <div class="small-5 large-5 columns">
+    <div class="small-9 medium-8 large-8 columns">
         <form name="user" action="" method="post" style="margin-top: 60px">
         <#if mode != "new">
             <div class="row">
@@ -79,7 +76,7 @@
             </div>
         </#if>
             <div class="row">
-                <div class="columns">
+                <div class="column medium-10 large-10">
                     <label>User ID:
                         <input id="username" name="username" type="text" value="${selecteduser.username}">
                         <input id="password" name="password" type="hidden" value="***">
@@ -87,21 +84,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="columns">
+                <div class="column medium-10 large-10">
                     <label>Full Name:
                         <input id="fullName" name="fullName" type="text" value="${selecteduser.fullName}">
                     </label>
                 </div>
             </div>
             <div class="row">
-                <div class="columns">
+                <div class="column medium-10 large-10">
                     <label>eMail Address:
                         <input id="email" name="email" type="email" value="${selecteduser.email}">
                     </label>
                 </div>
             </div>
             <div class="row">
-                <div class="columns">
+                <div class="column medium-10 large-10">
                     <label>Active:
                     <#if selecteduser.active>
                         <input id="active" name="active" type="checkbox" checked="checked">
@@ -112,9 +109,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="column medium-11 large-11">
-                    <label>Role:
-                        <select id="role" name="role">
+                <div class="column medium-10 large-10">
+                    <label>Roles:
+                        <select multiple id="role" name="role">
                         <#list roles as role>
                             <#if selecteduser.role.id==role.id>
                             <option value="${role.id}" selected="selected">
@@ -130,25 +127,37 @@
                 <div class="column medium-1 large-1">
                     <div style="margin-top: 30px" data-tooltip aria-haspopup="true" class="has-tip"
                          data-disable-hover="false" title="Edit roles">
-                        <a href="/roles"><i class="fi-pencil"></i></a>
+                        <span class="float-left">
+                            <a href="/roles"><i class="fi-pencil"></i></a>
+                        </span>
                     </div>
                 </div>
-
             </div>
             <div class="row">
-                <div class="columns">
-                    <label>Tags:
-                        <input id="tags" name="tags" type="text" placeholder="Input tags separated by comma.">
-                    </label>
+                <div class="column medium-10 large-10">
+                <#if tags??>
+                    <fieldset>
+                        <legend>Tags:</legend>
+                        <#list tags as tag>
+                            <input id="chk${tag.name}" name="tags" type="checkbox" value="${tag.name}">
+                            <label for="chk${tag.name}">${tag.name}</label>
+                        </#list>
+                    </fieldset>
+                </#if>
                 </div>
-
+                <div class="column medium-1 large-1">
+                    <div style="margin-top: 30px" data-tooltip aria-haspopup="true" class="has-tip"
+                         data-disable-hover="false" title="Edit user tags">
+                        <span class="float-left">
+                            <a href="/usertags"><i class="fi-pencil"></i></a>
+                        </span>
+                    </div>
+                </div>
             </div>
             <div class="row">
-                <div class="columns">
-                    <div class="button-group float-right">
-                        <a class="secondary button" href="/index">Cancel</a>
-                        <input type="submit" value="Submit" class="primary button">
-                    </div>
+                <div class="column medium-10 large-10">
+                    <p>&nbsp;</p>
+                    <input type="submit" value="Submit" class="primary button float-right">
                 </div>
             </div>
         </form>

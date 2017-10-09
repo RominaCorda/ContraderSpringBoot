@@ -5,7 +5,7 @@
 <div class="row">
     <div class="small-6 large-6 columns">
         <div class="row">
-            <h3>Manage Report Tags</h3>
+            <h3>Manage User Tags</h3>
         </div>
         <div class="row">
             <form id="addtagform" method="post" action="">
@@ -17,10 +17,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <#list tags as tag>
+                    <#list usertags as tag>
                     <tr>
                         <td>${tag.name}</td>
-                        <td><a href="/tags?delete=${tag.id}"><i class="fi-x"></i></td>
+                        <td><a href="/usertags?delete=${tag.id}"><i class="fi-x"></i></td>
                     </tr>
                     </#list>
                     </tbody>
@@ -63,3 +63,4 @@
 
 </body>
 </html>
+

@@ -27,7 +27,7 @@ repositories {
 }
 
 dependencies {
-	compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlin_version
+	compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8', version: kotlin_version
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springboot_version
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springboot_version
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: springboot_version

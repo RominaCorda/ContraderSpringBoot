@@ -27,39 +27,8 @@
                 </label>
             </div>
 
-            <ul class="accordion pwdchanger" data-accordion data-allow-all-closed="true">
-                <li class="accordion-item" data-accordion-item>
-                    <!-- Accordion tab title -->
-                    <a href="#" class="accordion-title">Change my password</a>
-
-                    <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
-                    <div class="accordion-content" data-tab-content>
-                        <label>Your current password:
-                            <input id="curpwd" name="curpwd" type="password" value="" aria-describedby="help1" required>
-                            <p class="help-text" id="help1">Enter your current password here</p>
-                        </label>
-                        <label>Type here your new password:
-                            <input id="newpwd1" name="newpwd1" type="password" value="" aria-describedby="help2"
-                                   required>
-                            <p class="help-text" id="help2">Enter your new password here</p>
-                        </label>
-                        <label>Please re-type your new password:
-                            <input id="newpwd2" name="newpwd2" type="password" value="" aria-describedby="help3"
-                                   required>
-                            <p class="help-text" id="help3">Enter your new password for validation purposes</p>
-                        </label>
-                    </div>
-                </li>
-            </ul>
-
-        <#if error??>
-            <span id="errorPopup" class="label alert"><i class="fi-x-circle"></i>&nbsp;${error}</span>
-        </#if>
-            <br>
-
-            <div class="button-group float-right">
-                <a class="secondary button" href="/index">Cancel</a>
-                <input type="submit" value="Submit" class="primary button">
+            <div class="row">
+                <a class="secondary button float-right" href="/index">Back</a>
             </div>
 
         </form>

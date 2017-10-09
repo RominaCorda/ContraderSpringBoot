@@ -14,6 +14,7 @@
                     <tr>
                         <th width="330">Role</th>
                         <th width="30">&nbsp;</th>
+                        <th width="30">&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -21,6 +22,7 @@
                     <tr>
                         <td>${role.description}</td>
                         <td><a href="/roles?delete=${role.id}"><i class="fi-x"></i></td>
+                        <td><a href="/editrole?roleid=${role.id}"><i class="fi-pencil"></i></td>
                     </tr>
                     </#list>
                     </tbody>

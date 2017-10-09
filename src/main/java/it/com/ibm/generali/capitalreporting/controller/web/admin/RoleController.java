@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class RoleController extends SessionHelper
@@ -41,6 +43,29 @@ public class RoleController extends SessionHelper
 
         this.roles.delete(Long.parseLong(roleId));
         return "redirect:roles";
+    }
+
+    /**
+     * Configure GET with selected user
+     */
+    @RequestMapping(value = "/editrole", method = RequestMethod.GET, params = {"roleid"})
+    public String editRole(Model model, HttpSession session, @RequestParam("roleid") long roleId)
+    {
+        logger.info("/editrole for role=" + String.valueOf(roleId));
+        Role role = this.roles.findOne(roleId);
+        model.addAttribute("role", role);
+        List<String> permissions = new ArrayList<>();
+        permissions.add("Configure Users");
+        permissions.add("Manage application role");
+        permissions.add("Manage templates");
+        permissions.add("Manage analysis scope");
+        permissions.add("Manage official scope");
+        permissions.add("Manage simulations");
+        permissions.add("Edit free reporting page");
+        permissions.add("Edit analysis reports");
+        permissions.add("Edit official reports");
+        model.addAttribute("permissions", permissions);
+        return this.pageSetup("editrole", model, session);
     }
 
     /**
