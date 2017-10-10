@@ -1,7 +1,6 @@
 <#include "header.ftl">
 <#include "topbar.ftl">
 
-
 <div class="row">
     <div class="small-6 large-6 columns">
         <div class="row">
@@ -14,13 +13,15 @@
                     <tr>
                         <th width="330">Tag</th>
                         <th width="30">&nbsp;</th>
+                        <th width="30">&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
                     <#list tags as tag>
                     <tr>
-                        <td>${tag.name}</td>
+                        <td id="tag${tag.id}" contenteditable="true">${tag.name}</td>
                         <td><a href="/tags?delete=${tag.id}"><i class="fi-x"></i></td>
+                        <td><a onclick="editcell(${tag.id});"><i class="fi-save"></i></td>
                     </tr>
                     </#list>
                     </tbody>
@@ -57,6 +58,12 @@
                 '<td><input class="button" type="submit" value="OK"></td>\n' +
                 '</tr>');
     });
+
+    function editcell(tagid) {
+        var content = $('#tag' + tagid).html();
+        console.log('Editing ' + tagid + ' with content=' + content);
+        window.location.assign('/tags?edit=' + tagid + '&content=' + content);
+    }
 
 </script>
 

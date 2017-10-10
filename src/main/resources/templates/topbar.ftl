@@ -22,7 +22,7 @@
                             <li class="has-submenu">
                                 <a href="#0">Manage Tags</a>
                                 <ul class="submenu menu vertical" data-submenu>
-                                    <li><a href="/tags">Report</a></li>
+                                    <li><a href="/tags">Scope</a></li>
                                     <li><a href="/usertags">User</a></li>
                                 </ul>
                             </li>

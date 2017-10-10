@@ -48,6 +48,28 @@ public class TagController extends SessionHelper
     }
 
     /**
+     * Tags with delete
+     */
+    @RequestMapping(value = "/tags", method = RequestMethod.GET, params = {"edit", "content"})
+    public String editTag(@RequestParam("edit") String tagId,
+                          @RequestParam("content") String content,
+                          HttpSession session)
+    {
+
+        logger.info("/tags edit page with content=" + content);
+
+        if (!this.isAdmin(session))
+        {
+            return "redirect:login";
+        }
+
+        Tag tag = this.tags.findOne(Long.parseLong(tagId));
+        tag.setName(content);
+        this.tags.save(tag);
+        return "redirect:tags";
+    }
+
+    /**
      * Roles GET
      */
     @RequestMapping("/tags")
