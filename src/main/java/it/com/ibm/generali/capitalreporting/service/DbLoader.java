@@ -23,6 +23,7 @@ public class DbLoader implements ApplicationRunner
     private TemplateDao templates;
     private TagDao tags;
     private UserTagDao userTags;
+    private SimulationDao simulations;
 
     final private Random seed = new Random();
 
@@ -33,7 +34,8 @@ public class DbLoader implements ApplicationRunner
                     RoleDao roleDao,
                     TemplateDao templateDao,
                     TagDao tagDao,
-                    UserTagDao userTagDao)
+                    UserTagDao userTagDao,
+                    SimulationDao simulationDao)
     {
         this.scopes = scopeDao;
         this.reports = reportDao;
@@ -42,6 +44,7 @@ public class DbLoader implements ApplicationRunner
         this.templates = templateDao;
         this.tags = tagDao;
         this.userTags = userTagDao;
+        this.simulations = simulationDao;
     }
 
     public void run(ApplicationArguments args)
@@ -50,6 +53,7 @@ public class DbLoader implements ApplicationRunner
         this.createTemplates();
         this.createTags();
         this.createUsers();
+        this.createSimulations();
 
         this.createScopesLevelRoot(ScopeType.ANALYSIS);
         this.createScopesLevelRoot(ScopeType.OFFICIAL);
@@ -78,6 +82,30 @@ public class DbLoader implements ApplicationRunner
             Role tempRole = new Role();
             tempRole.setDescription(role);
             this.roles.save(tempRole);
+        }
+    }
+
+    private void createSimulations()
+    {
+        logger.info("Creating simulations");
+        Simulation tmpSimulation;
+        CapitalUser user = this.users.findAll().iterator().next();
+
+        List<String> reportingPeriod = new ArrayList<>();
+        reportingPeriod.add("YE2014");
+        reportingPeriod.add("YE2015");
+        reportingPeriod.add("YE2016");
+        reportingPeriod.add("YE2017");
+
+        for (int j = 1; j <= 40; j++)
+        {
+            int repPeriodIdx = this.seed.nextInt(reportingPeriod.size());
+            tmpSimulation = new Simulation();
+            tmpSimulation.setName("Simulation " + String.valueOf(j));
+            tmpSimulation.setUser(user);
+            tmpSimulation.setOfficial(true);
+            tmpSimulation.setReportingPeriod(reportingPeriod.get(repPeriodIdx));
+            this.simulations.save(tmpSimulation);
         }
     }
 
@@ -230,6 +258,11 @@ public class DbLoader implements ApplicationRunner
             tempScope.setType(type);
             this.scopes.save(tempScope);
         }
+    }
+
+    private void addSimulations()
+    {
+
     }
 
     private void addReportsToScope(Scope scope, int nrOfReports)

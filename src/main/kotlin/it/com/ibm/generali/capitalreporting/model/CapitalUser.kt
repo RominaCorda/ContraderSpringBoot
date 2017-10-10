@@ -19,6 +19,9 @@ open class CapitalUser() : Serializable
     @OneToMany(mappedBy = "user", cascade = arrayOf(CascadeType.ALL))
     var reports: MutableSet<Report>? = null
 
+    @OneToMany(mappedBy = "user", cascade = arrayOf(CascadeType.ALL))
+    var simulations: MutableSet<Simulation>? = null
+
     var active: Boolean = true
 
     constructor(username: String, password: String, fullName: String, email: String, role: Role) : this()

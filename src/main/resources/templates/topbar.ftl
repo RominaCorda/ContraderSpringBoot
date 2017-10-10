@@ -33,7 +33,7 @@
                                     <li><a href="/managescopes?mode=official">Official</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#0">Official simulations</a></li>
+                            <li><a href="/simulations">Official simulations</a></li>
                         </ul>
                     </li>
                 </#if>
