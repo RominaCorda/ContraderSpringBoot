@@ -4,6 +4,8 @@
 <#-- @ftlvariable name="selscope" type="it.com.ibm.generali.capitalreporting.model.Scope" -->
 <#-- @ftlvariable name="parents" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
 <#-- @ftlvariable name="scopes" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
+<#-- @ftlvariable name="users" type="java.util.List<it.com.ibm.generali.capitalreporting.model.CapitalUser>" -->
+<#-- @ftlvariable name="templates" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Template>" -->
 <#include "header.ftl">
 <#include "topbar.ftl">
 
@@ -92,6 +94,31 @@
                             </#if>
                         </div>
                     </div>
+                    <#if canAddReports??>
+                        <#if canAddReports>
+                            <div class="row">
+                                <div class="column medium-6 large-6">
+                                    <label>Viewers:
+                                        <select multiple>
+                                            <#list users as user>
+                                                <option value="${user}">${user}</option>
+                                            </#list>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="column medium-6 large-6">
+                                    <label>
+                                        Templates:
+                                        <select multiple>
+                                            <#list templates as template>
+                                                <option value="${template.id}">${template.name}</option>
+                                            </#list>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                        </#if>
+                    </#if>
                     <div class="row columns">
                         <input id="scopesave" type="submit" class="button" value="Save">
                         &nbsp;

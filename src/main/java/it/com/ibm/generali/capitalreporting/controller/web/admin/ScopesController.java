@@ -4,6 +4,8 @@ import it.com.ibm.generali.capitalreporting.CapitalReportingApplication;
 import it.com.ibm.generali.capitalreporting.controller.web.SessionHelper;
 import it.com.ibm.generali.capitalreporting.dao.ScopeDao;
 import it.com.ibm.generali.capitalreporting.dao.TagDao;
+import it.com.ibm.generali.capitalreporting.dao.TemplateDao;
+import it.com.ibm.generali.capitalreporting.dao.UserDao;
 import it.com.ibm.generali.capitalreporting.framework.Utilities;
 import it.com.ibm.generali.capitalreporting.model.Scope;
 import it.com.ibm.generali.capitalreporting.model.ScopeType;
@@ -28,15 +30,21 @@ public class ScopesController extends SessionHelper
 
     private ScopeDao scopes;
     private TagDao tags;
+    private UserDao users;
+    private TemplateDao templates;
     private ScopeService scopeService;
 
     @Autowired
     public ScopesController(ScopeDao scopeDao,
                             TagDao tagDao,
+                            UserDao userDao,
+                            TemplateDao templateDao,
                             ScopeService scopeService)
     {
         this.scopes = scopeDao;
         this.tags = tagDao;
+        this.users = userDao;
+        this.templates = templateDao;
         this.scopeService = scopeService;
     }
 
@@ -52,6 +60,8 @@ public class ScopesController extends SessionHelper
         ScopeType type = Utilities.INSTANCE.getScopeType(mode);
         List<Scope> scopesZero = this.scopes.findByTypeAndParent(type, -1L);
         model.addAttribute("mode", mode);
+        model.addAttribute("users", this.users.findAll());
+        model.addAttribute("templates", this.templates.findAll());
         model.addAttribute("selscope", scopesZero.get(0));
         model.addAttribute("scopes", scopesZero);
         model.addAttribute("children", true);
@@ -94,6 +104,8 @@ public class ScopesController extends SessionHelper
         List<Scope> siblings = this.scopeService.getSiblings(scopeObj);
         model.addAttribute("mode", scopeObj.getType().toString().toLowerCase());
         model.addAttribute("canAddReports", this.scopeService.canAddReports(scopeObj));
+        model.addAttribute("users", this.users.findAll());
+        model.addAttribute("templates", this.templates.findAll());
         model.addAttribute("selscope", scopeObj);
         model.addAttribute("parents", parents);
         model.addAttribute("scopes", siblings);
@@ -117,6 +129,8 @@ public class ScopesController extends SessionHelper
         parents.add(parent);
         model.addAttribute("mode", parent.getType().toString().toLowerCase());
         model.addAttribute("parents", parents);
+        model.addAttribute("users", this.users.findAll());
+        model.addAttribute("templates", this.templates.findAll());
         model.addAttribute("tags", this.tags.findAll());
         return this.configureTemplate(model, session);
     }
