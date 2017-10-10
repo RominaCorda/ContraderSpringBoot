@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository
 
 interface ReportDao : CrudRepository<Report, Long>
 {
-    fun findByCapitalUser(capitalUser: CapitalUser): List<Report>
+    fun findByUser(capitalUser: CapitalUser): List<Report>
     fun findByScopeOrderByCreated(scope: Scope): List<Report>
-    fun findTop5ByCapitalUserOrderByCreated(capitalUser: CapitalUser): List<Report>
+    fun findTop5ByUserOrderByCreated(capitalUser: CapitalUser): List<Report>
 }

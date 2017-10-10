@@ -4,7 +4,9 @@ import it.com.ibm.generali.capitalreporting.CapitalReportingApplication;
 import it.com.ibm.generali.capitalreporting.controller.web.SessionHelper;
 import it.com.ibm.generali.capitalreporting.dao.ScopeDao;
 import it.com.ibm.generali.capitalreporting.dao.TagDao;
+import it.com.ibm.generali.capitalreporting.framework.Utilities;
 import it.com.ibm.generali.capitalreporting.model.Scope;
+import it.com.ibm.generali.capitalreporting.model.ScopeType;
 import it.com.ibm.generali.capitalreporting.service.ScopeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,31 +22,22 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-public class ManageScopeController extends SessionHelper
+public class ScopesController extends SessionHelper
 {
-    private Logger logger = LoggerFactory.getLogger(ManageScopeController.class);
+    private Logger logger = LoggerFactory.getLogger(ScopesController.class);
 
     private ScopeDao scopes;
     private TagDao tags;
     private ScopeService scopeService;
 
     @Autowired
-    public ManageScopeController(ScopeDao scopeDao,
-                                 TagDao tagDao,
-                                 ScopeService scopeService)
+    public ScopesController(ScopeDao scopeDao,
+                            TagDao tagDao,
+                            ScopeService scopeService)
     {
         this.scopes = scopeDao;
         this.tags = tagDao;
         this.scopeService = scopeService;
-    }
-
-    /**
-     * Manage scopes initial page GET
-     */
-    @RequestMapping("/managescopes")
-    public String manageScopes(Model model, HttpSession session)
-    {
-        return "redirect:/managescopes?mode=analysis";
     }
 
     /**
@@ -56,7 +49,8 @@ public class ManageScopeController extends SessionHelper
                                        @RequestParam("mode") String mode)
     {
         logger.info("/managescopes MODE=" + mode);
-        List<Scope> scopesZero = this.scopes.findByParent(-1);
+        ScopeType type = Utilities.INSTANCE.getScopeType(mode);
+        List<Scope> scopesZero = this.scopes.findByTypeAndParent(type, -1L);
         model.addAttribute("mode", mode);
         model.addAttribute("selscope", scopesZero.get(0));
         model.addAttribute("scopes", scopesZero);
@@ -98,6 +92,7 @@ public class ManageScopeController extends SessionHelper
         Scope scopeObj = this.scopes.findOne(scopeId);
         List<Scope> parents = this.scopeService.getParents(scopeObj);
         List<Scope> siblings = this.scopeService.getSiblings(scopeObj);
+        model.addAttribute("mode", scopeObj.getType().toString().toLowerCase());
         model.addAttribute("canAddReports", this.scopeService.canAddReports(scopeObj));
         model.addAttribute("selscope", scopeObj);
         model.addAttribute("parents", parents);
@@ -120,6 +115,7 @@ public class ManageScopeController extends SessionHelper
         Scope parent = this.scopes.findOne(scopeId);
         List<Scope> parents = this.scopeService.getParents(parent);
         parents.add(parent);
+        model.addAttribute("mode", parent.getType().toString().toLowerCase());
         model.addAttribute("parents", parents);
         model.addAttribute("tags", this.tags.findAll());
         return this.configureTemplate(model, session);
@@ -130,13 +126,14 @@ public class ManageScopeController extends SessionHelper
      */
     @RequestMapping(value = "/managescope", method = RequestMethod.POST)
     public String editScope(Model model,
+                            @RequestParam("mode") String mode,
                             @RequestParam("id") long id,
                             @RequestParam("parent") long parent,
                             @RequestParam("name") String name,
                             @RequestParam(value = "published", defaultValue = "false") boolean published,
                             @RequestParam(value = "tags", required = false) String[] tags)
     {
-        logger.info("/managescopes POST with scope=" + id);
+        logger.info("/managescope POST with scope=" + id);
         Scope scopeObj;
         if (id > 0)
         {
@@ -144,8 +141,10 @@ public class ManageScopeController extends SessionHelper
         }
         else
         {
+            ScopeType type = Utilities.INSTANCE.getScopeType(mode);
             scopeObj = new Scope();
             scopeObj.setParent(parent);
+            scopeObj.setType(type);
         }
         scopeObj.setName(name);
         scopeObj.setPublished(published);
@@ -181,7 +180,7 @@ public class ManageScopeController extends SessionHelper
             return "redirect:login";
         }
 
-        model.addAttribute("capitalUser", this.getCurrentUser(session));
+        model.addAttribute("user", this.getCurrentUser(session));
         model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitalReportingApplication.getVersion());
 

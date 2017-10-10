@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="current" type="java.lang.String" -->
 <#-- @ftlvariable name="mode" type="java.lang.String" -->
 <#-- @ftlvariable name="parents" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
 <#-- @ftlvariable name="scopes" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
@@ -10,7 +11,7 @@
 
     <div class="row">
         <div class="columns">
-            <h3>Select report's scope</h3>
+            <h3>${mode?capitalize} - ${current?capitalize}</h3>
             <nav aria-label="You are here:" role="navigation">
                 <ul class="breadcrumbs">
                     <li>

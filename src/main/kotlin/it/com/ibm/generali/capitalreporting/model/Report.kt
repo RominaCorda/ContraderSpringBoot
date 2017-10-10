@@ -20,7 +20,7 @@ open class Report : Serializable
 
     @ManyToOne
     @JoinColumn(name = "capital_user_id")
-    lateinit var capitalUser: CapitalUser
+    lateinit var user: CapitalUser
 
     @ManyToOne
     @JoinColumn(name = "scope_id")

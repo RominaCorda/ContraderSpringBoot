@@ -2,6 +2,7 @@ package it.com.ibm.generali.capitalreporting.service;
 
 import it.com.ibm.generali.capitalreporting.dao.*;
 import it.com.ibm.generali.capitalreporting.model.*;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +50,18 @@ public class DbLoader implements ApplicationRunner
         this.createTemplates();
         this.createTags();
         this.createUsers();
-        this.createScopesLevelRoot();
-        List<Scope> level1 = this.createScopesLevelOne();
-        List<Scope> level2 = this.createScopesLevelTwo(level1);
-        this.addReportsToScopes(level2, 8);
+
+        this.createScopesLevelRoot(ScopeType.ANALYSIS);
+        this.createScopesLevelRoot(ScopeType.OFFICIAL);
+
+        List<Scope> level1Analysis = this.createScopesLevelOne(ScopeType.ANALYSIS);
+        List<Scope> level1Official = this.createScopesLevelOne(ScopeType.OFFICIAL);
+
+        List<Scope> level2Official = this.createScopesLevelTwo(ScopeType.OFFICIAL, level1Official);
+        List<Scope> level2Analysis = this.createScopesLevelTwo(ScopeType.ANALYSIS, level1Analysis);
+
+        this.addReportsToScopes(level2Official, 8);
+        this.addReportsToScopes(level2Analysis, 8);
     }
 
     private void createRoles()
@@ -60,9 +69,9 @@ public class DbLoader implements ApplicationRunner
         logger.info("Creating default roles");
         List<String> roles = new ArrayList<>();
         roles.add("System Administrator");
-        roles.add("Power CapitalUser");
-        roles.add("Analyst CapitalUser");
-        roles.add("Business CapitalUser");
+        roles.add("Power User");
+        roles.add("Analyst User");
+        roles.add("Business User");
         roles.add("Guest");
         for (String role : roles)
         {
@@ -106,7 +115,7 @@ public class DbLoader implements ApplicationRunner
             this.tags.save(temp);
         }
 
-        logger.info("Creating default capitalUser tags");
+        logger.info("Creating default user tags");
         List<String> usertags = new ArrayList<>();
         usertags.add("Italy");
         usertags.add("Germany");
@@ -126,7 +135,7 @@ public class DbLoader implements ApplicationRunner
     {
         logger.info("Creating default capitalUsers");
         Role admin = this.roles.findByDescription("System Administrator");
-        Role analyst = this.roles.findByDescription("Analyst CapitalUser");
+        Role analyst = this.roles.findByDescription("Analyst User");
         List<CapitalUser> users = new ArrayList<>();
         users.add(new CapitalUser("admin", "pass", "Administrator", "admin@capitalireporting.info", admin));
         users.add(new CapitalUser("gian", "pass", "Gianmaria Borgonovo", "gian@capitalireporting.info", analyst));
@@ -153,35 +162,60 @@ public class DbLoader implements ApplicationRunner
         }
     }
 
-    private List<Scope> createScopesLevelTwo(List<Scope> parents)
+    private List<Scope> createScopesLevelTwo(ScopeType type, List<Scope> parents)
     {
         logger.info("Creating scopes Level 2");
-        String[] words = {"Group", "Germany", "Italy", "Italy Solo",
-                "France", "Czech Republic", "Spain", "Spain Solo", "United Kingdom",
-                "Finland", "Sweden", "Romania", "Croatia"};
-        return this.createScopes(parents, words, words.length);
+        List<Scope> created = null;
+
+        if (type == ScopeType.OFFICIAL)
+        {
+            String[] words = {"Group", "German", "Italy", "Italy Solo", "France", "Czech Republic"};
+            created = this.createScopes(type, parents, words);
+        }
+        else
+        {
+            String[] words = {"Head Office", "Germany", "Italy", "Italy Solo",
+                    "France", "Czach Republic", "Non Life specific"};
+            created = this.createScopes(type, parents, words);
+        }
+
+        return created;
     }
 
-    private List<Scope> createScopesLevelOne()
+    private List<Scope> createScopesLevelOne(ScopeType type)
     {
         logger.info("Creating scopes Level 1");
-        String[] words = {"Analyst Meeting", "Closure SCR", "ORSA Reports", "Final Esteem",
-                "Convergence"};
-        List<Scope> parents = (List<Scope>) this.scopes.findAll();
-        return this.createScopes(parents, words, 5);
+        List<Scope> created = null;
+
+        if (type == ScopeType.OFFICIAL)
+        {
+            String[] words = {"Analyst Meeting", "Closure SCR", "ORSA Reports", "Convergence"};
+            List<Scope> parents = (List<Scope>) this.scopes.findByType(type);
+            created = this.createScopes(type, parents, words);
+        }
+        else
+        {
+            String[] words = {"Group Run 1", "German Trials", "Italy Trials", "France Trials",
+                    "Czech Trials"};
+            List<Scope> parents = (List<Scope>) this.scopes.findByType(type);
+            created = this.createScopes(type, parents, words);
+        }
+
+        return created;
     }
 
-    private void createScopesLevelRoot()
+    private void createScopesLevelRoot(ScopeType type)
     {
         logger.info("Creating scopes Root Level");
 
         // Level -1
-        for (int year = 2013; year < 2018; year++)
+        for (int year = 2014; year < 2019; year++)
         {
             Scope tempScope = new Scope();
             tempScope.setName(String.valueOf("YE" + String.valueOf(year)));
             tempScope.setParent(-1L);
             tempScope.setPublished(true);
+            tempScope.setType(type);
             this.scopes.save(tempScope);
         }
     }
@@ -203,12 +237,32 @@ public class DbLoader implements ApplicationRunner
         report.setReportingPeriod(period);
         report.setSimulationId(seed.nextInt(99999));
         report.setTemplate("Template 0" + seed.nextInt(9));
-        report.setCapitalUser(this.getRandomUser());
+        report.setUser(this.getRandomUser());
         this.reports.save(report);
         return report;
     }
 
-    private List<Scope> createScopes(List<Scope> parents, String[] names, int maxItems)
+    private List<Scope> createScopes(ScopeType type,
+                                     List<Scope> parents,
+                                     String[] names)
+    {
+        List<Scope> createdScopes = new ArrayList<>();
+        for (Scope parent : parents)
+        {
+            for (String scopeName : names)
+            {
+                createdScopes.add(createScope(type, parent, scopeName));
+            }
+        }
+        this.scopes.save(createdScopes);
+        return createdScopes;
+
+    }
+
+    private List<Scope> createRandomScopes(ScopeType type,
+                                           List<Scope> parents,
+                                           String[] names,
+                                           int maxItems)
     {
         List<Scope> createdScopes = new ArrayList<>();
 
@@ -222,11 +276,7 @@ public class DbLoader implements ApplicationRunner
 
             for (String scopeName : scopeNames)
             {
-                long parentScope = parent.getId();
-                Scope tempScope = new Scope();
-                tempScope.setName(scopeName);
-                tempScope.setParent(parentScope);
-                tempScope.setPublished(true);
+                Scope tempScope = createScope(type, parent, scopeName);
                 createdScopes.add(tempScope);
             }
         }
@@ -235,4 +285,17 @@ public class DbLoader implements ApplicationRunner
         return createdScopes;
 
     }
+
+    @NotNull
+    private Scope createScope(ScopeType type, Scope parent, String scopeName)
+    {
+        long parentScope = parent.getId();
+        Scope tempScope = new Scope();
+        tempScope.setName(scopeName);
+        tempScope.setType(type);
+        tempScope.setParent(parentScope);
+        tempScope.setPublished(true);
+        return tempScope;
+    }
+
 }

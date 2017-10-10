@@ -49,7 +49,7 @@ public class SessionHelper
             return "redirect:login";
         }
 
-        model.addAttribute("capitalUser", this.getCurrentUser(session));
+        model.addAttribute("user", this.getCurrentUser(session));
         model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitalReportingApplication.getVersion());
 

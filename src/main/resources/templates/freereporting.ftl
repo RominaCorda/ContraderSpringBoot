@@ -3,23 +3,23 @@
 
 <br>
 
-
-<div class="row column">
-    <h3>Free Reporting</h3>
-</div>
-
 <div class="row">
-    <div class="medium-1 columns">
-        <button class="small button expanded">Params</button>
-        <button class="small button expanded">Smart Run</button>
-        <button class="small button expanded">No problems</button>
-    </div>
-    <div class="medium-11 columns">
+    <div class="medium-12 large-12 columns">
         <img src="img/freereporting.jpg">
     </div>
 </div>
 
 <br>
+
+<div class="row columns">
+    &nbsp;
+</div>
+<div class="row columns">
+    &nbsp;
+</div>
+<div class="row columns">
+    &nbsp;
+</div>
 
 
 <#include "footer.ftl">

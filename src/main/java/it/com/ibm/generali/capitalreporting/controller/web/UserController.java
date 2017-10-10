@@ -51,7 +51,7 @@ public class UserController extends SessionHelper
 
         if (session.getAttribute("loggedUser") != null)
         {
-            logger.warn("A capitalUser is already logged!");
+            logger.warn("A user is already logged!");
             return "redirect:index";
         }
 
@@ -86,13 +86,13 @@ public class UserController extends SessionHelper
         CapitalUser currentUser = this.getCurrentUser(session);
         String username = currentUser.getUsername();
 
-        logger.info("Received POST for capitalUser = " + username);
+        logger.info("Received POST for user = " + username);
         logger.info("Received old password = " + oldPassword);
 
         CapitalUser knownUser = this.users.findOne(username);
         if (knownUser != null)
         {
-            logger.info("Ok, found capitalUser " + username);
+            logger.info("Ok, found user " + username);
             if (knownUser.getPassword().equals(oldPassword))
             {
                 logger.info("Old Password is OK");
@@ -120,7 +120,7 @@ public class UserController extends SessionHelper
         }
         else
         {
-            errorMsg = "Unknown capitalUser";
+            errorMsg = "Unknown user";
         }
 
         if (errorMsg.length() > 0)
@@ -143,13 +143,13 @@ public class UserController extends SessionHelper
     {
         String errorMsg;
 
-        logger.info("Received POST for capitalUser = " + username);
+        logger.info("Received POST for user = " + username);
         logger.info("Received password = **********" + password.substring(password.length() - 3));
 
         CapitalUser knownUser = this.users.findOne(username);
         if (knownUser != null)
         {
-            logger.info("Ok, found capitalUser " + username);
+            logger.info("Ok, found user " + username);
             if (knownUser.getPassword().equals(password))
             {
                 logger.info("Password is OK");
@@ -163,7 +163,7 @@ public class UserController extends SessionHelper
         }
         else
         {
-            errorMsg = "Unknown capitalUser";
+            errorMsg = "Unknown user";
         }
 
         logger.error(errorMsg);

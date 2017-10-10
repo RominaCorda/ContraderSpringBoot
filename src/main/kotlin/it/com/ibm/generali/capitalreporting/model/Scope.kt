@@ -6,11 +6,6 @@ import javax.persistence.*
 @Entity
 open class Scope : Serializable
 {
-    companion object
-    {
-        val TAG_DELIMITER = ';'
-    }
-
     @Id
     @TableGenerator(name = "TABLE_GEN", table = "T_GENERATOR", pkColumnName = "GEN_KEY", pkColumnValue = "OUTPUT_DEF", valueColumnName = "GEN_VALUE", initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
@@ -20,8 +15,8 @@ open class Scope : Serializable
     lateinit var name: String
     var tags: String = ""
     var published: Boolean = false
-
     var parent: Long = -1L
+    var type: ScopeType = ScopeType.ANALYSIS
 
     @OneToMany(mappedBy = "scope", cascade = arrayOf(CascadeType.ALL))
     var reports: MutableSet<Report> = mutableSetOf()
@@ -30,9 +25,6 @@ open class Scope : Serializable
     {
         this.reports.add(report)
     }
-
-    fun hasNoReports(): Boolean =
-            this.reports.size == 0
 
     fun setAllTags(tags: List<String>)
     {
@@ -44,6 +36,14 @@ open class Scope : Serializable
     fun getAllTags(): List<String>
     {
         return this.tags.split(Scope.TAG_DELIMITER)
+    }
+
+    fun hasNoReports(): Boolean =
+            this.reports.size == 0
+
+    companion object
+    {
+        val TAG_DELIMITER = ';'
     }
 
 }

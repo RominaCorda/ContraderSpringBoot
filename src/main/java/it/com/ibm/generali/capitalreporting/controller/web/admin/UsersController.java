@@ -55,7 +55,7 @@ public class UsersController extends SessionHelper
     }
 
     /**
-     * Configure GET with selected capitalUser
+     * Configure GET with selected User
      */
     @RequestMapping(value = "/configure", method = RequestMethod.GET, params = {"selecteduser"})
     public String configureWithUsername(Model model, HttpSession session, @RequestParam("selecteduser") String username)
@@ -88,10 +88,10 @@ public class UsersController extends SessionHelper
 
     /**
      * Configure POST
-     * Add or modify capitalUser
+     * Add or modify User
      */
     @RequestMapping(value = "/configure", method = RequestMethod.POST)
-    public String addOrModifyUser(@ModelAttribute("capitalUser") CapitalUser user)
+    public String addOrModifyUser(@ModelAttribute("user") CapitalUser user)
     {
         logger.info("/configure POST");
         String username = user.getUsername();
@@ -154,10 +154,10 @@ public class UsersController extends SessionHelper
             }
         }
 
-        model.addAttribute("capitalUsers", allUsersExceptAdmin);
+        model.addAttribute("users", allUsersExceptAdmin);
         model.addAttribute("mode", mode);
         model.addAttribute("roles", roles);
-        model.addAttribute("capitalUser", this.getCurrentUser(session));
+        model.addAttribute("user", this.getCurrentUser(session));
         model.addAttribute("selecteduser", selectedUser);
         model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitalReportingApplication.getVersion());

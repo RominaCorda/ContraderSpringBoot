@@ -6,6 +6,7 @@ import it.com.ibm.generali.capitalreporting.dao.TagDao;
 import it.com.ibm.generali.capitalreporting.dao.TemplateDao;
 import it.com.ibm.generali.capitalreporting.model.Report;
 import it.com.ibm.generali.capitalreporting.model.Scope;
+import it.com.ibm.generali.capitalreporting.model.ScopeType;
 import it.com.ibm.generali.capitalreporting.service.ScopeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,14 +100,15 @@ public class ReportsController extends SessionHelper
 
         logger.info("Received POST for addnewreport with scope = " + scopeId);
         Report newReport = new Report();
-        newReport.setCapitalUser(this.getCurrentUser(session));
+        newReport.setUser(this.getCurrentUser(session));
         newReport.setTemplate(template);
         newReport.setSimulationId(simulationId);
         newReport.setReportingPeriod(reportingPeriod);
         Scope parent = this.scopes.findOne(Long.valueOf(scopeId));
+        ScopeType mode = parent.getType();
         newReport.setScope(parent);
         this.reports.save(newReport);
-        return "redirect:reports?scope=" + scopeId + "&mode=Analysis";
+        return "redirect:reports?scope=" + scopeId + "&mode=" + mode.toString().toLowerCase();
 
     }
 
@@ -122,26 +124,18 @@ public class ReportsController extends SessionHelper
     }
 
     /**
-     * Browse GET: Browse scopes from root level Analysis
-     */
-    @RequestMapping("/browse")
-    public String browse(Model model, HttpSession session)
-    {
-        logger.info("/browse = Scope Level 0");
-        List<Scope> scopesZero = this.scopes.findByParentAndPublishedIsTrue(-1);
-        model.addAttribute("mode", "Analysis");
-        model.addAttribute("scopes", scopesZero);
-        return this.pageSetup("browse", model, session);
-    }
-
-    /**
      * Browse GET: Browse scope from root level for mode (Official or Analysis)
      */
     @RequestMapping(value = "/browse", method = RequestMethod.GET, params = {"mode"})
     public String browseMode(Model model, @RequestParam("mode") String mode, HttpSession session)
     {
         logger.info("/browse = Scope Level 0 with mode = " + mode);
-        List<Scope> scopesZero = this.scopes.findByParentAndPublishedIsTrue(-1);
+        ScopeType type = ScopeType.ANALYSIS;
+        if (mode.toLowerCase().equals("official"))
+        {
+            type = ScopeType.OFFICIAL;
+        }
+        List<Scope> scopesZero = this.scopes.findByTypeAndParentAndPublishedIsTrue(type, -1);
         model.addAttribute("mode", mode);
         model.addAttribute("scopes", scopesZero);
         return this.pageSetup("browse", model, session);
@@ -162,13 +156,12 @@ public class ReportsController extends SessionHelper
         List<Scope> scopes = this.scopes.findByParentAndPublishedIsTrue(parentId);
         Scope parent = this.scopes.findOne(parentId);
         List<Scope> parents = this.scopeService.getParents(parent);
-
         if (scopes.size() == 0 && parent.getReports().size() > 0)
         {
             return "redirect:/reports?scope=" + parentId + "&mode=" + mode;
         }
-
         model.addAttribute("mode", mode);
+        model.addAttribute("current", parent.getName());
         model.addAttribute("parents", parents);
         model.addAttribute("scopes", scopes);
         return this.pageSetup("scopes", model, session);

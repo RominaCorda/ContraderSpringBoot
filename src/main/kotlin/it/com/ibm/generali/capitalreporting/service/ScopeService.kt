@@ -3,6 +3,7 @@ package it.com.ibm.generali.capitalreporting.service
 import it.com.ibm.generali.capitalreporting.dao.ScopeDao
 import it.com.ibm.generali.capitalreporting.model.Report
 import it.com.ibm.generali.capitalreporting.model.Scope
+import it.com.ibm.generali.capitalreporting.model.ScopeType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
@@ -54,7 +55,7 @@ open class ScopeService
         else
         {
             // Level 0 have no parents
-            this.getRoots()
+            this.getRoots(scope.type)
         }
         tempSiblings.forEach { s -> siblings.add(s) }
         return siblings
@@ -103,9 +104,9 @@ open class ScopeService
      * Get all root scopes.
      * A root scope is a scope without parent.
      */
-    fun getRoots(): List<Scope>
+    fun getRoots(type: ScopeType): List<Scope>
     {
-        return this.scopes.findByParent(-1)
+        return this.scopes.findByTypeAndParent(type, -1L)
     }
 
 

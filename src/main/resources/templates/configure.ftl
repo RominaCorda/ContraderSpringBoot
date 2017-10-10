@@ -31,9 +31,9 @@
         <#if mode == "none" || mode == "ok_added" || mode=="ok_modified" || mode=="ok_deleted">
             <h3>Configure users</h3>
         <#elseif mode == "new">
-            <h3>Add new capitalUser</h3>
+            <h3>Add new User</h3>
         <#else>
-            <h3>Configure capitalUser <b>${mode}</b></h3>
+            <h3>Configure User <b>${mode}</b></h3>
         </#if>
         </div>
 
@@ -41,13 +41,13 @@
         <div class="row">
             <label>Select User
                 <select onchange="if (this.value) window.location.href='/configure?selecteduser='+this.value">
-                    <#list users as capitalUser>
-                        <#if selecteduser.username==capitalUser.username>
-                        <option value="${capitalUser.username}" selected="selected">
+                    <#list users as user>
+                        <#if selecteduser.username==user.username>
+                        <option value="${user.username}" selected="selected">
                         <#else>
-                        <option value="${capitalUser.username}">
+                        <option value="${user.username}">
                         </#if>
-                    ${capitalUser.fullName}
+                    ${user.fullName}
                     </option>
                     </#list>
                 </select>
@@ -66,7 +66,7 @@
     </div>
 
     <div class="small-9 medium-8 large-8 columns">
-        <form name="capitalUser" action="" method="post" style="margin-top: 60px">
+        <form name="userform" action="" method="post" style="margin-top: 60px">
         <#if mode != "new">
             <div class="row">
                 <div class="columns">
@@ -137,7 +137,7 @@
                 <div class="column medium-10 large-10">
                 <#if tags??>
                     <fieldset>
-                        <legend>Tags:</legend>
+                        <legend>User Tags:</legend>
                         <#list tags as tag>
                             <input id="chk${tag.name}" name="tags" type="checkbox" value="${tag.name}">
                             <label for="chk${tag.name}">${tag.name}</label>
@@ -147,7 +147,7 @@
                 </div>
                 <div class="column medium-1 large-1">
                     <div style="margin-top: 30px" data-tooltip aria-haspopup="true" class="has-tip"
-                         data-disable-hover="false" title="Edit capitalUser tags">
+                         data-disable-hover="false" title="Edit User tags">
                         <span class="float-left">
                             <a href="/usertags"><i class="fi-pencil"></i></a>
                         </span>

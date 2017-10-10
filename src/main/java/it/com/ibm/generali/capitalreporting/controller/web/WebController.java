@@ -42,7 +42,7 @@ public class WebController extends SessionHelper
     {
         logger.info("/index page");
         CapitalUser currentUser = this.getCurrentUser(session);
-        model.addAttribute("reports", this.reports.findTop5ByCapitalUserOrderByCreated(currentUser));
+        model.addAttribute("reports", this.reports.findTop5ByUserOrderByCreated(currentUser));
         return this.pageSetup("index", model, session);
     }
 
@@ -58,6 +58,20 @@ public class WebController extends SessionHelper
     {
         logger.info("/search page");
         return this.pageSetup("search", model, session);
+    }
+
+    /**
+     * the REST request for /searchresults resource.
+     *
+     * @param model the HTTP request attributes. it will updated
+     *              with application's version.
+     * @return the home page
+     */
+    @RequestMapping("/searchresults")
+    public String searchResults(Model model, HttpSession session)
+    {
+        logger.info("/searchresults page");
+        return this.pageSetup("searchresults", model, session);
     }
 
     /**

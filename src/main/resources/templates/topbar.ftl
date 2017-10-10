@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="capitalUser" type="it.com.ibm.generali.capitalreporting.model.CapitalUser" -->
+<#-- @ftlvariable name="user" type="it.com.ibm.generali.capitalreporting.model.CapitalUser" -->
 <#-- @ftlvariable name="title" type="java.lang.String" -->
 <!-- TOP BAR -->
 <div class="top-bar">
@@ -10,10 +10,10 @@
                 ${title}</a>
             </li>
             <li class="has-submenu">
-                <a href="#0"><i class="fi-torso"></i>&nbsp;${capitalUser.username?capitalize}</a>
+                <a href="#0"><i class="fi-torso"></i>&nbsp;${user.username?capitalize}</a>
                 <ul class="submenu menu vertical" data-submenu>
                     <li><a href="/profile">Profile</a></li>
-                <#if capitalUser.username=="admin">
+                <#if user.username=="admin">
                     <li class="has-submenu">
                         <a href="#0"><i class="fi-crown"></i>&nbsp;Admin Tools</a>
                         <ul class="submenu menu vertical" data-submenu>
@@ -26,7 +26,6 @@
                                     <li><a href="/usertags">User</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/usertags">Manage User Tags</a></li>
                             <li class="has-submenu">
                                 <a href="#0">Manage Scopes</a>
                                 <ul class="submenu menu vertical" data-submenu>
@@ -34,7 +33,6 @@
                                     <li><a href="/managescopes?mode=official">Official</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/templates">Manage Templates</a></li>
                             <li><a href="#0">Official simulations</a></li>
                         </ul>
                     </li>
@@ -42,12 +40,11 @@
                     <li><a href="/logout">Logout</a></li>
                 </ul>
             </li>
-
             <li><a href="/freereporting">Free Reporting</a></li>
-            <li><a href="/browse">Analysis</a></li>
-            <li><a href="/browse?mode=Official">Official</a></li>
+            <li><a href="/browse?mode=analysis">Analysis</a></li>
+            <li><a href="/browse?mode=official">Official</a></li>
             <li class="has-submenu">
-                <a href="/browse">Manual Adjustment</a>
+                <a href="#0">Manual Adjustment</a>
                 <ul class="submenu menu vertical" data-submenu>
                     <li><a href="#0">Upload</a></li>
                     <li><a href="#0">Manage</a></li>

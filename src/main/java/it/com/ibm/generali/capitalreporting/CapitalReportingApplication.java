@@ -19,7 +19,7 @@ public class CapitalReportingApplication
     /**
      * Version. It must be the same as that found in gradle.properties
      */
-    private static final String version = "0.2.5";
+    private static final String version = "0.3.0";
 
     /**
      * Get the application's version.

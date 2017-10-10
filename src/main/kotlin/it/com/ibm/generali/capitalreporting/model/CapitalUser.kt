@@ -16,7 +16,7 @@ open class CapitalUser() : Serializable
     @JoinColumn(name = "role_id")
     lateinit var role: Role
 
-    @OneToMany(mappedBy = "capitalUser", cascade = arrayOf(CascadeType.ALL))
+    @OneToMany(mappedBy = "user", cascade = arrayOf(CascadeType.ALL))
     var reports: MutableSet<Report>? = null
 
     var active: Boolean = true

@@ -3,52 +3,35 @@
 
 <br>
 
-<div class="row column">
+<div class="row columns">
     <div class="row">
-        <h3>Search results</h3>
+        <h3>Search for Reports</h3>
     </div>
 
     <div class="row">
-
-        <table class="unstriped">
-            <thead>
-            <tr>
-                <th width="250">Scope</th>
-                <th>Father scope</th>
-                <th>Tags</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <tr>
-                <td><a href="/report">Analyst Meeting</a></td>
-                <td><a href="/browse">Analysis</a> | <a href=""> YE2015 </a></td>
-                <td>Analysis, 2015, Tag3, Official</td>
-            </tr>
-            <tr>
-                <td><a href="/report">Closure SCR</a></td>
-                <td><a href="/browse">Official</a> | <a href=""> YE2014 </a></td>
-                <td>Official, Closure SCR, Tag3, Tag4, YE14</td>
-            </tr>
-            <tr>
-                <td><a href="/report">Analyst Meeting</a></td>
-                <td><a href="/browse">Official</a> | <a href=""> YE2015 </a></td>
-                <td>Official, 2015, Tag3</td>
-            </tr>
-            <tr>
-                <td><a href="/report">Germany</a></td>
-                <td><a href="/browse">Analysis</a> | <a href=""> YE2015 </a> | <a href="#">Closure SCR</a></td>
-                <td>Analysis, Closure SCR, Tag1, Tag3, YE15</td>
-            </tr>
-            </tbody>
-        </table>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
+        <form>
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+                    <div class="medium-6 cell">
+                        <label>Report
+                            <input type="text" placeholder="Report name contains...">
+                        </label>
+                    </div>
+                    <div class="medium-6 cell">
+                        <label>Select Menu
+                            <select>
+                                <option value="husker">Husker</option>
+                                <option value="starbuck">Starbuck</option>
+                                <option value="hotdog">Hot Dog</option>
+                                <option value="apollo">Apollo</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
+
 
 </div>
 

@@ -49,7 +49,7 @@
                     <td><a href="/report?id=${report.id}">${report.id}</a></td>
                     <td>${report.template}</td>
                     <td>${report.created?date}</td>
-                    <td>${report.capitalUser.fullName}</td>
+                    <td>${report.user.fullName}</td>
                     <td>${report.reportingPeriod}</td>
                     <td>${report.simulationId?c}</td>
                     <td><a href="/report?id=${report.id}"><i class="fi-play"></i></a>&nbsp;</td>

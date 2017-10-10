@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="columns">
-            <h3>${mode}</h3>
+            <h3>${mode?capitalize}</h3>
             <nav aria-label="You are here:" role="navigation">
                 <ul class="breadcrumbs">
                     <li>
