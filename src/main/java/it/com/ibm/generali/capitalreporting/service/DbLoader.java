@@ -221,7 +221,7 @@ public class DbLoader implements ApplicationRunner
         logger.info("Creating scopes Root Level");
 
         // Level -1
-        for (int year = 2014; year < 2019; year++)
+        for (int year = 2014; year < 2018; year++)
         {
             Scope tempScope = new Scope();
             tempScope.setName(String.valueOf("YE" + String.valueOf(year)));

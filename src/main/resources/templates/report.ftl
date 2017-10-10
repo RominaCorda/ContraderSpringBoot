@@ -6,7 +6,7 @@
 
 <!-- REPORT FORM -->
 <div class="row columns">
-    <h3>REPORT #${report.id}</h3>
+    <h3>REPORT #${report.id?c}</h3>
 </div>
 <div class="row">
     <div class="medium-6 columns">
@@ -16,7 +16,7 @@
         </label>
         <label>
             Node ID
-            <input type="text" value="${report.template.nodeid}" readonly>
+            <input type="text" value="${report.template.nodeId}" readonly>
         </label>
         <label>
             Simulation ID
@@ -71,7 +71,7 @@
 
 <!-- MODAL WINDOW -->
 <div class="reveal" id="runReport" data-reveal>
-    <h1>Computing report #${report.id}</h1>
+    <h1>Computing report #${report.id?c}</h1>
     <p id="message" class="lead">Please wait...</p>
     <div id="loader" class="loader"></div>
     <button class="close-button" data-close aria-label="Close modal" type="button">

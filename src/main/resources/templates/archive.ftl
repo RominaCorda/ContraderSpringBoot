@@ -38,8 +38,8 @@
                     <th width="150">Date Created</th>
                     <th>Created by</th>
                     <th width="200">Reporting Period</th>
-                    <th width="150">Simulation ID</th>
-                    <th width="40">View</th><!-- View -->
+                    <th width="150">Simulation</th>
+                    <th width="40">Info</th><!-- View -->
                     <th width="40"></th><!-- Download -->
                 </tr>
                 </thead>
