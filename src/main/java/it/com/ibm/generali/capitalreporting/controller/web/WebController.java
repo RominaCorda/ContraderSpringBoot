@@ -1,6 +1,7 @@
 package it.com.ibm.generali.capitalreporting.controller.web;
 
 import it.com.ibm.generali.capitalreporting.dao.ReportDao;
+import it.com.ibm.generali.capitalreporting.dao.UserDao;
 import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +24,14 @@ public class WebController extends SessionHelper
     private Logger logger = LoggerFactory.getLogger(WebController.class);
 
     private ReportDao reports;
+    private UserDao users;
 
     @Autowired
-    public WebController(ReportDao reportDao)
+    public WebController(ReportDao reportDao,
+                         UserDao userDao)
     {
         this.reports = reportDao;
+        this.users = userDao;
     }
 
     /**
@@ -57,6 +61,7 @@ public class WebController extends SessionHelper
     public String search(Model model, HttpSession session)
     {
         logger.info("/search page");
+        model.addAttribute("users", this.users.findAll());
         return this.pageSetup("search", model, session);
     }
 
