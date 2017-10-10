@@ -24,7 +24,7 @@
         <div class="column medium-5 large-4">
             <div class="stacked button-group">
             <#list scopes as scope>
-                <a href="/scopes?parent=${scope.id}&mode=${mode}" class="button primary">${scope.name}</a>
+                <a href="/scopes?parent=${scope.id?c}&mode=${mode}" class="button primary">${scope.name}</a>
             </#list>
             </div>
         </div>

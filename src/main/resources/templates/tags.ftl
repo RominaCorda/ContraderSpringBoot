@@ -5,7 +5,7 @@
 <div class="row">
     <div class="small-6 large-6 columns">
         <div class="row">
-            <h3>Manage Report Tags</h3>
+            <h3>Manage Scope Tags</h3>
         </div>
         <div class="row">
             <form id="addtagform" method="post" action="">

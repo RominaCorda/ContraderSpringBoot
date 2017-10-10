@@ -1,5 +1,6 @@
 <#-- @ftlvariable name="mode" type="java.lang.String" -->
 <#-- @ftlvariable name="selscope" type="it.com.ibm.generali.capitalreporting.model.Scope" -->
+<#-- @ftlvariable name="report" type="it.com.ibm.generali.capitalreporting.model.Report" -->
 <#-- @ftlvariable name="parents" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
 <#-- @ftlvariable name="reports" type="java.util.List<it.com.ibm.generali.capitalreporting.framework.Report>" -->
 <#include "header.ftl">
@@ -32,27 +33,32 @@
             <table class="hover">
                 <thead>
                 <tr>
-                    <th width="50">ID</th>
+                    <th width="150">Name</th>
                     <th width="150">Template</th>
                     <th width="150">Date Created</th>
                     <th>Created by</th>
                     <th width="200">Reporting Period</th>
                     <th width="150">Simulation ID</th>
-                    <th width="50">View</th><!-- View -->
-                    <th width="50"></th><!-- Download -->
+                    <th width="40">View</th><!-- View -->
+                    <th width="40"></th><!-- Download -->
                 </tr>
                 </thead>
                 <tbody>
 
                 <#list reports as report>
                 <tr>
-                    <td><a href="/report?id=${report.id}">${report.id}</a></td>
-                    <td>${report.template}</td>
+                    <td><a href="/report?id=${report.id?c}">${report.name}</a></td>
+                    <td>
+                        <span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false"
+                              title="Node ID=${report.template.nodeId}">
+                        ${report.template.name}
+                        </span>
+                    </td>
                     <td>${report.created?date}</td>
                     <td>${report.user.fullName}</td>
                     <td>${report.reportingPeriod}</td>
-                    <td>${report.simulationId?c}</td>
-                    <td><a href="/report?id=${report.id}"><i class="fi-play"></i></a>&nbsp;</td>
+                    <td>${report.template.simulationId}</td>
+                    <td><a href="/report?id=${report.id?c}"><i class="fi-play"></i></a>&nbsp;</td>
                     <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
                 </tr>
                 </#list>

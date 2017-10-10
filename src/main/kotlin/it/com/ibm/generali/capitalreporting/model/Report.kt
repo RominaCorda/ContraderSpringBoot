@@ -13,10 +13,14 @@ open class Report : Serializable
     var id: Long = 0L
         private set
 
-    var template: String = ""
     var reportingPeriod: String = ""
-    var simulationId: Int = 0
     val created = Date()
+
+    lateinit var name: String
+
+    @ManyToOne
+    @JoinColumn(name = "template_id")
+    lateinit var template: Template
 
     @ManyToOne
     @JoinColumn(name = "capital_user_id")

@@ -89,10 +89,22 @@ public class DbLoader implements ApplicationRunner
         templates.add("Template 02");
         templates.add("Template 03");
         templates.add("Template 0x");
+
+        List<String> nodesId = new ArrayList<>();
+        nodesId.add("DE012");
+        nodesId.add("IT000");
+        nodesId.add("BG301");
+        nodesId.add("IT101");
+        nodesId.add("FR501");
+
+        int simulationId;
         for (String templ : templates)
         {
+            simulationId = this.seed.nextInt(99999);
             Template temp = new Template();
             temp.setName(templ);
+            temp.setSimulationId(String.valueOf(simulationId));
+            temp.setNodeId(nodesId.get(this.seed.nextInt(nodesId.size())));
             this.templates.save(temp);
         }
     }
@@ -197,7 +209,7 @@ public class DbLoader implements ApplicationRunner
         {
             String[] words = {"Group Run 1", "German Trials", "Italy Trials", "France Trials",
                     "Czech Trials"};
-            List<Scope> parents = (List<Scope>) this.scopes.findByType(type);
+            List<Scope> parents = this.scopes.findByType(type);
             created = this.createScopes(type, parents, words);
         }
 
@@ -223,20 +235,29 @@ public class DbLoader implements ApplicationRunner
     private void addReportsToScope(Scope scope, int nrOfReports)
     {
         int period = 2013 + this.seed.nextInt(4);
+        long templateId = this.seed.nextInt(4) + 1;
+        Iterator<Template> allTemplates = this.templates.findAll().iterator();
         for (int k = 0; k < nrOfReports; k++)
         {
-            Report tempReport = this.createReport(scope, String.valueOf(period));
+            Template template;
+            if (!allTemplates.hasNext())
+            {
+                allTemplates = this.templates.findAll().iterator();
+            }
+            template = allTemplates.next();
+            Report tempReport = this.createReport(scope, String.valueOf(period), template);
             scope.addReport(tempReport);
         }
     }
 
-    private Report createReport(Scope parent, String period)
+    private Report createReport(Scope parent, String period, Template template)
     {
         Report report = new Report();
+        int nrReport = this.seed.nextInt(999);
+        report.setName("Report #" + String.valueOf(nrReport));
         report.setScope(parent);
         report.setReportingPeriod(period);
-        report.setSimulationId(seed.nextInt(99999));
-        report.setTemplate("Template 0" + seed.nextInt(9));
+        report.setTemplate(template);
         report.setUser(this.getRandomUser());
         this.reports.save(report);
         return report;

@@ -1,13 +1,13 @@
 <#-- @ftlvariable name="simulationid" type="java.lang.String" -->
 <#-- @ftlvariable name="scopedesc" type="java.lang.String" -->
 <#-- @ftlvariable name="report" type="it.com.ibm.generali.capitalreporting.model.Report" -->
+<#-- @ftlvariable name="template" type="it.com.ibm.generali.capitalreporting.model.Template" -->
 <#-- @ftlvariable name="templates" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Template>" -->
 <#-- @ftlvariable name="tags" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Tag>" -->
 <#include "header.ftl">
 <#include "topbar.ftl">
 
 <br>
-
 <!-- REPORT FORM -->
 <form id="addreportform" method="post" action="">
     <div class="row columns">
@@ -15,46 +15,58 @@
     </div>
     <div class="row">
         <div class="medium-6 large-5 columns">
-            <label>
-                Simulation ID
-                <input id="simulationid" name="simulationid" type="text" value="${simulationid}">
-            </label>
+            <input id="templateid" name="templateid" type="hidden" value="${template.id?c}">
             <label>
                 Template
-                <select id="template" name="template">
-                <#list templates as template>
-                    <option value="${template.name}">${template.name}</option>
+                <select id="selecttemplate" name="selecttemplate">
+                <#list templates as xtemplate>
+                    <#if xtemplate.id==template.id>
+                        <option value="/addnewreport?scopeid=${scopeid}&templateid=${xtemplate.id?c}"
+                                selected="selected">${xtemplate.name}</option>
+                    <#else>
+                        <option value="/addnewreport?scopeid=${scopeid}&templateid=${xtemplate.id?c}">${xtemplate.name}</option>
+                    </#if>
                 </#list>
                 </select>
             </label>
             <label>
-                Reporting Period
-                <select id="reportingperiod" name="reportingperiod">
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                    <option value="2015">2015</option>
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
+                Simulation ID:
+                <select id="simulationids" name="simulationids">
+                    <option value="${template.simulationId}" selected="selected">${template.simulationId}</option>
+                    <option value="SE929">SE929</option>
+                    <option value="FK230">FK230</option>
+                    <option value="MK329">MK329</option>
+                    <option value="AA232">AA232</option>
+                </select>
+            </label>
+            <label>
+                Node ID:
+                <select id="nodeids" name="nodeids">
+                    <option value="${template.nodeId}" selected="selected">${template.nodeId}</option>
+                    <option value="121">DE012</option>
+                    <option value="122">IT000</option>
+                    <option value="123">IT101</option>
+                    <option value="124">BG301</option>
                 </select>
             </label>
             <label>
                 Scope:
-                <input type="text" value="${scopedesc}" readonly>
+                <input id="scopedesc" type="text" value="${scopedesc}" readonly>
             </label>
-
         </div>
         <div class="medium-6 large-7 columns">
             <label>
-                Created by:
-                <input type="text" value="${user.fullName}" readonly>
+                Name:
+                <input id="reportname" name="reportname" type="text" required>
             </label>
             <label>
-                Tags:
-                <select id="tags" name="tags" multiple style="height: 150px">
-                <#list tags as tag>
-                    <option value="${tag.id}">${tag.name}</option>
-                </#list>
+                Manual Adjustments:
+                <select id="manadjustment" name="manadjustment">
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                    <option value="4">04</option>
+                    <option value="5">05</option>
                 </select>
             </label>
         </div>
@@ -78,6 +90,19 @@
 <div class="row columns">
     &nbsp;
 </div>
+
+<script>
+    $(function () {
+        // bind change event to select
+        $('#selecttemplate').on('change', function () {
+            var url = $(this).val(); // get selected value
+            if (url) { // require a URL
+                window.location = url; // redirect
+            }
+            return false;
+        });
+    });
+</script>
 
 <#include "footer.ftl">
 <#include "foundation.ftl">

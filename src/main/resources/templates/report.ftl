@@ -11,12 +11,16 @@
 <div class="row">
     <div class="medium-6 columns">
         <label>
-            Simulation ID
-            <input type="text" value="${report.simulationId?c}" readonly>
+            Template
+            <input type="text" value="${report.template.name}" readonly>
         </label>
         <label>
-            Template
-            <input type="text" value="${report.template}" readonly>
+            Node ID
+            <input type="text" value="${report.template.nodeid}" readonly>
+        </label>
+        <label>
+            Simulation ID
+            <input type="text" value="${report.template.simulationId}" readonly>
         </label>
         <label>
             Scope:

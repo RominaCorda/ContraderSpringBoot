@@ -123,6 +123,7 @@ public class ScopesController extends SessionHelper
 
     /**
      * Manage scope POST
+     * Add or edit scope
      */
     @RequestMapping(value = "/managescope", method = RequestMethod.POST)
     public String editScope(Model model,

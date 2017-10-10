@@ -14,4 +14,10 @@ open class Template : Serializable
 
     @Column(unique = true)
     var name: String = ""
+
+    lateinit var simulationId: String
+    lateinit var nodeId: String
+
+    @OneToMany(mappedBy = "template", cascade = arrayOf(CascadeType.ALL))
+    var reports: MutableSet<Report>? = null
 }

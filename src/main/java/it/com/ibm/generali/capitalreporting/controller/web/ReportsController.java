@@ -7,6 +7,7 @@ import it.com.ibm.generali.capitalreporting.dao.TemplateDao;
 import it.com.ibm.generali.capitalreporting.model.Report;
 import it.com.ibm.generali.capitalreporting.model.Scope;
 import it.com.ibm.generali.capitalreporting.model.ScopeType;
+import it.com.ibm.generali.capitalreporting.model.Template;
 import it.com.ibm.generali.capitalreporting.service.ScopeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Random;
 
 @Controller
 public class ReportsController extends SessionHelper
@@ -77,11 +77,26 @@ public class ReportsController extends SessionHelper
     public String addReport(Model model, @RequestParam("scopeid") String scopeId, HttpSession session)
     {
         logger.info("/addnewreport with scope ID = " + scopeId);
+        Template template = this.templates.findAll().iterator().next();
+        String templateId = String.valueOf(template.getId());
+        return this.addReportWithTemplate(model, scopeId, templateId, session);
+    }
+
+    /**
+     * the GET request for /addnewreport.
+     */
+    @RequestMapping(value = "/addnewreport", method = RequestMethod.GET, params = {"scopeid", "templateid"})
+    public String addReportWithTemplate(Model model,
+                                        @RequestParam("scopeid") String scopeId,
+                                        @RequestParam("templateid") String templateId,
+                                        HttpSession session)
+    {
+        logger.info("/addnewreport with scope ID = " + scopeId + " and template = " + templateId);
         Scope scope = this.scopes.findOne(Long.valueOf(scopeId));
-        int simulationId = new Random().nextInt(99999) + 1;
-        model.addAttribute("simulationid", String.valueOf(simulationId));
+        Template template = this.templates.findOne(Long.valueOf(templateId));
         model.addAttribute("scopeid", scopeId);
         model.addAttribute("tags", this.tags.findAll());
+        model.addAttribute("template", template);
         model.addAttribute("templates", this.templates.findAll());
         model.addAttribute("scopedesc", this.scopeService.getParentsDescription(scope));
         return this.pageSetup("addnewreport", model, session);
@@ -92,17 +107,17 @@ public class ReportsController extends SessionHelper
      */
     @RequestMapping(value = "/addnewreport", method = RequestMethod.POST)
     public String addReport(@RequestParam("scopeid") String scopeId,
-                            @RequestParam("template") String template,
+                            @RequestParam("templateid") String templateId,
                             @RequestParam("simulationid") int simulationId,
                             @RequestParam("reportingperiod") String reportingPeriod,
                             HttpSession session)
     {
 
         logger.info("Received POST for addnewreport with scope = " + scopeId);
+        Template template = this.templates.findOne(Long.valueOf(templateId));
         Report newReport = new Report();
         newReport.setUser(this.getCurrentUser(session));
         newReport.setTemplate(template);
-        newReport.setSimulationId(simulationId);
         newReport.setReportingPeriod(reportingPeriod);
         Scope parent = this.scopes.findOne(Long.valueOf(scopeId));
         ScopeType mode = parent.getType();
