@@ -21,8 +21,8 @@
                     <#list roles as role>
                     <tr>
                         <td>${role.description}</td>
-                        <td><a href="/roles?delete=${role.id?c}"><i class="fi-x"></i></td>
-                        <td><a href="/editrole?roleid=${role.id?c}"><i class="fi-pencil"></i></td>
+                        <td><a href="roles?delete=${role.id?c}"><i class="fi-x"></i></td>
+                        <td><a href="editrole?roleid=${role.id?c}"><i class="fi-pencil"></i></td>
                     </tr>
                     </#list>
                     </tbody>

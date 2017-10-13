@@ -49,23 +49,46 @@ public class DbLoader implements ApplicationRunner
 
     public void run(ApplicationArguments args)
     {
-        this.createRoles();
-        this.createTemplates();
-        this.createTags();
-        this.createUsers();
-        this.createSimulations();
+        if (this.roles.count() == 0)
+        {
+            this.createRoles();
+        }
 
-        this.createScopesLevelRoot(ScopeType.ANALYSIS);
-        this.createScopesLevelRoot(ScopeType.OFFICIAL);
+        if (this.templates.count() == 0)
+        {
+            this.createTemplates();
+        }
 
-        List<Scope> level1Analysis = this.createScopesLevelOne(ScopeType.ANALYSIS);
-        List<Scope> level1Official = this.createScopesLevelOne(ScopeType.OFFICIAL);
+        if (this.tags.count() == 0)
+        {
+            this.createTags();
+        }
 
-        List<Scope> level2Official = this.createScopesLevelTwo(ScopeType.OFFICIAL, level1Official);
-        List<Scope> level2Analysis = this.createScopesLevelTwo(ScopeType.ANALYSIS, level1Analysis);
+        if (this.users.count() == 0)
+        {
+            this.createUsers();
+        }
 
-        this.addReportsToScopes(level2Official, 8);
-        this.addReportsToScopes(level2Analysis, 8);
+        if (this.simulations.count() == 0)
+        {
+            this.createSimulations();
+        }
+
+        if (this.scopes.count() == 0)
+        {
+            this.createScopesLevelRoot(ScopeType.ANALYSIS);
+            this.createScopesLevelRoot(ScopeType.OFFICIAL);
+
+            List<Scope> level1Analysis = this.createScopesLevelOne(ScopeType.ANALYSIS);
+            List<Scope> level1Official = this.createScopesLevelOne(ScopeType.OFFICIAL);
+
+            List<Scope> level2Official = this.createScopesLevelTwo(ScopeType.OFFICIAL, level1Official);
+            List<Scope> level2Analysis = this.createScopesLevelTwo(ScopeType.ANALYSIS, level1Analysis);
+
+            this.addReportsToScopes(level2Official, 8);
+            this.addReportsToScopes(level2Analysis, 8);
+        }
+
     }
 
     private void createRoles()

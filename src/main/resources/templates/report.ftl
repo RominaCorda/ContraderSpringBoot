@@ -55,7 +55,12 @@
         </label>
         <label>
             Tags:
+        <#if report.scope.tags??>
             <input type="text" value="${report.scope.tags}" readonly>
+        <#else>
+            <input type="text" readonly>
+        </#if>
+
         </label>
         <button style="margin-top: 150px" class="button large expanded" data-open="runReport" onclick="doReport()">
             <i class="fi-play"></i>&nbsp;Run

@@ -58,7 +58,7 @@ public class ReportsController extends SessionHelper
     }
 
     /**
-     * the GET request for /report.
+     * the GET request for /report with ID
      */
     @RequestMapping(value = "/report", method = RequestMethod.GET, params = {"id"})
     public String report(Model model,

@@ -21,10 +21,10 @@
                 <select id="selecttemplate" name="selecttemplate">
                 <#list templates as xtemplate>
                     <#if xtemplate.id==template.id>
-                        <option value="/addnewreport?scopeid=${scopeid}&templateid=${xtemplate.id?c}"
+                        <option value="addnewreport?scopeid=${scopeid}&templateid=${xtemplate.id?c}"
                                 selected="selected">${xtemplate.name}</option>
                     <#else>
-                        <option value="/addnewreport?scopeid=${scopeid}&templateid=${xtemplate.id?c}">${xtemplate.name}</option>
+                        <option value="addnewreport?scopeid=${scopeid}&templateid=${xtemplate.id?c}">${xtemplate.name}</option>
                     </#if>
                 </#list>
                 </select>

@@ -74,7 +74,7 @@
             </div>
             <div class="row">
                 <div class="small-12 medium-12 large-12 columns">
-                    <a href="/searchresults" class="button float-right">Search</a>
+                    <a href="searchresults" class="button float-right">Search</a>
                 </div>
             </div>
         </form>

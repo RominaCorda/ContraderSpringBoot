@@ -15,11 +15,11 @@
             <nav aria-label="You are here:" role="navigation">
                 <ul class="breadcrumbs">
                     <li>
-                        <a href="/browse?mode=${mode}">${mode}</a>
+                        <a href="browse?mode=${mode}">${mode}</a>
                     </li>
                 <#list parents?reverse as parent>
                     <li>
-                        <a href="/scopes?parent=${parent.id}&mode=${mode}">${parent.name}</a>
+                        <a href="scopes?parent=${parent.id}&mode=${mode}">${parent.name}</a>
                     </li>
                 </#list>
                 </ul>
@@ -31,7 +31,7 @@
         <div class="column medium-5 large-4">
             <div class="stacked button-group">
             <#list scopes as scope>
-                <a href="/scopes?parent=${scope.id}&mode=${mode}" class="button primary">
+                <a href="scopes?parent=${scope.id}&mode=${mode}" class="button primary">
                 ${scope.name}
                 </a>
             </#list>

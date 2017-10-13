@@ -46,8 +46,8 @@
         <div class="row columns">
             <div class="small-12 medium-6 large-6">
                 <div class="button-group float-right">
-                    <a href="/roles" class="button secondary">Back</a>
-                    <a href="/roles" class="button">Submit</a>
+                    <a href="roles" class="button secondary">Back</a>
+                    <a href="roles" class="button">Submit</a>
                 </div>
             </div>
         </div>

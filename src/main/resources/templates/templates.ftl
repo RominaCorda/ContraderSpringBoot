@@ -21,7 +21,7 @@
                     <#list templates as template>
                     <tr>
                         <td>${template.name}</td>
-                        <td><a href="/templates?delete=${template.id}"><i class="fi-x"></i></td>
+                        <td><a href="templates?delete=${template.id}"><i class="fi-x"></i></td>
                     </tr>
                     </#list>
                     </tbody>

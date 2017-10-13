@@ -21,23 +21,23 @@
             <tbody>
 
             <tr>
-                <td><a href="/report">Analyst Meeting</a></td>
-                <td><a href="/browse">Analysis</a> | <a href=""> YE2015 </a></td>
+                <td><a href="report">Analyst Meeting</a></td>
+                <td><a href="browse">Analysis</a> | <a href=""> YE2015 </a></td>
                 <td>Analysis, 2015, Tag3, Official</td>
             </tr>
             <tr>
-                <td><a href="/report">Closure SCR</a></td>
-                <td><a href="/browse">Official</a> | <a href=""> YE2014 </a></td>
+                <td><a href="report">Closure SCR</a></td>
+                <td><a href="browse">Official</a> | <a href=""> YE2014 </a></td>
                 <td>Official, Closure SCR, Tag3, Tag4, YE14</td>
             </tr>
             <tr>
-                <td><a href="/report">Analyst Meeting</a></td>
-                <td><a href="/browse">Official</a> | <a href=""> YE2015 </a></td>
+                <td><a href="report">Analyst Meeting</a></td>
+                <td><a href="browse">Official</a> | <a href=""> YE2015 </a></td>
                 <td>Official, 2015, Tag3</td>
             </tr>
             <tr>
-                <td><a href="/report">Germany</a></td>
-                <td><a href="/browse">Analysis</a> | <a href=""> YE2015 </a> | <a href="#">Closure SCR</a></td>
+                <td><a href="report">Germany</a></td>
+                <td><a href="browse">Analysis</a> | <a href=""> YE2015 </a> | <a href="#">Closure SCR</a></td>
                 <td>Analysis, Closure SCR, Tag1, Tag3, YE15</td>
             </tr>
             </tbody>

@@ -67,7 +67,7 @@
 
 <script>
     function gotourl(year) {
-        window.location.assign("/simulations?year=" + year);
+        window.location.assign("simulations?year=" + year);
     }
 </script>
 

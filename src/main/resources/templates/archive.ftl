@@ -16,11 +16,11 @@
             <nav aria-label="You are here:" role="navigation">
                 <ul class="breadcrumbs">
                     <li>
-                        <a href="/browse?mode=${mode}">${mode}</a>
+                        <a href="browse?mode=${mode}">${mode}</a>
                     </li>
                 <#list parents?reverse as parent>
                     <li>
-                        <a href="/scopes?parent=${parent.id}&mode=${mode}">${parent.name}</a>
+                        <a href="scopes?parent=${parent.id}&mode=${mode}">${parent.name}</a>
                     </li>
                 </#list>
                 </ul>
@@ -47,7 +47,7 @@
 
                 <#list reports as report>
                 <tr>
-                    <td><a href="/report?id=${report.id?c}">${report.name}</a></td>
+                    <td><a href="report?id=${report.id?c}">${report.name}</a></td>
                     <td>
                         <span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false"
                               title="Node ID=${report.template.nodeId}">
@@ -58,7 +58,7 @@
                     <td>${report.user.fullName}</td>
                     <td>${report.reportingPeriod}</td>
                     <td>${report.template.simulationId}</td>
-                    <td><a href="/report?id=${report.id?c}"><i class="fi-play"></i></a>&nbsp;</td>
+                    <td><a href="report?id=${report.id?c}"><i class="fi-play"></i></a>&nbsp;</td>
                     <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
                 </tr>
                 </#list>
@@ -69,7 +69,7 @@
     </div>
 
     <div class="row columns">
-        <a href="/addnewreport?scopeid=${selscope.id}" class="success button float-right">
+        <a href="addnewreport?scopeid=${selscope.id}" class="success button float-right">
             <i class="fi-plus">&nbsp;</i>
         </a>
     </div>

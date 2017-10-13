@@ -2,7 +2,7 @@
 <div class="row column">
     <ul class="menu">
         <li><span style="color:black">CAPITAL REPORTING <i>v.${version}</i></span>&nbsp;&nbsp;</li>
-        <li><a href="/index">
+        <li><a href="index">
             <small>Home</small>
         </a></li>
         <li><a href="#">

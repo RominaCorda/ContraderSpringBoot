@@ -14,11 +14,11 @@
     <#if reports!?size gt 0>
         <#list reports as report>
         <tr>
-            <td><a href="/report?id=${report.id}">${report.created?date}</a></td>
-            <td>${report.template}</td>
-            <td>${report.simulationId?c}</td>
-            <td><a href="/report?id=${report.id}"><i class="fi-download"></i></a>&nbsp;</td>
-            <td><a href="/report?id=${report.id}"><i class="fi-play"></i></a>&nbsp;</td>
+            <td><a href="report?id=${report.id}">${report.created?date}</a></td>
+            <td>${report.template.name}</td>
+            <td>${report.template.simulationId}</td>
+            <td><a href="report?id=${report.id}"><i class="fi-download"></i></a>&nbsp;</td>
+            <td><a href="report?id=${report.id}"><i class="fi-play"></i></a>&nbsp;</td>
         </tr>
         </#list>
     <#else>

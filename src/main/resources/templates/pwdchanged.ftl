@@ -9,7 +9,7 @@
         <div class="callout primary">
             <h5>Password saved.</h5>
             <p>Your password has been succesfully changed.</p>
-            <a href="/logout">Logout</a>
+            <a href="logout">Logout</a>
         </div>
 
 

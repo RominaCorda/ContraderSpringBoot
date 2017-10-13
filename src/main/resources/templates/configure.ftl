@@ -52,9 +52,9 @@
                     </#list>
                 </select>
             </label>
-            <a href="/configure?delete=${selecteduser.username}" class="button alert float-left"><i class="fi-x"></i>&nbsp;
+            <a href="configure?delete=${selecteduser.username}" class="button alert float-left"><i class="fi-x"></i>&nbsp;
                 Delete</a>
-            <a href="/configure?selecteduser=new" class="button secondary float-right"><i class="fi-plus"></i>&nbsp; Add
+            <a href="configure?selecteduser=new" class="button secondary float-right"><i class="fi-plus"></i>&nbsp; Add
                 new</a>
         </div>
     </#if>
@@ -128,7 +128,7 @@
                     <div style="margin-top: 30px" data-tooltip aria-haspopup="true" class="has-tip"
                          data-disable-hover="false" title="Edit roles">
                         <span class="float-left">
-                            <a href="/roles"><i class="fi-pencil"></i></a>
+                            <a href="roles"><i class="fi-pencil"></i></a>
                         </span>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                     <div style="margin-top: 30px" data-tooltip aria-haspopup="true" class="has-tip"
                          data-disable-hover="false" title="Edit User tags">
                         <span class="float-left">
-                            <a href="/usertags"><i class="fi-pencil"></i></a>
+                            <a href="usertags"><i class="fi-pencil"></i></a>
                         </span>
                     </div>
                 </div>
