@@ -1,8 +1,10 @@
 package it.com.ibm.generali.capitalreporting.service;
 
-public class DataStageService {
+public class DataStageService
+{
 
-    public String checkConnection(String environmentID) {
+    public String checkConnection(String environmentID)
+    {
         String response = "";
 
         /*
