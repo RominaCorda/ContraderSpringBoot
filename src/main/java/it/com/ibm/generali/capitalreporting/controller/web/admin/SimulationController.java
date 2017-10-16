@@ -48,6 +48,11 @@ public class SimulationController extends SessionHelper
                               @RequestParam("year") String year,
                               HttpSession session)
     {
+        if (!this.isAdmin(session))
+        {
+            return "redirect:login";
+        }
+
         logger.info("/simulations YEAR=" + year);
 
         List<String> reportingPeriods = new ArrayList<>();

@@ -48,26 +48,7 @@
 <#include "footer.ftl">
 <#include "foundation.ftl">
 
-<script>
-    $("#addnew").click(function () {
-        $("#addnew").prop("disabled", true);
-        $("#tagstable").append('' +
-                '<tr><td>\n' +
-                '<input id="name" name="name" type="text" placeholder="Enter tag name">\n' +
-                '</td>\n' +
-                '<td><input class="button" type="submit" value="OK"></td>\n' +
-                '</tr>');
-    });
-
-    function editcell(tagid) {
-        var content = $('#tag' + tagid).html();
-        console.log('Editing ' + tagid + ' with content=' + content);
-        window.location.assign('tags?edit=' + tagid + '&content=' + content);
-    };
-
-
-</script>
-
+<script src="js/tags.js"></script>
 
 </body>
 </html>

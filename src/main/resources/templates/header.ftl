@@ -11,6 +11,5 @@
     <link rel="stylesheet" href="css/foundation-icons.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery.min.js"></script>
-    <script src="js/reporting.js"></script>
 </head>
 <body>

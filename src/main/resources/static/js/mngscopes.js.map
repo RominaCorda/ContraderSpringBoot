@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "mngscopes.js",
+  "sourceRoot": "",
+  "sources": [
+    "mngscopes.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,MAAA;;EAAA,OAAA,GAAU;;EAEV,OAAO,CAAC,MAAR,GAAiB,SAAA;IACf,CAAA,CAAE,YAAF,CAAe,CAAC,IAAhB,CAAqB,eAArB;IACA,CAAA,CAAE,YAAF,CAAe,CAAC,GAAhB,CAAoB,KAApB;IACA,CAAA,CAAE,KAAF,CAAQ,CAAC,GAAT,CAAa,IAAb;IACA,CAAA,CAAE,OAAF,CAAU,CAAC,GAAX,CAAe,EAAf;IACA,CAAA,CAAE,gBAAF,CAAmB,CAAC,IAApB,CAAyB,SAAzB,EAAoC,KAApC;EALe;AAFjB"
+}

@@ -10,7 +10,7 @@
         if (liquid == null) {
             liquid = "coffee";
         }
-        return "Filling the " + container + " with " + liquid + "...";
+        return "Ciao!! the " + container + " with " + liquid + "...";
     };
 
     $(function () {
@@ -19,3 +19,5 @@
     });
 
 }).call(this);
+
+//# sourceMappingURL=main.js.map

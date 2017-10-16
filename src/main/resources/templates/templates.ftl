@@ -48,19 +48,7 @@
 <#include "footer.ftl">
 <#include "foundation.ftl">
 
-<script>
-    $("#addnew").click(function () {
-        $("#addnew").prop("disabled", true);
-        $("#templatestable").append('' +
-                '<tr><td>\n' +
-                '<input id="name" name="name" type="text" placeholder="Enter template name">\n' +
-                '</td>\n' +
-                '<td><input class="button" type="submit" value="OK"></td>\n' +
-                '</tr>');
-    });
-
-</script>
-
+<script src="js/templates.js"></script>
 
 </body>
 </html>

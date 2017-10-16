@@ -49,19 +49,7 @@
 <#include "footer.ftl">
 <#include "foundation.ftl">
 
-<script>
-    $("#addnew").click(function () {
-        $("#addnew").prop("disabled", true);
-        $("#rolestable").append('' +
-                '<tr><td>\n' +
-                '<input id="description" name="description" type="text" placeholder="Enter role name">\n' +
-                '</td>\n' +
-                '<td><input class="button" type="submit" value="OK"></td>\n' +
-                '</tr>');
-    });
-
-</script>
-
+<script src="js/roles.js"></script>
 
 </body>
 </html>

@@ -65,11 +65,7 @@
     &nbsp;
 </div>
 
-<script>
-    function gotourl(year) {
-        window.location.assign("simulations?year=" + year);
-    }
-</script>
+<script src="js/simulations.js"></script>
 
 <#include "footer.ftl">
 <#include "foundation.ftl">

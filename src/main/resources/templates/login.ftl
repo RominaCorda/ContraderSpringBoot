@@ -45,21 +45,7 @@
 
 <#include "foundation.ftl">
 
-<script>
-
-    $("#errorPopup").click(function () {
-        $("#errorPopup").hide()
-    });
-
-    $("#username").click(function () {
-        $("#errorPopup").hide()
-    });
-
-    $("#password").click(function () {
-        $("#errorPopup").hide()
-    });
-
-</script>
+<script src="js/login.js"></script>
 
 </body>
 </html>

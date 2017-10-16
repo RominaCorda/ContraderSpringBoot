@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "roles.js",
+  "sourceRoot": "",
+  "sources": [
+    "roles.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA,CAAA,CAAE,SAAA;WACA,CAAA,CAAE,SAAF,CAAY,CAAC,KAAb,CAAmB,SAAA;MACjB,CAAA,CAAE,SAAF,CAAY,CAAC,IAAb,CAAkB,UAAlB,EAA8B,IAA9B;MACA,CAAA,CAAE,aAAF,CAAgB,CAAC,MAAjB,CAAwB,EAAA,GAAK,YAAL,GAAoB,yFAApB,GAAgH,SAAhH,GAA4H,4DAA5H,GAA2L,OAAnN;IAFiB,CAAnB;EADA,CAAF;AAAA"
+}

@@ -91,18 +91,7 @@
     &nbsp;
 </div>
 
-<script>
-    $(function () {
-        // bind change event to select
-        $('#selecttemplate').on('change', function () {
-            var url = $(this).val(); // get selected value
-            if (url) { // require a URL
-                window.location = url; // redirect
-            }
-            return false;
-        });
-    });
-</script>
+<script src="js/addnewreport.js"></script>
 
 <#include "footer.ftl">
 <#include "foundation.ftl">

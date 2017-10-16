@@ -178,15 +178,6 @@
 
     <div class="row">
         <div class="column medium-5 large-4">
-            <script>
-                function addNew() {
-                    $('#scopename').text('Add new scope');
-                    $('#scopesave').val('Add');
-                    $('#id').val('-1');
-                    $('#name').val('');
-                    $('input:checkbox').prop('checked', false);
-                }
-            </script>
             <button class="button secondary" onclick="addNew()"><i class="fi-plus"></i>&nbsp;Add new</button>
         </div>
         <div class="column medium-7 large-8">
@@ -199,6 +190,8 @@
 <div class="row column" style="margin-top: 400px">
     &nbsp;
 </div>
+
+<script src="js/mngscopes.js"></script>
 
 <#include "footer.ftl">
 <#include "foundation.ftl">

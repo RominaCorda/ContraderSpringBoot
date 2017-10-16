@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "simulations.js",
+  "sourceRoot": "",
+  "sources": [
+    "simulations.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,MAAA;;EAAA,OAAA,GAAU;;EAEV,OAAO,CAAC,OAAR,GAAkB,SAAC,IAAD;IAChB,MAAM,CAAC,QAAQ,CAAC,MAAhB,CAAuB,mBAAA,GAAsB,IAA7C;EADgB;AAFlB"
+}

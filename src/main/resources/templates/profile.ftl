@@ -41,22 +41,5 @@
 
 <#include "foundation.ftl">
 
-<script>
-
-    $("#errorPopup").click(function () {
-        $("#errorPopup").hide()
-    });
-
-    $("#curpwd").click(function () {
-        $("#errorPopup").hide()
-    });
-
-    $("#newpwd1").click(function () {
-        $("#errorPopup").hide()
-    });
-
-</script>
-
-
 </body>
 </html>

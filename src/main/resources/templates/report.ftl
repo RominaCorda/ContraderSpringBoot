@@ -91,6 +91,8 @@
 </div>
 <!-- END MODAL WINDOW -->
 
+<script src="js/report.js"></script>
+
 <#include "footer.ftl">
 <#include "foundation.ftl">
 
