@@ -1,11 +1,9 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
-
 ul {
   color: #c11e0d;
 }
-
 li {
   color: #c11e0d;
 }
@@ -42,4 +40,3 @@ li {
     transform: rotate(360deg);
   }
 }
-
