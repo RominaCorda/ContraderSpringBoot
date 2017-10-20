@@ -1,7 +1,8 @@
-<#include "header.ftl">
-<#include "topbar.ftl">
+<#include "base.ftl">
 
-<br>
+<#macro page_body>
+    <#include "topbar.ftl">
+<!-- MAIN -->
 
 <div class="row columns">
     <div class="row columns">
@@ -43,9 +44,9 @@
                 <div class="small-12 medium-6 large-6 columns">
                     <label>Owner
                         <select>
-                        <#list users as user>
-                            <option name="user" id="${user}">${user}</option>
-                        </#list>
+                            <#list users as user>
+                                <option name="user" id="${user}">${user}</option>
+                            </#list>
                         </select>
                     </label>
                 </div>
@@ -93,10 +94,12 @@
 </div>
 
 
+<!-- END OF MAIN -->
+</#macro>
 
-<#include "footer.ftl">
-<#include "foundation.ftl">
+<#macro  before_end_scripts>
+<script></script>
+</#macro>
 
-</body>
-</html>
+<@skeleton/>
 

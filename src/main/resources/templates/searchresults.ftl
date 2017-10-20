@@ -1,8 +1,8 @@
-<#include "header.ftl">
-<#include "topbar.ftl">
+<#include "base.ftl">
 
-<br>
-
+<#macro page_body>
+    <#include "topbar.ftl">
+<!-- MAIN -->
 <div class="row column">
     <div class="row">
         <h3>Search results</h3>
@@ -53,9 +53,8 @@
 </div>
 
 
-<#include "footer.ftl">
-<#include "foundation.ftl">
+<!-- END OF MAIN -->
+</#macro>
 
-</body>
-</html>
+<@skeleton/>
 

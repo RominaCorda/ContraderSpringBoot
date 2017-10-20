@@ -1,8 +1,8 @@
-<#include "header.ftl">
-<#include "topbar.ftl">
+<#include "base.ftl">
 
-<br>
-
+<#macro page_body>
+    <#include "topbar.ftl">
+<!-- MAIN -->
 <div class="row">
     <div class="medium-12 large-12 columns">
         <img src="img/freereporting.jpg">
@@ -20,11 +20,12 @@
 <div class="row columns">
     &nbsp;
 </div>
+<!-- END OF MAIN -->
+</#macro>
 
+<#macro  before_end_scripts>
+<script></script>
+</#macro>
 
-<#include "footer.ftl">
-<#include "foundation.ftl">
-
-</body>
-</html>
+<@skeleton/>
 

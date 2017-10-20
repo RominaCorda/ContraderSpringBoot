@@ -1,5 +1,4 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<#-- @ftlvariable name="title" type="java.lang.String" -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -12,4 +11,3 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery.min.js"></script>
 </head>
-<body>

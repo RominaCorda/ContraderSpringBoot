@@ -1,10 +1,10 @@
 <#-- @ftlvariable name="role" type="it.com.ibm.generali.capitalreporting.model.Role" -->
 <#-- @ftlvariable name="permissions" type="type="java.util.List<String>" -->
+<#include "base.ftl">
 
-<#include "header.ftl">
-<#include "topbar.ftl">
-
-
+<#macro page_body>
+    <#include "topbar.ftl">
+<!-- MAIN -->
 <div class="row">
     <div class="row columns">
         <h3>Manage Role ${role.description}</h3>
@@ -28,16 +28,16 @@
                 <label>
                     Role Permissions:
                     <select multiple style="height: 300px">
-                    <#list permissions as permission>
-                        <#if role.id==1>
-                            <option name="permission" selected="selected">${permission}</option>
-                        <#elseif role.id==permissions?seq_index_of(permission)>
-                            <option name="permission" selected="selected">${permission}</option>
-                        <#else>
-                            <option name="permission">${permission}</option>
-                        </#if>
+                        <#list permissions as permission>
+                            <#if role.id==1>
+                                <option name="permission" selected="selected">${permission}</option>
+                            <#elseif role.id==permissions?seq_index_of(permission)>
+                                <option name="permission" selected="selected">${permission}</option>
+                            <#else>
+                                <option name="permission">${permission}</option>
+                            </#if>
 
-                    </#list>
+                        </#list>
                     </select>
                 </label>
             </div>
@@ -57,7 +57,13 @@
 <div class="row">
     &nbsp;
 </div>
+<!-- END OF MAIN -->
+</#macro>
 
-<#include "footer.ftl">
-<#include "foundation.ftl">
+<#macro  before_end_scripts>
+<script></script>
+</#macro>
+
+<@skeleton/>
+
 

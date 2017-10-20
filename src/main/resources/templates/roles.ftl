@@ -1,7 +1,8 @@
-<#include "header.ftl">
-<#include "topbar.ftl">
+<#include "base.ftl">
 
-
+<#macro page_body>
+    <#include "topbar.ftl">
+<!-- MAIN -->
 <div class="row">
     <div class="small-6 large-6 columns">
         <div class="row">
@@ -18,13 +19,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <#list roles as role>
-                    <tr>
-                        <td>${role.description}</td>
-                        <td><a href="roles?delete=${role.id?c}"><i class="fi-x"></i></td>
-                        <td><a href="editrole?roleid=${role.id?c}"><i class="fi-pencil"></i></td>
-                    </tr>
-                    </#list>
+                        <#list roles as role>
+                        <tr>
+                            <td>${role.description}</td>
+                            <td><a href="roles?delete=${role.id?c}"><i class="fi-x"></i></td>
+                            <td><a href="editrole?roleid=${role.id?c}"><i class="fi-pencil"></i></td>
+                        </tr>
+                        </#list>
                     </tbody>
                 </table>
             </form>
@@ -45,11 +46,12 @@
 <div class="row">
     &nbsp;
 </div>
+<!-- END OF MAIN -->
+</#macro>
 
-<#include "footer.ftl">
-<#include "foundation.ftl">
-
+<#macro  before_end_scripts>
 <script src="js/roles.js"></script>
+</#macro>
 
-</body>
-</html>
+<@skeleton/>
+

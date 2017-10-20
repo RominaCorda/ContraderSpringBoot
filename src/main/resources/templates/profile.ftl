@@ -1,7 +1,8 @@
-<#include "header.ftl">
-<#include "topbar.ftl">
+<#include "base.ftl">
 
-
+<#macro page_body>
+    <#include "topbar.ftl">
+<!-- MAIN -->
 <div class="row">
     <div class="small-6 large-6 columns">
 
@@ -38,8 +39,8 @@
     <div class="small-6 large-6 columns">&nbsp;</div>
 
 </div>
+<!-- END OF MAIN -->
+</#macro>
 
-<#include "foundation.ftl">
+<@skeleton/>
 
-</body>
-</html>

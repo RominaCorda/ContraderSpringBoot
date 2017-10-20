@@ -1,7 +1,8 @@
-<#include "header.ftl">
-<#include "topbar.ftl">
+<#include "base.ftl">
 
-
+<#macro page_body>
+    <#include "topbar.ftl">
+<!-- MAIN -->
 <div class="row">
     <div class="small-6 large-6 columns">
         <div class="row">
@@ -17,13 +18,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <#list usertags as tag>
-                    <tr>
-                        <td id="tag${tag.id}" contenteditable="true">${tag.name}</td>
-                        <td><a href="tags?delete=${tag.id}"><i class="fi-x"></i></td>
-                        <td><a onclick="editcell(${tag.id});"><i class="fi-save"></i></td>
-                    </tr>
-                    </#list>
+                        <#list usertags as tag>
+                        <tr>
+                            <td id="tag${tag.id}" contenteditable="true">${tag.name}</td>
+                            <td><a href="tags?delete=${tag.id}"><i class="fi-x"></i></td>
+                            <td><a onclick="editcell(${tag.id});"><i class="fi-save"></i></td>
+                        </tr>
+                        </#list>
                     </tbody>
                 </table>
             </form>
@@ -44,12 +45,13 @@
 <div class="row">
     &nbsp;
 </div>
+<!-- END OF MAIN -->
+</#macro>
 
-<#include "footer.ftl">
-<#include "foundation.ftl">
-
+<#macro  before_end_scripts>
 <script src="js/tags.js"></script>
+</#macro>
 
-</body>
-</html>
+<@skeleton/>
+
 

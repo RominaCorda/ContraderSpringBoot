@@ -1,11 +1,9 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
-
 ul {
   color: #c11e0d;
 }
-
 li {
   color: #c11e0d;
 }
@@ -43,3 +41,10 @@ li {
   }
 }
 
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    /* choose any height */
+}
