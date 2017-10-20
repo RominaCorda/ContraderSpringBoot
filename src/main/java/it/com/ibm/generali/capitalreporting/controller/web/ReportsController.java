@@ -12,6 +12,7 @@ import it.com.ibm.generali.capitalreporting.service.ScopeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,9 @@ public class ReportsController extends SessionHelper
     private TemplateDao templates;
     private TagDao tags;
     private ScopeService scopeService;
+
+    @Value(value = "${cognos.bi.url}")
+    private String cognosUrl;
 
     @Autowired
     public ReportsController(ScopeDao scopeDao,
@@ -135,6 +139,10 @@ public class ReportsController extends SessionHelper
     public String freeReporting(Model model, HttpSession session)
     {
         logger.info("/freereporting page");
+        if (this.cognosUrl.endsWith("bi"))
+        {
+            model.addAttribute("iframesrc", this.cognosUrl);
+        }
         return this.pageSetup("freereporting", model, session);
     }
 
