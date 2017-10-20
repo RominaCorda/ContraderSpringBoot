@@ -54,9 +54,6 @@
 
     </form>
 </div>
-<div class="row">
-    &nbsp;
-</div>
 <!-- END OF MAIN -->
 </#macro>
 

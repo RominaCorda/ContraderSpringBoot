@@ -82,17 +82,6 @@
     </div>
 </form>
 <!-- END REPORT FORM -->
-
-<div class="row columns">
-    &nbsp;
-</div>
-<div class="row columns">
-    &nbsp;
-</div>
-<div class="row columns">
-    &nbsp;
-</div>
-
 <!-- END OF MAIN -->
 </#macro>
 

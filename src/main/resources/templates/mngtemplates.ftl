@@ -40,12 +40,6 @@
         &nbsp;
     </div>
 </div>
-<div class="row">
-    &nbsp;
-</div>
-<div class="row">
-    &nbsp;
-</div>
 <!-- END OF MAIN -->
 </#macro>
 

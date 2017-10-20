@@ -8,18 +8,6 @@
         <img src="img/freereporting.jpg">
     </div>
 </div>
-
-<br>
-
-<div class="row columns">
-    &nbsp;
-</div>
-<div class="row columns">
-    &nbsp;
-</div>
-<div class="row columns">
-    &nbsp;
-</div>
 <!-- END OF MAIN -->
 </#macro>
 

@@ -63,9 +63,6 @@
     </div>
 
 </div>
-<div class="row column" style="margin-top: 100px">
-    &nbsp;
-</div>
 <!-- END OF MAIN -->
 </#macro>
 
