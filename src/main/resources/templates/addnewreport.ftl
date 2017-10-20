@@ -4,10 +4,12 @@
 <#-- @ftlvariable name="template" type="it.com.ibm.generali.capitalreporting.model.Template" -->
 <#-- @ftlvariable name="templates" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Template>" -->
 <#-- @ftlvariable name="tags" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Tag>" -->
-<#include "header.ftl">
-<#include "topbar.ftl">
+<#include "base.ftl">
 
-<br>
+<#macro page_body>
+    <#include "topbar.ftl">
+<!-- MAIN -->
+
 <!-- REPORT FORM -->
 <form id="addreportform" method="post" action="">
     <div class="row columns">
@@ -19,14 +21,14 @@
             <label>
                 Template
                 <select id="selecttemplate" name="selecttemplate">
-                <#list templates as xtemplate>
-                    <#if xtemplate.id==template.id>
-                        <option value="addnewreport?scopeid=${scopeid}&templateid=${xtemplate.id?c}"
-                                selected="selected">${xtemplate.name}</option>
-                    <#else>
-                        <option value="addnewreport?scopeid=${scopeid}&templateid=${xtemplate.id?c}">${xtemplate.name}</option>
-                    </#if>
-                </#list>
+                    <#list templates as xtemplate>
+                        <#if xtemplate.id==template.id>
+                            <option value="addnewreport?scopeid=${scopeid}&templateid=${xtemplate.id?c}"
+                                    selected="selected">${xtemplate.name}</option>
+                        <#else>
+                            <option value="addnewreport?scopeid=${scopeid}&templateid=${xtemplate.id?c}">${xtemplate.name}</option>
+                        </#if>
+                    </#list>
                 </select>
             </label>
             <label>
@@ -91,10 +93,13 @@
     &nbsp;
 </div>
 
+<!-- END OF MAIN -->
+</#macro>
+
+<#macro  before_end_scripts>
 <script src="js/addnewreport.js"></script>
+</#macro>
 
-<#include "footer.ftl">
-<#include "foundation.ftl">
+<@skeleton/>
 
-</body>
-</html>
+

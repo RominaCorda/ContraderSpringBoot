@@ -1,10 +1,10 @@
 <#-- @ftlvariable name="mode" type="java.lang.String" -->
 <#-- @ftlvariable name="scopes" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
-<#include "header.ftl">
-<#include "topbar.ftl">
+<#include "base.ftl">
 
-<br>
-
+<#macro page_body>
+    <#include "topbar.ftl">
+<!-- MAIN -->
 <div class="row column">
 
     <div class="row">
@@ -23,9 +23,9 @@
     <div class="row">
         <div class="column medium-5 large-4">
             <div class="stacked button-group">
-            <#list scopes as scope>
-                <a href="scopes?parent=${scope.id?c}&mode=${mode}" class="button primary">${scope.name}</a>
-            </#list>
+                <#list scopes as scope>
+                    <a href="scopes?parent=${scope.id?c}&mode=${mode}" class="button primary">${scope.name}</a>
+                </#list>
             </div>
         </div>
         <div class="column medium-7 large-8">
@@ -38,10 +38,11 @@
 <div class="row column" style="margin-top: 400px">
     &nbsp;
 </div>
+<!-- END OF MAIN -->
+</#macro>
 
+<#macro  before_end_scripts>
+<script></script>
+</#macro>
 
-<#include "footer.ftl">
-<#include "foundation.ftl">
-
-</body>
-</html>
+<@skeleton/>

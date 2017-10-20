@@ -1,10 +1,9 @@
 <#-- @ftlvariable name="report" type="it.com.ibm.generali.capitalreporting.model.Report" -->
-<#include "header.ftl">
-<#include "topbar.ftl">
+<#include "base.ftl">
 
-<br>
-
-<!-- REPORT FORM -->
+<#macro page_body>
+    <#include "topbar.ftl">
+<!-- MAIN -->
 <div class="row columns">
     <h3>REPORT #${report.id?c}</h3>
 </div>
@@ -55,11 +54,11 @@
         </label>
         <label>
             Tags:
-        <#if report.scope.tags??>
-            <input type="text" value="${report.scope.tags}" readonly>
-        <#else>
-            <input type="text" readonly>
-        </#if>
+            <#if report.scope.tags??>
+                <input type="text" value="${report.scope.tags}" readonly>
+            <#else>
+                <input type="text" readonly>
+            </#if>
 
         </label>
         <button style="margin-top: 150px" class="button large expanded" data-open="runReport" onclick="doReport()">
@@ -72,8 +71,6 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 </div>
-<!-- END REPORT FORM -->
-
 <!-- MODAL WINDOW -->
 <div class="reveal" id="runReport" data-reveal>
     <h1>Computing report #${report.id?c}</h1>
@@ -90,11 +87,12 @@
     </div>
 </div>
 <!-- END MODAL WINDOW -->
+<!-- END OF MAIN -->
+</#macro>
 
+<#macro  before_end_scripts>
 <script src="js/report.js"></script>
+</#macro>
 
-<#include "footer.ftl">
-<#include "foundation.ftl">
+<@skeleton/>
 
-</body>
-</html>

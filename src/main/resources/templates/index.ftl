@@ -1,8 +1,7 @@
-<#include "header.ftl">
-<#include "topbar.ftl">
+<#include "base.ftl">
 
-<br>
-
+<#macro page_body>
+    <#include "topbar.ftl">
 <div class="row">
     <div class="medium-5 large-5 columns">
         <h5>News</h5>
@@ -21,10 +20,9 @@
 
     </div>
     <div class="medium-7 large-7 columns">
-    <#include "myreports.ftl">
+        <#include "myreports.ftl">
     </div>
 </div>
-
 <div class="row">
     <hr>
     <div class="medium-7 large-7 columns">
@@ -63,11 +61,9 @@
     </div>
 
 </div>
+</#macro>
+
+<@skeleton/>
 
 
-<#include "footer.ftl">
-<#include "foundation.ftl">
 
-
-</body>
-</html>

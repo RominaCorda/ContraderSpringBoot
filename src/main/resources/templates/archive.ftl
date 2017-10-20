@@ -3,11 +3,11 @@
 <#-- @ftlvariable name="report" type="it.com.ibm.generali.capitalreporting.model.Report" -->
 <#-- @ftlvariable name="parents" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
 <#-- @ftlvariable name="reports" type="java.util.List<it.com.ibm.generali.capitalreporting.framework.Report>" -->
-<#include "header.ftl">
-<#include "topbar.ftl">
+<#include "base.ftl">
 
-<br>
-
+<#macro page_body>
+    <#include "topbar.ftl">
+<!-- MAIN -->
 <div class="row column">
 
     <div class="row">
@@ -18,11 +18,11 @@
                     <li>
                         <a href="browse?mode=${mode}">${mode}</a>
                     </li>
-                <#list parents?reverse as parent>
-                    <li>
-                        <a href="scopes?parent=${parent.id}&mode=${mode}">${parent.name}</a>
-                    </li>
-                </#list>
+                    <#list parents?reverse as parent>
+                        <li>
+                            <a href="scopes?parent=${parent.id}&mode=${mode}">${parent.name}</a>
+                        </li>
+                    </#list>
                 </ul>
             </nav>
         </div>
@@ -45,23 +45,23 @@
                 </thead>
                 <tbody>
 
-                <#list reports as report>
-                <tr>
-                    <td><a href="report?id=${report.id?c}">${report.name}</a></td>
-                    <td>
+                    <#list reports as report>
+                    <tr>
+                        <td><a href="report?id=${report.id?c}">${report.name}</a></td>
+                        <td>
                         <span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false"
                               title="Node ID=${report.template.nodeId}">
                         ${report.template.name}
                         </span>
-                    </td>
-                    <td>${report.created?date}</td>
-                    <td>${report.user.fullName}</td>
-                    <td>${report.reportingPeriod}</td>
-                    <td>${report.template.simulationId}</td>
-                    <td><a href="report?id=${report.id?c}"><i class="fi-play"></i></a>&nbsp;</td>
-                    <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
-                </tr>
-                </#list>
+                        </td>
+                        <td>${report.created?date}</td>
+                        <td>${report.user.fullName}</td>
+                        <td>${report.reportingPeriod}</td>
+                        <td>${report.template.simulationId}</td>
+                        <td><a href="report?id=${report.id?c}"><i class="fi-play"></i></a>&nbsp;</td>
+                        <td><a href="#"><i class="fi-download"></i></a>&nbsp;</td>
+                    </tr>
+                    </#list>
 
                 </tbody>
             </table>
@@ -79,10 +79,10 @@
     </div>
 
 </div>
+<!-- END OF MAIN -->
+</#macro>
 
-<#include "footer.ftl">
-<#include "foundation.ftl">
 
-</body>
-</html>
+<@skeleton/>
+
 

@@ -61,7 +61,7 @@ public class TemplateController extends SessionHelper
         model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitalReportingApplication.getVersion());
 
-        return "templates";
+        return "mngtemplates";
     }
 
     /**
