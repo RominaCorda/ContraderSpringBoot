@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="usertags" type="java.util.List<it.com.ibm.generali.capitalreporting.model.UserTag>" -->
 <#include "base.ftl">
 
 <#macro page_body>

@@ -24,7 +24,6 @@
     </div>
 </div>
 <div class="row">
-    <hr>
     <div class="medium-7 large-7 columns">
         <ul class="tabs" data-tabs id="example-tabs">
             <li class="tabs-title is-active"><a href="#panel1">Recent reporting periods</a></li>
