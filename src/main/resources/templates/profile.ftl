@@ -29,7 +29,7 @@
             </div>
 
             <div class="row">
-                <a class="secondary button float-right" href="/index">Back</a>
+                <a class="secondary button float-right" href="index">Back</a>
             </div>
 
         </form>
