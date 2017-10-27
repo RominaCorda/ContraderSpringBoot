@@ -2,7 +2,9 @@ package it.com.ibm.generali.capitalreporting.controller.web.admin;
 
 import it.com.ibm.generali.capitalreporting.CapitalReportingApplication;
 import it.com.ibm.generali.capitalreporting.controller.web.SessionHelper;
+import it.com.ibm.generali.capitalreporting.dao.PermissionDao;
 import it.com.ibm.generali.capitalreporting.dao.RoleDao;
+import it.com.ibm.generali.capitalreporting.model.Permission;
 import it.com.ibm.generali.capitalreporting.model.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class RoleController extends SessionHelper
@@ -23,11 +25,14 @@ public class RoleController extends SessionHelper
     private Logger logger = LoggerFactory.getLogger(RoleController.class);
 
     private RoleDao roles;
+    private PermissionDao permissions;
 
     @Autowired
-    public RoleController(RoleDao roleDao)
+    public RoleController(RoleDao roleDao,
+                          PermissionDao permissionDao)
     {
         this.roles = roleDao;
+        this.permissions = permissionDao;
     }
 
     /**
@@ -46,26 +51,52 @@ public class RoleController extends SessionHelper
     }
 
     /**
-     * Configure GET with selected user
+     * Edit Role GET
      */
     @RequestMapping(value = "/editrole", method = RequestMethod.GET, params = {"roleid"})
     public String editRole(Model model, HttpSession session, @RequestParam("roleid") long roleId)
     {
+        if (!this.isAdmin(session))
+        {
+            return "redirect:login";
+        }
+
         logger.info("/editrole for role=" + String.valueOf(roleId));
         Role role = this.roles.findOne(roleId);
         model.addAttribute("role", role);
-        List<String> permissions = new ArrayList<>();
-        permissions.add("Configure Users");
-        permissions.add("Manage application role");
-        permissions.add("Manage templates");
-        permissions.add("Manage analysis scope");
-        permissions.add("Manage official scope");
-        permissions.add("Manage simulations");
-        permissions.add("Edit free reporting page");
-        permissions.add("Edit analysis reports");
-        permissions.add("Edit official reports");
+
+        Set<Long> permissionIds = new HashSet<>();
+        Iterable<Permission> permissions = this.permissions.findAll();
+        for (Permission permission : role.getPermissions())
+        {
+            logger.info("Role has permission > " + permission.getDescription());
+            permissionIds.add(permission.getId());
+        }
+        model.addAttribute("permissionsIds", permissionIds);
         model.addAttribute("permissions", permissions);
         return this.pageSetup("editrole", model, session);
+    }
+
+    /**
+     * Edit Role POST
+     */
+    @RequestMapping(value = "/editrole", method = RequestMethod.POST)
+    public String modifyRole(Model model, HttpSession session,
+                             @RequestParam("roleid") long roleId,
+                             @RequestParam("rolename") String roleName,
+                             @RequestParam("rolepermissions") String[] rolePermissions)
+    {
+        logger.info("/editrole POST for role=" + String.valueOf(roleId));
+        Set<Permission> permissions = new HashSet<>();
+        for (String perm : rolePermissions)
+        {
+            permissions.add(this.permissions.findByDescription(perm));
+        }
+        Role role = this.roles.findOne(roleId);
+        role.setDescription(roleName);
+        role.setPermissions(permissions);
+        this.roles.save(role);
+        return "redirect:editrole?roleid=" + roleId;
     }
 
     /**

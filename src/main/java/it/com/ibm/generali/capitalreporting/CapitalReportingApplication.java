@@ -11,15 +11,12 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 public class CapitalReportingApplication
         extends SpringBootServletInitializer
 {
-
-    public static final String APP_TITLE = "CAPITAL REPORTING";
-
-    private static Logger logger = LoggerFactory.getLogger(CapitalReportingApplication.class);
-
     /**
      * Version. It must be the same as that found in gradle.properties
      */
-    private static final String version = "0.3.0";
+    private static final String version = "0.3.2";
+    private static Logger logger = LoggerFactory.getLogger(CapitalReportingApplication.class);
+    public static final String APP_TITLE = "CAPITAL REPORTING";
 
     /**
      * Get the application's version.

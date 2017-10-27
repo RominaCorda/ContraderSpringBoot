@@ -19,5 +19,15 @@ open class Role : Serializable
     @OneToMany(mappedBy = "role", cascade = arrayOf(CascadeType.ALL))
     var capitalUsers: MutableSet<CapitalUser> = mutableSetOf()
 
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = arrayOf(CascadeType.MERGE))
+    @JoinTable(name = "Role_Permissions",
+            joinColumns = arrayOf(JoinColumn(name = "role_id")),
+            inverseJoinColumns = arrayOf(JoinColumn(name = "permission_id")))
+    var permissions: MutableSet<Permission> = mutableSetOf()
+
+
+
+
 }
 

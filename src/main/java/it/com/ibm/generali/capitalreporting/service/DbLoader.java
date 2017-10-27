@@ -24,6 +24,7 @@ public class DbLoader implements ApplicationRunner
     private TagDao tags;
     private UserTagDao userTags;
     private SimulationDao simulations;
+    private PermissionDao permissions;
 
     final private Random seed = new Random();
 
@@ -35,7 +36,8 @@ public class DbLoader implements ApplicationRunner
                     TemplateDao templateDao,
                     TagDao tagDao,
                     UserTagDao userTagDao,
-                    SimulationDao simulationDao)
+                    SimulationDao simulationDao,
+                    PermissionDao permissionDao)
     {
         this.scopes = scopeDao;
         this.reports = reportDao;
@@ -45,10 +47,16 @@ public class DbLoader implements ApplicationRunner
         this.tags = tagDao;
         this.userTags = userTagDao;
         this.simulations = simulationDao;
+        this.permissions = permissionDao;
     }
 
     public void run(ApplicationArguments args)
     {
+        if (this.permissions.count() == 0)
+        {
+            this.createPermissions();
+        }
+
         if (this.roles.count() == 0)
         {
             this.createRoles();
@@ -91,6 +99,27 @@ public class DbLoader implements ApplicationRunner
 
     }
 
+    private void createPermissions()
+    {
+        logger.info("Creating permissions");
+        List<String> permissions = new ArrayList<>();
+        permissions.add("Configure Users");
+        permissions.add("Manage application role");
+        permissions.add("Manage templates");
+        permissions.add("Manage analysis scope");
+        permissions.add("Manage official scope");
+        permissions.add("Manage simulations");
+        permissions.add("Edit free reporting page");
+        permissions.add("Edit analysis reports");
+        permissions.add("Edit official reports");
+        for (String permission : permissions)
+        {
+            Permission tempPermission = new Permission();
+            tempPermission.setDescription(permission);
+            this.permissions.save(tempPermission);
+        }
+    }
+
     private void createRoles()
     {
         logger.info("Creating default roles");
@@ -100,10 +129,16 @@ public class DbLoader implements ApplicationRunner
         roles.add("Analyst User");
         roles.add("Business User");
         roles.add("Guest");
+        Permission defaultPermission1 = this.permissions.findByDescription("Edit official reports");
+        Permission defaultPermission2 = this.permissions.findByDescription("Manage official scope");
+        Set<Permission> defaultPermissions = new HashSet<>();
+        defaultPermissions.add(defaultPermission1);
+        defaultPermissions.add(defaultPermission2);
         for (String role : roles)
         {
             Role tempRole = new Role();
             tempRole.setDescription(role);
+            tempRole.setPermissions(defaultPermissions);
             this.roles.save(tempRole);
         }
     }
@@ -227,8 +262,8 @@ public class DbLoader implements ApplicationRunner
 
     private List<Scope> createScopesLevelTwo(ScopeType type, List<Scope> parents)
     {
-        logger.info("Creating scopes Level 2");
-        List<Scope> created = null;
+        logger.info("Creating scopes Level 2 (" + type.toString() + ")");
+        List<Scope> created;
 
         if (type == ScopeType.OFFICIAL)
         {
@@ -247,7 +282,7 @@ public class DbLoader implements ApplicationRunner
 
     private List<Scope> createScopesLevelOne(ScopeType type)
     {
-        logger.info("Creating scopes Level 1");
+        logger.info("Creating scopes Level 1(" + type.toString() + ")");
         List<Scope> created = null;
 
         if (type == ScopeType.OFFICIAL)
@@ -269,7 +304,7 @@ public class DbLoader implements ApplicationRunner
 
     private void createScopesLevelRoot(ScopeType type)
     {
-        logger.info("Creating scopes Root Level");
+        logger.info("Creating scopes Root Level (" + type.toString() + ")");
 
         // Level -1
         for (int year = 2014; year < 2018; year++)
@@ -283,15 +318,9 @@ public class DbLoader implements ApplicationRunner
         }
     }
 
-    private void addSimulations()
-    {
-
-    }
-
     private void addReportsToScope(Scope scope, int nrOfReports)
     {
         int period = 2013 + this.seed.nextInt(4);
-        long templateId = this.seed.nextInt(4) + 1;
         Iterator<Template> allTemplates = this.templates.findAll().iterator();
         for (int k = 0; k < nrOfReports; k++)
         {
@@ -331,33 +360,6 @@ public class DbLoader implements ApplicationRunner
                 createdScopes.add(createScope(type, parent, scopeName));
             }
         }
-        this.scopes.save(createdScopes);
-        return createdScopes;
-
-    }
-
-    private List<Scope> createRandomScopes(ScopeType type,
-                                           List<Scope> parents,
-                                           String[] names,
-                                           int maxItems)
-    {
-        List<Scope> createdScopes = new ArrayList<>();
-
-        for (Scope parent : parents)
-        {
-            Set<String> scopeNames = new HashSet<>();
-            for (int j = 0; j < seed.nextInt(maxItems) + 3; j++)
-            {
-                scopeNames.add(names[seed.nextInt(names.length)]);
-            }
-
-            for (String scopeName : scopeNames)
-            {
-                Scope tempScope = createScope(type, parent, scopeName);
-                createdScopes.add(tempScope);
-            }
-        }
-
         this.scopes.save(createdScopes);
         return createdScopes;
 

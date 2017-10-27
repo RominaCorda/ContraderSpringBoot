@@ -20,6 +20,10 @@ Application Server Console:
 
     http://9.137.251.187:9990 
     
+Application Server App URL:
+
+    http://9.137.251.187:8080/capitalreporting
+    
 Oracle 12C:
 
     jdbc:oracle:thin:@9.137.251.186:1521:CRDEV  
@@ -45,4 +49,8 @@ Restart JBoss:
 #### SEE LOGS
     
     cf logs CapitalReporting
+    
+### COGNOS BI URL
+
+    http://9.137.251.185:9300/bi
     
