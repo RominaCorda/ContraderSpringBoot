@@ -34,6 +34,7 @@
                                 </ul>
                             </li>
                             <li><a href="simulations">Manage Simulations</a></li>
+                            <li><a href="editnews">News</a></li>
                         </ul>
                     </li>
                 </#if>

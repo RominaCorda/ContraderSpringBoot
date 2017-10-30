@@ -15,6 +15,10 @@ open class ScopeService
     @Autowired
     lateinit var scopes: ScopeDao
 
+    /**
+     * Get the list of all parents of the given scope
+     * @return Ordered list of scope's parents
+     */
     fun getParents(scope: Scope): LinkedList<Scope>
     {
         var parent: Scope? = scope
@@ -27,6 +31,10 @@ open class ScopeService
         return parents
     }
 
+    /**
+     * Gets a description of the scope's parents
+     * @return A string of scope's parents divided by |
+     */
     fun getParentsDescription(scope: Scope): String
     {
         val parents = this.getParents(scope).reversed()

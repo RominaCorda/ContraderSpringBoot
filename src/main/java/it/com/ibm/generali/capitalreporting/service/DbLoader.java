@@ -16,6 +16,7 @@ import java.util.*;
 public class DbLoader implements ApplicationRunner
 {
     private Logger logger = LoggerFactory.getLogger(DbLoader.class);
+
     private ScopeDao scopes;
     private ReportDao reports;
     private UserDao users;
@@ -25,6 +26,7 @@ public class DbLoader implements ApplicationRunner
     private UserTagDao userTags;
     private SimulationDao simulations;
     private PermissionDao permissions;
+    private NewsArticleDao news;
 
     final private Random seed = new Random();
 
@@ -37,7 +39,8 @@ public class DbLoader implements ApplicationRunner
                     TagDao tagDao,
                     UserTagDao userTagDao,
                     SimulationDao simulationDao,
-                    PermissionDao permissionDao)
+                    PermissionDao permissionDao,
+                    NewsArticleDao newsArticleDao)
     {
         this.scopes = scopeDao;
         this.reports = reportDao;
@@ -48,6 +51,7 @@ public class DbLoader implements ApplicationRunner
         this.userTags = userTagDao;
         this.simulations = simulationDao;
         this.permissions = permissionDao;
+        this.news = newsArticleDao;
     }
 
     public void run(ApplicationArguments args)
@@ -97,6 +101,11 @@ public class DbLoader implements ApplicationRunner
             this.addReportsToScopes(level2Analysis, 8);
         }
 
+        if (this.news.count() == 0)
+        {
+            this.createNews();
+        }
+
     }
 
     private void createPermissions()
@@ -118,6 +127,28 @@ public class DbLoader implements ApplicationRunner
             tempPermission.setDescription(permission);
             this.permissions.save(tempPermission);
         }
+    }
+
+    private void createNews()
+    {
+        logger.info("Creating news");
+
+        NewsArticle news1 = new NewsArticle();
+        news1.setTitle("Reporting is online!!");
+        news1.setBody("Wow, reporting is online!");
+        news1.setLinkTitle("Seemingly ready and blazingly fast.");
+        news1.setLinkUrl("#");
+
+        NewsArticle news2 = new NewsArticle();
+        news2.setTitle("New report A32980 available");
+        news2.setBody("It has an easy to override visual style, and is appropriately subdued.");
+        news2.setLinkTitle("It's dangerous to go alone, take this.");
+        news2.setLinkUrl("#");
+
+        this.news.save(news1);
+        this.news.save(news2);
+
+
     }
 
     private void createRoles()

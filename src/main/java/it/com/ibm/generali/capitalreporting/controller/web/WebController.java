@@ -1,5 +1,6 @@
 package it.com.ibm.generali.capitalreporting.controller.web;
 
+import it.com.ibm.generali.capitalreporting.dao.NewsArticleDao;
 import it.com.ibm.generali.capitalreporting.dao.ReportDao;
 import it.com.ibm.generali.capitalreporting.dao.UserDao;
 import it.com.ibm.generali.capitalreporting.model.CapitalUser;
@@ -25,13 +26,16 @@ public class WebController extends SessionHelper
 
     private ReportDao reports;
     private UserDao users;
+    private NewsArticleDao news;
 
     @Autowired
     public WebController(ReportDao reportDao,
-                         UserDao userDao)
+                         UserDao userDao,
+                         NewsArticleDao newsArticleDao)
     {
         this.reports = reportDao;
         this.users = userDao;
+        this.news = newsArticleDao;
     }
 
     /**
@@ -47,6 +51,7 @@ public class WebController extends SessionHelper
         logger.info("/index page");
         CapitalUser currentUser = this.getCurrentUser(session);
         model.addAttribute("reports", this.reports.findTop5ByUserOrderByCreated(currentUser));
+        model.addAttribute("news", this.news.findTop2ByPublishedIsTrueOrderByCreated());
         return this.pageSetup("index", model, session);
     }
 

@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="news" type="java.util.List<it.com.ibm.generali.capitalreporting.model.NewsArticle>" -->
 <#include "base.ftl">
 
 <#macro page_body>
@@ -5,19 +6,13 @@
 <div class="row">
     <div class="medium-5 large-5 columns">
         <h5>News</h5>
-
-        <div class="callout">
-            <h5>Reporting is online!! - 25 Set 2017</h5>
-            <p>Wow, reporting is online!.</p>
-            <a href="#0">Seemingly ready and blazingly fast.</a>
-        </div>
-
-        <div class="callout">
-            <h5>New report A32980 available - 20 Set 2017.</h5>
-            <p>It has an easy to override visual style, and is appropriately subdued.</p>
-            <a href="#0">It's dangerous to go alone, take this.</a>
-        </div>
-
+        <#list news as article>
+            <div class="callout">
+                <h5>${article.title} - ${article.created?date}</h5>
+                <p>${article.body}</p>
+                <a href="${article.linkUrl}">${article.linkTitle}</a>
+            </div>
+        </#list>
     </div>
     <div class="medium-7 large-7 columns">
         <#include "myreports.ftl">

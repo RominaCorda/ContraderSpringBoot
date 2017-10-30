@@ -36,6 +36,29 @@ public class RoleController extends SessionHelper
     }
 
     /**
+     * Roles GET
+     */
+    @RequestMapping("/roles")
+    public String roles(Model model, HttpSession session)
+    {
+        logger.info("/roles page");
+
+        if (!this.isAdmin(session))
+        {
+            return "redirect:login";
+        }
+
+        final Iterable<Role> roles = this.roles.findAll();
+
+        model.addAttribute("roles", roles);
+        model.addAttribute("user", this.getCurrentUser(session));
+        model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
+        model.addAttribute("version", CapitalReportingApplication.getVersion());
+
+        return "roles";
+    }
+
+    /**
      * Roles with delete
      */
     @RequestMapping(value = "/roles", method = RequestMethod.GET, params = {"delete"})
@@ -97,29 +120,6 @@ public class RoleController extends SessionHelper
         role.setPermissions(permissions);
         this.roles.save(role);
         return "redirect:editrole?roleid=" + roleId;
-    }
-
-    /**
-     * Roles GET
-     */
-    @RequestMapping("/roles")
-    public String roles(Model model, HttpSession session)
-    {
-        logger.info("/roles page");
-
-        if (!this.isAdmin(session))
-        {
-            return "redirect:login";
-        }
-
-        final Iterable<Role> roles = this.roles.findAll();
-
-        model.addAttribute("roles", roles);
-        model.addAttribute("user", this.getCurrentUser(session));
-        model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
-        model.addAttribute("version", CapitalReportingApplication.getVersion());
-
-        return "roles";
     }
 
     /**
