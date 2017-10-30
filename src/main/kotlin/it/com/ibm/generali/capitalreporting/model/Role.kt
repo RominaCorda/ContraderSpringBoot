@@ -26,8 +26,5 @@ open class Role : Serializable
             inverseJoinColumns = arrayOf(JoinColumn(name = "permission_id")))
     var permissions: MutableSet<Permission> = mutableSetOf()
 
-
-
-
 }
 
