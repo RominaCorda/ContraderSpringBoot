@@ -13,11 +13,15 @@
 <!-- REPORT FORM -->
 <form id="addreportform" method="post" action="">
     <div class="row columns">
-        <h3>Add new report</h3>
+        <h3>Generate new report</h3>
     </div>
     <div class="row">
         <div class="medium-6 large-5 columns">
             <input id="templateid" name="templateid" type="hidden" value="${template.id?c}">
+            <label>
+                Scope:
+                <input id="scopedesc" type="text" value="${scopedesc}" readonly>
+            </label>
             <label>
                 Template
                 <select id="selecttemplate" name="selecttemplate">
@@ -51,15 +55,13 @@
                     <option value="124">BG301</option>
                 </select>
             </label>
-            <label>
-                Scope:
-                <input id="scopedesc" type="text" value="${scopedesc}" readonly>
-            </label>
+
         </div>
         <div class="medium-6 large-7 columns">
             <label>
                 Name:
-                <input id="reportname" name="reportname" type="text" required>
+                <input id="reportname" name="reportname" placeholder="Set a name for this report..." type="text"
+                       required>
             </label>
             <label>
                 Manual Adjustments:

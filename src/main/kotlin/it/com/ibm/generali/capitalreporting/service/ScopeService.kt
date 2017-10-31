@@ -38,7 +38,7 @@ open class ScopeService
     fun getParentsDescription(scope: Scope): String
     {
         val parents = this.getParents(scope).reversed()
-        return parents.joinToString("|")
+        return parents.joinToString(" | ")
     }
 
     fun getChildren(scope: Scope): List<Scope>?
