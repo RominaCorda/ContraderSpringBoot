@@ -56,7 +56,7 @@
     <div class="top-bar-right">
         <ul class="menu" style="margin-top: 30px; margin-right: 50px">
             <li>
-                <a href="search" class="button">Search</a>
+                <a href="search" class="button"><i class="fi-magnifying-glass"></i>&nbsp;Search</a>
             </li>
         </ul>
     </div>
