@@ -3,8 +3,6 @@ package it.com.ibm.generali.capitalreporting.service;
 import it.com.ibm.generali.capitalreporting.dao.*;
 import it.com.ibm.generali.capitalreporting.model.*;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -13,22 +11,13 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Component
-public class DbLoader implements ApplicationRunner
+public class DbLoader extends DbLoaderBase implements ApplicationRunner
 {
-    private Logger logger = LoggerFactory.getLogger(DbLoader.class);
-
     private ScopeDao scopes;
     private ReportDao reports;
-    private UserDao users;
-    private RoleDao roles;
-    private TemplateDao templates;
     private TagDao tags;
     private UserTagDao userTags;
     private SimulationDao simulations;
-    private PermissionDao permissions;
-    private NewsArticleDao news;
-
-    final private Random seed = new Random();
 
     @Autowired
     public DbLoader(ScopeDao scopeDao,
@@ -42,16 +31,13 @@ public class DbLoader implements ApplicationRunner
                     PermissionDao permissionDao,
                     NewsArticleDao newsArticleDao)
     {
+        super(roleDao, templateDao, permissionDao, newsArticleDao, userDao);
+
         this.scopes = scopeDao;
         this.reports = reportDao;
-        this.users = userDao;
-        this.roles = roleDao;
-        this.templates = templateDao;
         this.tags = tagDao;
         this.userTags = userTagDao;
         this.simulations = simulationDao;
-        this.permissions = permissionDao;
-        this.news = newsArticleDao;
     }
 
     public void run(ApplicationArguments args)
@@ -129,51 +115,6 @@ public class DbLoader implements ApplicationRunner
         }
     }
 
-    private void createNews()
-    {
-        logger.info("Creating news");
-
-        NewsArticle news1 = new NewsArticle();
-        news1.setTitle("Reporting is online!!");
-        news1.setBody("Wow, reporting is online!");
-        news1.setLinkTitle("Seemingly ready and blazingly fast.");
-        news1.setLinkUrl("#");
-
-        NewsArticle news2 = new NewsArticle();
-        news2.setTitle("New report A32980 available");
-        news2.setBody("It has an easy to override visual style, and is appropriately subdued.");
-        news2.setLinkTitle("It's dangerous to go alone, take this.");
-        news2.setLinkUrl("#");
-
-        this.news.save(news1);
-        this.news.save(news2);
-
-
-    }
-
-    private void createRoles()
-    {
-        logger.info("Creating default roles");
-        List<String> roles = new ArrayList<>();
-        roles.add("System Administrator");
-        roles.add("Power User");
-        roles.add("Analyst User");
-        roles.add("Business User");
-        roles.add("Guest");
-        Permission defaultPermission1 = this.permissions.findByDescription("Edit official reports");
-        Permission defaultPermission2 = this.permissions.findByDescription("Manage official scope");
-        Set<Permission> defaultPermissions = new HashSet<>();
-        defaultPermissions.add(defaultPermission1);
-        defaultPermissions.add(defaultPermission2);
-        for (String role : roles)
-        {
-            Role tempRole = new Role();
-            tempRole.setDescription(role);
-            tempRole.setPermissions(defaultPermissions);
-            this.roles.save(tempRole);
-        }
-    }
-
     private void createSimulations()
     {
         logger.info("Creating simulations");
@@ -195,34 +136,6 @@ public class DbLoader implements ApplicationRunner
             tmpSimulation.setOfficial(true);
             tmpSimulation.setReportingPeriod(reportingPeriod.get(repPeriodIdx));
             this.simulations.save(tmpSimulation);
-        }
-    }
-
-    private void createTemplates()
-    {
-        logger.info("Creating default templates");
-        List<String> templates = new ArrayList<>();
-        templates.add("Template 01");
-        templates.add("Template 02");
-        templates.add("Template 03");
-        templates.add("Template 0x");
-
-        List<String> nodesId = new ArrayList<>();
-        nodesId.add("DE012");
-        nodesId.add("IT000");
-        nodesId.add("BG301");
-        nodesId.add("IT101");
-        nodesId.add("FR501");
-
-        int simulationId;
-        for (String templ : templates)
-        {
-            simulationId = this.seed.nextInt(99999);
-            Template temp = new Template();
-            temp.setName(templ);
-            temp.setSimulationId(String.valueOf(simulationId));
-            temp.setNodeId(nodesId.get(this.seed.nextInt(nodesId.size())));
-            this.templates.save(temp);
         }
     }
 
@@ -260,33 +173,6 @@ public class DbLoader implements ApplicationRunner
         }
     }
 
-    private void createUsers()
-    {
-        logger.info("Creating default capitalUsers");
-        Role admin = this.roles.findByDescription("System Administrator");
-        Role analyst = this.roles.findByDescription("Analyst User");
-        Role power = this.roles.findByDescription("Power User");
-        List<CapitalUser> users = new ArrayList<>();
-        users.add(new CapitalUser("admin", "pass", "Administrator", "admin@capitalireporting.info", admin));
-        users.add(new CapitalUser("gian", "pass", "Gianmaria Borgonovo", "gian@capitalireporting.info", analyst));
-        users.add(new CapitalUser("john", "pass", "John Brunello", "john@capitalireporting.info", analyst));
-        users.add(new CapitalUser("lorenzo", "pass", "Lorenzo Brandimarte", "lorenzo@capitalireporting.info", analyst));
-        users.add(new CapitalUser("michela", "pass", "Michela Da Ros", "michela@capitalireporting.info", analyst));
-        users.add(new CapitalUser("alessio", "doctor", "Alessio Saltarin", "alessio@capitalireporting.info", analyst));
-        users.add(new CapitalUser("lorenzo", "pippo", "Lorenzo Valente", "lorenzo@capitalireporting.info", power));
-        users.add(new CapitalUser("sabatino", "pass", "Sabatino Autorino", "sabatino@capitalireporting.info", power));
-
-        this.users.save(users);
-    }
-
-    private CapitalUser getRandomUser()
-    {
-        final Iterable<CapitalUser> all = this.users.findAll();
-        List<CapitalUser> users = new ArrayList<>();
-        all.forEach(users::add);
-        return users.get(this.seed.nextInt(users.size() - 1) + 1);
-    }
-
     private void addReportsToScopes(List<Scope> scopes, int nrOfReports)
     {
         for (Scope s : scopes)
@@ -318,12 +204,12 @@ public class DbLoader implements ApplicationRunner
     private List<Scope> createScopesLevelOne(ScopeType type)
     {
         logger.info("Creating scopes Level 1(" + type.toString() + ")");
-        List<Scope> created = null;
+        List<Scope> created;
 
         if (type == ScopeType.OFFICIAL)
         {
             String[] words = {"Analyst Meeting", "Closure SCR", "ORSA Reports", "Convergence"};
-            List<Scope> parents = (List<Scope>) this.scopes.findByType(type);
+            List<Scope> parents = this.scopes.findByType(type);
             created = this.createScopes(type, parents, words);
         }
         else
@@ -392,12 +278,12 @@ public class DbLoader implements ApplicationRunner
         {
             for (String scopeName : names)
             {
-                createdScopes.add(createScope(type, parent, scopeName));
+                Scope tempScope = this.createScope(type, parent, scopeName);
+                createdScopes.add(tempScope);
+                this.scopes.save(tempScope);
             }
         }
-        this.scopes.save(createdScopes);
         return createdScopes;
-
     }
 
     @NotNull
@@ -405,6 +291,13 @@ public class DbLoader implements ApplicationRunner
     {
         long parentScope = parent.getId();
         Scope tempScope = new Scope();
+        CapitalUser owner = this.users.findOne("admin");
+        CapitalUser user1 = this.users.findOne("alessio");
+        Set<CapitalUser> users = new HashSet<>();
+        users.add(owner);
+        users.add(user1);
+        tempScope.setOwner(owner);
+        tempScope.setUsers(users);
         tempScope.setName(scopeName);
         tempScope.setType(type);
         tempScope.setParent(parentScope);

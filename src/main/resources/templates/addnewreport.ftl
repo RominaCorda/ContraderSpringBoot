@@ -78,7 +78,7 @@
     <div class="row">
         <div class="columns">
             <div class="float-right">
-                <input type="submit" value="Save" class="button">
+                <input type="submit" value="Save" class="button success">
             </div>
         </div>
     </div>

@@ -19,8 +19,17 @@ open class CapitalUser() : Serializable
     @OneToMany(mappedBy = "user", cascade = arrayOf(CascadeType.ALL))
     var reports: MutableSet<Report>? = null
 
+    @OneToMany(mappedBy = "owner", cascade = arrayOf(CascadeType.ALL))
+    var scopeOwn: MutableSet<Scope>? = null
+
     @OneToMany(mappedBy = "user", cascade = arrayOf(CascadeType.ALL))
     var simulations: MutableSet<Simulation>? = null
+
+    /**
+     * TODO: Rename to scopeViews
+     */
+    @ManyToMany(mappedBy = "users")
+    var scopes: MutableSet<Scope> = mutableSetOf()
 
     var active: Boolean = true
 
