@@ -41,9 +41,9 @@ public class NewsController extends SessionHelper
             return "redirect:login";
         }
 
-        final Iterable<NewsArticle> roles = this.news.findAll();
+        final Iterable<NewsArticle> news = this.news.findAll();
 
-        model.addAttribute("newslist", roles);
+        model.addAttribute("newslist", news);
         model.addAttribute("user", this.getCurrentUser(session));
         model.addAttribute("title", CapitalReportingApplication.APP_TITLE);
         model.addAttribute("version", CapitalReportingApplication.getVersion());

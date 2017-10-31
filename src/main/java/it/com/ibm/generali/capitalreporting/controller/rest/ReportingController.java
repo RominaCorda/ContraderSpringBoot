@@ -11,7 +11,7 @@ import it.com.ibm.generali.capitalreporting.dto.ReportAvailabilityReqDTO;
 import it.com.ibm.generali.capitalreporting.dto.ReportAvailabilityRespDTO;
 import it.com.ibm.generali.capitalreporting.dto.SquareRespDTO;
 import it.com.ibm.generali.capitalreporting.service.Availability;
-import it.com.ibm.generali.capitalreporting.service.NumberCruncher;
+import it.com.ibm.generali.capitalreporting.service.INumberCruncher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +29,11 @@ public class ReportingController
 {
     private static Logger logger = LoggerFactory.getLogger(ReportingController.class);
     private Availability availability;
-    private NumberCruncher numberCruncher;
+    private INumberCruncher numberCruncher;
 
     @Autowired
     public ReportingController(Availability availability,
-                               NumberCruncher nc)
+                               INumberCruncher nc)
     {
         Assert.notNull(availability, "Availability is NULL");
         this.availability = availability;

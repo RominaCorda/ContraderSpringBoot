@@ -20,5 +20,4 @@ open class NewsArticle
 
     val created = Date()
 
-
 }
