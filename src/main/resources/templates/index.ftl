@@ -28,7 +28,6 @@
             <div class="tabs-panel is-active" id="panel1">
                 <h5>Reporting Periods</h5>
                 <ul>
-                    <li><a href="#">YE2015</a></li>
                     <li><a href="#">YE2016</a></li>
                     <li><a href="#">YE2017</a></li>
                 </ul>
@@ -36,8 +35,6 @@
             <div class="tabs-panel" id="panel2">
                 <h5>Scopes</h5>
                 <ul>
-                    <li><a href="#">Analysis</a> | <a href="#">YE2014</a> | <a href="#">Closure SCR</a>
-                    </li>
                     <li><a href="#">Official</a> | <a href="#">YE2015</a> | <a href="#">Closure SCR</a> |
                         <a
                                 href="#">Germany</a></li>
@@ -51,7 +48,7 @@
     </div>
 
     <div class="medium-5 large-5 columns">
-        <img class="thumbnail" src="http://placehold.it/600x270">
+        <img class="thumbnail" src="http://placehold.it/600x230">
     </div>
 
 </div>
