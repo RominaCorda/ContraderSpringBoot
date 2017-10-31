@@ -70,7 +70,7 @@
 
     <div class="row columns">
         <a href="addnewreport?scopeid=${selscope.id}" class="success button float-right">
-            <i class="fi-plus">&nbsp;</i>
+            <i class="fi-plus">&nbsp;</i>Generate New
         </a>
     </div>
 

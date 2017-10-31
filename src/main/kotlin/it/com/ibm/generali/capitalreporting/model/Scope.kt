@@ -41,6 +41,8 @@ open class Scope : Serializable
     fun hasNoReports(): Boolean =
             this.reports.size == 0
 
+    override fun toString(): String = this.name
+
     companion object
     {
         val TAG_DELIMITER = ';'

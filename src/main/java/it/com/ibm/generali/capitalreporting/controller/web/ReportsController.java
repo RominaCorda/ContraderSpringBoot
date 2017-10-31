@@ -209,7 +209,7 @@ public class ReportsController extends SessionHelper
         model.addAttribute("parents", parents);
         model.addAttribute("reports", reports);
 
-        return this.pageSetup("archive", model, session);
+        return this.pageSetup("reportslist", model, session);
     }
 
 
