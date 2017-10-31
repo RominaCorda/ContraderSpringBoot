@@ -25,7 +25,7 @@
     <div class="row">
         <div class="small-12 medium-6 large-6">
             <label>Body:
-                <textarea id="body" name="body" style="height: 200px"
+                <textarea id="body" name="body" rows="4"
                           placeholder="News body here"><#if newsarticle.body?has_content>${newsarticle.body}</#if></textarea>
             </label>
         </div>

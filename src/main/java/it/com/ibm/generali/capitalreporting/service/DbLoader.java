@@ -265,6 +265,7 @@ public class DbLoader implements ApplicationRunner
         logger.info("Creating default capitalUsers");
         Role admin = this.roles.findByDescription("System Administrator");
         Role analyst = this.roles.findByDescription("Analyst User");
+        Role power = this.roles.findByDescription("Power User");
         List<CapitalUser> users = new ArrayList<>();
         users.add(new CapitalUser("admin", "pass", "Administrator", "admin@capitalireporting.info", admin));
         users.add(new CapitalUser("gian", "pass", "Gianmaria Borgonovo", "gian@capitalireporting.info", analyst));
@@ -272,6 +273,9 @@ public class DbLoader implements ApplicationRunner
         users.add(new CapitalUser("lorenzo", "pass", "Lorenzo Brandimarte", "lorenzo@capitalireporting.info", analyst));
         users.add(new CapitalUser("michela", "pass", "Michela Da Ros", "michela@capitalireporting.info", analyst));
         users.add(new CapitalUser("alessio", "doctor", "Alessio Saltarin", "alessio@capitalireporting.info", analyst));
+        users.add(new CapitalUser("lorenzo", "pippo", "Lorenzo Valente", "lorenzo@capitalireporting.info", power));
+        users.add(new CapitalUser("sabatino", "pass", "Sabatino Autorino", "sabatino@capitalireporting.info", power));
+
         this.users.save(users);
     }
 
