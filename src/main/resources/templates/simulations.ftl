@@ -14,20 +14,23 @@
 
     <div class="row">
         <div class="large-4 medium-5 columns">
-            <select onchange="gotourl(value);">
-                <#list reportingperiods as year>
-                    <#if reportingperiod==year>
-                        <option value="${year}" selected="selected">${year}</option>
-                    <#else>
-                        <option value="${year}">${year}</option>
-                    </#if>
-                </#list>
-            </select>
+            <label>Reporting period:
+                <select onchange="gotourl(value);">
+                    <#list reportingperiods as year>
+                        <#if reportingperiod==year>
+                            <option value="${year}" selected="selected">${year}</option>
+                        <#else>
+                            <option value="${year}">${year}</option>
+                        </#if>
+                    </#list>
+                </select>
+            </label>
         </div>
     </div>
 
-    <div class="row columns">
-        <table id="tagstable">
+    <div class="row">
+        <div class="small-12 large-8 columns">
+            <table id="tagstable">
             <thead>
             <tr>
                 <th width="100">ID</th>
@@ -56,10 +59,13 @@
                 </#list>
             </tbody>
         </table>
+        </div>
     </div>
 
-    <div class="row columns">
-        <button class="button float-right">Save</button>
+    <div class="row">
+        <div class="small-12 large-8 columns">
+            <button class="button float-right">Save</button>
+        </div>
     </div>
 
 </div>

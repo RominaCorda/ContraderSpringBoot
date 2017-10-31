@@ -1,4 +1,8 @@
 <#-- @ftlvariable name="version" type="java.lang.String" -->
+<div class="row columns">
+    <!-- FOOTER HEIGHT -->
+    <div style="height: 100px"></div>
+</div>
 <div id="footer">
     <hr>
     <div class="row columns">

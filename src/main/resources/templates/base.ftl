@@ -21,8 +21,8 @@
 </head>
 <body>
     <@page_body/>
-        <@footer/>
-        <@before_end_scripts/>
+    <@footer/>
+    <@before_end_scripts/>
 </body>
 </html>
 </#macro>
