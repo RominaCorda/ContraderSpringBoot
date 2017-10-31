@@ -136,7 +136,6 @@ public class UsersController extends SessionHelper
         {
             selectedUser = new CapitalUser();
             selectedUser.username = "";
-            selectedUser.password = "";
             selectedUser.email = "";
             selectedUser.fullName = "";
             selectedUser.role = roles.iterator().next();

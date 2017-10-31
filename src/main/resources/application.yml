@@ -1,6 +1,6 @@
 #
 # APPLICATION.PROPERTIES
-# In memory HSQLDB without COGNOS
+# Embedded HSQLDB without COGNOS
 #
 
 server:
@@ -15,6 +15,9 @@ spring:
       enabled: ALWAYS
   datasource:
     platform: hsqldb
+    url: jdbc:hsqldb:file:capitalreporting.db
+    username: SA
+    password:
 swagger:
   base-path: /capitalreporting
 security:

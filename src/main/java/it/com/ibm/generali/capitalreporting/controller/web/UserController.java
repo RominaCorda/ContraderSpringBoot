@@ -150,7 +150,7 @@ public class UserController extends SessionHelper
         if (knownUser != null)
         {
             logger.info("Ok, found user " + username);
-            if (knownUser.getPassword().equals(password))
+            if (knownUser.checkPassword(password))
             {
                 logger.info("Password is OK");
                 this.saveUserSession(session, knownUser);
