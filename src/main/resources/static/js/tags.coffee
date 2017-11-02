@@ -1,20 +1,18 @@
 exports = this
-window.errorCount = 0
 exports.editcell = (tagid) ->
+  cellEmpty = false
   content = $('#tag' + tagid).html()
   console.log 'Editing ' + tagid + ' with content=' + content
   if content == ''
         $ ->
         $('.form-error-' + tagid).show()
-        errorCount++
-        console.log window.errorCount
+        cellEmpty = true
   else
         $ ->
         $('.form-error-' + tagid).hide()
-        errorCount--
-        console.log window.errorCount
+        cellEmpty = false
 
-  if errorCount == 0
+  if !cellEmpty
     window.location.assign 'tags?edit=' + tagid + '&content=' + content
     return
 
