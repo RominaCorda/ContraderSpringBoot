@@ -25,6 +25,7 @@
                             <td><a href="tags?delete=${tag.id}"><i class="fi-x"></i></td>
                             <td><a onclick="editcell(${tag.id});"><i class="fi-save"></i></td>
                         </tr>
+                        <td colspan="100%" class="form-error-${tag.id}" style="display: none"><span class="form-error form-error-${tag.id}">This field cannot be blank</span></td>
                         </#list>
                     </tbody>
                 </table>

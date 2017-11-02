@@ -10,14 +10,15 @@
     </div>
 </div>
 
-<form id="editnewsform" method="post" action="">
+<form data-abide novalidate id="editnewsform" method="post" action="">
 
     <div class="row">
         <div class="small-12 medium-6 large-6">
             <label>
                 Title:
-                <input id="title" name="title" placeholder="News title" type="text" value="${newsarticle.title}">
+                <input id="title" name="title" placeholder="News title" type="text" value="${newsarticle.title}" required>
                 <input id="newsid" name="newsid" type="hidden" value="${newsarticle.id}">
+                <span class="form-error">This field cannot be blank</span>
             </label>
         </div>
     </div>
@@ -26,7 +27,8 @@
         <div class="small-12 medium-6 large-6">
             <label>Body:
                 <textarea id="body" name="body" rows="4"
-                          placeholder="News body here"><#if newsarticle.body?has_content>${newsarticle.body}</#if></textarea>
+                          placeholder="News body here" required><#if newsarticle.body?has_content>${newsarticle.body}</#if></textarea>
+                <span class="form-error">This field cannot be blank</span>
             </label>
         </div>
     </div>
@@ -35,7 +37,8 @@
         <div class="small-12 medium-6 large-6">
             <label>Link Title:</label>
             <input id="linkTitle" name="linkTitle" type="text" value="${newsarticle.linkTitle}"
-                   placeholder="Add a link title"/>
+                   placeholder="Add a link title" required/>
+            <span class="form-error">This field cannot be blank</span>
         </div>
     </div>
 
@@ -45,7 +48,8 @@
                 <label>Link URL:</label>
                 <div class="small-9 columns">
                     <input id="linkUrl" name="linkUrl" type="text" value="${newsarticle.linkUrl}"
-                           placeholder="Add a valid URL"/>
+                           placeholder="Add a valid URL" required/>
+                    <span class="form-error">This field cannot be blank</span>
                 </div>
                 <div class="small-3 columns">
                     <button class="button"><i class="fi-link"></i>&nbsp;</button>

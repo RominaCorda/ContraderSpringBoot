@@ -68,7 +68,7 @@
     </div>
 
     <div class="small-9 medium-8 large-8 columns">
-        <form name="userform" action="" method="post" style="margin-top: 60px">
+        <form data-abide novalidate name="userform" action="" method="post" style="margin-top: 60px">
             <#if mode != "new">
                 <div class="row">
                     <div class="columns">
@@ -80,22 +80,25 @@
             <div class="row">
                 <div class="column medium-10 large-10">
                     <label>User ID:
-                        <input id="username" name="username" type="text" value="${selecteduser.username}">
+                        <input id="username" name="username" type="text" value="${selecteduser.username}" required>
                         <input id="password" name="password" type="hidden" value="***">
+                        <span class="form-error">This field cannot be blank</span>
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="column medium-10 large-10">
                     <label>Full Name:
-                        <input id="fullName" name="fullName" type="text" value="${selecteduser.fullName}">
+                        <input id="fullName" name="fullName" type="text" value="${selecteduser.fullName}" required>
+                        <span class="form-error">This field cannot be blank</span>
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="column medium-10 large-10">
                     <label>eMail Address:
-                        <input id="email" name="email" type="email" value="${selecteduser.email}">
+                        <input id="email" name="email" type="email" value="${selecteduser.email}" required>
+                        <span class="form-error">Not a valid e-mail</span>
                     </label>
                 </div>
             </div>

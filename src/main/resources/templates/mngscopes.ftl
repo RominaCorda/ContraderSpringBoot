@@ -61,14 +61,15 @@
                     <div class="row columns">
                         <h5 id="scopename">${selscope.name}</h5>
                     </div>
-                    <form id="scopeform" method="post" action="managescope">
+                    <form data-abide novalidate id="scopeform" method="post" action="managescope">
                         <div class="row">
                             <div class="column medium-6 large-6">
                                 <input id="id" name="id" type="hidden" value="${selscope.id}">
                                 <input id="parent" name="parent" type="hidden" value="${selscope.parent}">
                                 <input id="mode" name="mode" type="hidden" value="${mode}">
                                 <label>Name:
-                                    <input id="name" name="name" type="text" value="${selscope.name}">
+                                    <input id="name" name="name" type="text" value="${selscope.name}" required>
+                                    <span class="form-error">This field cannot be blank</span>
                                 </label>
                                 <label>Published
                                     <#if selscope.published>
@@ -144,14 +145,15 @@
                     <div class="row columns">
                         <h5 id="scopename">Add new scope</h5>
                     </div>
-                    <form id="scopeform" method="post" action="managescope">
+                    <form data-abide no-validate id="scopeform" method="post" action="managescope">
                         <div class="row">
                             <div class="column medium-6 large-6">
                                 <input id="id" name="id" type="hidden" value="-1">
                                 <input id="parent" name="parent" type="hidden" value="${parents?last}">
                                 <input id="mode" name="mode" type="hidden" value="${mode}">
                                 <label>Name:
-                                    <input id="name" name="name" type="text" value="">
+                                    <input id="name" name="name" type="text" value="" required>
+                                    <span class="form-error">This field cannot be blank</span>
                                 </label>
                                 <label>Published
                                     <input id="published" name="published" type="checkbox">

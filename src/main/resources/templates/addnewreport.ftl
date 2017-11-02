@@ -11,7 +11,7 @@
 <!-- MAIN -->
 
 <!-- REPORT FORM -->
-<form id="addreportform" method="post" action="">
+<form data-abide novalidate id="addreportform" method="post" action="">
     <div class="row columns">
         <h3>Generate new report</h3>
     </div>
@@ -62,6 +62,7 @@
                 Name:
                 <input id="reportname" name="reportname" placeholder="Set a name for this report..." type="text"
                        required>
+                <span class="form-error">This field cannot be blank</span>
             </label>
             <label>
                 Manual Adjustments:

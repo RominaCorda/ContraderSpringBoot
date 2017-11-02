@@ -12,14 +12,15 @@
     </div>
 </div>
 
-<form id="editroleform" method="post" action="">
+<form data-abide novalidate id="editroleform" method="post" action="">
 
     <div class="row">
         <div class="small-12 medium-6 large-6">
             <label>
                 Role Name:
-                <input id="rolename" name="rolename" type="text" value="${role.description}">
+                <input id="rolename" name="rolename" type="text" value="${role.description}" required>
                 <input id="roleid" name="roleid" type="hidden" value="${role.id}">
+                <span class="form-error">This field cannot be blank</span>
             </label>
         </div>
     </div>
