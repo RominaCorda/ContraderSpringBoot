@@ -93,6 +93,29 @@ public class ScopesController extends SessionHelper
     }
 
     /**
+     * Roles with copy
+     */
+    @RequestMapping(value = "/copyscope", method = RequestMethod.GET, params = {"id"})
+    public String copyScope(Model model, HttpSession session, @RequestParam("id") String scopeId)
+    {
+        String redirect = "redirect:/managescopes";
+        try
+        {
+            Long scopeCopyId = scopeService.copyScope(Long.parseLong(scopeId));
+            Scope scopeCopy = this.scopes.findOne(scopeCopyId);
+            scopeCopy.name = scopeCopy.name + " nuovo";
+            this.scopes.save(scopeCopy);
+            redirect = "redirect:/managescope?scope=" + scopeCopyId;
+        }
+        catch (Exception exc)
+        {
+            logger.error(exc.getMessage());
+        }
+
+        return redirect;
+    }
+
+    /**
      * Manage scope GET with scope id
      */
     @RequestMapping(value = "/managescope", method = RequestMethod.GET, params = {"scope"})

@@ -76,18 +76,34 @@ public class DbLoader extends DbLoaderBase implements ApplicationRunner
 
         if (this.scopes.count() == 0)
         {
-            this.createScopesLevelRoot(ScopeType.ANALYSIS);
-            this.createScopesLevelRoot(ScopeType.OFFICIAL);
+//            this.createScopesLevelRoot(ScopeType.ANALYSIS);
+//            this.createScopesLevelRoot(ScopeType.OFFICIAL);
+//
+//            List<Scope> level1Analysis = this.createScopesLevelOne(ScopeType.ANALYSIS);
+//            List<Scope> level1Official = this.createScopesLevelOne(ScopeType.OFFICIAL);
+//
+//            List<Scope> level2Official = this.createScopesLevelTwo(ScopeType.OFFICIAL, level1Official);
+//            List<Scope> level2Analysis = this.createScopesLevelTwo(ScopeType.ANALYSIS, level1Analysis);
+//
+//            this.addReportsToScopes(level2Official, 8);
+//            this.addReportsToScopes(level2Analysis, 8);
+//            this.addTemplatesToScopes(level2Analysis);
 
-            List<Scope> level1Analysis = this.createScopesLevelOne(ScopeType.ANALYSIS);
-            List<Scope> level1Official = this.createScopesLevelOne(ScopeType.OFFICIAL);
-
-            List<Scope> level2Official = this.createScopesLevelTwo(ScopeType.OFFICIAL, level1Official);
-            List<Scope> level2Analysis = this.createScopesLevelTwo(ScopeType.ANALYSIS, level1Analysis);
-
-            this.addReportsToScopes(level2Official, 8);
-            this.addReportsToScopes(level2Analysis, 8);
-            this.addTemplatesToScopes(level2Analysis);
+            Scope nonno = new Scope();
+            nonno.setName("Nonno");
+            nonno.setParent(-1L);
+            nonno.setPublished(true);
+            nonno.setType(ScopeType.ANALYSIS);
+            this.scopes.save(nonno);
+            Scope padre = createScope(ScopeType.ANALYSIS, nonno, "Padre");
+            this.scopes.save(padre);
+            Scope figlio = createScope(ScopeType.ANALYSIS, padre, "Figlio");
+            this.scopes.save(figlio);
+            addReportsToScope(figlio, 3);
+            Iterator<Template> allTemplates = this.templates.findAll().iterator();
+            while (allTemplates.hasNext())
+                figlio.addTemplate(allTemplates.next());
+            this.scopes.save(figlio);
         }
 
         if (this.news.count() == 0)

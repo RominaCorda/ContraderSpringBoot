@@ -129,6 +129,9 @@
                             <a href="deletescope?id=${selscope.id?c}" class="warning button">
                                 <i class="fi-x"></i>&nbsp;Delete
                             </a>
+                            <a href="copyscope?id=${selscope.id?c}" class="button secondary">
+                                <i class="fi-page-copy"></i>&nbsp;Copy
+                            </a>
                             <#if canAddReports??>
                                 <#if canAddReports>
                                     <div class="button-group float-right">

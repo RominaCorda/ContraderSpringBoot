@@ -4,7 +4,7 @@ import java.io.Serializable
 import javax.persistence.*
 
 @Entity
-open class Scope : Serializable
+open class Scope() : Serializable
 {
     @Id
     @TableGenerator(name = "TABLE_GEN", table = "T_GENERATOR", pkColumnName = "GEN_KEY", pkColumnValue = "OUTPUT_DEF", valueColumnName = "GEN_VALUE", initialValue = 1, allocationSize = 1)
@@ -22,6 +22,24 @@ open class Scope : Serializable
     var published: Boolean = false
     var parent: Long = -1L
     var type: ScopeType = ScopeType.ANALYSIS
+
+    constructor(owner:CapitalUser, name: String, tags: String, published: Boolean, parent: Long, type: ScopeType, templates:MutableSet<Template>, users:MutableSet<CapitalUser>) : this()
+    {
+        this.owner = owner
+        this.name = name
+        this.tags = tags
+        this.published = published
+        this.parent = parent
+        this.type = type
+        templates?.forEach{
+            template ->
+            this.templates.add(template);
+        }
+        users?.forEach{
+            user ->
+            this.users.add(user);
+        }
+    }
 
     @OneToMany(mappedBy = "scope", cascade = arrayOf(CascadeType.ALL))
     var reports: MutableSet<Report> = mutableSetOf()
@@ -61,6 +79,8 @@ open class Scope : Serializable
     {
         return this.tags.split(Scope.TAG_DELIMITER)
     }
+
+    fun copy() = Scope(this.owner, this.name, this.tags, this.published, this.parent, this.type, this.templates, this.users)
 
     fun hasNoReports(): Boolean =
             this.reports.size == 0
