@@ -30,12 +30,12 @@ $ ->
   $('#tagstable').on 'click', '#btn-new-tag', ->
     event.preventDefault()
     console.log "entered"
-    inputValue = $('#name').val()
-    if inputValue == ''
+    tagName = $('#name').val()
+    if tagName == ''
       $('#new-tag-error').show()
     else
       $('#new-tag-error').hide()
-      $.post '/capitalreporting/tags',
-        name: inputValue
+      $.post window.location.pathname,
+        name: tagName
         () -> window.location.reload()
 
