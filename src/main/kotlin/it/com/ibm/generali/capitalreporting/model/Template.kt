@@ -20,4 +20,7 @@ open class Template : Serializable
 
     @OneToMany(mappedBy = "template", cascade = arrayOf(CascadeType.ALL))
     var reports: MutableSet<Report>? = null
+
+    @ManyToMany(mappedBy = "templates")
+    var scopes: MutableSet<Scope> = mutableSetOf()
 }

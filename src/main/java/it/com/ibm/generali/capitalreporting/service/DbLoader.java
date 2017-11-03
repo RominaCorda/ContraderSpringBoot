@@ -2,12 +2,14 @@ package it.com.ibm.generali.capitalreporting.service;
 
 import it.com.ibm.generali.capitalreporting.dao.*;
 import it.com.ibm.generali.capitalreporting.model.*;
+import org.hibernate.collection.internal.PersistentSet;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Component
@@ -85,13 +87,13 @@ public class DbLoader extends DbLoaderBase implements ApplicationRunner
 
             this.addReportsToScopes(level2Official, 8);
             this.addReportsToScopes(level2Analysis, 8);
+            this.addTemplatesToScopes(level2Analysis);
         }
 
         if (this.news.count() == 0)
         {
             this.createNews();
         }
-
     }
 
     private void createPermissions()
@@ -178,6 +180,18 @@ public class DbLoader extends DbLoaderBase implements ApplicationRunner
         for (Scope s : scopes)
         {
             this.addReportsToScope(s, nrOfReports);
+        }
+    }
+
+    private void addTemplatesToScopes(List<Scope> scopes)
+    {
+        for (Scope s : scopes) {
+            Iterator<Template> allTemplates = this.templates.findAll().iterator();
+            Set<Template> templates = new HashSet<>();
+            while (allTemplates.hasNext())
+                templates.add(allTemplates.next());
+            s.setTemplates(templates);
+            this.scopes.save(s);
         }
     }
 

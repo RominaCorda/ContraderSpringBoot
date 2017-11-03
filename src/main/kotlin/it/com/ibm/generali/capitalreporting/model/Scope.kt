@@ -28,6 +28,13 @@ open class Scope : Serializable
 
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = arrayOf(CascadeType.MERGE))
+    @JoinTable(name = "Scope_Templates",
+            joinColumns = arrayOf(JoinColumn(name = "scope_id")),
+            inverseJoinColumns = arrayOf(JoinColumn(name = "template_id")))
+    var templates: MutableSet<Template> = mutableSetOf()
+
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = arrayOf(CascadeType.MERGE))
     @JoinTable(name = "Scope_CapitalUsers",
             joinColumns = arrayOf(JoinColumn(name = "scope_id")),
             inverseJoinColumns = arrayOf(JoinColumn(name = "capitaluser_id")))
@@ -36,6 +43,11 @@ open class Scope : Serializable
     fun addReport(report: Report)
     {
         this.reports.add(report)
+    }
+
+    fun addTemplate(template: Template)
+    {
+        this.templates.add(template)
     }
 
     fun setAllTags(tags: List<String>)

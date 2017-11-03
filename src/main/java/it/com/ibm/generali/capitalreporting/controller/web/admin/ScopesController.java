@@ -105,7 +105,7 @@ public class ScopesController extends SessionHelper
         model.addAttribute("mode", scopeObj.getType().toString().toLowerCase());
         model.addAttribute("canAddReports", this.scopeService.canAddReports(scopeObj));
         model.addAttribute("users", this.users.findAll());
-        model.addAttribute("templates", this.templates.findAll());
+        model.addAttribute("templates", scopeObj.getTemplates());
         model.addAttribute("selscope", scopeObj);
         model.addAttribute("parents", parents);
         model.addAttribute("scopes", siblings);
