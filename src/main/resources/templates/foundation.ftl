@@ -3,4 +3,8 @@
 <script src="js/foundation.min.js"></script>
 <script>
     $(document).foundation();
+    $('input, textarea, select').off('.abide').on('blur.fndtn.abide change.fndtn.abide', function (e) {
+        // do nothing
+    });
+
 </script>

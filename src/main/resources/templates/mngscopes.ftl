@@ -40,7 +40,7 @@
             <#if scopes??>
                 <#list scopes as scope>
                     <div class="row columns">
-                        <a href="managescope?scope=${scope.id?c}" class="button" style="width: 200px">
+                        <a class="scope" href="managescope?scope=${scope.id?c}" class="button" style="width: 200px">
                         ${scope.name}
                         </a>
                         <#if scope.hasNoReports()>
@@ -70,6 +70,7 @@
                                 <label>Name:
                                     <input id="name" name="name" type="text" value="${selscope.name}" required>
                                     <span class="form-error">This field cannot be blank</span>
+                                    <span class="scope-duplicate" hidden>Parent scopes cannot have children with the same name</span>
                                 </label>
                                 <label>Published
                                     <#if selscope.published>
@@ -124,7 +125,7 @@
                             </#if>
                         </#if>
                         <div class="row columns">
-                            <input id="scopesave" type="submit" class="button" value="Save">
+                            <input id="scopesave" type="submit" class="button" value="Save" onclick="checkDuplicate()">
                             &nbsp;
                             <a href="deletescope?id=${selscope.id?c}" class="warning button">
                                 <i class="fi-x"></i>&nbsp;Delete
@@ -157,6 +158,7 @@
                                 <label>Name:
                                     <input id="name" name="name" type="text" value="" required>
                                     <span class="form-error">This field cannot be blank</span>
+                                    <span class="scope-duplicate" hidden>Parent scopes cannot have children with the same name</span>
                                 </label>
                                 <label>Published
                                     <input id="published" name="published" type="checkbox">
@@ -175,7 +177,7 @@
                             </div>
                         </div>
                         <div class="row columns">
-                            <input id="scopesave" type="submit" class="button" value="Save">
+                            <input id="scopesave" type="submit" class="button" value="Save" onclick="checkDuplicate()">
                             &nbsp;
                         </div>
                     </form>
