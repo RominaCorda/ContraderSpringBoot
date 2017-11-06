@@ -1,7 +1,7 @@
 exports = this
 exports.editcell = (tagid) ->
   cellEmpty = false
-  content = $('#tag' + tagid).html()
+  content = $('#tag' + tagid).text()
   console.log 'Editing ' + tagid + ' with content=' + content
   if content == ''
         $ ->
