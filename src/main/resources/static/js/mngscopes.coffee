@@ -22,5 +22,5 @@ exports.checkDuplicate = () ->
   else
     $('.scope-duplicate').hide()
     $('#scopeform').submit()
-return
+  return
 
