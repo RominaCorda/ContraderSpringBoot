@@ -35,7 +35,6 @@ $ ->
       $('#new-tag-error').show()
     else
       $('#new-tag-error').hide()
-      $.post window.location.pathname,
-        name: tagName
-        () -> window.location.reload()
+      $('#addtagform').submit()
+
 
