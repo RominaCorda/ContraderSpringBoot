@@ -40,7 +40,7 @@
             <#if scopes??>
                 <#list scopes as scope>
                     <div class="row columns">
-                        <a class="scope" href="managescope?scope=${scope.id?c}" class="button" style="width: 200px">
+                        <a href="managescope?scope=${scope.id?c}" class="scope button" style="width: 200px">
                         ${scope.name}
                         </a>
                         <#if scope.hasNoReports()>
