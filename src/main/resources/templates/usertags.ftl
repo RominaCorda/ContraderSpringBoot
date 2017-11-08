@@ -16,6 +16,7 @@
                     <tr>
                         <th width="330">Tag</th>
                         <th width="30">&nbsp;</th>
+                        <th width="30">&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
