@@ -41,7 +41,7 @@
         <#if mode != "new">
             <div class="row">
                 <label>Select User
-                    <select onchange="if (this.value) window.location.href='/configure?selecteduser='+this.value">
+                    <select onchange="if (this.value) window.location.href='configure?selecteduser='+this.value">
                         <#list users as user>
                             <#if selecteduser.username==user.username>
                             <option value="${user.username}" selected="selected">
