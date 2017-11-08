@@ -1,15 +1,18 @@
 exports = this
 exports.editcell = (tagid) ->
   cellEmpty = false
-  content = $('#tag' + tagid).text()
+  cell = $('#tag' + tagid)
+  content = cell.text()
   console.log 'Editing ' + tagid + ' with content=' + content
   if content == ''
         $ ->
         $('.form-error-' + tagid).show()
+        cell.parent().addClass('is-invalid-input')
         cellEmpty = true
   else
         $ ->
         $('.form-error-' + tagid).hide()
+        cell.parent().removeClass('is-invalid-input')
         cellEmpty = false
 
   if !cellEmpty
@@ -29,12 +32,13 @@ $ ->
 
   $('#tagstable').on 'click', '#btn-new-tag', ->
     event.preventDefault()
-    console.log "entered"
     tagName = $('#name').val()
     if tagName == ''
       $('#new-tag-error').show()
+      $('#name').addClass('is-invalid-input')
     else
       $('#new-tag-error').hide()
+      $('#name').removeClass('is-invalid-input')
       $('#addtagform').submit()
 
 

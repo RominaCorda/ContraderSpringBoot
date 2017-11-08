@@ -70,8 +70,8 @@
                                 <label>Name:
                                     <input id="name" name="name" type="text" value="${selscope.name}" required>
                                     <span class="form-error">This field cannot be blank</span>
-                                    <span class="scope-duplicate" hidden>Parent scopes cannot have children with the same name</span>
                                 </label>
+                                <span class="scope-duplicate" hidden>Parent scopes cannot have children with the same name</span>
                                 <label>Published
                                     <#if selscope.published>
                                         <input id="published" name="published" type="checkbox" checked="checked">
@@ -158,8 +158,8 @@
                                 <label>Name:
                                     <input id="name" name="name" type="text" value="" required>
                                     <span class="form-error">This field cannot be blank</span>
-                                    <span class="scope-duplicate" hidden>Parent scopes cannot have children with the same name</span>
                                 </label>
+                                <span class="scope-duplicate" hidden>Parent scopes cannot have children with the same name</span>
                                 <label>Published
                                     <input id="published" name="published" type="checkbox">
                                 </label>
