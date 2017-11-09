@@ -12,47 +12,19 @@
         $('input:checkbox').prop('checked', false);
     };
 
-    exports.checkDuplicate = function () {
-        var duplicate;
-        event.preventDefault();
-        if ($('#name').val() === '') {
-            $('scope-duplicate').hide();
-        }
-        duplicate = false;
-        $('.scope').each(function (index, scope) {
-            var scopeName;
-            scopeName = $('#name').val();
-            if (scopeName === scope.innerText || scopeName === scope.innerText.substring(0, scope.innerText.length - 1)) {
-                return duplicate = true;
-            }
-        });
-        if (duplicate) {
-            $('.scope-duplicate').show();
-            $('.form-error').removeClass('is-visible');
-            $('#name').addClass('is-invalid-input');
-        } else {
-            $('.scope-duplicate').hide();
-            $('#scopeform').submit();
-        }
-    };
-
-    $('.scope-duplicate').on('show', (function () {
-        $('.form-error').removeClass('is-visible');
-        $('#name').addClass('is-invalid-input');
-    }));
-
     exports.scopeValid = function () {
-        var blank, duplicate;
+        var blank, currentScopeName, duplicate;
+        currentScopeName = $('#name').val();
         blank = false;
         duplicate = false;
-        event.preventDefault();
-        if ($('#name').val() === '') {
+        if (currentScopeName === '') {
             blank = true;
         }
         $('.scope').each(function (index, scope) {
-            var scopeName;
-            scopeName = $('#name').val();
-            if (scopeName === scope.innerText || scopeName === scope.innerText.substring(0, scope.innerText.length - 1)) {
+            var sameName, scopeName;
+            scopeName = scope.innerText;
+            sameName = currentScopeName === scopeName || currentScopeName === scopeName.substr(0, scopeName.length - 1);
+            if (sameName) {
                 return duplicate = true;
             }
         });
@@ -63,6 +35,23 @@
             showWarningFieldAlreadyExists();
         }
         return !blank && !duplicate;
+    };
+
+    exports.scopeEdited = function () {
+        var currentScopeId, currentScopeName, edited;
+        edited = true;
+        currentScopeId = $("#id").val();
+        currentScopeName = $('#name').val();
+        $('.scope').each(function (index, scope) {
+            var sameId, sameName, scopeHref, scopeId, scopeName;
+            scopeHref = $(scope).attr('href');
+            scopeId = scopeHref.substr(scopeHref.indexOf('=') + 1);
+            scopeName = scope.innerText;
+            sameId = currentScopeId === scopeId;
+            sameName = currentScopeName === scopeName || currentScopeName === scopeName.substr(0, scopeName.length - 1);
+            return edited = !(sameId && sameName);
+        });
+        return edited;
     };
 
     exports.showWarningFieldIsBlank = function () {
@@ -86,7 +75,10 @@
     };
 
     exports.persistScope = function () {
-        if (scopeValid()) {
+        event.preventDefault();
+        if (!scopeEdited()) {
+            return $('#scopeform').submit();
+        } else if (scopeValid()) {
             removeWarnings();
             $('#scope-save-confirm').foundation('open');
             return $(".close-button").click(function () {
