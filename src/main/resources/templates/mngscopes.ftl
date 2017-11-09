@@ -125,8 +125,15 @@
                             </#if>
                         </#if>
                         <div class="row columns">
-                            <input id="scopesave" type="submit" class="button" value="Save" onclick="checkDuplicate()">
+                            <input id="scopesave" type="submit" class="button" value="Save" onclick="persistScope()">
                             &nbsp;
+                            <div class="reveal" id="scope-save-confirm" data-reveal>
+                                <h1>Success</h1>
+                                <p class="lead">Scope saved successfully!</p>
+                                <button class="close-button" data-close aria-label="Close modal" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                             <a href="deletescope?id=${selscope.id?c}" class="warning button">
                                 <i class="fi-x"></i>&nbsp;Delete
                             </a>
@@ -177,8 +184,16 @@
                             </div>
                         </div>
                         <div class="row columns">
-                            <input id="scopesave" type="submit" class="button" value="Save" onclick="checkDuplicate()">
+                            <input id="scopesave" type="submit" class="button" value="Save"
+                                   onclick="persistScope()">
                             &nbsp;
+                            <div class="reveal" id="scope-save-confirm" data-reveal>
+                                <h1>Success</h1>
+                                <p class="lead">Scope saved successfully!</p>
+                                <button class="close-button" data-close aria-label="Close modal" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </#if>
