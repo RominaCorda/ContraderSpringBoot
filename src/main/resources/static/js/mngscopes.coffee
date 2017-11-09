@@ -10,20 +10,35 @@ exports.addNew = ->
 
 
 exports.scopeValid = () ->
-  blank = false
-  duplicate = false
-  event.preventDefault()
-  if $('#name').val() == ''
-    blank = true
+    currentScopeName = $('#name').val()
+    blank = false
+    duplicate = false
+    if currentScopeName == ''
+      blank = true
+    $('.scope').each (index, scope) ->
+      scopeName = scope.innerText
+      sameName = currentScopeName == scopeName || currentScopeName == scopeName.substr(0, scopeName.length-1)
+      if sameName
+        duplicate = true
+    if blank
+      showWarningFieldIsBlank()
+    if duplicate
+      showWarningFieldAlreadyExists()
+    return !blank && !duplicate
+
+
+exports.scopeEdited = () ->
+  edited = true
+  currentScopeId = $("#id").val()
+  currentScopeName = $('#name').val()
   $('.scope').each (index, scope) ->
-    scopeName = $('#name').val()
-    if scopeName == scope.innerText || scopeName == scope.innerText.substring(0, scope.innerText.length - 1)
-      duplicate = true
-  if blank
-    showWarningFieldIsBlank()
-  if duplicate
-    showWarningFieldAlreadyExists()
-  return !blank && !duplicate
+    scopeHref = $(scope).attr('href')
+    scopeId = scopeHref.substr(scopeHref.indexOf('=')+1)
+    scopeName = scope.innerText
+    sameId = currentScopeId == scopeId
+    sameName = currentScopeName == scopeName || currentScopeName == scopeName.substr(0, scopeName.length-1)
+    edited = !(sameId && sameName)
+  return edited
 
 
 exports.showWarningFieldIsBlank = ->
@@ -45,7 +60,10 @@ exports.removeWarnings = ->
 
 
 exports.persistScope = () ->
-  if scopeValid()
+  event.preventDefault()
+  if !scopeEdited()
+    $('#scopeform').submit()
+  else if scopeValid()
     removeWarnings()
     $('#scope-save-confirm').foundation('open');
     $(".close-button").click ->
