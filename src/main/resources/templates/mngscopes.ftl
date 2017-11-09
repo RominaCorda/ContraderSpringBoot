@@ -134,9 +134,16 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <a href="deletescope?id=${selscope.id?c}" class="warning button">
+                            <a class="warning button" onclick="deleteScope(${selscope.id?c})">
                                 <i class="fi-x"></i>&nbsp;Delete
                             </a>
+                            <div class="reveal" id="scope-delete-confirm" data-reveal>
+                                <h3>Are you sure you want to delete this scope?</h3>
+                                <div>
+                                    <button id="scope-delete-yes" class="button">Yes</button>
+                                    <button id="scope-delete-no" class="button">No</button>
+                                </div>
+                            </div>
                             <a href="copyscope?id=${selscope.id?c}" class="button secondary">
                                 <i class="fi-page-copy"></i>&nbsp;Copy
                             </a>

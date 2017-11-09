@@ -44,7 +44,6 @@ exports.removeWarnings = ->
   $('#name').removeClass('is-invalid-input')
 
 
-
 exports.persistScope = () ->
   if scopeValid()
     removeWarnings()
@@ -52,6 +51,13 @@ exports.persistScope = () ->
     $(".close-button").click ->
       $('#scopeform').submit()
 
+
+exports.deleteScope = (scopeId) ->
+  $('#scope-delete-confirm').foundation('open');
+  $("#scope-delete-yes").click ->
+    window.location.href = "deletescope?id="+scopeId
+  $("#scope-delete-no").click ->
+    $('#scope-delete-confirm').foundation('close');
 
 #$('#scopeform').on('invalid.fndtn.abide') ->
 #  $('.scope-duplicate').hide()
