@@ -12,6 +12,35 @@
         $('input:checkbox').prop('checked', false);
     };
 
+    exports.checkDuplicate = function () {
+        var duplicate;
+        event.preventDefault();
+        if ($('#name').val() === '') {
+            $('scope-duplicate').hide();
+        }
+        duplicate = false;
+        $('.scope').each(function (index, scope) {
+            var scopeName;
+            scopeName = $('#name').val();
+            if (scopeName === scope.innerText || scopeName === scope.innerText.substring(0, scope.innerText.length - 1)) {
+                return duplicate = true;
+            }
+        });
+        if (duplicate) {
+            $('.scope-duplicate').show();
+            $('.form-error').removeClass('is-visible');
+            $('#name').addClass('is-invalid-input');
+        } else {
+            $('.scope-duplicate').hide();
+            $('#scopeform').submit();
+        }
+    };
+
+    $('.scope-duplicate').on('show', (function () {
+        $('.form-error').removeClass('is-visible');
+        $('#name').addClass('is-invalid-input');
+    }));
+
     exports.scopeValid = function () {
         var blank, duplicate;
         blank = false;

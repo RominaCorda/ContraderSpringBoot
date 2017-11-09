@@ -20,9 +20,11 @@ open class CapitalUser() : Serializable
     lateinit var fullName: String
     lateinit var email: String
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    lateinit var role: Role
+    @ManyToMany(fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.MERGE))
+    @JoinTable(name = "CapitalUser_Roles",
+            joinColumns = arrayOf(JoinColumn(name = "capitaluser_id")),
+            inverseJoinColumns = arrayOf(JoinColumn(name = "role_id")))
+    var roles: MutableSet<Role> = mutableSetOf()
 
     @OneToMany(mappedBy = "user", cascade = arrayOf(CascadeType.ALL))
     var reports: MutableSet<Report>? = null
@@ -48,7 +50,7 @@ open class CapitalUser() : Serializable
         this.fullName = fullName
         this.email = email
         this.active = true
-        this.role = role
+        this.roles.add(role)
     }
 
     fun toDetailedString(): String = "$fullName ($username)"
@@ -89,7 +91,7 @@ open class CapitalUser() : Serializable
             newUser.password = capitalUser.password
             newUser.fullName = capitalUser.fullName
             newUser.email = capitalUser.email
-            newUser.role = capitalUser.role
+            newUser.roles = capitalUser.roles
             return newUser
         }
     }

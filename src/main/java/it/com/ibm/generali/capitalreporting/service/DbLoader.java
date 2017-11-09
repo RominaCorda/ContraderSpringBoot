@@ -2,14 +2,12 @@ package it.com.ibm.generali.capitalreporting.service;
 
 import it.com.ibm.generali.capitalreporting.dao.*;
 import it.com.ibm.generali.capitalreporting.model.*;
-import org.hibernate.collection.internal.PersistentSet;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Component
@@ -185,14 +183,16 @@ public class DbLoader extends DbLoaderBase implements ApplicationRunner
 
     private void addTemplatesToScopes(List<Scope> scopes)
     {
-        for (Scope s : scopes) {
+        for (Scope s : scopes)
+        {
             Iterator<Template> allTemplates = this.templates.findAll().iterator();
             Set<Template> templates = new HashSet<>();
-            while (allTemplates.hasNext())
-                templates.add(allTemplates.next());
+            templates.add(allTemplates.next());
+
             s.setTemplates(templates);
-            this.scopes.save(s);
         }
+
+        this.scopes.save(scopes);
     }
 
     private List<Scope> createScopesLevelTwo(ScopeType type, List<Scope> parents)

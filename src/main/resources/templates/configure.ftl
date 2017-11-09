@@ -118,7 +118,7 @@
                     <label>Roles:
                         <select multiple id="role" name="role">
                             <#list roles as role>
-                                <#if selecteduser.role.id==role.id>
+                                <#if selecteduser.roles?seq_contains(role)>
                                 <option value="${role.id}" selected="selected">
                                 <#else>
                                 <option value="${role.id}">

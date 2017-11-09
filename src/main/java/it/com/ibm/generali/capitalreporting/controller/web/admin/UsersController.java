@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -97,13 +98,18 @@ public class UsersController extends SessionHelper
         String username = user.getUsername();
         String mode;
 
+        for (Role r : user.getRoles())
+        {
+            logger.info("New role: " + r.getDescription());
+        }
+
         CapitalUser modUser = this.users.findOne(username);
         if (modUser != null)
         {
             modUser.setEmail(user.getEmail());
             modUser.setFullName(user.getFullName());
             modUser.setActive(user.getActive());
-            modUser.setRole(user.getRole());
+            modUser.setRoles(user.getRoles());
             mode = "ok_modified";
         }
         else
@@ -138,7 +144,9 @@ public class UsersController extends SessionHelper
             selectedUser.username = "";
             selectedUser.email = "";
             selectedUser.fullName = "";
-            selectedUser.role = roles.iterator().next();
+            HashSet<Role> defaultRoles = new HashSet<>();
+            defaultRoles.add(roles.iterator().next());
+            selectedUser.setRoles(defaultRoles);
             selectedUser.setActive(false);
         }
         else

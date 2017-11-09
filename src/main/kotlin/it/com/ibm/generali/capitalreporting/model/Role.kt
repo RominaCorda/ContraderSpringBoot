@@ -16,10 +16,10 @@ open class Role : Serializable
     @Column(unique = true)
     var description: String = ""
 
-    @OneToMany(mappedBy = "role", cascade = arrayOf(CascadeType.ALL))
+    @ManyToMany(mappedBy = "roles")
     var capitalUsers: MutableSet<CapitalUser> = mutableSetOf()
 
-    @ManyToMany(fetch = FetchType.EAGER,
+    @ManyToMany(fetch = FetchType.LAZY,
             cascade = arrayOf(CascadeType.MERGE))
     @JoinTable(name = "Role_Permissions",
             joinColumns = arrayOf(JoinColumn(name = "role_id")),
