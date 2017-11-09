@@ -9,6 +9,16 @@ exports.addNew = ->
   return
 
 
+exports.highlightSelected = ->
+  $('.scope').each (index, scope) ->
+    $(scope).removeClass('active')
+  $('.scope').each (index, scope) ->
+    selectedScope = $('#scopename').html()
+    if selectedScope  == scope.innerText || selectedScope == scope.innerText.substring(0, scope.innerText.length - 1)
+      $(scope).addClass('active')
+    return
+
+
 exports.scopeValid = () ->
     currentScopeName = $('#name').val()
     blank = false
@@ -87,6 +97,8 @@ $('.scope-duplicate').on('show', ( ->
   $('#name').addClass('is-invalid-input')
   return
 ))
+
+highlightSelected()
 
 
 
