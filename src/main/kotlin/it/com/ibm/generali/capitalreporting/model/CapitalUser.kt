@@ -35,11 +35,15 @@ open class CapitalUser() : Serializable
     @OneToMany(mappedBy = "user", cascade = arrayOf(CascadeType.ALL))
     var simulations: MutableSet<Simulation>? = null
 
-    /**
-     * TODO: Rename to scopeViews
-     */
     @ManyToMany(mappedBy = "users")
     var scopes: MutableSet<Scope> = mutableSetOf()
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = arrayOf(CascadeType.MERGE))
+    @JoinTable(name = "CapitalUser_Tags",
+            joinColumns = arrayOf(JoinColumn(name = "capitaluser_id")),
+            inverseJoinColumns = arrayOf(JoinColumn(name = "usertag_id")))
+    var usertags: MutableSet<UserTag> = mutableSetOf()
 
     var active: Boolean = true
 
@@ -92,6 +96,7 @@ open class CapitalUser() : Serializable
             newUser.fullName = capitalUser.fullName
             newUser.email = capitalUser.email
             newUser.roles = capitalUser.roles
+            newUser.usertags = capitalUser.usertags
             return newUser
         }
     }

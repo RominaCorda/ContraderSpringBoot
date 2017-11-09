@@ -5,8 +5,11 @@ import it.com.ibm.generali.capitalreporting.controller.web.SessionHelper;
 import it.com.ibm.generali.capitalreporting.dao.RoleDao;
 import it.com.ibm.generali.capitalreporting.dao.UserDao;
 import it.com.ibm.generali.capitalreporting.dao.UserTagDao;
+import it.com.ibm.generali.capitalreporting.framework.Operation;
+import it.com.ibm.generali.capitalreporting.framework.Utilities;
 import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import it.com.ibm.generali.capitalreporting.model.Role;
+import it.com.ibm.generali.capitalreporting.model.UserTag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class UsersController extends SessionHelper
@@ -51,15 +52,17 @@ public class UsersController extends SessionHelper
     public String configure(Model model, HttpSession session)
     {
         logger.info("/configure GET");
-        model.addAttribute("tags", this.tags.findAll());
-        return this.configureTemplate(model, session, "none");
+        CapitalUser selectedUser = Utilities.INSTANCE.getFirstNonAdminUser(this.users);
+        return "redirect:configure?selecteduser=" + selectedUser.getUsername();
     }
 
     /**
      * Configure GET with selected User
      */
     @RequestMapping(value = "/configure", method = RequestMethod.GET, params = {"selecteduser"})
-    public String configureWithUsername(Model model, HttpSession session, @RequestParam("selecteduser") String username)
+    public String configureWithUsername(Model model,
+                                        HttpSession session,
+                                        @RequestParam("selecteduser") String username)
     {
         logger.info("/configure page with selecteduser =" + username);
         model.addAttribute("tags", this.tags.findAll());
@@ -67,14 +70,17 @@ public class UsersController extends SessionHelper
     }
 
     /**
-     * Configure GET with mode
+     * Configure GET with mode and selecteduser
      */
-    @RequestMapping(value = "/configure", method = RequestMethod.GET, params = {"mode"})
-    public String configureWithMode(Model model, @RequestParam("mode") String mode, HttpSession session)
+    @RequestMapping(value = "/configure", method = RequestMethod.GET, params = {"mode", "selecteduser"})
+    public String configureWithMode(Model model,
+                                    HttpSession session,
+                                    @RequestParam("mode") String mode,
+                                    @RequestParam("selecteduser") String username)
     {
         logger.info("/configure GET with mode=" + mode);
         model.addAttribute("tags", this.tags.findAll());
-        return this.configureTemplate(model, session, mode);
+        return this.configureTemplate(model, session, this.getOperation(mode), username);
     }
 
     /**
@@ -98,9 +104,9 @@ public class UsersController extends SessionHelper
         String username = user.getUsername();
         String mode;
 
-        for (Role r : user.getRoles())
+        for (UserTag tag : user.getUsertags())
         {
-            logger.info("New role: " + r.getDescription());
+            logger.info("Tag > " + tag.getName());
         }
 
         CapitalUser modUser = this.users.findOne(username);
@@ -110,6 +116,7 @@ public class UsersController extends SessionHelper
             modUser.setFullName(user.getFullName());
             modUser.setActive(user.getActive());
             modUser.setRoles(user.getRoles());
+            modUser.setUsertags(user.getUsertags());
             mode = "ok_modified";
         }
         else
@@ -122,23 +129,28 @@ public class UsersController extends SessionHelper
         return "redirect:configure?mode=" + mode;
     }
 
-    private String configureTemplate(Model model, HttpSession session, String mode)
+    private String configureTemplate(Model model,
+                                     HttpSession session,
+                                     String username)
+    {
+        return this.configureTemplate(model, session, Operation.NONE, username);
+    }
+
+    private String configureTemplate(Model model,
+                                     HttpSession session,
+                                     Operation operation,
+                                     String username)
     {
         if (!this.isAdmin(session))
         {
             return "redirect:login";
         }
 
-        final Iterable<CapitalUser> users = this.users.findAll();
         final Iterable<Role> roles = this.roles.findAll();
+        final List<CapitalUser> allNonAdminUsers = Utilities.INSTANCE.getAllUsersExceptAdmin(this.users);
+        CapitalUser selectedUser;
 
-        List<CapitalUser> allUsersExceptAdmin = new ArrayList<>();
-        users.forEach(allUsersExceptAdmin::add);
-        allUsersExceptAdmin = allUsersExceptAdmin.stream().filter(
-                user -> !user.username.equals("admin")).collect(Collectors.toList());
-        CapitalUser selectedUser = allUsersExceptAdmin.iterator().next();
-
-        if (mode.equals("new"))
+        if (operation == Operation.NEW)
         {
             selectedUser = new CapitalUser();
             selectedUser.username = "";
@@ -151,18 +163,11 @@ public class UsersController extends SessionHelper
         }
         else
         {
-            if (!mode.equals("none"))
-            {
-                selectedUser = this.users.findOne(mode);
-                if (selectedUser == null)
-                {
-                    selectedUser = allUsersExceptAdmin.iterator().next();
-                }
-            }
+            selectedUser = this.users.findOne(username);
         }
 
-        model.addAttribute("users", allUsersExceptAdmin);
-        model.addAttribute("mode", mode);
+        model.addAttribute("users", allNonAdminUsers);
+        model.addAttribute("mode", operation);
         model.addAttribute("roles", roles);
         model.addAttribute("user", this.getCurrentUser(session));
         model.addAttribute("selecteduser", selectedUser);
@@ -171,6 +176,24 @@ public class UsersController extends SessionHelper
 
         return "configure";
 
+    }
+
+    private Operation getOperation(String mode)
+    {
+        Operation operation = Operation.NONE;
+        switch (mode)
+        {
+            case "ok_deleted":
+                operation = Operation.DELETED;
+                break;
+            case "ok_modified":
+                operation = Operation.MODIFIED;
+                break;
+            case "ok_added":
+                operation = Operation.CREATED;
+                break;
+        }
+        return operation;
     }
 
 

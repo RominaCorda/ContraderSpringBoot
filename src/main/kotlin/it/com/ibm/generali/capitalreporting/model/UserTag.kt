@@ -14,5 +14,8 @@ open class UserTag : Serializable
 
     @Column(unique = true)
     var name: String = ""
+
+    @ManyToMany(mappedBy = "usertags")
+    var users: MutableSet<CapitalUser> = mutableSetOf()
 }
 

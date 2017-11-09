@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="tags" type="java.util.Collection<it.com.ibm.generali.capitalreporting.model.UserTag>" -->
 <#-- @ftlvariable name="roles" type="java.util.Collection<it.com.ibm.generali.capitalreporting.model.Role>" -->
 <#-- @ftlvariable name="selecteduser" type="it.com.ibm.generali.capitalreporting.model.CapitalUser" -->
 <#-- @ftlvariable name="users" type="java.util.Collection<it.com.ibm.generali.capitalreporting.model.CapitalUser>" -->
@@ -10,7 +11,6 @@
 <div class="row">
 
     <div class="small-3 medium-3 large-3 columns">
-
         <#if mode?starts_with("ok")>
             <div class="row">
                 <div class="callout success" data-closable>
@@ -27,17 +27,15 @@
                 </div>
             </div>
         </#if>
-
         <div class="row">
             <#if mode == "none" || mode == "ok_added" || mode=="ok_modified" || mode=="ok_deleted">
                 <h3>Configure users</h3>
             <#elseif mode == "new">
                 <h3>Add new User</h3>
             <#else>
-                <h3>Configure User <b>${mode}</b></h3>
+                <h3>Configure User</h3>
             </#if>
         </div>
-
         <#if mode != "new">
             <div class="row">
                 <label>Select User
@@ -60,7 +58,6 @@
                     new</a>
             </div>
         </#if>
-
     </div>
 
     <div class="medium-1 medium-1 large-1 columns">
@@ -69,20 +66,10 @@
 
     <div class="small-9 medium-8 large-8 columns">
         <form data-abide novalidate name="userform" action="" method="post" style="margin-top: 60px">
-            <#if mode != "new">
-                <div class="row">
-                    <div class="columns">
-                        <p>Last modified: <i>August 28th, 2017</i></p>
-                    </div>
-
-                </div>
-            </#if>
             <div class="row">
                 <div class="column medium-10 large-10">
                     <label>User ID:
-                        <input id="username" name="username" type="text" value="${selecteduser.username}" required>
-                        <input id="password" name="password" type="hidden" value="***">
-                        <span class="form-error">This field cannot be blank</span>
+                        <input id="username" name="username" type="text" value="${selecteduser.username}" readonly>
                     </label>
                 </div>
             </div>
@@ -116,7 +103,7 @@
             <div class="row">
                 <div class="column medium-10 large-10">
                     <label>Roles:
-                        <select multiple id="role" name="role">
+                        <select multiple id="roles" name="roles">
                             <#list roles as role>
                                 <#if selecteduser.roles?seq_contains(role)>
                                 <option value="${role.id}" selected="selected">
@@ -141,10 +128,14 @@
             <div class="row">
                 <div class="column medium-10 large-10">
                     <#if tags??>
-                        <fieldset>
+                        <fieldset name="usertags">
                             <legend>User Tags:</legend>
                             <#list tags as tag>
-                                <input id="chk${tag.name}" name="tags" type="checkbox" value="${tag.name}">
+                                <#if selecteduser.usertags?seq_contains(tag)>
+                                    <input id="chk${tag.name}" type="checkbox" value="${tag.name}" checked="checked">
+                                <#else>
+                                    <input id="chk${tag.name}" type="checkbox" value="${tag.name}">
+                                </#if>
                                 <label for="chk${tag.name}">${tag.name}</label>
                             </#list>
                         </fieldset>
@@ -159,12 +150,20 @@
                     </div>
                 </div>
             </div>
+            <#if mode != "new">
+                <div class="row">
+                    <div class="columns">
+                        <p>Last modified: <i>August 28th, 2017</i></p>
+                    </div>
+                </div>
+            </#if>
             <div class="row">
                 <div class="column medium-10 large-10">
                     <p>&nbsp;</p>
-                    <input type="submit" value="Submit" class="primary button float-right">
+                    <input type="submit" value="Save" class="primary button float-right">
                 </div>
             </div>
+
         </form>
     </div>
 
