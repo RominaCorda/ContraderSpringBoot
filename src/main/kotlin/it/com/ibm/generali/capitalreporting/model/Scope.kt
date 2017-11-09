@@ -31,13 +31,12 @@ open class Scope() : Serializable
         this.published = published
         this.parent = parent
         this.type = type
-        templates?.forEach{
+        templates.forEach {
             template ->
-            this.templates.add(template);
+            this.templates.add(template)
         }
-        users?.forEach{
-            user ->
-            this.users.add(user);
+        users.forEach { user ->
+            this.users.add(user)
         }
     }
 

@@ -12,6 +12,75 @@
         $('input:checkbox').prop('checked', false);
     };
 
+    exports.scopeValid = function () {
+        var blank, duplicate;
+        blank = false;
+        duplicate = false;
+        event.preventDefault();
+        if ($('#name').val() === '') {
+            blank = true;
+        }
+        $('.scope').each(function (index, scope) {
+            var scopeName;
+            scopeName = $('#name').val();
+            if (scopeName === scope.innerText || scopeName === scope.innerText.substring(0, scope.innerText.length - 1)) {
+                return duplicate = true;
+            }
+        });
+        if (blank) {
+            showWarningFieldIsBlank();
+        }
+        if (duplicate) {
+            showWarningFieldAlreadyExists();
+        }
+        return !blank && !duplicate;
+    };
+
+    exports.showWarningFieldIsBlank = function () {
+        $('.scope-duplicate').hide();
+        $('.form-error').show();
+        return $('#name').addClass('is-invalid-input');
+    };
+
+    exports.showWarningFieldAlreadyExists = function () {
+        $('.scope-duplicate').show();
+        $('.form-error').removeClass('is-visible');
+        $('.form-error').hide();
+        return $('#name').addClass('is-invalid-input');
+    };
+
+    exports.removeWarnings = function () {
+        $('.form-error').removeClass('is-visible');
+        $('.form-error').hide();
+        $('.scope-duplicate').hide();
+        return $('#name').removeClass('is-invalid-input');
+    };
+
+    exports.persistScope = function () {
+        if (scopeValid()) {
+            removeWarnings();
+            $('#scope-save-confirm').foundation('open');
+            return $(".close-button").click(function () {
+                return $('#scopeform').submit();
+            });
+        }
+    };
+
+    exports.deleteScope = function (scopeId) {
+        $('#scope-delete-confirm').foundation('open');
+        $("#scope-delete-yes").click(function () {
+            return window.location.href = "deletescope?id=" + scopeId;
+        });
+        return $("#scope-delete-no").click(function () {
+            return $('#scope-delete-confirm').foundation('close');
+        });
+    };
+
+    $('.scope-duplicate').on('show', (function () {
+        $('.form-error').removeClass('is-visible');
+        $('#name').addClass('is-invalid-input');
+    }));
+
 }).call(this);
 
 //# sourceMappingURL=mngscopes.js.map
