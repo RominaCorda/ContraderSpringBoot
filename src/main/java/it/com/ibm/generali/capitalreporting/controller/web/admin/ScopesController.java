@@ -177,9 +177,9 @@ public class ScopesController extends SessionHelper
                             @RequestParam("id") long id,
                             @RequestParam("parent") long parent,
                             @RequestParam("name") String name,
-                            @RequestParam(value = "viewers") String[] viewers,
-                            @RequestParam("owner") String owner,
-                            @RequestParam("templates") String[] templateNames,
+                            @RequestParam(value = "viewers", required=false) String[] viewers,
+                            @RequestParam(value = "owner", defaultValue = "admin") String owner,
+                            @RequestParam(value = "templates", required = false) String[] templateNames,
                             @RequestParam(value = "published", defaultValue = "false") boolean published,
                             @RequestParam(value = "tags", required = false) String[] tags)
     {
