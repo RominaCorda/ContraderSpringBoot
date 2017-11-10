@@ -10,6 +10,7 @@ import it.com.ibm.generali.capitalreporting.framework.Utilities;
 import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import it.com.ibm.generali.capitalreporting.model.Scope;
 import it.com.ibm.generali.capitalreporting.model.ScopeType;
+import it.com.ibm.generali.capitalreporting.model.Template;
 import it.com.ibm.generali.capitalreporting.service.ScopeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -127,6 +128,8 @@ public class ScopesController extends SessionHelper
         List<Scope> siblings = this.scopeService.getSiblings(scopeObj);
         Set<CapitalUser> viewers =  scopeObj.getUsers();
         List<CapitalUser> users = (List<CapitalUser>) this.users.findAll();
+        List<Template> remainingTemplates = (List<Template>) this.templates.findAll();
+        remainingTemplates.removeAll(scopeObj.getTemplates());
         users.removeAll(viewers);
         model.addAttribute("mode", scopeObj.getType().toString().toLowerCase());
         model.addAttribute("canAddReports", this.scopeService.canAddReports(scopeObj));
@@ -134,6 +137,7 @@ public class ScopesController extends SessionHelper
         model.addAttribute("viewers", viewers);
         model.addAttribute("owner", scopeObj.getOwner());
         model.addAttribute("templates", scopeObj.getTemplates());
+        model.addAttribute("remainingTemplates", remainingTemplates);
         model.addAttribute("selscope", scopeObj);
         model.addAttribute("parents", parents);
         model.addAttribute("scopes", siblings);
@@ -175,6 +179,7 @@ public class ScopesController extends SessionHelper
                             @RequestParam("name") String name,
                             @RequestParam(value = "viewers") String[] viewers,
                             @RequestParam("owner") String owner,
+                            @RequestParam("templates") String[] templateNames,
                             @RequestParam(value = "published", defaultValue = "false") boolean published,
                             @RequestParam(value = "tags", required = false) String[] tags)
     {
@@ -191,8 +196,12 @@ public class ScopesController extends SessionHelper
             scopeObj.setParent(parent);
             scopeObj.setType(type);
         }
+        Set<Template> newTemplates = new HashSet<>();
+        for (String templateName : templateNames)
+            newTemplates.add(this.templates.findByName(templateName));
         scopeObj.setName(name);
         scopeObj.setPublished(published);
+        scopeObj.setTemplates(newTemplates);
         CapitalUser userOwner = this.users.findOne(owner);
         scopeObj.setOwner(userOwner);
         Set<CapitalUser> newViewers = new HashSet<>();

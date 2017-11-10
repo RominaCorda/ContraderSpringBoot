@@ -87,7 +87,8 @@ exports.persistScope = () ->
 exports.selectAll = ->
   $('.viewer').each (index,item) ->
     $(this).attr('selected', true)
-
+  $('.template').each (index,item) ->
+    $(this).attr('selected', true)
 
 
 
@@ -119,6 +120,7 @@ exports.showUsers = ->
     $('#show-users').foundation('close')
 
 
+
 exports.removeViewers = ->
   $('#viewers option:selected').each (index, viewer) ->
     if $(viewer).text() == "admin"
@@ -131,6 +133,30 @@ exports.removeViewers = ->
         value: $(viewer).text(),
         text: $(viewer).text()
       }));
+
+exports.showTemplates = ->
+  $('#show-templates').foundation('open');
+  $('#btn-add-templates').click ->
+    $('.templates:selected').each (index, template) ->
+      $('#templates').append($('<option>', {
+        value: $(template).text(),
+        text: $(template).text()
+        class: 'template'
+      }));
+      $('#add-templates option[value="' + $(template).text() + '"]').remove()
+    $('#show-templates').foundation('close')
+
+
+exports.removeTemplates = ->
+  $('#templates option:selected').each (index, template) ->
+      $('#templates option[value="' + $(template).text() + '"]').remove()
+      $('#add-templates').append($('<option>', {
+        class: "templates",
+        value: $(template).text(),
+        text: $(template).text()
+      }));
+
+
 
 
 $('.scope-duplicate').on('show', ( ->

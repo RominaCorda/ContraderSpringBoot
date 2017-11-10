@@ -8,6 +8,7 @@
 <#-- @ftlvariable name="users" type="java.util.List<it.com.ibm.generali.capitalreporting.model.CapitalUser>" -->
 <#-- @ftlvariable name="viewers" type="java.util.Set<it.com.ibm.generali.capitalreporting.model.CapitalUser>" -->
 <#-- @ftlvariable name="templates" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Template>" -->
+<#-- @ftlvariable name="remainingTemplates" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Template>" -->
 <#include "base.ftl">
 
 <#macro page_body>
@@ -133,6 +134,21 @@
                                             </a>
                                         </label>
                                     </div>
+                                    <div class="column medium-6 large-6">
+                                        <label>Templates:
+                                            <select id="templates" name="templates" multiple="multiple">
+                                                <#list templates as template>
+                                                    <option class="template" value="${template.name}">${template.name}</option>
+                                                </#list>
+                                            </select>
+                                            <a class="button secondary" onclick="showTemplates()">
+                                                Add
+                                            </a>
+                                            <a class="button secondary" onclick="removeTemplates()">
+                                                Remove
+                                            </a>
+                                        </label>
+                                    </div>
                                     <div class="reveal" id="show-users" data-reveal>
                                         <h1>Add viewers</h1>
                                         <select id="add-viewers" multiple>
@@ -145,15 +161,17 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="column medium-6 large-6">
-                                        <label>
-                                            Templates:
-                                            <select multiple>
-                                                <#list templates as template>
-                                                    <option value="${template.id}">${template.name}</option>
-                                                </#list>
-                                            </select>
-                                        </label>
+                                    <div class="reveal" id="show-templates" data-reveal>
+                                        <h1>Add templates</h1>
+                                        <select id="add-templates" multiple>
+                                            <#list remainingTemplates as remainingTemplate>
+                                                <option class="templates" value="${remainingTemplate.name}">${remainingTemplate.name}</option>
+                                            </#list>
+                                        </select>
+                                        <button id="btn-add-templates" class="button">Add</button>
+                                        <button class="close-button" data-close aria-label="Close modal" type="button">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                 </div>
                             </#if>
