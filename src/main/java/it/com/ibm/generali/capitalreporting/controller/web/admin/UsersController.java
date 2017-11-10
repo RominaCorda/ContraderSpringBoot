@@ -20,10 +20,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class UsersController extends SessionHelper
@@ -133,24 +137,66 @@ public class UsersController extends SessionHelper
     }
 
     /**
+<<<<<<< Updated upstream
      * Roles with copy
      */
     @RequestMapping(value = "/copyuser", method = RequestMethod.GET, params = {"username", "username_new"})
-    public String copyScope(Model model, HttpSession session, @RequestParam("username") String username, @RequestParam("username_new") String usernameNew)
-    {
+    public String copyScope(Model model, HttpSession session, @RequestParam("username") String username, @RequestParam("username_new") String usernameNew) {
         String redirect = "redirect:/configure";
-        try
-        {
+        try {
             userService.copyUser(username, usernameNew);
             redirect = "redirect:/configure?selecteduser=" + usernameNew;
-        }
-        catch (Exception exc)
-        {
+        } catch (Exception exc) {
             logger.error(exc.getMessage());
         }
 
         return redirect;
     }
+
+    @RequestMapping(value = "/uploadUsersFile", method = RequestMethod.POST)
+    public String uploadUsersFile(@RequestParam("file") MultipartFile file)
+    {
+        BufferedReader br = null;
+        String line = "";
+        String cvsSplitBy = ",";
+        List<CapitalUser> utenti = new ArrayList<CapitalUser>();
+        try {
+
+            br = new BufferedReader(new InputStreamReader(file.getInputStream()));
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                CapitalUser user = this.users.findOne(data[0]);
+                if (user != null) {
+                    user.setPassword(data[1]);
+                    user.setFullName(data[2]);
+                    user.setEmail(data[3]);
+                    Set<Role> roles = new HashSet<>();
+                    roles.add(this.roles.findByDescription(data[4]));
+                    user.setRoles(roles);
+                    utenti.add(user);
+                }
+                else {
+                    Role role = this.roles.findByDescription(data[4]);
+                    utenti.add(new CapitalUser(data[0], data[1], data[2], data[3], role));
+                }
+            }
+            this.users.save(utenti);
+            List<CapitalUser> all = (List<CapitalUser>) this.users.findAll();
+            System.out.println(all);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return "redirect:configure";
+    }
+
 
     private String configureTemplate(Model model,
                                      HttpSession session,

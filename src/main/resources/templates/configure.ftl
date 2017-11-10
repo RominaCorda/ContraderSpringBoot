@@ -54,18 +54,26 @@
                 <a href="configure?delete=${selecteduser.username}" class="button alert float-left"><i class="fi-x"></i>&nbsp;
                     Delete</a>
                 <a href="configure?selecteduser=new" class="button secondary float-right"><i class="fi-plus"></i>&nbsp;
-                    Add
-                    new</a>
+                    Add new</a>
                 <a style="float:right" class="button secondary" onclick="showCopyUser()">
                     <i class="fi-page-copy"></i>&nbsp;Copy
+                </a>
+                <a style="width: 100%" class="button secondary" onclick="showUpload()">
+                    Upload CSV
                 </a>
                 <div id="copy-user" hidden>
                     <label>Choose a username</label>
                     <input id="copy-user-val" type="text"></input>
-                    <a id="btn-copy-user" class="button" href="">Copy<a>
+                    <a id="btn-copy-user" class="button" href="">Copy</a>
                 </div>
             </div>
         </#if>
+        <div id="upload" hidden>
+            <form method="POST" action="uploadUsersFile" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input style="width: 30%; margin: 0 35%;" class="button" type="submit"  value="Upload">
+            </form>
+        </div>
     </div>
 
     <div class="medium-1 medium-1 large-1 columns">
