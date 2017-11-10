@@ -6,8 +6,5 @@
     "users.coffee"
   ],
   "names": [],
-  "mappings": ";AAAA;AAAA,MAAA;;EAAA,OAAA,GAAU;;EAGV,OAAO,CAAC,YAAR,GAAuB,QAAA,CAAA,CAAA;WACrB,CAAA,CAAE,YAAF,CAAe,CAAC,IAAhB,CAAA;EADqB;;EAIvB,OAAO,CAAC,UAAR,GAAqB,QAAA,CAAA,CAAA;WACnB,CAAA,CAAE,SAAF,CAAY,CAAC,IAAb,CAAA;EADmB;;EAGrB,CAAA,CAAE,gBAAF,CAAmB,CAAC,MAApB,CAA2B,QAAA,CAAA,CAAA;WACzB,CAAA,CAAE,gBAAF,CAAmB,CAAC,IAApB,CAAyB,MAAzB,EAAiC,oBAAA,GAAqB,CAAA,CAAE,wBAAF,CAA2B,CAAC,GAA5B,CAAA,CAArB,GAAuD,gBAAvD,GAAwE,CAAA,CAAE,gBAAF,CAAmB,CAAC,GAApB,CAAA,CAAzG;EADyB,CAA3B;AAVA",
-  "sourcesContent": [
-    "exports = this\r\n\r\n\r\nexports.showCopyUser = ->\r\n  $('#copy-user').show()\r\n\r\n\r\nexports.showUpload = ->\r\n  $('#upload').show()\r\n\r\n$('#copy-user-val').change () ->\r\n  $('#btn-copy-user').attr('href', \"copyuser?username=\"+$('select option:selected').val()+\"&username_new=\"+$('#copy-user-val').val())"
-  ]
+  "mappings": ";AAAA;AAAA,MAAA;;EAAA,OAAA,GAAU;;EAGV,OAAO,CAAC,YAAR,GAAuB,SAAA;WACrB,CAAA,CAAE,YAAF,CAAe,CAAC,IAAhB,CAAA;EADqB;;EAIvB,OAAO,CAAC,UAAR,GAAqB,SAAA;WACnB,CAAA,CAAE,SAAF,CAAY,CAAC,IAAb,CAAA;EADmB;;EAGrB,CAAA,CAAE,gBAAF,CAAmB,CAAC,MAApB,CAA2B,SAAA;WACzB,CAAA,CAAE,gBAAF,CAAmB,CAAC,IAApB,CAAyB,MAAzB,EAAiC,oBAAA,GAAqB,CAAA,CAAE,wBAAF,CAA2B,CAAC,GAA5B,CAAA,CAArB,GAAuD,gBAAvD,GAAwE,CAAA,CAAE,gBAAF,CAAmB,CAAC,GAApB,CAAA,CAAzG;EADyB,CAA3B;AAVA"
 }
