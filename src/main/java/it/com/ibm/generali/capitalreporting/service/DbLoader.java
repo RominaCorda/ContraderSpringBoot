@@ -248,6 +248,13 @@ public class DbLoader extends DbLoaderBase implements ApplicationRunner
             Scope tempScope = new Scope();
             tempScope.setName(String.valueOf("YE" + String.valueOf(year)));
             tempScope.setParent(-1L);
+            CapitalUser owner = this.users.findOne("admin");
+            CapitalUser user1 = this.users.findOne("alessio");
+            Set<CapitalUser> users = new HashSet<>();
+            users.add(owner);
+            users.add(user1);
+            tempScope.setOwner(owner);
+            tempScope.setUsers(users);
             tempScope.setPublished(true);
             tempScope.setType(type);
             this.scopes.save(tempScope);
