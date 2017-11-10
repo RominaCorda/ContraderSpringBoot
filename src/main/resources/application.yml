@@ -1,6 +1,6 @@
 #
 # APPLICATION.PROPERTIES
-# Embedded HSQLDB without COGNOS
+# In memory HSQLDB without COGNOS
 #
 
 server:
@@ -8,25 +8,15 @@ server:
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       use-new-id-generator-mappings: true
   output:
     ansi:
       enabled: ALWAYS
   datasource:
     platform: hsqldb
-    url: jdbc:hsqldb:file:capitalreporting.db
-    username: SA
-    password:
 swagger:
   base-path: /capitalreporting
-security:
-  basic:
-    enabled: true
-    path: /api/**
-  user:
-    name: admin
-    password: secret
 cognos:
   bi:
     url: unknown

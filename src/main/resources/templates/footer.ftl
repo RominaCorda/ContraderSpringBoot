@@ -17,7 +17,7 @@
             <li><a href="#">
                 <small>Contact</small>
             </a></li>
-            <li><a href="swagger-ui.html">API</a></li>
+            <li><a href="/capitalreportingetl">API</a></li>
             <li class="float-right">
                 <small style="color:black">Copyright &copy; IBM CORPORATION 2017</small>
             </li>

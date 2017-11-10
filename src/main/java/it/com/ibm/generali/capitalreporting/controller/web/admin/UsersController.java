@@ -9,7 +9,6 @@ import it.com.ibm.generali.capitalreporting.framework.Operation;
 import it.com.ibm.generali.capitalreporting.framework.Utilities;
 import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import it.com.ibm.generali.capitalreporting.model.Role;
-import it.com.ibm.generali.capitalreporting.model.UserTag;
 import it.com.ibm.generali.capitalreporting.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -107,9 +106,9 @@ public class UsersController extends SessionHelper
         String username = user.getUsername();
         String mode;
 
-        for (UserTag tag : user.getUsertags())
+        for (Role r : user.getRoles())
         {
-            logger.info("Tag > " + tag.getName());
+            logger.info("Role > " + r.getDescription());
         }
 
         CapitalUser modUser = this.users.findOne(username);
@@ -129,7 +128,7 @@ public class UsersController extends SessionHelper
         }
 
         this.users.save(modUser);
-        return "redirect:configure?mode=" + mode;
+        return "redirect:configure?mode=" + mode + "&selecteduser=" + modUser.getUsername();
     }
 
     /**

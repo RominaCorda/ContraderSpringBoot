@@ -17,13 +17,6 @@ spring:
     platform: hsqldb
 swagger:
   base-path: /capitalreporting
-security:
-  basic:
-    enabled: true
-    path: /api/**
-  user:
-    name: admin
-    password: secret
 cognos:
   bi:
     url: unknown
