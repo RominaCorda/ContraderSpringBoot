@@ -85,6 +85,7 @@ public class DbLoader extends DbLoaderBase implements ApplicationRunner
 
             this.addReportsToScopes(level2Official, 8);
             this.addReportsToScopes(level2Analysis, 8);
+            this.addTemplatesToScopes(level2Official);
             this.addTemplatesToScopes(level2Analysis);
         }
 

@@ -61,15 +61,22 @@
                     <a class="button secondary" onclick="showCopyUser()">
                         <i class="fi-page-copy"></i>&nbsp;Copy
                     </a>
+                    <a style="width: 100%" class="button secondary" onclick="showUpload()">
+                        Upload CSV
+                    </a>
                     <div id="copy-user" hidden>
                         <label>Choose a username</label>
                         <input id="copy-user-val" type="text"></input>
                         <a id="btn-copy-user" class="button" href="">Copy<a>
                     </div>
+                    <div id="upload" hidden>
+                        <form method="POST" action="uploadUsersFile" enctype="multipart/form-data">
+                            <input style="background: cadetblue" type="file" name="file" class="button"></input>
+                            <input style="width: 30%; margin: 0 35%;" class="button" type="submit" value="Upload">
+                        </form>
+                    </div>
                 </div>
-
             </div>
-
         </#if>
 
         <div class="row" style="margin-top: 200px">
