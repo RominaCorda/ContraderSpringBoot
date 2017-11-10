@@ -24,13 +24,12 @@
             </div>
 
             <div class="row">
-                <label>Roles:
-                    <ul class="inline-list">
-                        <#list user.roles as role>
-                            <li><a href="#">${role.description}</a></li>
-                        </#list>
-                    </ul>
-                </label>
+                <label>Roles:</label>
+                <ul class="inline-list">
+                    <#list user.roles as role>
+                        <li><a href="#">${role.description}</a></li>
+                    </#list>
+                </ul>
             </div>
 
             <div class="row">
