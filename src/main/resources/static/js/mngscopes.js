@@ -12,6 +12,19 @@
         $('input:checkbox').prop('checked', false);
     };
 
+    exports.highlightSelected = function () {
+        $('.scope').each(function (index, scope) {
+            return $(scope).removeClass('active');
+        });
+        return $('.scope').each(function (index, scope) {
+            var selectedScope;
+            selectedScope = $('#scopename').html();
+            if (selectedScope === scope.innerText || selectedScope === scope.innerText.substring(0, scope.innerText.length - 1)) {
+                $(scope).addClass('active');
+            }
+        });
+    };
+
     exports.scopeValid = function () {
         var blank, currentScopeName, duplicate;
         currentScopeName = $('#name').val();
@@ -101,6 +114,8 @@
         $('.form-error').removeClass('is-visible');
         $('#name').addClass('is-invalid-input');
     }));
+
+    highlightSelected();
 
 }).call(this);
 

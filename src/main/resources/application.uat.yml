@@ -1,6 +1,6 @@
 #
 # APPLICATION.PROPERTIES
-# OracleDB with COGNOS DEV ENV
+# OracleDB with COGNOS UAT ENV
 #
 
 server:
@@ -21,16 +21,16 @@ spring:
       enabled: ALWAYS
   datasource:
     platform: oracle
-    url: jdbc:oracle:thin:@9.137.251.186:1521:CRDEV
-    username: CR_WEB
-    password: CR_WEB
+    url: jdbc:oracle:thin:@dbRCRCH00.generali.it:1521:RCRCH
+    username: GH_COGNOS_ASC001
+    password: GH_COGNOS_ASC001
     driverClassName: oracle.jdbc.OracleDriver
   db:
     platform: oracle
     driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@9.137.251.186:1521:CRDEV
-    username: CR_WEB
-    password: CR_WEB
+    url: jdbc:oracle:thin:@dbRCRCH00.generali.it:1521:RCRCH
+    username: GH_COGNOS_ASC001
+    password: GH_COGNOS_ASC001
 swagger:
   base-path: /capitalreporting
 security:
@@ -42,4 +42,4 @@ security:
     password: secret
 cognos:
   bi:
-    url: 9.137.251.185:9300/bi
+    url: http://lghach15bic001.generali.it:9300/bi
