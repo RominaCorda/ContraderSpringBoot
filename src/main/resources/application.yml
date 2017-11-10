@@ -1,36 +1,23 @@
 #
 # APPLICATION.PROPERTIES
-# OracleDB with COGNOS UAT ENV
+# Embedded HSQLDB without COGNOS
 #
 
 server:
   contextPath: /capitalreporting
 spring:
   jpa:
-    database-platform: org.hibernate.dialect.Oracle10gDialect
-    show-sql: true
-    generate-ddl: false
-    properties:
-      hibernate:
-        format_sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       use-new-id-generator-mappings: true
   output:
     ansi:
       enabled: ALWAYS
   datasource:
-    platform: oracle
-    url: jdbc:oracle:thin:@dbRCRCH00.generali.it:1521:RCRCH
-    username: GH_COGNOS_ASC001
-    password: GH_COGNOS_ASC001
-    driverClassName: oracle.jdbc.OracleDriver
-  db:
-    platform: oracle
-    driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@dbRCRCH00.generali.it:1521:RCRCH
-    username: GH_COGNOS_ASC001
-    password: GH_COGNOS_ASC001
+    platform: hsqldb
+    url: jdbc:hsqldb:file:capitalreporting.db
+    username: SA
+    password:
 swagger:
   base-path: /capitalreporting
 security:
@@ -42,4 +29,4 @@ security:
     password: secret
 cognos:
   bi:
-    url: http://lghach15bic001.generali.it:9300/bi
+    url: unknown

@@ -51,21 +51,30 @@
                         </#list>
                     </select>
                 </label>
-                <a href="configure?delete=${selecteduser.username}" class="button alert float-left"><i class="fi-x"></i>&nbsp;
-                    Delete</a>
-                <a href="configure?selecteduser=new" class="button secondary float-right"><i class="fi-plus"></i>&nbsp;
-                    Add
-                    new</a>
-                <a style="float:right" class="button secondary" onclick="showCopyUser()">
-                    <i class="fi-page-copy"></i>&nbsp;Copy
-                </a>
-                <div id="copy-user" hidden>
-                    <label>Choose a username</label>
-                    <input id="copy-user-val" type="text"></input>
-                    <a id="btn-copy-user" class="button" href="">Copy<a>
+                <div class="stacked button-group">
+                    <a href="configure?delete=${selecteduser.username}" class="button alert float-left"><i
+                            class="fi-x"></i>&nbsp;
+                        Delete</a>
+                    <a href="configure?selecteduser=new" class="button secondary float-right"><i class="fi-plus"></i>&nbsp;
+                        Add
+                        new</a>
+                    <a class="button secondary" onclick="showCopyUser()">
+                        <i class="fi-page-copy"></i>&nbsp;Copy
+                    </a>
+                    <div id="copy-user" hidden>
+                        <label>Choose a username</label>
+                        <input id="copy-user-val" type="text"></input>
+                        <a id="btn-copy-user" class="button" href="">Copy<a>
+                    </div>
                 </div>
+
             </div>
+
         </#if>
+
+        <div class="row" style="margin-top: 200px">
+            <a href="userscsvdownload" class="success button">Download users CSV</a>
+        </div>
     </div>
 
     <div class="medium-1 medium-1 large-1 columns">
