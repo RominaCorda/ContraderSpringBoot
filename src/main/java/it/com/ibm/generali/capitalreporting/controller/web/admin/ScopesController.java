@@ -7,6 +7,7 @@ import it.com.ibm.generali.capitalreporting.dao.TagDao;
 import it.com.ibm.generali.capitalreporting.dao.TemplateDao;
 import it.com.ibm.generali.capitalreporting.dao.UserDao;
 import it.com.ibm.generali.capitalreporting.framework.Utilities;
+import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import it.com.ibm.generali.capitalreporting.model.Scope;
 import it.com.ibm.generali.capitalreporting.model.ScopeType;
 import it.com.ibm.generali.capitalreporting.service.ScopeService;
@@ -20,8 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ScopesController extends SessionHelper
@@ -125,9 +125,14 @@ public class ScopesController extends SessionHelper
         Scope scopeObj = this.scopes.findOne(scopeId);
         List<Scope> parents = this.scopeService.getParents(scopeObj);
         List<Scope> siblings = this.scopeService.getSiblings(scopeObj);
+        Set<CapitalUser> viewers =  scopeObj.getUsers();
+        List<CapitalUser> users = (List<CapitalUser>) this.users.findAll();
+        users.removeAll(viewers);
         model.addAttribute("mode", scopeObj.getType().toString().toLowerCase());
         model.addAttribute("canAddReports", this.scopeService.canAddReports(scopeObj));
-        model.addAttribute("users", this.users.findAll());
+        model.addAttribute("users", users);
+        model.addAttribute("viewers", viewers);
+        model.addAttribute("owner", scopeObj.getOwner());
         model.addAttribute("templates", scopeObj.getTemplates());
         model.addAttribute("selscope", scopeObj);
         model.addAttribute("parents", parents);
@@ -168,6 +173,8 @@ public class ScopesController extends SessionHelper
                             @RequestParam("id") long id,
                             @RequestParam("parent") long parent,
                             @RequestParam("name") String name,
+                            @RequestParam(value = "viewers") String[] viewers,
+                            @RequestParam("owner") String owner,
                             @RequestParam(value = "published", defaultValue = "false") boolean published,
                             @RequestParam(value = "tags", required = false) String[] tags)
     {
@@ -186,6 +193,12 @@ public class ScopesController extends SessionHelper
         }
         scopeObj.setName(name);
         scopeObj.setPublished(published);
+        CapitalUser userOwner = this.users.findOne(owner);
+        scopeObj.setOwner(userOwner);
+        Set<CapitalUser> newViewers = new HashSet<>();
+        for (String viewer: viewers)
+           newViewers.add(this.users.findOne(viewer));
+        scopeObj.setUsers(newViewers);
         if (tags != null)
         {
             scopeObj.setAllTags(Arrays.asList(tags));

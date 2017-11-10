@@ -4,7 +4,9 @@
 <#-- @ftlvariable name="selscope" type="it.com.ibm.generali.capitalreporting.model.Scope" -->
 <#-- @ftlvariable name="parents" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
 <#-- @ftlvariable name="scopes" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
+<#-- @ftlvariable name="owner" type="it.com.ibm.generali.capitalreporting.model.CapitalUser" -->
 <#-- @ftlvariable name="users" type="java.util.List<it.com.ibm.generali.capitalreporting.model.CapitalUser>" -->
+<#-- @ftlvariable name="viewers" type="java.util.Set<it.com.ibm.generali.capitalreporting.model.CapitalUser>" -->
 <#-- @ftlvariable name="templates" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Template>" -->
 <#include "base.ftl">
 
@@ -103,13 +105,45 @@
                             <#if canAddReports>
                                 <div class="row">
                                     <div class="column medium-6 large-6">
-                                        <label>Viewers:
-                                            <select multiple>
-                                                <#list users as user>
-                                                    <option value="${user}">${user}</option>
+                                        <label>Owner:
+                                            <select id="owner" name="owner">
+                                                <#list viewers as viewer>
+                                                    <#if viewer.username == "admin">
+                                                        <option class="owner" value="${viewer}"
+                                                                selected>${viewer}</option>
+                                                    <#else>
+                                                        <option class="owner" value="${viewer}">${viewer}</option>
+                                                    </#if>
                                                 </#list>
                                             </select>
                                         </label>
+                                    </div>
+                                    <div class="column medium-6 large-6">
+                                        <label>Viewers:
+                                            <select id="viewers" name="viewers" multiple="multiple">
+                                                    <#list viewers as viewer>
+                                                        <option class="viewer" value="${viewer}">${viewer}</option>
+                                                    </#list>
+                                            </select>
+                                            <a class="button secondary" onclick="showUsers()">
+                                                Add Viewers
+                                            </a>
+                                            <a class="button secondary" onclick="removeViewers()">
+                                                Remove
+                                            </a>
+                                        </label>
+                                    </div>
+                                    <div class="reveal" id="show-users" data-reveal>
+                                        <h1>Add viewers</h1>
+                                        <select id="add-viewers" multiple>
+                                            <#list users as user>
+                                                <option class="users" value="${user}">${user}</option>
+                                            </#list>
+                                        </select>
+                                        <button id="btn-add-viewers" class="button">Add</button>
+                                        <button class="close-button" data-close aria-label="Close modal" type="button">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                     <div class="column medium-6 large-6">
                                         <label>

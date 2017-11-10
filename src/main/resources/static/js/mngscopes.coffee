@@ -20,21 +20,21 @@ exports.highlightSelected = ->
 
 
 exports.scopeValid = () ->
-    currentScopeName = $('#name').val()
-    blank = false
-    duplicate = false
-    if currentScopeName == ''
-      blank = true
-    $('.scope').each (index, scope) ->
-      scopeName = scope.innerText
-      sameName = currentScopeName == scopeName || currentScopeName == scopeName.substr(0, scopeName.length-1)
-      if sameName
-        duplicate = true
-    if blank
-      showWarningFieldIsBlank()
-    if duplicate
-      showWarningFieldAlreadyExists()
-    return !blank && !duplicate
+  currentScopeName = $('#name').val()
+  blank = false
+  duplicate = false
+  if currentScopeName == ''
+    blank = true
+  $('.scope').each (index, scope) ->
+    scopeName = scope.innerText
+    sameName = currentScopeName == scopeName || currentScopeName == scopeName.substr(0, scopeName.length - 1)
+    if sameName
+      duplicate = true
+  if blank
+    showWarningFieldIsBlank()
+  if duplicate
+    showWarningFieldAlreadyExists()
+  return !blank && !duplicate
 
 
 exports.scopeEdited = () ->
@@ -43,10 +43,10 @@ exports.scopeEdited = () ->
   currentScopeName = $('#name').val()
   $('.scope').each (index, scope) ->
     scopeHref = $(scope).attr('href')
-    scopeId = scopeHref.substr(scopeHref.indexOf('=')+1)
+    scopeId = scopeHref.substr(scopeHref.indexOf('=') + 1)
     scopeName = scope.innerText
     sameId = currentScopeId == scopeId
-    sameName = currentScopeName == scopeName || currentScopeName == scopeName.substr(0, scopeName.length-1)
+    sameName = currentScopeName == scopeName || currentScopeName == scopeName.substr(0, scopeName.length - 1)
     edited = !(sameId && sameName)
   return edited
 
@@ -72,24 +72,65 @@ exports.removeWarnings = ->
 exports.persistScope = () ->
   event.preventDefault()
   if !scopeEdited()
-    $('#scopeform').submit()
+     selectAll()
+     console.log ''
+     $('#scopeform').submit()
   else if scopeValid()
     removeWarnings()
     $('#scope-save-confirm').foundation('open');
     $(".close-button").click ->
-      $('#scopeform').submit()
+       selectAll()
+       console.log ''
+       $('#scopeform').submit()
+
+
+exports.selectAll = ->
+  $('.viewer').each (index,item) ->
+    $(this).attr('selected', true)
+
+
 
 
 exports.deleteScope = (scopeId) ->
   $('#scope-delete-confirm').foundation('open');
   $("#scope-delete-yes").click ->
-    window.location.href = "deletescope?id="+scopeId
+    window.location.href = "deletescope?id=" + scopeId
   $("#scope-delete-no").click ->
     $('#scope-delete-confirm').foundation('close');
 
 #$('#scopeform').on('invalid.fndtn.abide') ->
 #  $('.scope-duplicate').hide()
 #  return
+
+exports.showUsers = ->
+  $('#show-users').foundation('open');
+  $('#btn-add-viewers').click ->
+    $('.users:selected').each (index, user) ->
+      $('#viewers').append($('<option>', {
+        value: $(user).text(),
+        text: $(user).text()
+        class: 'viewer'
+      }));
+      $('#owner').append($('<option>', {
+        value: $(user).text(),
+        text: $(user).text()
+      }));
+      $('#add-viewers option[value="' + $(user).text() + '"]').remove()
+    $('#show-users').foundation('close')
+
+
+exports.removeViewers = ->
+  $('#viewers option:selected').each (index, viewer) ->
+    if $(viewer).text() == "admin"
+      return
+    else
+      $('#viewers option[value="' + $(viewer).text() + '"]').remove()
+      $('#owner option[value="' + $(viewer).text() + '"]').remove()
+      $('#add-viewers').append($('<option>', {
+        class: "users",
+        value: $(viewer).text(),
+        text: $(viewer).text()
+      }));
 
 
 $('.scope-duplicate').on('show', ( ->
