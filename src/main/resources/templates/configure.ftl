@@ -67,7 +67,7 @@
                     <div id="copy-user" hidden>
                         <label>Choose a username</label>
                         <input id="copy-user-val" type="text"></input>
-                        <a id="btn-copy-user" class="button" href="">Copy</a>
+                        <a id="btn-copy-user" class="button" href="">Copy<a>
                     </div>
                     <div id="upload" hidden>
                         <form method="POST" action="uploadUsersFile" enctype="multipart/form-data">
@@ -76,9 +76,7 @@
                         </form>
                     </div>
                 </div>
-
             </div>
-
         </#if>
 
         <div class="row" style="margin-top: 200px">
