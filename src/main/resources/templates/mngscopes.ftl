@@ -109,7 +109,7 @@
                                         <label>Owner:
                                             <select id="owner" name="owner">
                                                 <#list viewers as viewer>
-                                                    <#if viewer.username == "admin">
+                                                    <#if selscope.owner.username == viewer.username>
                                                         <option class="owner" value="${viewer}"
                                                                 selected>${viewer}</option>
                                                     <#else>
@@ -142,7 +142,7 @@
                                                 </#list>
                                             </select>
                                             <a class="button secondary" onclick="showTemplates()">
-                                                Add
+                                                Add Templates
                                             </a>
                                             <a class="button secondary" onclick="removeTemplates()">
                                                 Remove
