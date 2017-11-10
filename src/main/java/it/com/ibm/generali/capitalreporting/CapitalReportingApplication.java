@@ -14,7 +14,7 @@ public class CapitalReportingApplication
     /**
      * Version. It must be the same as that found in gradle.properties
      */
-    private static final String version = "0.3.5";
+    private static final String version = "0.4.0";
     private static Logger logger = LoggerFactory.getLogger(CapitalReportingApplication.class);
     public static final String APP_TITLE = "CAPITAL REPORTING";
 

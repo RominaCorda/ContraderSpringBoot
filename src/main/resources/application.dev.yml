@@ -31,15 +31,6 @@ spring:
     url: jdbc:oracle:thin:@9.137.251.186:1521:CRDEV
     username: CR_WEB
     password: CR_WEB
-swagger:
-  base-path: /capitalreporting
-security:
-  basic:
-    enabled: true
-    path: /api/**
-  user:
-    name: admin
-    password: secret
 cognos:
   bi:
     url: 9.137.251.185:9300/bi

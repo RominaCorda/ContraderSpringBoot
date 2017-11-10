@@ -61,26 +61,28 @@
                     <a class="button secondary" onclick="showCopyUser()">
                         <i class="fi-page-copy"></i>&nbsp;Copy
                     </a>
-                    <a style="width: 100%" class="button secondary" onclick="showUpload()">
-                        Upload CSV
-                    </a>
                     <div id="copy-user" hidden>
-                        <label>Choose a username</label>
-                        <input id="copy-user-val" type="text"></input>
+                        <label for="copy-user-val">Choose a username</label>
+                        <input id="copy-user-val" type="text">
                         <a id="btn-copy-user" class="button" href="">Copy<a>
-                    </div>
-                    <div id="upload" hidden>
-                        <form method="POST" action="uploadUsersFile" enctype="multipart/form-data">
-                            <input style="background: cadetblue" type="file" name="file" class="button"></input>
-                            <input style="width: 30%; margin: 0 35%;" class="button" type="submit" value="Upload">
-                        </form>
                     </div>
                 </div>
             </div>
         </#if>
 
-        <div class="row" style="margin-top: 200px">
-            <a href="userscsvdownload" class="success button">Download users CSV</a>
+        <div class="row" style="margin-top: 140px">
+            <div class="stacked button-group">
+                <a href="userscsvdownload" class="success button">Download CSV</a>
+                <a class="success button" onclick="showUpload()">
+                    Upload CSV
+                </a>
+                <div id="upload" hidden>
+                    <form method="POST" action="uploadUsersFile" enctype="multipart/form-data">
+                        <input style="background: cadetblue" type="file" name="file" class="button">
+                        <input style="width: 30%; margin: 0 35%;" class="button" type="submit" value="Upload">
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 

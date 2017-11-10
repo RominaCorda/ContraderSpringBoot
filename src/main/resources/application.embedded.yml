@@ -18,12 +18,6 @@ spring:
     url: jdbc:hsqldb:file:capitalreporting.db
     username: SA
     password:
-swagger:
-  base-path: /capitalreporting
-security:
-  basic:
-    enabled: true
-    path: /api/**
   user:
     name: admin
     password: secret
