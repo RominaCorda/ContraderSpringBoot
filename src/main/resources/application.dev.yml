@@ -1,6 +1,6 @@
 #
 # APPLICATION.PROPERTIES
-# OracleDB with COGNOS
+# OracleDB with COGNOS DEV ENV
 #
 
 server:
@@ -14,7 +14,7 @@ spring:
       hibernate:
         format_sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       use-new-id-generator-mappings: true
   output:
     ansi:
