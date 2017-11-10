@@ -10,6 +10,7 @@ import it.com.ibm.generali.capitalreporting.framework.Utilities;
 import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import it.com.ibm.generali.capitalreporting.model.Role;
 import it.com.ibm.generali.capitalreporting.model.UserTag;
+import it.com.ibm.generali.capitalreporting.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +33,15 @@ public class UsersController extends SessionHelper
     private UserDao users;
     private RoleDao roles;
     private UserTagDao tags;
+    private UserService userService;
 
     @Autowired
-    public UsersController(UserDao userDao, RoleDao roleDao, UserTagDao tagDao)
+    public UsersController(UserDao userDao, RoleDao roleDao, UserTagDao tagDao, UserService userService)
     {
         this.users = userDao;
         this.roles = roleDao;
         this.tags = tagDao;
+        this.userService = userService;
     }
 
     /**
@@ -127,6 +130,26 @@ public class UsersController extends SessionHelper
 
         this.users.save(modUser);
         return "redirect:configure?mode=" + mode;
+    }
+
+    /**
+     * Roles with copy
+     */
+    @RequestMapping(value = "/copyuser", method = RequestMethod.GET, params = {"username", "username_new"})
+    public String copyScope(Model model, HttpSession session, @RequestParam("username") String username, @RequestParam("username_new") String usernameNew)
+    {
+        String redirect = "redirect:/configure";
+        try
+        {
+            userService.copyUser(username, usernameNew);
+            redirect = "redirect:/configure?selecteduser=" + usernameNew;
+        }
+        catch (Exception exc)
+        {
+            logger.error(exc.getMessage());
+        }
+
+        return redirect;
     }
 
     private String configureTemplate(Model model,

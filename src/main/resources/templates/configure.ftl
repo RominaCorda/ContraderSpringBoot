@@ -56,6 +56,14 @@
                 <a href="configure?selecteduser=new" class="button secondary float-right"><i class="fi-plus"></i>&nbsp;
                     Add
                     new</a>
+                <a style="float:right" class="button secondary" onclick="showCopyUser()">
+                    <i class="fi-page-copy"></i>&nbsp;Copy
+                </a>
+                <div id="copy-user" hidden>
+                    <label>Choose a username</label>
+                    <input id="copy-user-val" type="text"></input>
+                    <a id="btn-copy-user" class="button" href="">Copy<a>
+                </div>
             </div>
         </#if>
     </div>
@@ -170,6 +178,9 @@
 
 </div>
 <!-- END OF MAIN -->
+</#macro>
+<#macro  before_end_scripts>
+<script src="js/users.js"></script>
 </#macro>
 
 <@skeleton/>

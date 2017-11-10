@@ -57,6 +57,19 @@ open class CapitalUser() : Serializable
         this.roles.add(role)
     }
 
+    private constructor(username: String, password: String, fullName: String, email: String, roles: MutableSet<Role>, usertags: MutableSet<UserTag>) : this()
+    {
+        this.username = username
+        this.password = password
+        this.fullName = fullName
+        this.email = email
+        this.active = true
+        this.roles = roles
+        this.usertags = usertags
+    }
+
+    fun copy() = CapitalUser(this.username, this.password, this.fullName, this.email, this.roles, this.usertags)
+
     fun toDetailedString(): String = "$fullName ($username)"
 
     fun checkPassword(passwordInClear: String): Boolean
