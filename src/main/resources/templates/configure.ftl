@@ -52,10 +52,10 @@
                     </select>
                 </label>
                 <div class="stacked button-group">
-                    <a href="configure?delete=${selecteduser.username}" class="button alert float-left"><i
+                    <a href="configure?delete=${selecteduser.username}" class="button alert"><i
                             class="fi-x"></i>&nbsp;
                         Delete</a>
-                    <a href="configure?selecteduser=new" class="button secondary float-right"><i class="fi-plus"></i>&nbsp;
+                    <a href="configure?selecteduser=new" class="button secondary"><i class="fi-plus"></i>&nbsp;
                         Add
                         new</a>
                     <a class="button secondary" onclick="showCopyUser()">

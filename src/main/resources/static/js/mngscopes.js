@@ -90,14 +90,24 @@
     exports.persistScope = function () {
         event.preventDefault();
         if (!scopeEdited()) {
+            selectAll();
+            console.log('');
             return $('#scopeform').submit();
         } else if (scopeValid()) {
             removeWarnings();
             $('#scope-save-confirm').foundation('open');
             return $(".close-button").click(function () {
+                selectAll();
+                console.log('');
                 return $('#scopeform').submit();
             });
         }
+    };
+
+    exports.selectAll = function () {
+        return $('.viewer').each(function (index, item) {
+            return $(this).attr('selected', true);
+        });
     };
 
     exports.deleteScope = function (scopeId) {
@@ -107,6 +117,41 @@
         });
         return $("#scope-delete-no").click(function () {
             return $('#scope-delete-confirm').foundation('close');
+        });
+    };
+
+    exports.showUsers = function () {
+        $('#show-users').foundation('open');
+        return $('#btn-add-viewers').click(function () {
+            $('.users:selected').each(function (index, user) {
+                $('#viewers').append($('<option>', {
+                    value: $(user).text(),
+                    text: $(user).text(),
+                    "class": 'viewer'
+                }));
+                $('#owner').append($('<option>', {
+                    value: $(user).text(),
+                    text: $(user).text()
+                }));
+                return $('#add-viewers option[value="' + $(user).text() + '"]').remove();
+            });
+            return $('#show-users').foundation('close');
+        });
+    };
+
+    exports.removeViewers = function () {
+        return $('#viewers option:selected').each(function (index, viewer) {
+            if ($(viewer).text() === "admin") {
+
+            } else {
+                $('#viewers option[value="' + $(viewer).text() + '"]').remove();
+                $('#owner option[value="' + $(viewer).text() + '"]').remove();
+                return $('#add-viewers').append($('<option>', {
+                    "class": "users",
+                    value: $(viewer).text(),
+                    text: $(viewer).text()
+                }));
+            }
         });
     };
 

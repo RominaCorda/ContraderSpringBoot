@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="user" type="it.com.ibm.generali.capitalreporting.model.CapitalUser" -->
 <#include "base.ftl">
 
 <#macro page_body>
@@ -23,9 +24,12 @@
             </div>
 
             <div class="row">
-                <label>Role:
-                    <input id="role" name="role" type="text" value="${user.role.description}" disabled>
-                </label>
+                <label>Roles:</label>
+                <ul class="inline-list">
+                    <#list user.roles as role>
+                        <li><a href="#">${role.description}</a></li>
+                    </#list>
+                </ul>
             </div>
 
             <div class="row">
