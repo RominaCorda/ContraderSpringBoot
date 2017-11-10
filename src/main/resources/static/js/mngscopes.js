@@ -105,7 +105,10 @@
     };
 
     exports.selectAll = function () {
-        return $('.viewer').each(function (index, item) {
+        $('.viewer').each(function (index, item) {
+            return $(this).attr('selected', true);
+        });
+        return $('.template').each(function (index, item) {
             return $(this).attr('selected', true);
         });
     };
@@ -152,6 +155,32 @@
                     text: $(viewer).text()
                 }));
             }
+        });
+    };
+
+    exports.showTemplates = function () {
+        $('#show-templates').foundation('open');
+        return $('#btn-add-templates').click(function () {
+            $('.templates:selected').each(function (index, template) {
+                $('#templates').append($('<option>', {
+                    value: $(template).text(),
+                    text: $(template).text(),
+                    "class": 'template'
+                }));
+                return $('#add-templates option[value="' + $(template).text() + '"]').remove();
+            });
+            return $('#show-templates').foundation('close');
+        });
+    };
+
+    exports.removeTemplates = function () {
+        return $('#templates option:selected').each(function (index, template) {
+            $('#templates option[value="' + $(template).text() + '"]').remove();
+            return $('#add-templates').append($('<option>', {
+                "class": "templates",
+                value: $(template).text(),
+                text: $(template).text()
+            }));
         });
     };
 
