@@ -53,25 +53,30 @@ public class SearchUserController extends SessionHelper
                               @RequestParam(value = "name", required = false) String name,
                               @RequestParam(value = "tags", required = false) String tags)
     {
-        if ((name == null) && (tags == null))
-            return "redirect:searchusers";
 
-        List<CapitalUser> users = null;
+        List<CapitalUser> users = new ArrayList<>();
 
-        if ((name != null) && (tags != null))
+        if ((name.equals("")) && (tags.equals("")))
         {
-            List<UserTag> foundtags = this.getTagsFromString(tags);
-            users = this.users.findByUsernameLikeAndUsertagsIn(name, foundtags);
+            this.users.findAll().forEach(users::add);
         }
         else
         {
-            if (name != null)
+            if ((!name.equals("")) && (!tags.equals("")))
             {
-                users = this.users.findByUsernameLike(name);
+                List<UserTag> foundtags = this.getTagsFromString(tags);
+                users = this.users.findByUsernameLikeAndUsertagsIn(name, foundtags);
             }
-            if (tags != null)
+            else
             {
-                users = this.users.findByUsertagsIn(this.getTagsFromString(tags));
+                if (!name.equals(""))
+                {
+                    users = this.users.findByUsernameLike(name);
+                }
+                if (!tags.equals(""))
+                {
+                    users = this.users.findByUsertagsIn(this.getTagsFromString(tags));
+                }
             }
         }
 
