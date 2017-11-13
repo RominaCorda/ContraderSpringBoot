@@ -150,15 +150,24 @@ public class UserController extends SessionHelper
         if (knownUser != null)
         {
             logger.info("Ok, found user " + username);
-            if (knownUser.checkPassword(password))
+
+            // Check if active
+            if (knownUser.getActive())
             {
-                logger.info("Password is OK");
-                this.saveUserSession(session, knownUser);
-                return "redirect:index";
+                if (knownUser.checkPassword(password))
+                {
+                    logger.info("Password is OK");
+                    this.saveUserSession(session, knownUser);
+                    return "redirect:index";
+                }
+                else
+                {
+                    errorMsg = "Wrong password";
+                }
             }
             else
             {
-                errorMsg = "Wrong password";
+                errorMsg = "User " + username + " is not active.";
             }
         }
         else

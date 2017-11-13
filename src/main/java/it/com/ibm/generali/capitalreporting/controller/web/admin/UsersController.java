@@ -106,17 +106,21 @@ public class UsersController extends SessionHelper
      * Add or modify User
      */
     @RequestMapping(value = "/configure", method = RequestMethod.POST)
-    public String addOrModifyUser(@ModelAttribute("user") CapitalUser user)
+    public String addOrModifyUser(@ModelAttribute("user") CapitalUser user,
+                                  @RequestParam(value = "active", defaultValue = "false") boolean isActive)
     {
         logger.info("/configure POST");
         String username = user.getUsername();
         String mode;
         CapitalUser modUser = this.users.findOne(username);
+
+        logger.info("User is active? > " + isActive);
+
         if (modUser != null)
         {
             modUser.setEmail(user.getEmail());
             modUser.setFullName(user.getFullName());
-            modUser.setActive(user.getActive());
+            modUser.setActive(isActive);
             modUser.setRoles(user.getRoles());
             modUser.setUsertags(user.getUsertags());
             mode = "ok_modified";
