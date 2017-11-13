@@ -4,6 +4,8 @@ gradle/
 build/
 out/
 gradlew*
+*.js
+*.css
 .DS_Store
 /capitalreporting.db.*
 
