@@ -13,21 +13,21 @@ exports.highlightSelected = ->
   $('.scope').each (index, scope) ->
     $(scope).removeClass('active')
   $('.scope').each (index, scope) ->
-    selectedScope = $('#scopename').html()
-    if selectedScope  == scope.innerText || selectedScope == scope.innerText.substring(0, scope.innerText.length - 1)
+    selectedScope = $('#scopename').text().trim()
+    if selectedScope  == scope.innerText.trim()
       $(scope).addClass('active')
     return
 
 
 exports.scopeValid = () ->
-  currentScopeName = $('#name').val()
+  currentScopeName = $('#name').val().trim()
   blank = false
   duplicate = false
   if currentScopeName == ''
     blank = true
   $('.scope').each (index, scope) ->
-    scopeName = scope.innerText
-    sameName = currentScopeName == scopeName || currentScopeName == scopeName.substr(0, scopeName.length - 1)
+    scopeName = scope.innerText.trim()
+    sameName = currentScopeName == scopeName
     if sameName
       duplicate = true
   if blank
@@ -40,13 +40,13 @@ exports.scopeValid = () ->
 exports.scopeEdited = () ->
   edited = true
   currentScopeId = $("#id").val()
-  currentScopeName = $('#name').val()
+  currentScopeName = $('#name').val().trim()
   $('.scope').each (index, scope) ->
     scopeHref = $(scope).attr('href')
     scopeId = scopeHref.substr(scopeHref.indexOf('=') + 1)
-    scopeName = scope.innerText
+    scopeName = scope.innerText.trim()
     sameId = currentScopeId == scopeId
-    sameName = currentScopeName == scopeName || currentScopeName == scopeName.substr(0, scopeName.length - 1)
+    sameName = currentScopeName == scopeName
     edited = !(sameId && sameName)
   return edited
 
@@ -85,9 +85,9 @@ exports.persistScope = () ->
 
 
 exports.selectAll = ->
-  $('.viewer').each (index,item) ->
+  $('.viewer').each () ->
     $(this).attr('selected', true)
-  $('.template').each (index,item) ->
+  $('.template').each () ->
     $(this).attr('selected', true)
 
 
