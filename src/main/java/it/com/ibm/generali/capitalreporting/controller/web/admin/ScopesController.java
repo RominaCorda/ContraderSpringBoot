@@ -119,11 +119,12 @@ public class ScopesController extends SessionHelper {
         List<Template> remainingTemplates = (List<Template>) this.templates.findAll();
         remainingTemplates.removeAll(scopeObj.getTemplates());
         users.removeAll(viewers);
+        CapitalUser owner = scopeObj.getOwner();
         model.addAttribute("mode", scopeObj.getType().toString().toLowerCase());
         model.addAttribute("canAddReports", this.scopeService.canAddReports(scopeObj));
         model.addAttribute("users", users);
         model.addAttribute("viewers", viewers);
-        model.addAttribute("owner", scopeObj.getOwner());
+        model.addAttribute("owner", owner);
         model.addAttribute("templates", scopeObj.getTemplates());
         model.addAttribute("remainingTemplates", remainingTemplates);
         model.addAttribute("selscope", scopeObj);
@@ -144,7 +145,7 @@ public class ScopesController extends SessionHelper {
         logger.info("/managescopes GET for new scopes with parent = " + scopeId);
         Scope parent = this.scopes.findOne(scopeId);
         List<Scope> parents = this.scopeService.getParents(parent);
-        parents.add(parent);
+//        parents.add(parent);
         model.addAttribute("mode", parent.getType().toString().toLowerCase());
         model.addAttribute("parents", parents);
         model.addAttribute("users", this.users.findAll());
@@ -164,39 +165,53 @@ public class ScopesController extends SessionHelper {
                             @RequestParam("parent") long parent,
                             @RequestParam("name") String name,
                             @RequestParam(value = "published", defaultValue = "false") boolean published,
-                            @RequestParam(value = "owner", defaultValue = "admin") String owner,
                             @RequestParam(value = "viewers", required = false) String[] viewers,
+                            @RequestParam(value = "owner", defaultValue = "admin") String owner,
                             @RequestParam(value = "templates", required = false) String[] templateNames,
                             @RequestParam(value = "tags", required = false) String[] tags) {
         logger.info("/managescope POST with scope=" + id);
         Scope scopeObj;
         if (id > 0) {
             scopeObj = this.scopes.findOne(id);
-        } else {
+        }
+        else {
             ScopeType type = Utilities.INSTANCE.getScopeType(mode);
             scopeObj = new Scope();
             scopeObj.setParent(parent);
             scopeObj.setType(type);
         }
-        scopeObj.setName(name);
-        scopeObj.setPublished(published);
         CapitalUser userOwner = this.users.findOne(owner);
-        scopeObj.setOwner(userOwner);
+        CapitalUser admin = this.users.findOne("admin");
+        if (owner != null) {
+            scopeObj.setOwner(userOwner);
+        }
+        else {
+            scopeObj.setOwner(admin);
+        }
+        Set<CapitalUser> newViewers = new HashSet<>();
+        if (viewers != null) {
+            for (String viewer : viewers)
+                newViewers.add(this.users.findOne(viewer));
+            scopeObj.setUsers(newViewers);
+        }
+        else {
+            newViewers.add(admin);
+            scopeObj.setUsers(newViewers);
+        }
         if (templateNames != null) {
             Set<Template> newTemplates = new HashSet<>();
             for (String templateName : templateNames)
                 newTemplates.add(this.templates.findByName(templateName));
             scopeObj.setTemplates(newTemplates);
         }
-        if (viewers != null) {
-            Set<CapitalUser> newViewers = new HashSet<>();
-            for (String viewer : viewers)
-                newViewers.add(this.users.findOne(viewer));
-            scopeObj.setUsers(newViewers);
-        }
-        if (tags != null) {
+        scopeObj.setName(name);
+        scopeObj.setPublished(published);
+
+        if (tags != null)
+        {
             scopeObj.setAllTags(Arrays.asList(tags));
         }
+
         final Scope savedScope = this.scopes.save(scopeObj);
         return "redirect:/managescope?scope=" + savedScope.getId();
     }
