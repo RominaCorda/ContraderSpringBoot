@@ -68,7 +68,7 @@
                         <div class="row">
                             <div class="column medium-6 large-6">
                                 <input id="id" name="id" type="hidden" value="${selscope.id?c}">
-                                <input id="parent" name="parent" type="hidden" value="${selscope.parent}">
+                                <input id="parent" name="parent" type="hidden" value="${selscope.parent?c}">
                                 <input id="mode" name="mode" type="hidden" value="${mode}">
                                 <label>Name:
                                     <input id="name" name="name" type="text" value="${selscope.name}" required>
@@ -219,7 +219,7 @@
                         <div class="row">
                             <div class="column medium-6 large-6">
                                 <input id="id" name="id" type="hidden" value="-1">
-                                <input id="parent" name="parent" type="hidden" value="${parents?last}">
+                                <input id="parent" name="parent" type="hidden" value="${parents?first.id?c}">
                                 <input id="mode" name="mode" type="hidden" value="${mode}">
                                 <label>Name:
                                     <input id="name" name="name" type="text" value="" required>
