@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -109,12 +111,6 @@ public class UsersController extends SessionHelper
         logger.info("/configure POST");
         String username = user.getUsername();
         String mode;
-
-        for (Role r : user.getRoles())
-        {
-            logger.info("Role > " + r.getDescription());
-        }
-
         CapitalUser modUser = this.users.findOne(username);
         if (modUser != null)
         {
@@ -136,16 +132,19 @@ public class UsersController extends SessionHelper
     }
 
     /**
-<<<<<<< Updated upstream
      * Roles with copy
      */
     @RequestMapping(value = "/copyuser", method = RequestMethod.GET, params = {"username", "username_new"})
-    public String copyScope(Model model, HttpSession session, @RequestParam("username") String username, @RequestParam("username_new") String usernameNew) {
+    public String copyScope(Model model, HttpSession session, @RequestParam("username") String username, @RequestParam("username_new") String usernameNew)
+    {
         String redirect = "redirect:/configure";
-        try {
+        try
+        {
             userService.copyUser(username, usernameNew);
             redirect = "redirect:/configure?selecteduser=" + usernameNew;
-        } catch (Exception exc) {
+        }
+        catch (Exception exc)
+        {
             logger.error(exc.getMessage());
         }
 
@@ -156,16 +155,18 @@ public class UsersController extends SessionHelper
     public String uploadUsersFile(@RequestParam("file") MultipartFile file)
     {
         BufferedReader br = null;
-        String line = "";
-        String cvsSplitBy = ",";
+        String line;
         List<CapitalUser> utenti = new ArrayList<CapitalUser>();
-        try {
+        try
+        {
 
             br = new BufferedReader(new InputStreamReader(file.getInputStream()));
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null)
+            {
                 String[] data = line.split(";");
                 CapitalUser user = this.users.findOne(data[0]);
-                if (user != null) {
+                if (user != null)
+                {
                     user.setPassword(data[1]);
                     user.setFullName(data[2]);
                     user.setEmail(data[3]);
@@ -174,7 +175,8 @@ public class UsersController extends SessionHelper
                     user.setRoles(roles);
                     utenti.add(user);
                 }
-                else {
+                else
+                {
                     Role role = this.roles.findByDescription(data[4]);
                     utenti.add(new CapitalUser(data[0], data[1], data[2], data[3], role));
                 }
@@ -182,13 +184,21 @@ public class UsersController extends SessionHelper
             this.users.save(utenti);
             List<CapitalUser> all = (List<CapitalUser>) this.users.findAll();
             System.out.println(all);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             logger.error(e.getMessage());
-        }finally {
-            if (br != null) {
-                try {
+        }
+        finally
+        {
+            if (br != null)
+            {
+                try
+                {
                     br.close();
-                } catch (IOException e) {
+                }
+                catch (IOException e)
+                {
                     e.printStackTrace();
                 }
             }

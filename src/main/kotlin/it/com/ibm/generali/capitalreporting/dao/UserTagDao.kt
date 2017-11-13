@@ -4,3 +4,6 @@ import it.com.ibm.generali.capitalreporting.model.UserTag
 import org.springframework.data.repository.CrudRepository
 
 interface UserTagDao : CrudRepository<UserTag, Long>
+{
+    fun findByNameIgnoreCase(name: String): UserTag?
+}

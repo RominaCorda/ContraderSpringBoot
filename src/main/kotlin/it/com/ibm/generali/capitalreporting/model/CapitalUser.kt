@@ -68,6 +68,35 @@ open class CapitalUser() : Serializable
         this.usertags = usertags
     }
 
+    fun rolesString(): String
+    {
+        val sb = StringBuilder()
+        for (r in this.roles)
+        {
+            sb.append(r.description)
+            sb.append(", ")
+        }
+        val roles = sb.toString()
+        return if (roles.length > 2)
+            roles.substring(0, roles.length - 2)
+        else ""
+    }
+
+    fun tagsString(): String
+    {
+        val sb = StringBuilder()
+        for (t in this.usertags)
+        {
+            sb.append(t.name)
+            sb.append(", ")
+        }
+        val tagsString = sb.toString()
+        return if (tagsString.length > 2)
+            tagsString.substring(0, tagsString.length - 2)
+        else ""
+
+    }
+
     fun copy() = CapitalUser(this.username, this.password, this.fullName, this.email, this.roles, this.usertags)
 
     fun toDetailedString(): String = "$fullName ($username)"

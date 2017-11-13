@@ -60,7 +60,7 @@ open class ScopeService
             // Level 0 have no parents
             this.getRoots(scope.type)
         }
-        tempSiblings.forEach { s -> siblings.add(s) }
+        tempSiblings?.forEach { s -> siblings.add(s) }
         return siblings
     }
 
@@ -122,7 +122,7 @@ open class ScopeService
      * Get all root scopes.
      * A root scope is a scope without parent.
      */
-    fun getRoots(type: ScopeType): List<Scope>
+    fun getRoots(type: ScopeType): List<Scope>?
     {
         return this.scopes.findByTypeAndParent(type, -1L)
     }

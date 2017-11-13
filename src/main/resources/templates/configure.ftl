@@ -70,19 +70,24 @@
             </div>
         </#if>
 
-        <div class="row" style="margin-top: 140px">
-            <div class="stacked button-group">
-                <a href="userscsvdownload" class="success button">Download CSV</a>
-                <a class="success button" onclick="showUpload()">
-                    Upload CSV
-                </a>
-                <div id="upload" hidden>
-                    <form method="POST" action="uploadUsersFile" enctype="multipart/form-data">
-                        <input style="background: cadetblue" type="file" name="file" class="button">
-                        <input style="width: 30%; margin: 0 35%;" class="button" type="submit" value="Upload">
-                    </form>
+        <div class="row" style="margin-top: 70px">
+            <div class="callout secondary">
+                <h5>Users</h5>
+                <div class="stacked button-group">
+                    <a href="userscsvdownload" class="success button">Download...</a>
+                    <a class="success button" onclick="showUpload()">
+                        Upload...
+                    </a>
+                    <a href="searchusers" class="success button">Search</a>
+                    <div id="upload" hidden>
+                        <form method="POST" action="uploadUsersFile" enctype="multipart/form-data">
+                            <input style="background: cadetblue" type="file" name="file" class="button">
+                            <input style="width: 30%; margin: 0 35%;" class="button" type="submit" value="Upload">
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -153,19 +158,19 @@
             </div>
             <div class="row">
                 <div class="column medium-10 large-10">
-                    <#if tags??>
-                        <fieldset name="usertags">
-                            <legend>User Tags:</legend>
+                    <label>Tags:
+                        <select multiple id="usertags" name="usertags">
                             <#list tags as tag>
                                 <#if selecteduser.usertags?seq_contains(tag)>
-                                    <input id="chk${tag.name}" type="checkbox" value="${tag.name}" checked="checked">
+                                <option value="${tag.id}" selected="selected">
                                 <#else>
-                                    <input id="chk${tag.name}" type="checkbox" value="${tag.name}">
+                                <option value="${tag.id}">
                                 </#if>
-                                <label for="chk${tag.name}">${tag.name}</label>
+                            ${tag.name}
+                            </option>
                             </#list>
-                        </fieldset>
-                    </#if>
+                        </select>
+                    </label>
                 </div>
                 <div class="column medium-1 large-1">
                     <div style="margin-top: 30px" data-tooltip aria-haspopup="true" class="has-tip"

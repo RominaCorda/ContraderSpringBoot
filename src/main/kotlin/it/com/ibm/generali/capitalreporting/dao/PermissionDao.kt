@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository
 
 interface PermissionDao : CrudRepository<Permission, Long>
 {
-    fun findByDescription(description: String): Permission
+    fun findByDescription(description: String): Permission?
 }

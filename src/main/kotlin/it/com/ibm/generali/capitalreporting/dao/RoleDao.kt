@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository
 
 interface RoleDao : CrudRepository<Role, Long>
 {
-    fun findByDescription(role: String): Role
+    fun findByDescription(role: String): Role?
 }

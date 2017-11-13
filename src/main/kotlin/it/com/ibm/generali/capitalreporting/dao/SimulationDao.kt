@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository
 
 interface SimulationDao : CrudRepository<Simulation, Long>
 {
-    fun findByReportingPeriod(reportingPeriod: String): List<Simulation>
+    fun findByReportingPeriod(reportingPeriod: String): List<Simulation>?
 }
