@@ -58,14 +58,18 @@
                     <a href="configure?selecteduser=new" class="button secondary"><i class="fi-plus"></i>&nbsp;
                         Add
                         new</a>
-                    <a class="button secondary" onclick="showCopyUser()">
-                        <i class="fi-page-copy"></i>&nbsp;Copy
-                    </a>
-                    <div id="copy-user" hidden>
-                        <label for="copy-user-val">Choose a username</label>
-                        <input id="copy-user-val" type="text">
-                        <a id="btn-copy-user" class="button" href="">Copy<a>
-                    </div>
+                    <ul class="accordion" data-accordion data-allow-all-closed="true">
+                        <li class="accordion-item" data-accordion-item>
+                            <!-- Accordion tab title -->
+                            <a href="#" class="accordion-title button secondary"> <i class="fi-page-copy"></i>&nbsp;Copy</a>
+                            <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+                            <div class="accordion-content" data-tab-content>
+                                <label for="copy-user-val">Choose a username</label>
+                                <input id="copy-user-val" type="text">
+                                <a id="btn-copy-user" class="button" href="">Copy<a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </#if>

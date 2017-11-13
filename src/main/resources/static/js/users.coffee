@@ -1,10 +1,6 @@
 exports = this
 
 
-exports.showCopyUser = ->
-  $('#copy-user').show()
-
-
 exports.showUpload = ->
   $('#upload').show()
 
