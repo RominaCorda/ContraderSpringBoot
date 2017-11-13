@@ -67,7 +67,7 @@
                     <form data-abide novalidate id="scopeform" method="post" action="managescope">
                         <div class="row">
                             <div class="column medium-6 large-6">
-                                <input id="id" name="id" type="hidden" value="${selscope.id}">
+                                <input id="id" name="id" type="hidden" value="${selscope.id?c}">
                                 <input id="parent" name="parent" type="hidden" value="${selscope.parent}">
                                 <input id="mode" name="mode" type="hidden" value="${mode}">
                                 <label>Name:
