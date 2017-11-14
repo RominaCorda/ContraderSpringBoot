@@ -42,9 +42,16 @@
                     <input id="username" name="username" type="text" value="${selecteduser.username}" readonly>
                 </label>
                 <div class="stacked button-group">
-                    <a href="configure?delete=${selecteduser.username}" class="button alert"><i
+                    <a class="button alert" onclick="deleteUser('${selecteduser.username}')"><i
                             class="fi-x"></i>&nbsp;
                         Delete</a>
+                    <div class="reveal" id="user-delete-confirm" data-reveal>
+                        <h3>Are you sure you want to delete ${selecteduser.username}?</h3>
+                        <div>
+                            <button id="user-delete-yes" class="button">Yes</button>
+                            <button id="user-delete-no" class="button">No</button>
+                        </div>
+                    </div>
                     <a href="searchusers" class="button secondary"><i class="fi-list"></i>&nbsp;Users List</a>
                     <ul class="accordion" data-accordion data-allow-all-closed="true">
                         <li class="accordion-item" data-accordion-item>
