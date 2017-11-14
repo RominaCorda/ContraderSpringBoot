@@ -9,6 +9,7 @@ import it.com.ibm.generali.capitalreporting.framework.Operation;
 import it.com.ibm.generali.capitalreporting.framework.Utilities;
 import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import it.com.ibm.generali.capitalreporting.model.Role;
+import it.com.ibm.generali.capitalreporting.service.FileUploaderService;
 import it.com.ibm.generali.capitalreporting.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,13 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class UsersController extends SessionHelper
@@ -39,14 +35,20 @@ public class UsersController extends SessionHelper
     private RoleDao roles;
     private UserTagDao tags;
     private UserService userService;
+    private FileUploaderService uploaderService;
 
     @Autowired
-    public UsersController(UserDao userDao, RoleDao roleDao, UserTagDao tagDao, UserService userService)
+    public UsersController(UserDao userDao,
+                           RoleDao roleDao,
+                           UserTagDao tagDao,
+                           UserService userService,
+                           FileUploaderService fileUploaderService)
     {
         this.users = userDao;
         this.roles = roleDao;
         this.tags = tagDao;
         this.userService = userService;
+        this.uploaderService = fileUploaderService;
     }
 
     /**
@@ -170,68 +172,14 @@ public class UsersController extends SessionHelper
         return redirect;
     }
 
-    @RequestMapping(value = "/uploadUsersFile", method = RequestMethod.POST)
+    @RequestMapping(value = "/uploadusersfile", method = RequestMethod.POST)
     public String uploadUsersFile(@RequestParam("file") MultipartFile file)
     {
-        BufferedReader br = null;
-        String line;
-        List<CapitalUser> utenti = new ArrayList<>();
-        try
-        {
-
-            br = new BufferedReader(new InputStreamReader(file.getInputStream()));
-            while ((line = br.readLine()) != null)
-            {
-                String[] data = line.split(";");
-                CapitalUser user = this.users.findOne(data[0]);
-                if (user != null)
-                {
-                    user.setPassword(data[1]);
-                    user.setFullName(data[2]);
-                    user.setEmail(data[3]);
-                    Set<Role> roles = new HashSet<>();
-                    roles.add(this.roles.findByDescription(data[4]));
-                    user.setRoles(roles);
-                    utenti.add(user);
-                }
-                else
-                {
-                    Role role = this.roles.findByDescription(data[4]);
-                    if (role != null)
-                    {
-                        utenti.add(new CapitalUser(data[0], data[1], data[2], data[3], role));
-                    }
-                    else
-                    {
-                        logger.warn("Cannot add user: role not found.");
-                    }
-                }
-            }
-            this.users.save(utenti);
-            List<CapitalUser> all = (List<CapitalUser>) this.users.findAll();
-            System.out.println(all);
-        }
-        catch (Exception e)
-        {
-            logger.error(e.getMessage());
-        }
-        finally
-        {
-            if (br != null)
-            {
-                try
-                {
-                    br.close();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return "redirect:configure";
+        logger.info("UploadUsersFile POST");
+        logger.info("Received file: " + file.getSize() + " bytes.");
+        this.uploaderService.uploadFile(file);
+        return "redirect:searchusers";
     }
-
 
     private String configureTemplate(Model model,
                                      HttpSession session,

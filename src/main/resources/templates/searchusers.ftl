@@ -5,7 +5,7 @@
     <#include "topbar.ftl">
 <!-- MAIN -->
 
-<div class="row columns">
+<div class="row columns" xmlns="http://www.w3.org/1999/html">
     <div class="row columns">
         <h3>Configure Users</h3>
     </div>
@@ -15,22 +15,18 @@
             <div class="small-12 medium-2 large-2 columns">
                 <div class="button-group stacked secondary small" style="margin-top: 25px">
                     <a href="userscsvdownload" class="success button">Download...</a>
-                    <a class="success button" onclick="showUpload()">
-                        Upload...
-                    </a>
-                    <div id="upload" hidden>
-                        <form method="POST" action="uploadUsersFile" enctype="multipart/form-data">
-                            <input style="background: cadetblue" type="file" name="file" class="button">
-                            <input style="width: 30%; margin: 0 35%;" class="button" type="submit" value="Upload">
-                        </form>
-                    </div>
+                    <form id="uploadfile" name="uploadfile" method="POST" action="uploadusersfile"
+                          enctype="multipart/form-data">ù
+                        <label for="file" class="button">Upload File</label>
+                        <input type="file" id="file" name="file" class="show-for-sr">
+                    </form>
                     <a href="configure?mode=new" class="button"><i class="fi-plus"></i>&nbsp;Add new</a>
                 </div>
             </div>
             <div class="small-12 medium-10 large-10 columns">
                 <div class="row">
                     <div class="columns">
-                        <form method="post" action="">
+                        <form name="filterdata" method="post" action="">
                             <div class="row">
                                 <div class="small-12 medium-5 large-5 columns">
                                     <label>Name
@@ -46,7 +42,10 @@
                             </div>
                             <div class="row">
                                 <div class="small-12 medium-12 large-12 columns">
-                                    <input type="submit" class="small button success float-right" value="Filter">
+                                    <button type="submit" class="small button success float-right" name="searchfilter"
+                                            value="Filter">
+                                        <i class="fi-magnifying-glass"></i> Filter
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -91,12 +90,13 @@
 
 
 </div>
+<script>
+    $('#file').change(function () {
+        $('#uploadfile').submit();
+    });
+</script>
 
 <!-- END OF MAIN -->
-</#macro>
-
-<#macro  before_end_scripts>
-<script src="js/users.js"></script>
 </#macro>
 
 <@skeleton/>

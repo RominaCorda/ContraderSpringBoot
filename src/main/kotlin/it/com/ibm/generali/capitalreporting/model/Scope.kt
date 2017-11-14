@@ -23,7 +23,7 @@ open class Scope() : Serializable
     var parent: Long = -1L
     var type: ScopeType = ScopeType.ANALYSIS
 
-    constructor(owner:CapitalUser, name: String, tags: String, published: Boolean, parent: Long, type: ScopeType, templates:MutableSet<Template>, users:MutableSet<CapitalUser>) : this()
+    constructor(owner: CapitalUser, name: String, tags: String, published: Boolean, parent: Long, type: ScopeType, templates: MutableSet<Template>, users: MutableSet<CapitalUser>) : this()
     {
         this.owner = owner
         this.name = name
@@ -31,8 +31,7 @@ open class Scope() : Serializable
         this.published = published
         this.parent = parent
         this.type = type
-        templates.forEach {
-            template ->
+        templates.forEach { template ->
             this.templates.add(template)
         }
         users.forEach { user ->

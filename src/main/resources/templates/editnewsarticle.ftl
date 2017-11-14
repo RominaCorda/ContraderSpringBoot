@@ -16,7 +16,8 @@
         <div class="small-12 medium-6 large-6">
             <label>
                 Title:
-                <input id="title" name="title" placeholder="News title" type="text" value="${newsarticle.title}" required>
+                <input id="title" name="title" placeholder="News title" type="text" value="${newsarticle.title}"
+                       required>
                 <input id="newsid" name="newsid" type="hidden" value="${newsarticle.id}">
                 <span class="form-error">This field cannot be blank</span>
             </label>
@@ -27,7 +28,8 @@
         <div class="small-12 medium-6 large-6">
             <label>Body:
                 <textarea id="body" name="body" rows="4"
-                          placeholder="News body here" required><#if newsarticle.body?has_content>${newsarticle.body}</#if></textarea>
+                          placeholder="News body here"
+                          required><#if newsarticle.body?has_content>${newsarticle.body}</#if></textarea>
                 <span class="form-error">This field cannot be blank</span>
             </label>
         </div>

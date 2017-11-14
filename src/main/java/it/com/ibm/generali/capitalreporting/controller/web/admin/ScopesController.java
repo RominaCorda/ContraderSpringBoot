@@ -22,10 +22,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Controller
-public class ScopesController extends SessionHelper {
+public class ScopesController extends SessionHelper
+{
     private Logger logger = LoggerFactory.getLogger(ScopesController.class);
 
     private ScopeDao scopes;
@@ -39,7 +43,8 @@ public class ScopesController extends SessionHelper {
                             TagDao tagDao,
                             UserDao userDao,
                             TemplateDao templateDao,
-                            ScopeService scopeService) {
+                            ScopeService scopeService)
+    {
         this.scopes = scopeDao;
         this.tags = tagDao;
         this.users = userDao;
@@ -53,7 +58,8 @@ public class ScopesController extends SessionHelper {
     @RequestMapping(value = "/managescopes", method = RequestMethod.GET, params = {"mode"})
     public String manageScopesWithMode(Model model,
                                        HttpSession session,
-                                       @RequestParam("mode") String mode) {
+                                       @RequestParam("mode") String mode)
+    {
         logger.info("/managescopes MODE=" + mode);
         ScopeType type = Utilities.INSTANCE.getScopeType(mode);
         List<Scope> scopesZero = this.scopes.findByTypeAndParent(type, -1L);
@@ -70,23 +76,32 @@ public class ScopesController extends SessionHelper {
      * Roles with delete
      */
     @RequestMapping(value = "/deletescope", method = RequestMethod.GET, params = {"id"})
-    public String deleteScope(Model model, HttpSession session, @RequestParam("id") String scopeId) {
+    public String deleteScope(Model model, HttpSession session, @RequestParam("id") String scopeId)
+    {
         String redirect = "redirect:/managescopes";
-        try {
+        try
+        {
             long scopeKey = Long.parseLong(scopeId);
             Scope scope = this.scopes.findOne(scopeKey);
             ScopeType mode = scope.getType();
             this.scopes.delete(scopeKey);
             List<Scope> siblings = this.scopeService.getSiblings(scope);
-            if (siblings.size() > 0) {
+            if (siblings.size() > 0)
+            {
                 redirect = "redirect:/managescope?scope=" + siblings.get(0).getId();
-            } else if (scope.getParent() != -1) {
+            }
+            else if (scope.getParent() != -1)
+            {
                 redirect = "redirect:/managescope?scope=" + scope.getParent();
-            } else {
+            }
+            else
+            {
                 redirect = "redirect:/managescopes?mode=" + mode.toString().toLowerCase();
 
             }
-        } catch (Exception exc) {
+        }
+        catch (Exception exc)
+        {
             logger.error(exc.getMessage());
         }
 
@@ -97,15 +112,19 @@ public class ScopesController extends SessionHelper {
      * Roles with copy
      */
     @RequestMapping(value = "/copyscope", method = RequestMethod.GET, params = {"id"})
-    public String copyScope(Model model, HttpSession session, @RequestParam("id") String scopeId) {
+    public String copyScope(Model model, HttpSession session, @RequestParam("id") String scopeId)
+    {
         String redirect = "redirect:/managescopes";
-        try {
+        try
+        {
             Long scopeCopyId = scopeService.copyScope(Long.parseLong(scopeId));
             Scope scopeCopy = this.scopes.findOne(scopeCopyId);
             scopeCopy.name = scopeCopy.name + " nuovo";
             this.scopes.save(scopeCopy);
             redirect = "redirect:/managescope?scope=" + scopeCopyId;
-        } catch (Exception exc) {
+        }
+        catch (Exception exc)
+        {
             logger.error(exc.getMessage());
         }
 
@@ -116,7 +135,8 @@ public class ScopesController extends SessionHelper {
      * Manage scope GET with scope id
      */
     @RequestMapping(value = "/managescope", method = RequestMethod.GET, params = {"scope"})
-    public String manageScope(Model model, @RequestParam("scope") long scopeId, HttpSession session) {
+    public String manageScope(Model model, @RequestParam("scope") long scopeId, HttpSession session)
+    {
         logger.info("/managescopes GET with scope=" + scopeId);
         Scope scopeObj = this.scopes.findOne(scopeId);
         List<Scope> parents = this.scopeService.getParents(scopeObj);
@@ -137,7 +157,8 @@ public class ScopesController extends SessionHelper {
         model.addAttribute("selscope", scopeObj);
         model.addAttribute("parents", parents);
         model.addAttribute("scopes", siblings);
-        if (this.scopeService.getLevel(scopeObj) > 0) {
+        if (this.scopeService.getLevel(scopeObj) > 0)
+        {
             model.addAttribute("tags", this.tags.findAll());
         }
         return this.configureTemplate(model, session);
@@ -148,7 +169,8 @@ public class ScopesController extends SessionHelper {
      * Manage scope GET - special case for new scopes
      */
     @RequestMapping(value = "/managescope", method = RequestMethod.GET, params = {"parent"})
-    public String manageScopeNew(Model model, @RequestParam("parent") long scopeId, HttpSession session) {
+    public String manageScopeNew(Model model, @RequestParam("parent") long scopeId, HttpSession session)
+    {
         logger.info("/managescopes GET for new scopes with parent = " + scopeId);
         Scope parent = this.scopes.findOne(scopeId);
         List<Scope> parents = this.scopeService.getParents(parent);
@@ -175,12 +197,16 @@ public class ScopesController extends SessionHelper {
                             @RequestParam(value = "viewers", required = false) String[] viewers,
                             @RequestParam(value = "owner", defaultValue = "admin") String owner,
                             @RequestParam(value = "templates", required = false) String[] templateNames,
-                            @RequestParam(value = "tags", required = false) String[] tags) {
+                            @RequestParam(value = "tags", required = false) String[] tags)
+    {
         logger.info("/managescope POST with scope=" + id);
         Scope scopeObj;
-        if (id > 0) {
+        if (id > 0)
+        {
             scopeObj = this.scopes.findOne(id);
-        } else {
+        }
+        else
+        {
             ScopeType type = Utilities.INSTANCE.getScopeType(mode);
             scopeObj = new Scope();
             scopeObj.setParent(parent);
@@ -188,21 +214,28 @@ public class ScopesController extends SessionHelper {
         }
         CapitalUser userOwner = this.users.findOne(owner);
         CapitalUser admin = this.users.findOne("admin");
-        if (owner != null) {
+        if (owner != null)
+        {
             scopeObj.setOwner(userOwner);
-        } else {
+        }
+        else
+        {
             scopeObj.setOwner(admin);
         }
         Set<CapitalUser> newViewers = new HashSet<>();
-        if (viewers != null) {
+        if (viewers != null)
+        {
             for (String viewer : viewers)
                 newViewers.add(this.users.findOne(viewer));
             scopeObj.setUsers(newViewers);
-        } else {
+        }
+        else
+        {
             newViewers.add(admin);
             scopeObj.setUsers(newViewers);
         }
-        if (templateNames != null) {
+        if (templateNames != null)
+        {
             Set<Template> newTemplates = new HashSet<>();
             for (String templateName : templateNames)
                 newTemplates.add(this.templates.findByName(templateName));
@@ -211,7 +244,8 @@ public class ScopesController extends SessionHelper {
         scopeObj.setName(name);
         scopeObj.setPublished(published);
 
-        if (tags != null) {
+        if (tags != null)
+        {
             scopeObj.setAllTags(Arrays.asList(tags));
         }
 
@@ -223,19 +257,23 @@ public class ScopesController extends SessionHelper {
      * Manage child of scope GET with scope id
      */
     @RequestMapping(value = "/managechild", method = RequestMethod.GET, params = {"scope"})
-    public String manageChild(Model model, @RequestParam("scope") long scopeId, HttpSession session) {
+    public String manageChild(Model model, @RequestParam("scope") long scopeId, HttpSession session)
+    {
         logger.info("/managechild GET with scope=" + scopeId);
         Scope scopeObj = this.scopes.findOne(scopeId);
         List<Scope> children = this.scopeService.getChildren(scopeObj);
-        if (children == null || children.size() == 0) {
+        if (children == null || children.size() == 0)
+        {
             return "redirect:/managescope?parent=" + scopeId;
         }
         Scope selScope = children.get(0);
         return "redirect:/managescope?scope=" + selScope.getId();
     }
 
-    private String configureTemplate(Model model, HttpSession session) {
-        if (!this.isAdmin(session)) {
+    private String configureTemplate(Model model, HttpSession session)
+    {
+        if (!this.isAdmin(session))
+        {
             return "redirect:login";
         }
 

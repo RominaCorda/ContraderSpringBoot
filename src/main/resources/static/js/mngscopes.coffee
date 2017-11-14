@@ -14,7 +14,7 @@ exports.highlightSelected = ->
     $(scope).removeClass('active')
   $('.scope').each (index, scope) ->
     selectedScope = $('#scopename').text().trim()
-    if selectedScope  == scope.innerText.trim()
+    if selectedScope == scope.innerText.trim()
       $(scope).addClass('active')
     return
 
@@ -72,16 +72,16 @@ exports.removeWarnings = ->
 exports.persistScope = () ->
   event.preventDefault()
   if !scopeEdited()
-     selectAll()
-     console.log ''
-     $('#scopeform').submit()
+    selectAll()
+    console.log ''
+    $('#scopeform').submit()
   else if scopeValid()
     removeWarnings()
     $('#scope-save-confirm').foundation('open');
     $(".close-button").click ->
-       selectAll()
-       console.log ''
-       $('#scopeform').submit()
+      selectAll()
+      console.log ''
+      $('#scopeform').submit()
 
 
 exports.selectAll = ->
@@ -89,7 +89,6 @@ exports.selectAll = ->
     $(this).attr('selected', true)
   $('.template').each () ->
     $(this).attr('selected', true)
-
 
 
 exports.deleteScope = (scopeId) ->
@@ -120,7 +119,6 @@ exports.showUsers = ->
     $('#show-users').foundation('close')
 
 
-
 exports.removeViewers = ->
   $('#viewers option:selected').each (index, viewer) ->
     if $(viewer).text() == "admin"
@@ -149,14 +147,12 @@ exports.showTemplates = ->
 
 exports.removeTemplates = ->
   $('#templates option:selected').each (index, template) ->
-      $('#templates option[value="' + $(template).text() + '"]').remove()
-      $('#add-templates').append($('<option>', {
-        class: "templates",
-        value: $(template).text(),
-        text: $(template).text()
-      }));
-
-
+    $('#templates option[value="' + $(template).text() + '"]').remove()
+    $('#add-templates').append($('<option>', {
+      class: "templates",
+      value: $(template).text(),
+      text: $(template).text()
+    }));
 
 
 $('.scope-duplicate').on('show', ( ->

@@ -2,10 +2,8 @@ package it.com.ibm.generali.capitalreporting.controller.web;
 
 import it.com.ibm.generali.capitalreporting.dao.NewsArticleDao;
 import it.com.ibm.generali.capitalreporting.dao.ReportDao;
-import it.com.ibm.generali.capitalreporting.dao.TemplateDao;
 import it.com.ibm.generali.capitalreporting.dao.UserDao;
 import it.com.ibm.generali.capitalreporting.model.CapitalUser;
-import it.com.ibm.generali.capitalreporting.model.Template;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Home page Capital Reporting controller
@@ -141,8 +137,6 @@ public class WebController extends SessionHelper
     {
         return "redirect:index";
     }
-
-
 
 
 }

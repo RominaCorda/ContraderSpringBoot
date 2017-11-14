@@ -108,12 +108,11 @@ open class ScopeService
         val scope = this.scopes.findOne(scopeKey)
         val scopeCopy = scope.copy()
         this.scopes.save(scopeCopy)
-        getChildren(scope)?.forEach {
-            children ->
-                val childrenId = copyScope(children.id)
-                val childrenScope = this.scopes.findOne(childrenId)
-                childrenScope.parent = scopeCopy.id
-                this.scopes.save(childrenScope)
+        getChildren(scope)?.forEach { children ->
+            val childrenId = copyScope(children.id)
+            val childrenScope = this.scopes.findOne(childrenId)
+            childrenScope.parent = scopeCopy.id
+            this.scopes.save(childrenScope)
         }
         return scopeCopy.id
     }

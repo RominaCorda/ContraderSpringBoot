@@ -11,7 +11,7 @@ open class UserService
     @Autowired
     lateinit var users: UserDao
 
-    fun copyUser(userKey: String, userNameNew:String): CapitalUser
+    fun copyUser(userKey: String, userNameNew: String): CapitalUser
     {
         val user = this.users.findOne(userKey)
         val userCopy = user.copy()
