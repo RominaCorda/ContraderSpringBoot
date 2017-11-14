@@ -124,7 +124,7 @@ public class ScopesController extends SessionHelper {
         model.addAttribute("canAddReports", this.scopeService.canAddReports(scopeObj));
         model.addAttribute("users", users);
         model.addAttribute("viewers", viewers);
-        model.addAttribute("owner", owner);
+        model.addAttribute("owner", !owner.getUsername().equals("") ? owner : this.users.findOne("admin") );
         model.addAttribute("templates", scopeObj.getTemplates());
         model.addAttribute("remainingTemplates", remainingTemplates);
         model.addAttribute("selscope", scopeObj);
