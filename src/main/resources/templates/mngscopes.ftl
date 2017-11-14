@@ -192,7 +192,7 @@
                                 <i class="fi-x"></i>&nbsp;Delete
                             </a>
                             <div class="reveal" id="scope-delete-confirm" data-reveal>
-                                <h3>Are you sure you want to delete this scope?</h3>
+                                <h3>Are you sure you want to delete ${selscope.name}?</h3>
                                 <div>
                                     <button id="scope-delete-yes" class="button">Yes</button>
                                     <button id="scope-delete-no" class="button">No</button>
