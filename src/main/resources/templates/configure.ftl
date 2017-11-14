@@ -38,26 +38,14 @@
         </div>
         <#if mode != "new">
             <div class="row">
-                <label>Select User
-                    <select onchange="if (this.value) window.location.href='configure?selecteduser='+this.value">
-                        <#list users as user>
-                            <#if selecteduser.username==user.username>
-                            <option value="${user.username}" selected="selected">
-                            <#else>
-                            <option value="${user.username}">
-                            </#if>
-                        ${user.fullName}
-                        </option>
-                        </#list>
-                    </select>
+                <label>Selected User
+                    <input id="username" name="username" type="text" value="${selecteduser.username}" readonly>
                 </label>
                 <div class="stacked button-group">
                     <a href="configure?delete=${selecteduser.username}" class="button alert"><i
                             class="fi-x"></i>&nbsp;
                         Delete</a>
-                    <a href="configure?selecteduser=new" class="button secondary"><i class="fi-plus"></i>&nbsp;
-                        Add
-                        new</a>
+                    <a href="searchusers" class="button secondary"><i class="fi-list"></i>&nbsp;Users List</a>
                     <ul class="accordion" data-accordion data-allow-all-closed="true">
                         <li class="accordion-item" data-accordion-item>
                             <!-- Accordion tab title -->
@@ -70,29 +58,11 @@
                             </div>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </#if>
 
-        <div class="row" style="margin-top: 70px">
-            <div class="callout secondary">
-                <h5>Users</h5>
-                <div class="stacked button-group">
-                    <a href="userscsvdownload" class="success button">Download...</a>
-                    <a class="success button" onclick="showUpload()">
-                        Upload...
-                    </a>
-                    <a href="searchusers" class="success button">Search</a>
-                    <div id="upload" hidden>
-                        <form method="POST" action="uploadUsersFile" enctype="multipart/form-data">
-                            <input style="background: cadetblue" type="file" name="file" class="button">
-                            <input style="width: 30%; margin: 0 35%;" class="button" type="submit" value="Upload">
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
     </div>
 
     <div class="medium-1 medium-1 large-1 columns">
@@ -104,7 +74,12 @@
             <div class="row">
                 <div class="column medium-10 large-10">
                     <label>User ID:
-                        <input id="username" name="username" type="text" value="${selecteduser.username}" readonly>
+                        <#if mode=="new">
+                            <input id="username" name="username" type="text" placeholder="Unique username here"
+                                   required>
+                        <#else>
+                            <input id="username" name="username" type="text" value="${selecteduser.username}" readonly>
+                        </#if>
                     </label>
                 </div>
             </div>
@@ -195,7 +170,7 @@
             <div class="row">
                 <div class="column medium-10 large-10">
                     <p>&nbsp;</p>
-                    <input type="submit" value="Save" class="primary button float-right">
+                    <input type="submit" value="Save changes" class="primary button float-right">
                 </div>
             </div>
 

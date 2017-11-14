@@ -18,8 +18,8 @@
         });
         return $('.scope').each(function (index, scope) {
             var selectedScope;
-            selectedScope = $('#scopename').html();
-            if (selectedScope === scope.innerText || selectedScope === scope.innerText.substring(0, scope.innerText.length - 1)) {
+            selectedScope = $('#scopename').text().trim();
+            if (selectedScope === scope.innerText.trim()) {
                 $(scope).addClass('active');
             }
         });
@@ -27,7 +27,7 @@
 
     exports.scopeValid = function () {
         var blank, currentScopeName, duplicate;
-        currentScopeName = $('#name').val();
+        currentScopeName = $('#name').val().trim();
         blank = false;
         duplicate = false;
         if (currentScopeName === '') {
@@ -35,8 +35,8 @@
         }
         $('.scope').each(function (index, scope) {
             var sameName, scopeName;
-            scopeName = scope.innerText;
-            sameName = currentScopeName === scopeName || currentScopeName === scopeName.substr(0, scopeName.length - 1);
+            scopeName = scope.innerText.trim();
+            sameName = currentScopeName === scopeName;
             if (sameName) {
                 return duplicate = true;
             }
@@ -54,14 +54,14 @@
         var currentScopeId, currentScopeName, edited;
         edited = true;
         currentScopeId = $("#id").val();
-        currentScopeName = $('#name').val();
+        currentScopeName = $('#name').val().trim();
         $('.scope').each(function (index, scope) {
             var sameId, sameName, scopeHref, scopeId, scopeName;
             scopeHref = $(scope).attr('href');
             scopeId = scopeHref.substr(scopeHref.indexOf('=') + 1);
-            scopeName = scope.innerText;
+            scopeName = scope.innerText.trim();
             sameId = currentScopeId === scopeId;
-            sameName = currentScopeName === scopeName || currentScopeName === scopeName.substr(0, scopeName.length - 1);
+            sameName = currentScopeName === scopeName;
             return edited = !(sameId && sameName);
         });
         return edited;
@@ -105,10 +105,10 @@
     };
 
     exports.selectAll = function () {
-        $('.viewer').each(function (index, item) {
+        $('.viewer').each(function () {
             return $(this).attr('selected', true);
         });
-        return $('.template').each(function (index, item) {
+        return $('.template').each(function () {
             return $(this).attr('selected', true);
         });
     };

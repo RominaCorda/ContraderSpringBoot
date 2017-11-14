@@ -78,6 +78,21 @@ public class UsersController extends SessionHelper
     }
 
     /**
+     * Configure GET with Mode
+     */
+    @RequestMapping(value = "/configure", method = RequestMethod.GET, params = {"mode"})
+    public String configureWithMode(Model model,
+                                    HttpSession session,
+                                    @RequestParam("mode") String mode)
+    {
+        CapitalUser selectedUser = Utilities.INSTANCE.getFirstNonAdminUser(this.users);
+        String username = selectedUser.getUsername();
+        logger.info("/configure page with mode =" + mode);
+        model.addAttribute("tags", this.tags.findAll());
+        return this.configureTemplate(model, session, this.getOperation(mode), username);
+    }
+
+    /**
      * Configure GET with mode and selecteduser
      */
     @RequestMapping(value = "/configure", method = RequestMethod.GET, params = {"mode", "selecteduser"})
@@ -160,7 +175,7 @@ public class UsersController extends SessionHelper
     {
         BufferedReader br = null;
         String line;
-        List<CapitalUser> utenti = new ArrayList<CapitalUser>();
+        List<CapitalUser> utenti = new ArrayList<>();
         try
         {
 
@@ -182,7 +197,14 @@ public class UsersController extends SessionHelper
                 else
                 {
                     Role role = this.roles.findByDescription(data[4]);
-                    utenti.add(new CapitalUser(data[0], data[1], data[2], data[3], role));
+                    if (role != null)
+                    {
+                        utenti.add(new CapitalUser(data[0], data[1], data[2], data[3], role));
+                    }
+                    else
+                    {
+                        logger.warn("Cannot add user: role not found.");
+                    }
                 }
             }
             this.users.save(utenti);
@@ -249,7 +271,7 @@ public class UsersController extends SessionHelper
         }
 
         model.addAttribute("users", allNonAdminUsers);
-        model.addAttribute("mode", operation);
+        model.addAttribute("mode", this.getMode(operation));
         model.addAttribute("roles", roles);
         model.addAttribute("user", this.getCurrentUser(session));
         model.addAttribute("selecteduser", selectedUser);
@@ -265,6 +287,9 @@ public class UsersController extends SessionHelper
         Operation operation = Operation.NONE;
         switch (mode)
         {
+            case "new":
+                operation = Operation.NEW;
+                break;
             case "ok_deleted":
                 operation = Operation.DELETED;
                 break;
@@ -276,6 +301,27 @@ public class UsersController extends SessionHelper
                 break;
         }
         return operation;
+    }
+
+    private String getMode(Operation operation)
+    {
+        String mode = "";
+        switch (operation)
+        {
+            case NEW:
+                mode = "new";
+                break;
+            case DELETED:
+                mode = "ok_deleted";
+                break;
+            case MODIFIED:
+                mode = "ok_modified";
+                break;
+            case CREATED:
+                mode = "ok_added";
+                break;
+        }
+        return mode;
     }
 
 

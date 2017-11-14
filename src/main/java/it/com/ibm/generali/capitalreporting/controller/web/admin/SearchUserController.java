@@ -41,6 +41,9 @@ public class SearchUserController extends SessionHelper
     @RequestMapping(value = "/searchusers", method = RequestMethod.GET)
     public String searchusers(Model model, HttpSession session)
     {
+        List<CapitalUser> users = new ArrayList<>();
+        this.users.findAll().forEach(users::add);
+        model.addAttribute("users", users);
         return this.configureTemplate(model, session);
     }
 

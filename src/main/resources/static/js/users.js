@@ -4,10 +4,6 @@
 
   exports = this;
 
-  exports.showCopyUser = function() {
-    return $('#copy-user').show();
-  };
-
   exports.showUpload = function() {
     return $('#upload').show();
   };
