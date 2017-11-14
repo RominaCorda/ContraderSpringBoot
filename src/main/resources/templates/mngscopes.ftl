@@ -122,9 +122,9 @@
                                     <div class="column medium-6 large-6">
                                         <label>Viewers:
                                             <select id="viewers" name="viewers" multiple="multiple">
-                                                    <#list viewers as viewer>
-                                                        <option class="viewer" value="${viewer}">${viewer}</option>
-                                                    </#list>
+                                                <#list viewers as viewer>
+                                                    <option class="viewer" value="${viewer}">${viewer}</option>
+                                                </#list>
                                             </select>
                                             <a class="button secondary" onclick="showUsers()">
                                                 Add Viewers
@@ -138,7 +138,8 @@
                                         <label>Templates:
                                             <select id="templates" name="templates" multiple="multiple">
                                                 <#list templates as template>
-                                                    <option class="template" value="${template.name}">${template.name}</option>
+                                                    <option class="template"
+                                                            value="${template.name}">${template.name}</option>
                                                 </#list>
                                             </select>
                                             <a class="button secondary" onclick="showTemplates()">
@@ -165,7 +166,8 @@
                                         <h1>Add templates</h1>
                                         <select id="add-templates" multiple>
                                             <#list remainingTemplates as remainingTemplate>
-                                                <option class="templates" value="${remainingTemplate.name}">${remainingTemplate.name}</option>
+                                                <option class="templates"
+                                                        value="${remainingTemplate.name}">${remainingTemplate.name}</option>
                                             </#list>
                                         </select>
                                         <button id="btn-add-templates" class="button">Add</button>
@@ -219,7 +221,11 @@
                         <div class="row">
                             <div class="column medium-6 large-6">
                                 <input id="id" name="id" type="hidden" value="-1">
-                                <input id="parent" name="parent" type="hidden" value="${parents?first.id?c}">
+                                <#if parents??>
+                                    <input id="parent" name="parent" type="hidden" value="${parents?first.id?c}">
+                                <#else>
+                                    <input id="parent" name="parent" type="hidden" value="-1">
+                                </#if>
                                 <input id="mode" name="mode" type="hidden" value="${mode}">
                                 <label>Name:
                                     <input id="name" name="name" type="text" value="" required>

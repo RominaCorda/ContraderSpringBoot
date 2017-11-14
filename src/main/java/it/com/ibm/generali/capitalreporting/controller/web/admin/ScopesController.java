@@ -60,7 +60,7 @@ public class ScopesController extends SessionHelper {
         model.addAttribute("mode", mode);
         model.addAttribute("users", this.users.findAll());
         model.addAttribute("templates", this.templates.findAll());
-        model.addAttribute("selscope", scopesZero.get(0));
+        model.addAttribute("selscope", scopesZero.size() > 0 ? scopesZero.get(0) : null);
         model.addAttribute("scopes", scopesZero);
         model.addAttribute("children", true);
         return this.configureTemplate(model, session);
@@ -75,10 +75,15 @@ public class ScopesController extends SessionHelper {
         try {
             long scopeKey = Long.parseLong(scopeId);
             Scope scope = this.scopes.findOne(scopeKey);
-            Scope firstSibling = this.scopeService.getSiblings(scope).getFirst();
+            ScopeType mode = scope.getType();
             this.scopes.delete(scopeKey);
-            redirect = "redirect:/managescope?scope=" + firstSibling.getId();
-
+            List<Scope> siblings = this.scopeService.getSiblings(scope);
+            if (siblings.size() > 0) {
+                redirect = "redirect:/managescope?scope=" + siblings.get(0).getId();
+            }
+            else {
+                redirect = "redirect:/managescopes?mode="+mode.toString().toLowerCase();
+            }
         } catch (Exception exc) {
             logger.error(exc.getMessage());
         }
