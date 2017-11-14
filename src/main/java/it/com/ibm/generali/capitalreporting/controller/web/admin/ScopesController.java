@@ -67,6 +67,7 @@ public class ScopesController extends SessionHelper
         model.addAttribute("users", this.users.findAll());
         model.addAttribute("templates", this.templates.findAll());
         model.addAttribute("selscope", scopesZero.size() > 0 ? scopesZero.get(0) : null);
+        model.addAttribute("parent", "root");
         model.addAttribute("scopes", scopesZero);
         model.addAttribute("children", true);
         return this.configureTemplate(model, session);
@@ -155,6 +156,7 @@ public class ScopesController extends SessionHelper
         model.addAttribute("templates", scopeObj.getTemplates());
         model.addAttribute("remainingTemplates", remainingTemplates);
         model.addAttribute("selscope", scopeObj);
+        model.addAttribute("parent", scopes.findOne(scopeObj.getParent()));
         model.addAttribute("parents", parents);
         model.addAttribute("scopes", siblings);
         if (this.scopeService.getLevel(scopeObj) > 0)
