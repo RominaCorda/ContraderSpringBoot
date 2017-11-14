@@ -80,9 +80,11 @@ public class ScopesController extends SessionHelper {
             List<Scope> siblings = this.scopeService.getSiblings(scope);
             if (siblings.size() > 0) {
                 redirect = "redirect:/managescope?scope=" + siblings.get(0).getId();
-            }
-            else {
-                redirect = "redirect:/managescopes?mode="+mode.toString().toLowerCase();
+            } else if (scope.getParent() != -1) {
+                redirect = "redirect:/managescope?scope=" + scope.getParent();
+            } else {
+                redirect = "redirect:/managescopes?mode=" + mode.toString().toLowerCase();
+
             }
         } catch (Exception exc) {
             logger.error(exc.getMessage());
@@ -129,7 +131,7 @@ public class ScopesController extends SessionHelper {
         model.addAttribute("canAddReports", this.scopeService.canAddReports(scopeObj));
         model.addAttribute("users", users);
         model.addAttribute("viewers", viewers);
-        model.addAttribute("owner", !owner.getUsername().equals("") ? owner : this.users.findOne("admin") );
+        model.addAttribute("owner", !owner.getUsername().equals("") ? owner : this.users.findOne("admin"));
         model.addAttribute("templates", scopeObj.getTemplates());
         model.addAttribute("remainingTemplates", remainingTemplates);
         model.addAttribute("selscope", scopeObj);
@@ -178,8 +180,7 @@ public class ScopesController extends SessionHelper {
         Scope scopeObj;
         if (id > 0) {
             scopeObj = this.scopes.findOne(id);
-        }
-        else {
+        } else {
             ScopeType type = Utilities.INSTANCE.getScopeType(mode);
             scopeObj = new Scope();
             scopeObj.setParent(parent);
@@ -189,8 +190,7 @@ public class ScopesController extends SessionHelper {
         CapitalUser admin = this.users.findOne("admin");
         if (owner != null) {
             scopeObj.setOwner(userOwner);
-        }
-        else {
+        } else {
             scopeObj.setOwner(admin);
         }
         Set<CapitalUser> newViewers = new HashSet<>();
@@ -198,8 +198,7 @@ public class ScopesController extends SessionHelper {
             for (String viewer : viewers)
                 newViewers.add(this.users.findOne(viewer));
             scopeObj.setUsers(newViewers);
-        }
-        else {
+        } else {
             newViewers.add(admin);
             scopeObj.setUsers(newViewers);
         }
@@ -212,8 +211,7 @@ public class ScopesController extends SessionHelper {
         scopeObj.setName(name);
         scopeObj.setPublished(published);
 
-        if (tags != null)
-        {
+        if (tags != null) {
             scopeObj.setAllTags(Arrays.asList(tags));
         }
 
