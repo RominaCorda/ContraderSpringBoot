@@ -108,13 +108,15 @@
             </div>
             <div class="row">
                 <div class="column medium-10 large-10">
-                    <label>Active:
-                        <#if selecteduser.active>
-                            <input id="active" name="active" type="checkbox" checked="checked">
-                        <#else>
-                            <input id="active" name="active" type="checkbox">
-                        </#if>
-                    </label>
+                    <#if selecteduser.username != "admin">
+                        <label>Active:
+                            <#if selecteduser.active>
+                                <input id="active" name="active" type="checkbox" checked="checked">
+                            <#else>
+                                <input id="active" name="active" type="checkbox">
+                            </#if>
+                        </label>
+                    </#if>
                 </div>
             </div>
             <div class="row">
