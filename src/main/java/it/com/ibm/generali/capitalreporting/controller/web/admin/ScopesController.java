@@ -67,7 +67,7 @@ public class ScopesController extends SessionHelper
         model.addAttribute("users", this.users.findAll());
         model.addAttribute("templates", this.templates.findAll());
         model.addAttribute("selscope", scopesZero.size() > 0 ? scopesZero.get(0) : null);
-        model.addAttribute("parent", "root");
+        model.addAttribute("hierarchy", "root");
         model.addAttribute("scopes", scopesZero);
         model.addAttribute("children", true);
         return this.configureTemplate(model, session);
@@ -141,6 +141,7 @@ public class ScopesController extends SessionHelper
         logger.info("/managescopes GET with scope=" + scopeId);
         Scope scopeObj = this.scopes.findOne(scopeId);
         List<Scope> parents = this.scopeService.getParents(scopeObj);
+        Scope immediateParent = scopes.findOne(scopeObj.getParent());
         List<Scope> siblings = this.scopeService.getSiblings(scopeObj);
         Set<CapitalUser> viewers = scopeObj.getUsers();
         List<CapitalUser> users = (List<CapitalUser>) this.users.findAll();
@@ -156,7 +157,7 @@ public class ScopesController extends SessionHelper
         model.addAttribute("templates", scopeObj.getTemplates());
         model.addAttribute("remainingTemplates", remainingTemplates);
         model.addAttribute("selscope", scopeObj);
-        model.addAttribute("parent", scopes.findOne(scopeObj.getParent()));
+        model.addAttribute("hierarchy", immediateParent != null ? immediateParent : "root");
         model.addAttribute("parents", parents);
         model.addAttribute("scopes", siblings);
         if (this.scopeService.getLevel(scopeObj) > 0)

@@ -1,7 +1,7 @@
 <#-- @ftlvariable name="tags" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Tag>" -->
 <#-- @ftlvariable name="canAddReports" type="java.lang.Boolean" -->
 <#-- @ftlvariable name="mode" type="java.lang.String" -->
-<#-- @ftlvariable name="parent" type="java.lang.String" -->
+<#-- @ftlvariable name="hierarchy" type="java.lang.String" -->
 <#-- @ftlvariable name="selscope" type="it.com.ibm.generali.capitalreporting.model.Scope" -->
 <#-- @ftlvariable name="parents" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
 <#-- @ftlvariable name="scopes" type="java.util.List<it.com.ibm.generali.capitalreporting.model.Scope>" -->
@@ -193,7 +193,7 @@
                                 <i class="fi-x"></i>&nbsp;Delete
                             </a>
                             <div class="reveal" id="scope-delete-confirm" data-reveal>
-                                <h3>Are you sure you want to delete ${selscope.name} from the ${parent} hierarchy?</h3>
+                                <h3>Are you sure you want to delete ${selscope.name} from the ${hierarchy} hierarchy?</h3>
                                 <div>
                                     <button id="scope-delete-yes" class="button">Yes</button>
                                     <button id="scope-delete-no" class="button">No</button>
