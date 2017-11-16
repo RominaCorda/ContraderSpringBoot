@@ -1,6 +1,6 @@
 /**************************************
  * BUILD SCRIPT FOR CLOUD
- * Using Tomcat and in memory HSQLDB
+ * Using Tomcat and HSQLDB (Bluemix)
  *************************************/
 
 group 'it.com.ibm.generali.capitalreporting'

@@ -1,6 +1,6 @@
 /**************************************
  * BUILD SCRIPT FOR CLOUD
- * Using Tomcat and in memory HSQLDB
+ * Using Tomcat and HSQLDB (Bluemix)
  *************************************/
 
 group 'it.com.ibm.generali.capitalreporting'
@@ -38,3 +38,4 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile(group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: kotlin_version)
 }
+
