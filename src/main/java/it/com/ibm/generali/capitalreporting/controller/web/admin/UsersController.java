@@ -9,7 +9,7 @@ import it.com.ibm.generali.capitalreporting.framework.Operation;
 import it.com.ibm.generali.capitalreporting.framework.Utilities;
 import it.com.ibm.generali.capitalreporting.model.CapitalUser;
 import it.com.ibm.generali.capitalreporting.model.Role;
-import it.com.ibm.generali.capitalreporting.service.FileUploaderService;
+import it.com.ibm.generali.capitalreporting.service.IFileUploaderService;
 import it.com.ibm.generali.capitalreporting.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,14 +35,14 @@ public class UsersController extends SessionHelper
     private RoleDao roles;
     private UserTagDao tags;
     private UserService userService;
-    private FileUploaderService uploaderService;
+    private IFileUploaderService uploaderService;
 
     @Autowired
     public UsersController(UserDao userDao,
                            RoleDao roleDao,
                            UserTagDao tagDao,
                            UserService userService,
-                           FileUploaderService fileUploaderService)
+                           IFileUploaderService fileUploaderService)
     {
         this.users = userDao;
         this.roles = roleDao;

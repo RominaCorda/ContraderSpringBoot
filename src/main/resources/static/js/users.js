@@ -4,6 +4,16 @@
 
   exports = this;
 
+    exports.deleteUser = function (userId) {
+        $('#user-delete-confirm').foundation('open');
+        $("#user-delete-yes").click(function () {
+            return window.location.href = "configure?delete=" + userId;
+        });
+        return $("#user-delete-no").click(function () {
+            return $('#user-delete-confirm').foundation('close');
+        });
+    };
+
   exports.showUpload = function() {
     return $('#upload').show();
   };

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class FileUploaderService
+public class FileUploaderService implements IFileUploaderService
 {
 
     private Logger logger = LoggerFactory.getLogger(FileUploaderService.class);
@@ -32,6 +32,7 @@ public class FileUploaderService
         this.roles = roles;
     }
 
+    @Override
     public boolean uploadFile(MultipartFile file)
     {
         BufferedReader br = null;
