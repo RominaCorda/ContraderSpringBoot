@@ -22,13 +22,46 @@ public class GommaEntity implements Serializable {
 
     @Column
     private double price;
+//
+   // @Column
+   // private double width;
+//
+   // @Column
+   // private double height;
+//
+   // @Column
+   // private double diameter;
+//
+   // @Column
+   // private double weight;
+//
+   // @Column
+   // private String speed;
+//
+   // @Column
+   // private String season;
+//
+   // @Column
+   // private String typeVehicle;
+//
+   // @Column
+   // private String quantity;
 
     public GommaEntity () {}
 
     public GommaEntity(String model, String manufacturer, double price) {
+            //, double width, double height, double diameter, double weight, String speed, String season, String typeVehicle, String quantity) {
         this.model = model;
         this.manufacturer = manufacturer;
         this.price = price;
+       // this.width = width;
+       // this.height = height;
+       // this.diameter = diameter;
+       // this.weight = weight;
+       // this.speed = speed;
+       // this.season = season;
+       // this.typeVehicle = typeVehicle;
+       // this.quantity = quantity;
     }
 
     public long getId() {
