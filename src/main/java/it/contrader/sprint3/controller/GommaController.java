@@ -24,9 +24,15 @@ public class GommaController {
 
     @RequestMapping(value="/trelleborg", method = RequestMethod.GET)
     public String gommeByTrelleborg (Model model) {
-        List<GommaEntity> gommeByTrelleborg = gommaService.findByManufacturer("trelleborg");
+        List<GommaEntity> gommeByTrelleborg = gommaService.findByManufacturer("Trelleborg");
         model.addAttribute("gommeByTrelleborg", gommeByTrelleborg);
         return "gommeByTrelleborg";
+    }
+
+    @RequestMapping(value="/insert", method = RequestMethod.GET)
+    public String insert () {
+        gommaService.insert(new GommaEntity("Pirelli-Soft","Pirelli",230));
+        return "insertGomma";
     }
 
 }

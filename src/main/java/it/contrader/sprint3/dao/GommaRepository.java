@@ -13,4 +13,5 @@ public interface GommaRepository extends CrudRepository<GommaEntity, Long> {
 
     List<GommaEntity> findByManufacturer(String manufacturer);
 
+
 }

@@ -20,4 +20,8 @@ public class GommaService {
     public List<GommaEntity> findByManufacturer (String manufacturer) {
         return this.gommaRepository.findByManufacturer(manufacturer);
     }
+
+    public GommaEntity insert(GommaEntity Gomma){
+        return this.gommaRepository.save(Gomma);
+    }
 }

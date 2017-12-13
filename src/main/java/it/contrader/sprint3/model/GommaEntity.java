@@ -11,6 +11,7 @@ public class GommaEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id_gomme")
     private long id;
 
     @Column
