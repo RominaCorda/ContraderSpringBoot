@@ -1,0 +1,8 @@
+.page-body, footer {
+    padding: 15px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+}

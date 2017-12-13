@@ -7,15 +7,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Vehicle By Fiat</title>
-</head>
-<body>
+
+<jsp:include page="header.jsp" />
+
+<div class="page-body">
 
 <c:forEach items="${vehicleByFiat}" var="veicolo">
     ${veicolo}<br>
 </c:forEach>
 
-</body>
-</html>
+</div>
+
+<jsp:include page="footer.jsp" />

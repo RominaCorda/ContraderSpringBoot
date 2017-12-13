@@ -11,8 +11,7 @@ import java.util.List;
 @Repository
 @Transactional
 public interface  UserRepository extends CrudRepository<UserEntity, Long> {
-
-            List<UserEntity> findByRole (String role);
+    List<UserEntity> findByRole (String role);
 
 
 }
