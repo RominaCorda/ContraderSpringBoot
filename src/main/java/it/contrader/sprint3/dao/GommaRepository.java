@@ -9,9 +9,9 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface GommaRepository extends CrudRepository<GommaEntity, Long> {
-
+public interface GommaRepository extends CrudRepository<GommaEntity, Long>
+{
+    List<GommaEntity> findAll();
     List<GommaEntity> findByManufacturer(String manufacturer);
-
 
 }

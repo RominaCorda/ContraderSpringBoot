@@ -12,26 +12,37 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/gomme")
-public class GommaController {
+public class GommaController
+{
 
     private GommaService gommaService;
 
     @Autowired
-    public GommaController (GommaService gommaService) {
+    public GommaController (GommaService gommaService)
+    {
         this.gommaService = gommaService;
     }
 
+    @RequestMapping(value="/allgomme",method = RequestMethod.GET)
+    public String getAllGomme(Model model)
+    {
+        List<GommaEntity> gomme=gommaService.getAllGomme();
+        model.addAttribute("listgomme",gomme);
+        return "allGomme";
+    }
 
     @RequestMapping(value="/trelleborg", method = RequestMethod.GET)
-    public String gommeByTrelleborg (Model model) {
+    public String gommeByTrelleborg (Model model)
+    {
         List<GommaEntity> gommeByTrelleborg = gommaService.findByManufacturer("Trelleborg");
         model.addAttribute("gommeByTrelleborg", gommeByTrelleborg);
         return "gommeByTrelleborg";
     }
 
     @RequestMapping(value="/insert", method = RequestMethod.GET)
-    public String insert () {
-        gommaService.insert(new GommaEntity("Pirelli-Soft","Pirelli",230));
+    public String insert ()
+    {
+        //gommaService.insert(new GommaEntity("Pirelli-Soft","Pirelli",230));
         return "insertGomma";
     }
 

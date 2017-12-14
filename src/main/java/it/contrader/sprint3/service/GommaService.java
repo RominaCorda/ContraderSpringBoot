@@ -13,15 +13,22 @@ public class GommaService {
     private GommaRepository gommaRepository;
 
     @Autowired
-    public GommaService(GommaRepository gommaRepository) {
+    public GommaService(GommaRepository gommaRepository)
+    {
         this.gommaRepository = gommaRepository;
     }
 
-    public List<GommaEntity> findByManufacturer (String manufacturer) {
+    public List<GommaEntity> getAllGomme()
+    {
+        return this.gommaRepository.findAll();
+    }
+    public List<GommaEntity> findByManufacturer (String manufacturer)
+    {
         return this.gommaRepository.findByManufacturer(manufacturer);
     }
 
-    public GommaEntity insert(GommaEntity Gomma){
+    public GommaEntity insert(GommaEntity Gomma)
+    {
         return this.gommaRepository.save(Gomma);
     }
 }
