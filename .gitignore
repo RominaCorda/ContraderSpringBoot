@@ -4,4 +4,4 @@ out/
 .DS_Store
 target
 workspace.xml
-
+application.properties

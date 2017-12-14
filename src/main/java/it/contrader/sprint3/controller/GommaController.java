@@ -43,9 +43,9 @@ public class GommaController
     @RequestMapping(value="/allgommeManufacturer", method = RequestMethod.GET)
     public String gommeByManufacturer(Model model,@RequestParam("manufacturer") String manufacturer)
     {
-        List<GommaEntity> gommeByTrelleborg = gommaService.findByManufacturer(manufacturer);
-        model.addAttribute("gommeByTrelleborg", gommeByTrelleborg);
-        return "gommeByTrelleborg";
+        List<GommaEntity> gomme = gommaService.findByManufacturer(manufacturer);
+        model.addAttribute("listgomme", gomme);
+        return "gommeByManufacturer";
     }
 
     @RequestMapping(value="/trelleborg", method = RequestMethod.GET)
