@@ -21,7 +21,7 @@ public class UserEntity implements Serializable {
     @Column
     private String dateofbirth;
     @Column
-    private String cf ;
+    private String fiscalcode ;
     @Column
     private String businessname;
     @Column
@@ -29,7 +29,7 @@ public class UserEntity implements Serializable {
     @Column
     private String municipality ;
     @Column
-    private String cap ;
+    private String post;
     @Column
     private String city ;
     @Column
@@ -41,17 +41,17 @@ public class UserEntity implements Serializable {
 
     public UserEntity(){}
 
-    public UserEntity( String username, String password, String firstname, String lastname, String dateofbirth, String cf, String businessname, String vat, String municipality, String cap, String city, String address, String telephone, String role) {
+    public UserEntity( String username, String password, String firstname, String lastname, String dateofbirth, String fiscalcode, String businessname, String vat, String municipality, String post, String city, String address, String telephone, String role) {
         this.username = username;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.dateofbirth = dateofbirth;
-        this.cf = cf;
+        this.fiscalcode = fiscalcode;
         this.businessname = businessname;
         this.vat = vat;
         this.municipality = municipality;
-        this.cap = cap;
+        this.post =post;
         this.city = city;
         this.address = address;
         this.telephone = telephone;
@@ -106,12 +106,12 @@ public class UserEntity implements Serializable {
         this.dateofbirth = dateofbirth;
     }
 
-    public String getCf() {
-        return cf;
+    public String getFiscalcode() {
+        return fiscalcode;
     }
 
-    public void setCf(String cf) {
-        this.cf = cf;
+    public void setFiscalcode(String fiscalcode) {
+        this.fiscalcode = fiscalcode;
     }
 
     public String getBusinessname() {
@@ -138,12 +138,12 @@ public class UserEntity implements Serializable {
         this.municipality = municipality;
     }
 
-    public String getCap() {
-        return cap;
+    public String getPost() {
+        return post;
     }
 
-    public void setCap(String cap) {
-        this.cap = cap;
+    public void setPost(String post) {
+        this.post = post;
     }
 
     public String getCity() {
@@ -190,11 +190,11 @@ public class UserEntity implements Serializable {
         if (firstname != null ? !firstname.equals(userEntity.firstname) : userEntity.firstname != null) return false;
         if (lastname != null ? !lastname.equals(userEntity.lastname) : userEntity.lastname != null) return false;
         if (dateofbirth != null ? !dateofbirth.equals(userEntity.dateofbirth) : userEntity.dateofbirth != null) return false;
-        if (cf != null ? !cf.equals(userEntity.cf) : userEntity.cf != null) return false;
+        if (fiscalcode != null ? !fiscalcode.equals(userEntity.fiscalcode) : userEntity.fiscalcode != null) return false;
         if (businessname != null ? !businessname.equals(userEntity.businessname) : userEntity.businessname != null) return false;
         if (vat != null ? !vat.equals(userEntity.vat) : userEntity.vat != null) return false;
         if (municipality != null ? !municipality.equals(userEntity.municipality) : userEntity.municipality != null) return false;
-        if (cap != null ? !cap.equals(userEntity.cap) : userEntity.cap != null) return false;
+        if (post != null ? !post.equals(userEntity.post) : userEntity.post != null) return false;
         if (city != null ? !city.equals(userEntity.city) : userEntity.city != null) return false;
         if (address != null ? !address.equals(userEntity.address) : userEntity.address != null) return false;
         if (telephone != null ? !telephone.equals(userEntity.telephone) : userEntity.telephone != null) return false;
@@ -208,11 +208,11 @@ public class UserEntity implements Serializable {
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         result = 31 * result + (dateofbirth != null ? dateofbirth.hashCode() : 0);
-        result = 31 * result + (cf != null ? cf.hashCode() : 0);
+        result = 31 * result + (fiscalcode != null ? fiscalcode.hashCode() : 0);
         result = 31 * result + (businessname != null ? businessname.hashCode() : 0);
         result = 31 * result + (vat != null ? vat.hashCode() : 0);
         result = 31 * result + (municipality != null ? municipality.hashCode() : 0);
-        result = 31 * result + (cap != null ? cap.hashCode() : 0);
+        result = 31 * result + (post != null ? post.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
@@ -222,7 +222,7 @@ public class UserEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "User: " + "\n idUser: " + idUser + "\n username: " + username + "\n password: " + password + "\n firstname: " + firstname + "\n lastname: " + lastname + "\n dateofbirth: " + dateofbirth + "\n cf: " + cf + "\n businessname: " + businessname + "\n vat: " + vat + "\n municipality: " + municipality + "\n cap: " + cap + "\n city: " + city + "\n address: " + address + "\n telephone: " + telephone + "\n role: " + role;
+        return "User: " + "\n idUser: " + idUser + "\n username: " + username + "\n password: " + password + "\n firstname: " + firstname + "\n lastname: " + lastname + "\n dateofbirth: " + dateofbirth + "\n cf: " + fiscalcode + "\n businessname: " + businessname + "\n vat: " + vat + "\n municipality: " + municipality + "\n cap: " + post + "\n city: " + city + "\n address: " + address + "\n telephone: " + telephone + "\n role: " + role;
     }
 
 
