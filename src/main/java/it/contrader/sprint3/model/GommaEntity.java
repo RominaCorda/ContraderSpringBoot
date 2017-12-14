@@ -181,4 +181,21 @@ public class GommaEntity implements Serializable {
 
         return Objects.hash(model, manufacturer, price, width, height, diameter, weight, speed, season, typeVehicle, quantity);
     }
+
+    @Override
+    public String toString() {
+        return "GommaEntity{" +
+                "model='" + model + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", price=" + price +
+                ", width=" + width +
+                ", height=" + height +
+                ", diameter=" + diameter +
+                ", weight=" + weight +
+                ", speed='" + speed + '\'' +
+                ", season='" + season + '\'' +
+                ", typeVehicle='" + typeVehicle + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
