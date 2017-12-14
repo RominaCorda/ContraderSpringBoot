@@ -5,10 +5,7 @@ import it.contrader.sprint3.service.GommaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,11 +30,12 @@ public class GommaController
         return "allGomme";
     }
 
-    @RequestMapping(value="/insert", method = RequestMethod.GET)
-    public String insert ()
+    @RequestMapping(value="/insertGomme", method = RequestMethod.POST)
+    public String insert (@ModelAttribute GommaEntity gomma,Model model)
     {
-        //gommaService.insert(new GommaEntity("Pirelli-Soft","Pirelli",230));
-        return "insertGomma";
+        gommaService.insert(gomma);
+        model.addAttribute("msg","Gomma added successfully");
+        return "menuAdmin";
     }
 
     @RequestMapping(value="/allgommeManufacturer", method = RequestMethod.GET)
@@ -47,14 +45,4 @@ public class GommaController
         model.addAttribute("listgomme", gomme);
         return "gommeByManufacturer";
     }
-
-    @RequestMapping(value="/trelleborg", method = RequestMethod.GET)
-    public String gommeByTrelleborg (Model model)
-    {
-        List<GommaEntity> gommeByTrelleborg = gommaService.findByManufacturer("Trelleborg");
-        model.addAttribute("gommeByTrelleborg", gommeByTrelleborg);
-        return "gommeByTrelleborg";
-    }
-
-
 }

@@ -27,8 +27,8 @@ public class GommaService {
         return this.gommaRepository.findByManufacturer(manufacturer);
     }
 
-    public GommaEntity insert(GommaEntity Gomma)
+    public GommaEntity insert(GommaEntity gomma)
     {
-        return this.gommaRepository.save(Gomma);
+        return this.gommaRepository.save(gomma);
     }
 }

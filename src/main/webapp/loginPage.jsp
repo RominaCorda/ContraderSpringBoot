@@ -9,8 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="header.jsp" />
-<jsp:include page="footer.jsp" />
 
+<div class="page-body">
     <c:url var="url" value="/login/test" />
 
     <form action="${url}" method="post">
@@ -18,5 +18,5 @@
         Password<input type="text" name="password" />
         <input type="submit" value="submit" />
     </form>
-
-
+</div>
+<jsp:include page="footer.jsp" />
