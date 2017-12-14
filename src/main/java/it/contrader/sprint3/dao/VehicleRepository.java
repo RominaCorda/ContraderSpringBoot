@@ -14,5 +14,6 @@ import java.util.List;
 @Transactional
 public interface VehicleRepository extends CrudRepository<VehicleEntity, Long> {
 
+    List<VehicleEntity> findAll();
     List<VehicleEntity> findByBrand(String brand);
 }

@@ -23,11 +23,12 @@ public class VehicleController {
     }
 
 
-    @RequestMapping(value="/fiat", method = RequestMethod.GET)
-    public String vehicleByFiat (Model model) {
-        List<VehicleEntity> vehicleByFiat = vehicleService.findByBrand("fiat");
-        model.addAttribute("vehicleByFiat", vehicleByFiat);
-        return "vehicleByFiat";
+    @RequestMapping(value="/allvehicles", method = RequestMethod.GET)
+    public String getAllVehicles (Model model)
+    {
+        List<VehicleEntity> allVehicles = vehicleService.getAllVehicles();
+        model.addAttribute("allVehicles", allVehicles);
+        return "allVehicles";
     }
 
 

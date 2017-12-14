@@ -13,15 +13,19 @@ public class VehicleService {
     private VehicleRepository vehicleRepository;
 
     @Autowired
-    public VehicleService(VehicleRepository vehicleRepository) {
+    public VehicleService(VehicleRepository vehicleRepository)
+    {
         this.vehicleRepository = vehicleRepository;
+    }
+
+        public List<VehicleEntity> getAllVehicles ()
+        {
+        return this.vehicleRepository.findAll();
         }
 
-        public List<VehicleEntity> findByBrand (String brand) {
-        return this.vehicleRepository.findByBrand(brand);
-        }
-
-        public VehicleEntity insert(VehicleEntity vehicle) {
+        public VehicleEntity insert(VehicleEntity vehicle)
+        {
         return this.vehicleRepository.save(vehicle);
         }
 }
+

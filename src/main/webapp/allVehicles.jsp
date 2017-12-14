@@ -12,8 +12,8 @@
 
 <div class="page-body">
 
-<c:forEach items="${vehicleByFiat}" var="veicolo">
-    ${veicolo}<br>
+<c:forEach items="${allVehicles}" var="allVehicles">
+    ${allVehicles}<br>
 </c:forEach>
 
 </div>
