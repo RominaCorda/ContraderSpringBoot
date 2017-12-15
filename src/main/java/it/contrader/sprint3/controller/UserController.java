@@ -30,7 +30,7 @@ public class UserController {
         return "users";
     }
 
-    @RequestMapping(value="/prova")
+    @RequestMapping(value="/registrazione")
     public String newUser() {
 
         return "insertUser";

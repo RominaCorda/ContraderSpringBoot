@@ -9,6 +9,7 @@
 
 
 <footer>
+    
     <p>© 2017 GommaStore Inc.</p>
 </footer>
 
