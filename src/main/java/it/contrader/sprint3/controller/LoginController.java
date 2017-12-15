@@ -29,7 +29,7 @@ public class LoginController {
         return "loginPage";
     }
 
-    @RequestMapping(value="/test", method = RequestMethod.POST)
+    @RequestMapping(value="/menu", method = RequestMethod.POST)
     public String menuAdmin (@RequestParam("username") String username, @RequestParam("password") String password, Model model)
     {
 

@@ -21,13 +21,24 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Inserisci</a></li>
-            <li><a href="#">Visualizza</a></li>
-            <div id="free">
-                    <li><a href="#">Esci</a></li>
-            </div>
-
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Inserisci <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Inserisci gomma</a></li>
+                    <li><a href="#">Inserisci veicolo</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Visualizza<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Visualizza gomme </a></li>
+                    <li><a href="#">Visualizza utenti </a></li>
+                    <li><a href="#">Visualizza veicoli </a></li>
+                </ul>
+            </li>
         </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="/gommastore"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        </ul>
+
     </div>
 </nav>
 

@@ -1,3 +1,4 @@
+<%@ taglib prefix="href" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Silverio
@@ -13,23 +14,16 @@
     <title>MenuAdmin </title>
 </head>
 <body>
-
-<form action="">
-    <fieldset>
-        <legend>Menu Admin ${username} ${password}</legend><br>
-        <input type="radio" name="choice" value="Inserisci pneumatico"/> Inserisci pneumatico
-        <br />
-        <input type="radio" name="choice" value="Inserisci veicolo"/> Inserisci veicolo
-        <br />
-        <input type="radio" name="choice" value="Visualizza pneumatico"/> Visualizza pneumatico
-        <br />
-        <input type="radio" name="choice" value="Visualizza utenti"/> Visualizza utenti
-        <br />
-        <input type="radio" name="choice" value="Visualizza veicoli"/> Visualizza veicoli
-        <br /><br />
-        <input type="submit" value="Conferma" />
-    </fieldset>
+<div class="container">
+    <h2>Menu Admin ${username} ${password}</h2>
+    <form action="">
+    <button type="submit" class="btn btn-primary btn-block">Inserisci pneumatico</button>
+    <button type="submit" class="btn btn-default btn-block">Inserisci veicolo</button>
+    <button type="submit" class="btn btn-default btn-block">Visualizza pneumatico</button>
+    <button type="submit" class="btn btn-default btn-block">Visualizza utentio</button>
+    <button type="submit" class="btn btn-default btn-block">Visualizza veicoli</button>
 </form>
+</div>
 </body>
 </html>
 

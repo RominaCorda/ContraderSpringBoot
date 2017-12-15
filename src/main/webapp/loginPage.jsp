@@ -37,7 +37,7 @@
                 <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
                 <p id="profile-name" class="profile-name-card"></p>
 
-                <c:url var="url" value="/login/test" />
+                <c:url var="url" value="/login/menu" />
 
                 <form class="form-signin" action="${url}" method="post">
                     <span id="reauth-email" class="reauth-email"></span>
