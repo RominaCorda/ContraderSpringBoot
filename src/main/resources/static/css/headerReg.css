@@ -1,0 +1,25 @@
+.page-body, footer {
+    padding: 15px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+}
+
+ul.nav.navbar-nav{
+
+    float: right;
+    /*display: block;
+    color: #f2f2f2;*/
+    text-align: center;
+    /*padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;*/
+}
+
+ul.nav.navbar-nav a:hover{
+    color: darkslategrey;
+}
+
+
