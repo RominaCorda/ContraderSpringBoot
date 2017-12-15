@@ -12,8 +12,8 @@
 <head>
     <title>GommaStore</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="login.css" type="text/css">
-    <link rel="stylesheet" href="main.css" type="text/css">
+    <link rel="stylesheet" href="/gommastore/css/login.css" type="text/css">
+    <link rel="stylesheet" href="/gommastore/css/main.css" type="text/css">
 </head>
 <body>
     <header>
@@ -24,7 +24,7 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
-                    <li><a href="insertUser.html">Registrati</a></li>
+                    <li><a href="/gommastore/users/prova">Registrati</a></li>
                 </ul>
             </div>
         </nav>
@@ -41,14 +41,14 @@
 
                 <form class="form-signin" action="${url}" method="post">
                     <span id="reauth-email" class="reauth-email"></span>
-                    <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <input type="text" name ="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                    <input type="password" name ="password" id="inputPassword" class="form-control" placeholder="Password" required>
                     <div id="remember" class="checkbox">
                         <label>
                             <input type="checkbox" value="remember-me"> Ricordami
                         </label>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registrati</button>
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Accedi</button>
                 </form><!-- /form -->
                 <a href="#" class="forgot-password">
                     Password dimenticata?
