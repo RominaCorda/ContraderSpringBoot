@@ -29,8 +29,8 @@ public class LoginController {
         return "loginPage";
     }
 
-    @RequestMapping(value="/test", method = RequestMethod.POST)
-    public String test (@RequestParam("username") String username, @RequestParam("password") String password, Model model)
+    @RequestMapping(value="/menuAdmin", method = RequestMethod.POST)
+    public String menuAdmin (@RequestParam("username") String username, @RequestParam("password") String password, Model model)
     {
 
         UserEntity user = loginService.login(username, password);
@@ -41,6 +41,6 @@ public class LoginController {
 
         model.addAttribute("username", user.getFirstname());
         model.addAttribute("password", user.getLastname());
-        return "test";
+        return "menuAdmin";
     }
 }

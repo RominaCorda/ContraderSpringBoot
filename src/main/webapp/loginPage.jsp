@@ -11,7 +11,7 @@
 <jsp:include page="header.jsp" />
 
 <div class="page-body">
-    <c:url var="url" value="/login/test" />
+    <c:url var="url" value="/login/menuAdmin" />
 
     <form action="${url}" method="post">
         Username<input type="text" name="username" /> <br />
