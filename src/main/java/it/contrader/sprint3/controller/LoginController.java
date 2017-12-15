@@ -29,7 +29,7 @@ public class LoginController {
         return "loginPage";
     }
 
-    @RequestMapping(value="/menuAdmin", method = RequestMethod.POST)
+    @RequestMapping(value="/test", method = RequestMethod.POST)
     public String menuAdmin (@RequestParam("username") String username, @RequestParam("password") String password, Model model)
     {
 
@@ -41,6 +41,10 @@ public class LoginController {
 
         model.addAttribute("username", user.getFirstname());
         model.addAttribute("password", user.getLastname());
-        return "menuAdmin";
+
+        if(user.getRole().equalsIgnoreCase("admin"))
+            return "menuAdmin";
+        else
+            return "menuUser";
     }
 }
