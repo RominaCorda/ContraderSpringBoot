@@ -13,21 +13,19 @@
     <title>MenuAdmin </title>
 </head>
 <body>
-<br />
-${username}
-${password}
+
 <form action="">
     <fieldset>
-        <legend>Menu Admin</legend><br>
-        <input type="checkbox" name="Inserisci pneumatico" value="html"/> Inserisci pneumatico
+        <legend>Menu Admin ${username} ${password}</legend><br>
+        <input type="radio" name="choice" value="Inserisci pneumatico"/> Inserisci pneumatico
         <br />
-        <input type="checkbox" name="Inserisci veicolo" value="css"/> Inserisci veicolo
+        <input type="radio" name="choice" value="Inserisci veicolo"/> Inserisci veicolo
         <br />
-        <input type="checkbox" name="Visualizza pneumatico" value="javascript"/> Visualizza pneumatico
+        <input type="radio" name="choice" value="Visualizza pneumatico"/> Visualizza pneumatico
         <br />
-        <input type="checkbox" name="Visualizza utenti" value="css"/> Visualizza utenti
+        <input type="radio" name="choice" value="Visualizza utenti"/> Visualizza utenti
         <br />
-        <input type="checkbox" name="Visualizza veicoli" value="css"/> Visualizza veicoli
+        <input type="radio" name="choice" value="Visualizza veicoli"/> Visualizza veicoli
         <br /><br />
         <input type="submit" value="Conferma" />
     </fieldset>

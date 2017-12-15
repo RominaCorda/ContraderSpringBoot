@@ -1,5 +1,6 @@
 .page-body, footer {
     padding: 15px;
+
 }
 
 footer {
@@ -7,6 +8,5 @@ footer {
     bottom: 0;
 }
 div#free{
-    float: right;
     padding: 15px;
 }
