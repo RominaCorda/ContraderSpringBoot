@@ -37,7 +37,7 @@ public class GommaController
     {
         gommaService.insertGomma(gomma);
         model.addAttribute("msg","Gomma added successfully");
-        return "menuAdmin";
+        return "prova";
     }
 
     @RequestMapping(value="/allgommeManufacturer", method = RequestMethod.GET)

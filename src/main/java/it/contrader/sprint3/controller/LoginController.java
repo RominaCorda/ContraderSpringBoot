@@ -39,8 +39,8 @@ public class LoginController {
             return "loginPage";
         }
 
-        model.addAttribute("username", user.getFirstname());
-        model.addAttribute("password", user.getLastname());
+        model.addAttribute("FirstName", user.getFirstname());
+        model.addAttribute("LastName", user.getLastname());
 
         if(user.getRole().equalsIgnoreCase("admin"))
             return "menuAdmin";

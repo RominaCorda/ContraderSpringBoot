@@ -23,19 +23,19 @@
             <li class="active"><a href="#">Home</a></li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Inserisci <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Inserisci gomma</a></li>
-                    <li><a href="#">Inserisci veicolo</a></li>
+                    <li><a href="/gommastore/insertGomma.jsp">Inserisci gomma</a></li>
+                    <li><a href="/gommastore/insertVehicle.jsp">Inserisci veicolo</a></li>
                 </ul>
             </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Visualizza<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Visualizza gomme </a></li>
-                    <li><a href="#">Visualizza utenti </a></li>
-                    <li><a href="#">Visualizza veicoli </a></li>
+                    <li><a href="/gommastore/gomme/allgomme">Visualizza pneumatici </a></li>
+                    <li><a href="/gommastore/users/getUsers">Visualizza utenti </a></li>
+                    <li><a href="/gommastore/vehicle/allvehicles">Visualizza veicoli </a></li>
                 </ul>
             </li>
         </ul>
-            <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
             <li><a href="/gommastore"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         </ul>
 

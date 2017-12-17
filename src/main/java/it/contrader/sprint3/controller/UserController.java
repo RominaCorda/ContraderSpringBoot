@@ -36,7 +36,7 @@ public class UserController {
         return "insertUser";
     }
 
-    @RequestMapping(value="/newUser", method = RequestMethod.GET)
+    @RequestMapping(value="/newUser", method = RequestMethod.POST)
     public String newUser(@ModelAttribute UserEntity User){
         User.setRole("user");
         userService.insert(User);

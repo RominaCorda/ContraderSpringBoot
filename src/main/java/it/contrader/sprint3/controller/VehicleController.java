@@ -46,7 +46,7 @@ public class VehicleController {
     public String getinsertVehicles (@ModelAttribute VehicleEntity vehicle)
     {
         vehicleService.insert(vehicle);
-        return "hello";
+        return "menuAdmin";
     }
 
 }

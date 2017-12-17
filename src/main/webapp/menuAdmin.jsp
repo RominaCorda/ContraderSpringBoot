@@ -1,4 +1,5 @@
 <%@ taglib prefix="href" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Silverio
@@ -15,14 +16,32 @@
 </head>
 <body>
 <div class="container">
-    <h2>Menu Admin ${username} ${password}</h2>
-    <form action="">
+    <h2>Menu Admin ${FirstName} ${LastName}</h2>
+
+    <c:url var="url" value="/insertGomma.jsp" />
+    <form action="${url}">
     <button type="submit" class="btn btn-primary btn-block">Inserisci pneumatico</button>
+    </form>
+
+    <c:url var="url2" value="/insertVehicle.jsp" />
+    <form action="${url2}">
     <button type="submit" class="btn btn-default btn-block">Inserisci veicolo</button>
-    <button type="submit" class="btn btn-default btn-block">Visualizza pneumatico</button>
-    <button type="submit" class="btn btn-default btn-block">Visualizza utentio</button>
+    </form>
+
+    <c:url var="url3" value="/gomme/allgomme" />
+    <form action="${url3}">
+    <button type="submit" class="btn btn-default btn-block">Visualizza pneumatici</button>
+    </form>
+
+    <c:url var="url4" value="/users/getUsers" />
+    <form action="${url4}">
+    <button type="submit" class="btn btn-default btn-block">Visualizza utenti</button>
+    </form>
+
+    <c:url var="url5" value="/vehicle/allvehicles" />
+    <form action="${url5}">
     <button type="submit" class="btn btn-default btn-block">Visualizza veicoli</button>
-</form>
+    </form>
 </div>
 </body>
 </html>

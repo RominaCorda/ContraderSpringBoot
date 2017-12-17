@@ -12,9 +12,7 @@
     <title>Prova</title>
 </head>
 <body>
-<c:forEach items="${listgomme}" var="gomma">
-    ${gomma}
-</c:forEach>
 
+${msg}
 </body>
 </html>

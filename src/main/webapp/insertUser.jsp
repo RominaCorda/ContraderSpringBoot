@@ -31,7 +31,7 @@
         <input type="submit" value="REGISTRATI">
         </form> -->
 
-    <form action="${url}" method="get" ModelAttribute="User">
+    <form action="${url}" method="post" ModelAttribute="User">
         <fieldset>
         <div class="container" align="center" style=" width: 400px" >
             <div class="row">
