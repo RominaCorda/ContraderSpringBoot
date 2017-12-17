@@ -45,5 +45,6 @@ public class GommaService {
         String typeVehicle=gomma.getTypeVehicle();
         return this.gommaRepository.findByWidthAndHeightAndDiameterAndWeightAndSpeedAndSeasonAndTypeVehicle(width, height, diameter, weight, speed, season, typeVehicle);
     }
+    public GommaEntity findById(long id){ return this.gommaRepository.findById(id);}
 
 }

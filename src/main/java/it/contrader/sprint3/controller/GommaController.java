@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -60,6 +61,19 @@ public class GommaController
     {
         List<GommaEntity> gomme=gommaService.getAllGommeForSize(gomma);
         model.addAttribute("listgomme",gomme);
+        return  "prova";
+    }
+    @RequestMapping(value="/gommeForVehicle", method = RequestMethod.GET)
+    public  String  getAllGommeForVehicle(@ModelAttribute GommaSize gomma, Model model)
+    {
+        List<GommaEntity> listgomme= new ArrayList<GommaEntity>();
+        List<Integer> listIdGomme= (List<Integer>) model.asMap().get("listIdGomme");
+        for (Integer idGomma:listIdGomme)
+        {
+            int id=idGomma.intValue();
+            listgomme.add(gommaService.findById(id));
+        }
+        model.addAttribute("listgomme",listgomme);
         return  "prova";
     }
 
