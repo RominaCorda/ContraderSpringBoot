@@ -24,7 +24,7 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/gommastore/users/prova">Registrati</a></li>
+                    <li><a href="/gommastore/users/registrazione">Registrati</a></li>
                 </ul>
             </div>
         </nav>
@@ -34,7 +34,9 @@
         <div class="container">
             <div class="card card-container">
                 <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-                <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                <div class="imgProfile" align="center">
+                    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                </div>
                 <p id="profile-name" class="profile-name-card"></p>
 
                 <c:url var="url" value="/login/menu" />
