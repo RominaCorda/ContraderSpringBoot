@@ -20,7 +20,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/gommastore/">GommaStore</a>
+            <a class="navbar-brand" href="/gommastore/">WheelsStore</a>
 
         </div>
         <ul class="nav navbar-nav navbar-right">

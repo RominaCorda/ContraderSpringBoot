@@ -17,31 +17,37 @@
 <body>
 <div class="container">
     <h2>Menu Admin ${FirstName} ${LastName}</h2>
+    <br><br>
 
     <c:url var="url" value="/insertGomma.jsp" />
     <form action="${url}">
     <button type="submit" class="btn btn-default btn-block">Inserisci pneumatico</button>
     </form>
+    <br>
 
     <c:url var="url2" value="/insertVehicle.jsp" />
     <form action="${url2}">
     <button type="submit" class="btn btn-default btn-block">Inserisci veicolo</button>
     </form>
+    <br>
 
     <c:url var="url3" value="/gomme/allgomme" />
     <form action="${url3}">
     <button type="submit" class="btn btn-default btn-block">Visualizza pneumatici</button>
     </form>
+    <br>
 
     <c:url var="url4" value="/users/getUsers" />
     <form action="${url4}">
     <button type="submit" class="btn btn-default btn-block">Visualizza utenti</button>
     </form>
+    <br>
 
     <c:url var="url5" value="/vehicle/allvehicles" />
     <form action="${url5}">
     <button type="submit" class="btn btn-default btn-block">Visualizza veicoli</button>
     </form>
+    <br>
 </div>
 </body>
 </html>
