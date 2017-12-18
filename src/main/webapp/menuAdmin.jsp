@@ -20,7 +20,7 @@
 
     <c:url var="url" value="/insertGomma.jsp" />
     <form action="${url}">
-    <button type="submit" class="btn btn-primary btn-block">Inserisci pneumatico</button>
+    <button type="submit" class="btn btn-default btn-block">Inserisci pneumatico</button>
     </form>
 
     <c:url var="url2" value="/insertVehicle.jsp" />

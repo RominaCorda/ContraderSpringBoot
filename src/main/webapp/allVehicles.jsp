@@ -12,9 +12,32 @@
 
 <div class="page-body">
 
-<c:forEach items="${allVehicles}" var="allVehicles">
-    ${allVehicles}<br>
-</c:forEach>
+    <div class="container">
+
+        <table class="table table-striped" >
+            <caption>Lista Veicoli</caption>
+            <thead>
+                <tr>
+                    <th>Produttore</th>
+                    <th>Modello</th>
+                    <th>Alimentazione</th>
+                    <th>Versione</th>
+                    <th>Cilindrata</th>
+                </tr>
+            </thead>
+            <c:forEach items="${allVehicles}" var="allVehicle">
+            <tbody>
+                <tr>
+                    <td>${allVehicle.brand}</td>
+                    <td>${allVehicle.model}</td>
+                    <td>${allVehicle.fuel}</td>
+                    <td>${allVehicle.version}</td>
+                    <td>${allVehicle.capacity}</td>
+                </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
 
 </div>
 
