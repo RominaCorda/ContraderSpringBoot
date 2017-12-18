@@ -8,12 +8,11 @@ import java.util.Map;
 
 
 @Controller
-public class HelloController {
+public class IndexController {
 
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public String hello (Map<String, Object> model) {
-        model.put("saluto", "Ciao Mondo!");
-        return "hello";
+    public String index (Map<String, Object> model) {
+        return "index";
     }
 
 }
