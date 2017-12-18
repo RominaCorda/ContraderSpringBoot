@@ -27,5 +27,15 @@ public class VehicleService {
         {
         return this.vehicleRepository.save(vehicle);
         }
+
+        public VehicleEntity findByBrandAndModelAndFuelAndVersionAndCapacity(VehicleEntity vehicle)
+        {
+            String brand = vehicle.getBrand();
+            String  model = vehicle.getModel();
+            String fuel = vehicle.getFuel();
+            String version = vehicle.getVersion();
+            String capacity =vehicle.getCapacity();
+            return this.vehicleRepository.findByBrandAndModelAndFuelAndVersionAndCapacity(brand, model, fuel, version, capacity);
+        }
 }
 

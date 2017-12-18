@@ -22,8 +22,11 @@ public class GommaService {
         return this.gommaRepository.findAll();
     }
 
-    public List<GommaEntity> findByManufacturer(String manufacturer) {
-        return this.gommaRepository.findByManufacturer(manufacturer);
+    /*public List<GommaEntity> findByManufacturer(String manufacturer,String typeVehicle) {
+        return this.gommaRepository.findByManufacturer(manufacturer,typeVehicle);*/
+
+    public List<GommaEntity> findByManufacturer(String manufacturer,String typeVehicle){
+        return this.gommaRepository.findByManufacturerAndTypeVehicle(manufacturer,typeVehicle);
     }
 
     public GommaEntity insertGomma(GommaEntity gomma) {
@@ -41,10 +44,22 @@ public class GommaService {
         double diameter=gomma.getDiameter();
         double weight=gomma.getWeight();
         String speed=gomma.getSpeed();
-        String season=gomma.getSeason();
+        //String season=gomma.getSeason();
         String typeVehicle=gomma.getTypeVehicle();
-        return this.gommaRepository.findByWidthAndHeightAndDiameterAndWeightAndSpeedAndSeasonAndTypeVehicle(width, height, diameter, weight, speed, season, typeVehicle);
+        return this.gommaRepository.findByWidthAndHeightAndDiameterAndWeightAndSpeedAndTypeVehicle(width, height, diameter, weight, speed, typeVehicle);
     }
+    public List<GommaEntity> getAllGommeForSizeAuto(GommaSize gomma)
+    {
+        double width=gomma.getWidth();
+        double height=gomma.getHeight();
+        double diameter=gomma.getDiameter();
+        double weight=gomma.getWeight();
+        String speed=gomma.getSpeed();
+        //String season=gomma.getSeason();
+        String typeVehicle=gomma.getTypeVehicle();
+        return this.gommaRepository.findByWidthAndHeightAndDiameterAndTypeVehicle(width,height,diameter,typeVehicle);
+    }
+
     public GommaEntity findById(long id){ return this.gommaRepository.findById(id);}
 
 }

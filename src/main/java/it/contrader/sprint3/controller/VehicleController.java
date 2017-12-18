@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -35,13 +36,21 @@ public class VehicleController {
         return "allVehicles";
     }
 
-
-
     @RequestMapping(value="/insertVehicle", method = RequestMethod.GET)
     public String getinsertVehicles (@ModelAttribute VehicleEntity vehicle)
     {
         vehicleService.insert(vehicle);
         return "menuAdmin";
+    }
+
+    @RequestMapping(value="/searchVehicle", method = RequestMethod.GET)
+    public String searchVehicles (Model model,@ModelAttribute VehicleEntity vehicle,RedirectAttributes redirectAttrs)
+    {
+        VehicleEntity veicolo=vehicleService.findByBrandAndModelAndFuelAndVersionAndCapacity(vehicle);
+        int id_vehicle= (int) veicolo.getIdVehicle();
+        model.addAttribute("id_vehicle",id_vehicle);
+        redirectAttrs.addFlashAttribute("id_vehicle",id_vehicle);
+        return  "redirect:/compatibility/idgommeForVehicle";
     }
 
 }

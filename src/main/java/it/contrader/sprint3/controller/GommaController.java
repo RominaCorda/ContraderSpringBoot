@@ -41,11 +41,11 @@ public class GommaController
     }
 
     @RequestMapping(value="/allgommeManufacturer", method = RequestMethod.GET)
-    public String gommeByManufacturer(Model model,@RequestParam("manufacturer") String manufacturer)
+    public String gommeByManufacturer(Model model,@RequestParam("manufacturer") String manufacturer,@RequestParam("typeVehicle") String typeVehicle)
     {
-        List<GommaEntity> gomme = gommaService.findByManufacturer(manufacturer);
+        List<GommaEntity> gomme = gommaService.findByManufacturer(manufacturer,typeVehicle);
         model.addAttribute("listgomme", gomme);
-        return "gommeByManufacturer";
+        return "allGomme";
     }
 
     @RequestMapping(value="/manufacturerForVehicle", method = RequestMethod.GET)
@@ -61,7 +61,14 @@ public class GommaController
     {
         List<GommaEntity> gomme=gommaService.getAllGommeForSize(gomma);
         model.addAttribute("listgomme",gomme);
-        return  "prova";
+        return  "allGomme";
+    }
+    @RequestMapping(value="/gommeForSizeAuto", method = RequestMethod.GET)
+    public  String  getAllGommeForSizeAuto(@ModelAttribute GommaSize gomma, Model model)
+    {
+        List<GommaEntity> gomme=gommaService.getAllGommeForSizeAuto(gomma);
+        model.addAttribute("listgomme",gomme);
+        return  "allGomme";
     }
     @RequestMapping(value="/gommeForVehicle", method = RequestMethod.GET)
     public  String  getAllGommeForVehicle(@ModelAttribute GommaSize gomma, Model model)
@@ -74,7 +81,7 @@ public class GommaController
             listgomme.add(gommaService.findById(id));
         }
         model.addAttribute("listgomme",listgomme);
-        return  "prova";
+        return  "allGomme";
     }
 
 }

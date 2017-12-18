@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 711367
@@ -29,7 +30,7 @@
 
                     <div class="tab-content">
                         <div id="dimensioneAuto" class="tab-pane fade in active">
-                            <form>
+                            <form action="/gommastore/gomme/gommeForSizeAuto" method="get" ModelAttribute="gomma">
                                 <div class="form-group row">
                                     <div class="col-xs-4">
                                         <label for="ex1">Larghezza</label>
@@ -55,12 +56,12 @@
                                         </select>
                                     </div>
                                 </div>
-                                <input type="text" value="auto" name="tipevehicle" hidden>
+                                <input type="text" value="auto" name="typeVehicle"  aria-checked="true" hidden>
                                 <button type="submit" class="btn btn-default">Conferma</button>
                             </form>
                         </div>
                         <div id="veicoloAuto" class="tab-pane fade">
-                            <form>
+                            <form action="/gommastore/vehicle/searchVehicle" method="get">
                                 <div class="form-group row">
                                     <div class="col-xs-8">
                                         <label for="ex5">Marca</label>
@@ -87,19 +88,20 @@
                                         <input class="form-control" id="ex9" type="text" name="capacity" required>
                                     </div>
                                 </div>
-                                <input type="text" value="auto" name="tipevehicle" hidden>
+                                <input type="text" value="auto" name="typeVehicle"  aria-checked="true" hidden>
                                 <button type="submit" class="btn btn-default">Conferma</button>
                             </form>
                         </div>
                         <div id="brandAuto" class="tab-pane fade">
-                            <form>
+                            <c:url var="url" value="/gomme/allgommeManufacturer" />
+                            <form action="${url}">
                                 <div class="form-group row">
                                     <div class="col-xs-8">
                                         <label for="ex10">Produttore</label>
                                         <input class="form-control" id="ex10" type="text" name="manufacturer">
                                     </div>
                                 </div>
-                                <input type="text" value="auto" name="tipevehicle" hidden>
+                                <input type="text" value="auto" name="typeVehicle"  aria-checked="true" hidden>
                                 <button type="submit" class="btn btn-default">Conferma</button>
                             </form>
                         </div>
@@ -114,7 +116,7 @@
 
                     <div class="tab-content">
                         <div id="dimensioneMoto" class="tab-pane fade in active">
-                            <form>
+                            <form action="/gommastore/gomme/gommeForSize" method="get" ModelAttribute="gomma">
                                 <div class="form-group row">
                                     <div class="col-xs-4">
                                         <label for="ex11">Larghezza</label>
@@ -141,19 +143,19 @@
                                         <input class="form-control" id="ex15" type="text" name="speed" required>
                                     </div>
                                 </div>
-                                <input type="text" value="moto" name="tipevehicle" hidden>
+                                <input type="text" value="moto" name="typeVehicle" aria-checked="true" hidden>
                                 <button type="submit" class="btn btn-default">Conferma</button>
                             </form>
                         </div>
                         <div id="brandMoto" class="tab-pane fade">
-                            <form>
+                            <form action="/gommastore/gomme/allgommeManufacturer">
                                 <div class="form-group row">
                                     <div class="col-xs-8">
                                         <label for="ex16">Produttore</label>
                                         <input class="form-control" id="ex16" type="text" name="manufacturer">
                                     </div>
                                 </div>
-                                <input type="text" value="moto" name="tipevehicle" hidden>
+                                <input type="text" value="moto" name="typeVehicle"  aria-checked="true" hidden>
                                 <button type="submit" class="btn btn-default">Conferma</button>
                             </form>
                         </div>
@@ -168,7 +170,7 @@
 
                     <div class="tab-content">
                         <div id="dimensioneCommerciale" class="tab-pane fade in active">
-                            <form>
+                            <form action="/gommastore/gomme/gommeForSize" method="get" ModelAttribute="gomma">
                                 <div class="form-group row">
                                     <div class="col-xs-4">
                                         <label for="ex17">Larghezza</label>
@@ -195,19 +197,19 @@
                                         <input class="form-control" id="ex21" type="text" name="speed" required>
                                     </div>
                                 </div>
-                                <input type="text" value="commerciale" name="tipevehicle" hidden>
+                                <input type="text" value="commerciale" name="typeVehicle"  aria-checked="true" hidden>
                                 <button type="submit" class="btn btn-default">Conferma</button>
                             </form>
                         </div>
                         <div id="brandCommerciale" class="tab-pane fade">
-                            <form>
+                            <form action="/gommastore/gomme/allgommeManufacturer">
                                 <div class="form-group row">
                                     <div class="col-xs-8">
                                         <label for="ex22">Produttore</label>
                                         <input class="form-control" id="ex22" type="text" name="manufacturer">
                                     </div>
                                 </div>
-                                <input type="text" value="commerciale" name="tipevehicle" hidden>
+                                <input type="text" value="commerciale" name="typeVehicle"  aria-checked="true" hidden>
                                 <button type="submit" class="btn btn-default">Conferma</button>
                             </form>
                         </div>

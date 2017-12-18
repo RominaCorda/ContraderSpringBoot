@@ -14,13 +14,14 @@ import java.util.List;
 public interface GommaRepository extends CrudRepository<GommaEntity, Long>
 {
     List<GommaEntity> findAll();
-    List<GommaEntity> findByManufacturer(String manufacturer);
+    List<GommaEntity> findByManufacturerAndTypeVehicle(String manufacturer,String typeVehicle);
 
     @Query("SELECT DISTINCT manufacturer FROM GommaEntity WHERE typeVehicle=:type")
     List<String> getAllManufacturerForTypeVehicle(@Param("type") String type);
 
-    List<GommaEntity>findByWidthAndHeightAndDiameterAndWeightAndSpeedAndSeasonAndTypeVehicle(double width,double height,double diameter,double weight,String speed,String season,String typeVehicle);
+    List<GommaEntity>findByWidthAndHeightAndDiameterAndWeightAndSpeedAndTypeVehicle(double width,double height,double diameter,double weight,String speed,String typeVehicle);
 
+    List<GommaEntity>findByWidthAndHeightAndDiameterAndTypeVehicle(double width,double height,double diameter,String typeVehicle);
     GommaEntity findById(long id);
 
 }
