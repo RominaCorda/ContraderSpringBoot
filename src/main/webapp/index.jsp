@@ -9,6 +9,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/gommastore/css/headerAdmin.css" type="text/css">
     <link rel="stylesheet" href="/gommastore/css/index.css" type="text/css">
+    <link rel="stylesheet" href="/gommastore/css/footer.css" type="text/css">
 </head>
 <body>
 <div id="carousel-example-generic" class="carousel slide">
@@ -58,7 +59,7 @@
         integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
         crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<jsp:include page="footer.jsp" />
 </body>
 </html>
-<jsp:include page="footer.jsp" />
 
