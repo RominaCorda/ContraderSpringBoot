@@ -42,10 +42,6 @@
         </table>
     </div>
 
-<%-- <c:forEach items="${users}" var="users">
-    ${users}<br>
-</c:forEach> --%>
-
 </div>
 
 <jsp:include page="footer.jsp" />

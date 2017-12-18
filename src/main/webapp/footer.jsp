@@ -8,15 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-<footer class="container">
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">© 2017 GommaStore Inc.</div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
+<footer>
+        <div class="pull-left">© 2017 GommaStore Inc.</div>
+        <div class="pull-right">
             <a href=""><img src="/gommastore/css/img/facebook.svg"></a>
             <a href=""><img src="/gommastore/css/img/twitter.svg"></a>
             <a href=""><img src="/gommastore/css/img/instagram.svg"></a>
         </div>
-    </div>
 </footer>
 
 <script
