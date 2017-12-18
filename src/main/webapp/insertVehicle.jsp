@@ -10,16 +10,39 @@
 <jsp:include page="headerAdmin.jsp" />
 
 <div class="page-body">
-
     <c:url var="url" value="/vehicle/insertVehicle" />
-
     <form action="${url}" method="get" ModelAttribute="vehicle">
-        Brand       <input type="text" name="brand"/> <br/><br/>
-        Model       <input type="text" name="model"/> <br/><br/>
-        Fuel        <input type="text" name="fuel"/> <br/><br/>
-        Version     <input type="text" name="version"/> <br/><br/>
-        Capacity    <input type="text" name="capacity"/> <br/><br/>
-        <input type="submit" value="Conferma" />
+        <fieldset>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3" >
+                    </div>
+                    <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="brand">Produttore</label>
+                            <input type="text" class="form-control" name="brand" id="brand" placeholder="Inserisci produttore">
+
+                            <label for="model">Modello</label>
+                            <input type="text" class="form-control" name="model" id="model" placeholder="Inserisci modello">
+
+                            <label for="fuel">Alimentazione</label>
+                            <input type="text" class="form-control" name="fuel" id="fuel" placeholder="Inserisci alimentazione">
+
+                            <label for="version">Versione</label>
+                            <input type="text" class="form-control" name="version" id="version" placeholder="Inserisci versione">
+
+                            <label for="capacity">Cilindrata</label>
+                            <input type="text" class="form-control" name="capacity" id="capacity" placeholder="Inserisci cilindrata">
+                        </div>
+                        <button type="submit" class="btn btn-default">Conferma</button>
+                    </div>
+
+
+                    <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3" >
+                    </div>
+                </div>
+            </div>
+        </fieldset>
     </form>
 
 </div>

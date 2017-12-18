@@ -35,11 +35,6 @@ public class VehicleController {
         return "allVehicles";
     }
 
-    @RequestMapping(value="/prova")
-    public String getinsertVehicles ()
-    {
-        return "insertVehicle";
-    }
 
 
     @RequestMapping(value="/insertVehicle", method = RequestMethod.GET)

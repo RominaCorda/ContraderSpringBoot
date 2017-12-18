@@ -12,6 +12,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/gommastore/css/headerAdmin.css" type="text/css">
     <link rel="stylesheet" href="/gommastore/css/footer.css" type="text/css">
+    <link rel="stylesheet" href="/gommastore/css/main.css" type="text/css">
     <link rel="icon" href="/gommastore/css/img/favicon.ico" type="image/x-icon"/>
 </head>
 <body>
@@ -19,7 +20,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">GommaStore</a>
+            <a class="navbar-brand" href="/gommastore/">GommaStore</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="/gommastore/menuAdmin.jsp">Menu</a></li>
@@ -38,7 +39,7 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/gommastore"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="/gommastore"><span class="glyphicon glyphicon-user"></span>Log out</a></li>
         </ul>
 
     </div>
