@@ -40,7 +40,7 @@ public class UserController {
     public String newUser(@ModelAttribute UserEntity User){
         User.setRole("user");
         userService.insert(User);
-        return "hello";
+        return "loginPage";
     }
 
 
