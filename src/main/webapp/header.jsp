@@ -11,6 +11,7 @@
     <title>GommaStore</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/gommastore/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/gommastore/css/footer.css" type="text/css">
 </head>
 <body>
 

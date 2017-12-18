@@ -1,11 +1,5 @@
-.page-body, footer {
+.page-body{
     padding: 15px;
-
-}
-
-footer {
-   /* position: fixed;*/
-    bottom: 0;
 }
 
 
