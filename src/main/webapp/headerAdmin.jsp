@@ -19,7 +19,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">GommaStore</a>
+            <a class="navbar-brand" href="/gommastore/">GommaStore</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="/gommastore/menuAdmin.jsp">Menu</a></li>
@@ -38,7 +38,7 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/gommastore"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="/gommastore"><span class="glyphicon glyphicon-user"></span>Log out</a></li>
         </ul>
 
     </div>

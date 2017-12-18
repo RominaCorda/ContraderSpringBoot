@@ -48,7 +48,7 @@
                 <div class=" col-xs-6 col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Inserisci un username...">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Inserisci un username..."required>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 <div class="col-xs-6 col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="text" class="form-control" name="password" id="password" placeholder="Inserisci una password...">
+                        <input type="text" class="form-control" name="password" id="password" placeholder="Inserisci una password..."required>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 <div class="col-xs-6 col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="firstname">Nome</label>
-                        <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Inserisci il tuo nome...">
+                        <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Inserisci il tuo nome..."required>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 <div class="col-xs-6 col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="lastname">Cognome</label>
-                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Inserisci il tuo cognome ...">
+                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Inserisci il tuo cognome ..."required>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                 <div class="col-xs-6 col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="dateofbirth">Data di nascita</label>
-                        <input type="text" class="form-control" name="dateofbirth" id="dateofbirth" placeholder="Inserisci data di nascita ...">
+                        <input type="text" class="form-control" name="dateofbirth" id="dateofbirth" placeholder="Inserisci data di nascita ..."required>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                 <div class="col-xs-6 col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="fiscalcode">Codice Fiscale</label>
-                        <input type="text" class="form-control" name="fiscalcode" id="fiscalcode" placeholder="Inserisci codice fiscale...">
+                        <input type="text" class="form-control" name="fiscalcode" id="fiscalcode" placeholder="Inserisci codice fiscale..."required>
                     </div>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                 <div class="col-xs-6 col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="post">CAP</label>
-                        <input type="text" class="form-control" name="post" id="post" placeholder="Inserisci il CAP...">
+                        <input type="text" class="form-control" name="post" id="post" placeholder="Inserisci il CAP..."required>
                     </div>
                 </div>
             </div>
@@ -138,7 +138,7 @@
                 <div class="col-xs-6 col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="city">Luogo di nascita</label>
-                        <input type="text" class="form-control" name="city" id="city" placeholder="Inserisci luogo di nascita...">
+                        <input type="text" class="form-control" name="city" id="city" placeholder="Inserisci luogo di nascita..."required>
                     </div>
                 </div>
             </div>

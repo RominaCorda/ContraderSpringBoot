@@ -70,6 +70,7 @@
                     <td>Tipo veicolo</td>
                     <td>
                         <select name="typeVehicle">
+                            <option value="">seleziona</option>
                             <option value="moto">moto</option>
                             <option value="auto">auto</option>
                             <option value="commericiale">commericiale</option>
@@ -80,6 +81,7 @@
                     <td>Stagione</td>
                     <td>
                         <select name="season">
+                            <option value="">seleziona</option>
                             <option value="invernale">invernale</option>
                             <option value="estive">estive</option>
                             <option value="quattro stagioni">quattro stagioni</option>
