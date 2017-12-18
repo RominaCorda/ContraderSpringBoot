@@ -91,8 +91,8 @@
             <div class="row">
                 <div class="col-sm-5 col-lg-12">
                     <div class="form-group">
-                        <label for="businessname">Regione Sociale</label>
-                        <input type="text" class="form-control" name="businessname"id="businessname" placeholder="Inserisci regione sociale...">
+                        <label for="businessname">Ragione Sociale</label>
+                        <input type="text" class="form-control" name="businessname"id="businessname" placeholder="Inserisci ragione sociale...">
                     </div>
                 </div>
             </div>
