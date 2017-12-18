@@ -32,21 +32,26 @@
                             <div class="form-group row">
                                 <div class="col-xs-4">
                                     <label for="ex1">Larghezza</label>
-                                    <input class="form-control" id="ex1" type="text" name="width">
+                                    <input class="form-control" id="ex1" type="text" name="width" required>
                                 </div>
                                 <div class="col-xs-4">
                                     <label for="ex2">Altezza</label>
-                                    <input class="form-control" id="ex2" type="text" name="height">
+                                    <input class="form-control" id="ex2" type="text" name="height" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-xs-4">
                                     <label for="ex3">Diametro</label>
-                                    <input class="form-control" id="ex3" type="text" name="diameter">
+                                    <input class="form-control" id="ex3" type="text" name="diameter" required>
                                 </div>
                                 <div class="col-xs-4">
                                     <label for="ex4">Stagione</label>
-                                    <input class="form-control" id="ex4" type="text" name="season">
+                                    <select class="form-control" id="ex4" name="season" required>
+                                        <option value="">Seleziona</option>
+                                        <option value="invernali">Invernali</option>
+                                        <option value="estive">Estive</option>
+                                        <option value="quattro stagioni">Quattro Stagioni</option>
+                                    </select>
                                 </div>
                             </div>
                             <input type="text" value="auto" name="tipevehicle" hidden>
@@ -58,27 +63,27 @@
                             <div class="form-group row">
                                 <div class="col-xs-8">
                                     <label for="ex5">Marca</label>
-                                    <input class="form-control" id="ex5" type="text" name="brand">
+                                    <input class="form-control" id="ex5" type="text" name="brand" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-xs-4">
                                     <label for="ex6">Modello</label>
-                                    <input class="form-control" id="ex6" type="text" name="model">
+                                    <input class="form-control" id="ex6" type="text" name="model" required>
                                 </div>
                                 <div class="col-xs-4">
                                     <label for="ex7">Alimentazione</label>
-                                    <input class="form-control" id="ex7" type="text" name="fuel">
+                                    <input class="form-control" id="ex7" type="text" name="fuel" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-xs-4">
                                     <label for="ex8">Versione</label>
-                                    <input class="form-control" id="ex8" type="text" name="version">
+                                    <input class="form-control" id="ex8" type="text" name="version" required>
                                 </div>
                                 <div class="col-xs-4">
                                     <label for="ex9">Motorizzazione</label>
-                                    <input class="form-control" id="ex9" type="text" name="capacity">
+                                    <input class="form-control" id="ex9" type="text" name="capacity" required>
                                 </div>
                             </div>
                             <input type="text" value="auto" name="tipevehicle" hidden>
@@ -112,27 +117,27 @@
                             <div class="form-group row">
                                 <div class="col-xs-4">
                                     <label for="ex11">Larghezza</label>
-                                    <input class="form-control" id="ex11" type="text" name="width">
+                                    <input class="form-control" id="ex11" type="text" name="width" required>
                                 </div>
                                 <div class="col-xs-4">
                                     <label for="ex12">Altezza</label>
-                                    <input class="form-control" id="ex12" type="text" name="height">
+                                    <input class="form-control" id="ex12" type="text" name="height" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-xs-4">
                                     <label for="ex13">Diametro</label>
-                                    <input class="form-control" id="ex13" type="text" name="diameter">
+                                    <input class="form-control" id="ex13" type="text" name="diameter" required>
                                 </div>
                                 <div class="col-xs-4">
                                     <label for="ex14">Carico</label>
-                                    <input class="form-control" id="ex14" type="text" name="weight">
+                                    <input class="form-control" id="ex14" type="text" name="weight" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-xs-4">
                                     <label for="ex15">Velocità</label>
-                                    <input class="form-control" id="ex15" type="text" name="speed">
+                                    <input class="form-control" id="ex15" type="text" name="speed" required>
                                 </div>
                             </div>
                             <input type="text" value="moto" name="tipevehicle" hidden>
@@ -166,27 +171,27 @@
                             <div class="form-group row">
                                 <div class="col-xs-4">
                                     <label for="ex17">Larghezza</label>
-                                    <input class="form-control" id="ex17" type="text" name="width">
+                                    <input class="form-control" id="ex17" type="text" name="width" required>
                                 </div>
                                 <div class="col-xs-4">
                                     <label for="ex18">Altezza</label>
-                                    <input class="form-control" id="ex18" type="text" name="height">
+                                    <input class="form-control" id="ex18" type="text" name="height" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-xs-4">
                                     <label for="ex19">Diametro</label>
-                                    <input class="form-control" id="ex19" type="text" name="diameter">
+                                    <input class="form-control" id="ex19" type="text" name="diameter" required>
                                 </div>
                                 <div class="col-xs-4">
                                     <label for="ex20">Carico</label>
-                                    <input class="form-control" id="ex20" type="text" name="weight">
+                                    <input class="form-control" id="ex20" type="text" name="weight" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-xs-4">
                                     <label for="ex21">Velocità</label>
-                                    <input class="form-control" id="ex21" type="text" name="speed">
+                                    <input class="form-control" id="ex21" type="text" name="speed" required>
                                 </div>
                             </div>
                             <input type="text" value="commerciale" name="tipevehicle" hidden>
