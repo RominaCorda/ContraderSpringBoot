@@ -6,3 +6,13 @@ footer {
     position: fixed;
     bottom: 0;
 }
+
+footer div img {
+    width: 32px;
+    height: 32px;
+}
+
+div.col-lg-8 {
+    position: relative;
+    text-align:right;
+}

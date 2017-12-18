@@ -10,9 +10,12 @@
 <head>
     <title>GommaStore</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="/gommastore/css/img/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="/gommastore/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/gommastore/css/menuUser.css" type="text/css">
 </head>
 <body>
+
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -21,16 +24,12 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="#">Store</a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ricerca
-                    <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Ricerca</a></li>
-                    <li><a href="#">Ricerca</a></li>
-                    <li><a href="#">Ricerca</a></li>
-                </ul>
-            </li>
+            <li><a href="MenuUser.jsp">Ricerca</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+        </ul>
+
     </div>
 </nav>
 
