@@ -21,7 +21,7 @@
             <a class="navbar-brand" href="#">GommaStore</a>
 
         </div>
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Home</a></li>
             <li><a href="/gommastore/login/page">Log In</a></li>
         </ul>

@@ -33,7 +33,7 @@
 
     <form action="${url}" method="post" ModelAttribute="User">
         <fieldset>
-        <div class="container" align="center" style=" width: 400px" >
+        <div class="container" style=" width: 400px" >
             <div class="row">
                 <div class="col-sm-5 col-lg-12">
                     <div class="form-group">
@@ -152,7 +152,11 @@
             </div>
 
             <button type="submit" class="btn btn-default">Invia</button>
-        </fieldset><br>
+
+
+
+        </div>
+        </fieldset>
     </form>
 
 </div>

@@ -13,8 +13,8 @@ create table contrader.users(
   vat varchar(50),
   municipality varchar(50),
   post varchar(10),
-  city varchar(10),
-  address varchar(20),
+  city varchar(30),
+  address varchar(50),
   telephone varchar(20),
   role varchar(20),
   PRIMARY KEY (id_user)
