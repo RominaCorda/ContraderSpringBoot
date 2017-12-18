@@ -35,7 +35,7 @@
         <fieldset>
         <div class="container" style=" width: 400px" >
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" name="username" id="username" placeholder="Inserisci un username...">
@@ -44,7 +44,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="text" class="form-control" name="password" id="password" placeholder="Inserisci una password...">
@@ -53,7 +53,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="firstname">Nome</label>
                         <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Inserisci il tuo nome...">
@@ -62,7 +62,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="lastname">Cognome</label>
                         <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Inserisci il tuo cognome ...">
@@ -71,7 +71,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="dateofbirth">Data di nascita</label>
                         <input type="text" class="form-control" name="dateofbirth" id="dateofbirth" placeholder="Inserisci data di nascita ...">
@@ -80,7 +80,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="fiscalcode">Codice Fiscale</label>
                         <input type="text" class="form-control" name="fiscalcode" id="fiscalcode" placeholder="Inserisci codice fiscale...">
@@ -89,7 +89,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="businessname">Ragione Sociale</label>
                         <input type="text" class="form-control" name="businessname"id="businessname" placeholder="Inserisci ragione sociale...">
@@ -98,7 +98,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="vat">P.IVA</label>
                         <input type="text" class="form-control" name="vat"id="vat" placeholder="Inserisci partita IVA...">
@@ -107,7 +107,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="municipality">Comune</label>
                         <input type="text" class="form-control" name="municipality" id="municipality" placeholder="Inserisci il tuo comune...">
@@ -116,7 +116,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="post">CAP</label>
                         <input type="text" class="form-control" name="post" id="post" placeholder="Inserisci il CAP...">
@@ -125,7 +125,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="city">Luogo di nascita</label>
                         <input type="text" class="form-control" name="city" id="city" placeholder="Inserisci luogo di nascita...">
@@ -134,7 +134,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="address">Indirizzo</label>
                         <input type="text" class="form-control" name="address" id="address" placeholder="Inserisci l'indirizzo...">
@@ -143,7 +143,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-5 col-lg-12">
+                <div class="col-sm-8 col-md-10 col-lg-12">
                     <div class="form-group">
                         <label for="telephone">Telefono</label>
                         <input type="text" class="form-control" name="telephone" id="telephone" placeholder="Inserisci numero telefono...">
