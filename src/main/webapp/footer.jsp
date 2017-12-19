@@ -11,7 +11,7 @@
 <footer>
         <div class="pull-left">© 2017 WheelsStore Inc.</div>
         <div class="pull-right">
-            <a href=""><img src="/gommastore/css/img/facebook.svg"></a>
+            <a href=""><img src="/gommastore/css/img/facebook.svg" width="400" height="268"></a>
             <a href=""><img src="/gommastore/css/img/twitter.svg"></a>
             <a href=""><img src="/gommastore/css/img/instagram.svg"></a>
         </div>
