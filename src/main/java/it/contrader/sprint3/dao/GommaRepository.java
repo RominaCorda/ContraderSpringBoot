@@ -21,7 +21,7 @@ public interface GommaRepository extends CrudRepository<GommaEntity, Long>
 
     List<GommaEntity>findByWidthAndHeightAndDiameterAndWeightAndSpeedAndTypeVehicle(double width,double height,double diameter,double weight,String speed,String typeVehicle);
 
-    List<GommaEntity>findByWidthAndHeightAndDiameterAndTypeVehicle(double width,double height,double diameter,String typeVehicle);
+    List<GommaEntity>findByWidthAndHeightAndDiameterAndSeasonAndTypeVehicle(double width,double height,double diameter,String season,String typeVehicle);
     GommaEntity findById(long id);
 
 }

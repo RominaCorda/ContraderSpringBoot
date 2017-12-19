@@ -30,7 +30,7 @@ public class LoginController {
     }
 
     @RequestMapping(value="/menu", method = RequestMethod.POST)
-    public String menuAdmin (@RequestParam("username") String username, @RequestParam("password") String password, Model model)
+    public String menu (@RequestParam("username") String username, @RequestParam("password") String password, Model model)
     {
 
         UserEntity user = loginService.login(username, password);

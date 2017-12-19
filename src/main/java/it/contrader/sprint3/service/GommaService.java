@@ -54,10 +54,10 @@ public class GommaService {
         double height=gomma.getHeight();
         double diameter=gomma.getDiameter();
         double weight=gomma.getWeight();
-        String speed=gomma.getSpeed();
-        //String season=gomma.getSeason();
+        //String speed=gomma.getSpeed();
+        String season=gomma.getSeason();
         String typeVehicle=gomma.getTypeVehicle();
-        return this.gommaRepository.findByWidthAndHeightAndDiameterAndTypeVehicle(width,height,diameter,typeVehicle);
+        return this.gommaRepository.findByWidthAndHeightAndDiameterAndSeasonAndTypeVehicle(width,height,diameter,season,typeVehicle);
     }
 
     public GommaEntity findById(long id){ return this.gommaRepository.findById(id);}
