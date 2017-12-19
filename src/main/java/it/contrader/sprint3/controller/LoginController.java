@@ -36,7 +36,9 @@ public class LoginController {
 
         UserEntity user = loginService.login(username, password);
 
-        if (user == null) {
+        if (user == null)
+        {
+            model.addAttribute("msg","Credenziali non valide");
             return "loginPage";
         }
 
