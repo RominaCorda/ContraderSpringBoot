@@ -11,7 +11,7 @@
 
 
 <div class="page-body">
-    <c:url var="url" value="/users/newUser" />
+    <c:url var="url" value="/login/regControl" />
     <!--<form action="${url}" method="get" ModelAttribute="User">
         <h1><p>REGISTRAZIONE NUOVO UTENTE</p></h1>
         <p>Riempire i vari campi</p><br>
@@ -30,6 +30,10 @@
         Telefono <input type="text" name="telephone"><br>
         <input type="submit" value="REGISTRATI">
         </form> -->
+    <div id="msg" class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        ${msg}
+    </div>
 
     <form action="${url}" method="post" ModelAttribute="User">
         <fieldset>
@@ -168,6 +172,8 @@
         </div>
         </fieldset>
     </form>
+
+
 
 </div>
 </div>

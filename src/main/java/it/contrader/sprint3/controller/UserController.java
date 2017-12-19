@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -36,10 +37,12 @@ public class UserController {
         return "insertUser";
     }
 
-    @RequestMapping(value="/newUser", method = RequestMethod.POST)
-    public String newUser(@ModelAttribute UserEntity User){
-        User.setRole("user");
-        userService.insert(User);
+    @RequestMapping(value="/newUser")
+    public String newUser(Model model,RedirectAttributes redirectAttrs){
+        UserEntity user = (UserEntity) model.asMap().get("user");
+        user.setRole("user");
+        userService.insert(user);
+        model.addAttribute("msg","Utente registrato!");
         return "loginPage";
     }
 

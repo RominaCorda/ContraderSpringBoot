@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 
@@ -47,4 +48,28 @@ public class LoginController {
         else
             return "menuUser";
     }
+
+
+    @RequestMapping(value="/regControl", method=RequestMethod.POST)
+    public String control (@ModelAttribute UserEntity User, Model model, RedirectAttributes redirectAttrs)
+    {
+        String username = User.getUsername();
+        String password = User.getPassword();
+        UserEntity user = loginService.login(username, password);
+        //model.addAttribute("user",user);
+        if (user != null)
+        {
+            model.addAttribute("msg","Username già in uso...");
+            return "insertUser";
+        }
+        else
+            {
+                model.addAttribute("user",User);
+                redirectAttrs.addFlashAttribute("user",User);
+                return  "redirect:/users/newUser";
+
+            }
+
+    }
+
 }

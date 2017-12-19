@@ -1,5 +1,7 @@
 package it.contrader.sprint3.model;
 
+import org.springframework.context.annotation.Primary;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,9 +10,6 @@ import java.io.Serializable;
 public class UserEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idUser;
-    @Column
     private String username;
     @Column
     private String password ;
@@ -56,14 +55,6 @@ public class UserEntity implements Serializable {
         this.address = address;
         this.telephone = telephone;
         this.role = role;
-    }
-
-    public long getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(long idUser) {
-        this.idUser = idUser;
     }
 
     public String getUsername() {
@@ -222,7 +213,7 @@ public class UserEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "User: " + "\n idUser: " + idUser + "\n username: " + username + "\n password: " + password + "\n firstname: " + firstname + "\n lastname: " + lastname + "\n dateofbirth: " + dateofbirth + "\n cf: " + fiscalcode + "\n businessname: " + businessname + "\n vat: " + vat + "\n municipality: " + municipality + "\n cap: " + post + "\n city: " + city + "\n address: " + address + "\n telephone: " + telephone + "\n role: " + role;
+        return "User: " + "\n username: " + username + "\n password: " + password + "\n firstname: " + firstname + "\n lastname: " + lastname + "\n dateofbirth: " + dateofbirth + "\n cf: " + fiscalcode + "\n businessname: " + businessname + "\n vat: " + vat + "\n municipality: " + municipality + "\n cap: " + post + "\n city: " + city + "\n address: " + address + "\n telephone: " + telephone + "\n role: " + role;
     }
 
 
