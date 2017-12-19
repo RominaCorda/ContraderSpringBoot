@@ -59,10 +59,12 @@
                 </a>
             </div><!-- /card-container -->
 
-            <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                ${msg}
-            </div>
+            <c:if test="${msg!=null}">
+                <div id="msg" class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        ${msg}
+                </div>
+            </c:if>
 
 
         </div><!-- /container -->
