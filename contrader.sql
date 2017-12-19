@@ -2,8 +2,7 @@ drop database contrader;
 create database contrader;
 
 create table contrader.users(
-  id_user int(20) NOT NULL AUTO_INCREMENT,
-  username varchar(50),
+  username varchar(50)  NOT NULL,
   password varchar(50),
   firstname varchar(50),
   lastname varchar(50),
@@ -17,7 +16,7 @@ create table contrader.users(
   address varchar(50),
   telephone varchar(20),
   role varchar(20),
-  PRIMARY KEY (id_user)
+  PRIMARY KEY (username)
 );
 
 create table contrader.gomme(
