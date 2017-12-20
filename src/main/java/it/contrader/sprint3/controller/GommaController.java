@@ -40,12 +40,12 @@ public class GommaController
         {
             if(g.equals(gomma))
             {
-                model.addAttribute("msg","Gomma gi&agrave presente");
+                model.addAttribute("msg","Pneumatico gi&agrave presente");
                 return "insertGomma";
             }
         }
         gommaService.insertGomma(gomma);
-        model.addAttribute("msg","Gomma aggiunta");
+        model.addAttribute("msg","Pneumatico aggiunta");
         return "menuAdmin";
     }
 

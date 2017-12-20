@@ -7,9 +7,9 @@
 <head>
     <title>Welcome Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/gommastore/css/headerAdmin.css" type="text/css">
     <link rel="stylesheet" href="/gommastore/css/index.css" type="text/css">
-    <link rel="stylesheet" href="/gommastore/css/footer.css" type="text/css">
+    <link rel="stylesheet" href="/gommastore/css/main.css" type="text/css">
+    <link rel="icon" href="/gommastore/css/img/favicon.ico" type="image/x-icon"/>
 </head>
 <body>
             <div id="carousel-example-generic" class="carousel slide" >
@@ -149,9 +149,9 @@
                 <br>
             </div>
             <div align="center" class="container">
-                <a href=""><img src="/gommastore/css/img/1.jpg" width="200px" height="200px" ></a>
-                <a href=""><img src="/gommastore/css/img/2.jpg"width="200px" height="200px"></a>
-                <a href=""><img src="/gommastore/css/img/3.jpg"width="200px" height="200px"></a>
+                <a href=""><img src="/gommastore/css/img/1.jpg"></a>
+                <a href=""><img src="/gommastore/css/img/2.jpg"></a>
+                <a href=""><img src="/gommastore/css/img/3.jpg"></a>
             </div>
 <jsp:include page="footer.jsp" />
 </body>

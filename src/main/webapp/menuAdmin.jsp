@@ -1,12 +1,6 @@
 <%@ taglib prefix="href" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Silverio
-  Date: 14/12/2017
-  Time: 13:52
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="headerAdmin.jsp" />
@@ -22,7 +16,7 @@
     </div>
 </c:if>
 <div class="container">
-    <h2>Menu Admin ${FirstName} ${LastName}</h2>
+    <h2>Menu Admin </h2>
     <br><br>
 
     <c:url var="url" value="/insertGomma.jsp" />

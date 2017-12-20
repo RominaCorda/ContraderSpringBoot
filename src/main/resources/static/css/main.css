@@ -5,3 +5,18 @@
 .container{
     height: 100%;
 }
+
+footer {
+    padding: 15px;
+    bottom: 0;
+}
+
+
+footer div img {
+    width: 32px;
+    height: 32px;
+}
+
+.navbar-fixed-top {
+    position: sticky;
+}

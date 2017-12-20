@@ -1,11 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: 711367
-  Date: 14/12/2017
-  Time: 11:29
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="headerAdmin.jsp" />
@@ -15,7 +9,7 @@
     <div class="container">
 
         <table class="table table-striped" >
-            <caption>Lista Gomme</caption>
+            <caption>Lista Pneumatici</caption>
             <thead>
                 <tr>
                     <th>Modello</th>
