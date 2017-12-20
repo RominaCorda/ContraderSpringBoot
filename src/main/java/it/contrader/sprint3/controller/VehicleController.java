@@ -37,9 +37,19 @@ public class VehicleController {
     }
 
     @RequestMapping(value="/insertVehicle", method = RequestMethod.GET)
-    public String getinsertVehicles (@ModelAttribute VehicleEntity vehicle)
+    public String getinsertVehicles (@ModelAttribute VehicleEntity vehicle,Model model)
     {
+        List<VehicleEntity> allVehicles = vehicleService.getAllVehicles();
+        for (VehicleEntity v:allVehicles)
+        {
+            if(v.equals(vehicle))
+            {
+                model.addAttribute("msg","Veicolo gi&agrave presente");
+                return "insertVehicle";
+            }
+        }
         vehicleService.insert(vehicle);
+        model.addAttribute("msg","Veicolo aggiunto");
         return "menuAdmin";
     }
 

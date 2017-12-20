@@ -15,6 +15,12 @@
     <title>MenuAdmin </title>
 </head>
 <body>
+<c:if test="${msg!=null}">
+    <div id="msg" class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+            ${msg}
+    </div>
+</c:if>
 <div class="container">
     <h2>Menu Admin ${FirstName} ${LastName}</h2>
     <br><br>

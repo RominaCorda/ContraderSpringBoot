@@ -32,6 +32,12 @@
     }
 </style>
 
+<c:if test="${msg!=null}">
+    <div id="msg" class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+            ${msg}
+    </div>
+</c:if>
 
  <div align="center" class="page-body">
         <c:url var="url" value="/gomme/insertGomme" />
@@ -40,37 +46,40 @@
             <table>
                 <tr>
                     <td>Modello</td>
-                    <td><input type="text" name="model" /></td>
+                    <td><input type="text" name="model" required/></td>
                 </tr>
                 <tr>
                     <td>Produttore</td>
-                    <td><input type="text" name="manufacturer" /></td>
+                    <td><input type="text" name="manufacturer" required /></td>
                 </tr>
                 <tr>
                     <td>Prezzo</td>
-                    <td><input type="text" name="price" /></td>
+                    <td><input type="text" name="price" required/></td>
                 </tr>
                 <tr>
                     <td>Larghezza</td>
-                    <td><input type="text" name="width" /></td>
+                    <td><input type="text" name="width" required /></td>
+                </tr>
+                <tr>
+                    <td>Altezza</td>
+                    <td><input type="text" name="height" required/></td>
                 </tr>
                 <tr>
                     <td>Diametro</td>
-                    <td><input type="text" name="diameter" /></td>
+                    <td><input type="text" name="diameter" required /></td>
                 </tr>
                 <tr>
                     <td>Carico</td>
-                    <td><input type="text" name="weight" /></td>
+                    <td><input type="text" name="weight" required/></td>
                 </tr>
                 <tr>
                     <td>Velocita</td>
-                    <td><input type="text" name="speed" /></td>
+                    <td><input type="text" name="speed" required /></td>
                 </tr>
                 <tr>
                     <td>Tipo veicolo</td>
                     <td>
-                        <select name="typeVehicle">
-                            <option value="">seleziona</option>
+                        <select name="typeVehicle" required>
                             <option value="moto">moto</option>
                             <option value="auto">auto</option>
                             <option value="commericiale">commericiale</option>
@@ -80,8 +89,7 @@
                 <tr>
                     <td>Stagione</td>
                     <td>
-                        <select name="season">
-                            <option value="">seleziona</option>
+                        <select name="season" required>
                             <option value="invernale">invernale</option>
                             <option value="estive">estive</option>
                             <option value="quattro stagioni">quattro stagioni</option>
@@ -90,7 +98,7 @@
                 </tr>
                 <tr>
                     <td>Quantit&agrave</td>
-                    <td><input type="text" name="quantity" /></td>
+                    <td><input type="text" name="quantity" required /></td>
                 </tr>
                 <tr>
                     <td> <input type="submit" value="Inserisci" /></td>
@@ -100,5 +108,6 @@
             </table>
         </form>
  </div>
+
 <jsp:include page="footer.jsp" />
 </html>

@@ -35,8 +35,17 @@ public class GommaController
     @RequestMapping(value="/insertGomme", method = RequestMethod.POST)
     public String insert (@ModelAttribute GommaEntity gomma,Model model)
     {
+        List<GommaEntity> gomme=gommaService.getAllGomme();
+        for (GommaEntity g:gomme)
+        {
+            if(g.equals(gomma))
+            {
+                model.addAttribute("msg","Gomma gi&agrave presente");
+                return "insertGomma";
+            }
+        }
         gommaService.insertGomma(gomma);
-        model.addAttribute("msg","Gomma added successfully");
+        model.addAttribute("msg","Gomma aggiunta");
         return "menuAdmin";
     }
 

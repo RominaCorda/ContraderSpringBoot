@@ -1,0 +1,10 @@
+.page-body{
+    padding: 15px;
+}
+
+.navbar-fixed-bottom, .navbar-fixed-top {
+    position: sticky;
+}
+
+
+
