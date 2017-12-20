@@ -19,3 +19,7 @@ li img {
     width: 32px;
     height: 32px;
 }
+
+.navbar-fixed-bottom, .navbar-fixed-top {
+    position: sticky;
+}
