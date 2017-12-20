@@ -7,7 +7,6 @@
 <head>
     <title>Welcome Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/gommastore/css/headerAdmin.css" type="text/css">
     <link rel="stylesheet" href="/gommastore/css/index.css" type="text/css">
     <link rel="stylesheet" href="/gommastore/css/footer.css" type="text/css">
 </head>

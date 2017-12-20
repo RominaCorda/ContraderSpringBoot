@@ -11,24 +11,6 @@
 <body>
 <div class="page-body">
     <c:url var="url" value="/login/regControl" />
-    <!--<form action="${url}" method="get" ModelAttribute="User">
-        <h1><p>REGISTRAZIONE NUOVO UTENTE</p></h1>
-        <p>Riempire i vari campi</p><br>
-        Username <input type="text" name="username"><br>
-        Password <input type="text" name="password"><br>
-        Nome <input type="text" name="firstname"><br>
-        Cognome <input type="text" name="lastname"><br>
-        Data di Nascita <input type="text" name="dateofbirth"><br>
-        Codice Fiscale <input type="text" name="fiscalcode"><br>
-        Regione Sociale <input type="text" name="businessname"><br>
-        P.IVA <input type="text" name="vat"><br>
-        Comune <input type="text" name="municipality"><br>
-        CAP <input type="text" name="post"><br>
-        Città <input type="text" name="city"><br>
-        Indirizzo <input type="text" name="address"><br>
-        Telefono <input type="text" name="telephone"><br>
-        <input type="submit" value="REGISTRATI">
-        </form> -->
     <c:if test="${msg!=null}">
         <div id="msg" class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert">&times;</button>

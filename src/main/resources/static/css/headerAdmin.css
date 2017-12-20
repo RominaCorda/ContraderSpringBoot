@@ -5,3 +5,7 @@
 div#free{
     padding: 15px;
 }
+
+.navbar-fixed-bottom, .navbar-fixed-top {
+    position: sticky;
+}
