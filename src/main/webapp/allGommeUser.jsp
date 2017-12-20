@@ -10,12 +10,13 @@
 
 <jsp:include page="headerUser.jsp" />
 
+<img id ="underNav" src="/gommastore/css/img/ListaPneumatici.jpg">
+
 <div class="page-body">
 
     <div class="container">
 
         <table class="table table-striped" >
-            <caption>Lista Gomme</caption>
             <thead>
             <tr>
                 <th>Modello</th>

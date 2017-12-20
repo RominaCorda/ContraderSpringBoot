@@ -57,6 +57,11 @@ public class VehicleController {
     public String searchVehicles (Model model,@ModelAttribute VehicleEntity vehicle,RedirectAttributes redirectAttrs)
     {
         VehicleEntity veicolo=vehicleService.findByBrandAndModelAndFuelAndVersionAndCapacity(vehicle);
+        if (veicolo==null)
+        {
+            model.addAttribute("msg", "Veicolo non presente");
+            return "menuUser";
+        }
         int id_vehicle= (int) veicolo.getIdVehicle();
         model.addAttribute("id_vehicle",id_vehicle);
         redirectAttrs.addFlashAttribute("id_vehicle",id_vehicle);
