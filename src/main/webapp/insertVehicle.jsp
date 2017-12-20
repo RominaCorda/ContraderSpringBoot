@@ -15,6 +15,7 @@
             ${msg}
     </div>
 </c:if>
+<img id ="underNav" src="/gommastore/css/img/InserisciVeicolo.jpg">
 <div class="page-body">
     <c:url var="url" value="/vehicle/insertVehicle" />
     <form action="${url}" method="get" ModelAttribute="vehicle">
@@ -24,8 +25,6 @@
                     <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3" >
                     </div>
                     <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6">
-                        <h1>Nuovo Veicolo</h1>
-                        <br>
                         <div class="form-group">
                             <label for="brand">Produttore</label>
                             <input type="text" class="form-control" name="brand" id="brand" placeholder="Inserisci produttore" required>

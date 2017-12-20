@@ -4,12 +4,13 @@
 
 <jsp:include page="headerAdmin.jsp" />
 
+<img id ="underNav" src="/gommastore/css/img/ListaVeicoli.jpg">
+
 <div class="page-body">
 
     <div class="container">
 
         <table class="table table-striped" >
-            <caption>Lista Veicoli</caption>
             <thead>
                 <tr>
                     <th>Produttore</th>

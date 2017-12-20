@@ -3,6 +3,8 @@
 
 <jsp:include page="headerUser.jsp" />
 
+<img id ="underNav" src="/gommastore/css/img/menuUser.jpg">
+
 <div class="page-body">
     <div class="container">
         <div class="row">
@@ -42,7 +44,6 @@
                                     <div class="col-xs-4">
                                         <label for="ex4">Stagione</label>
                                         <select class="form-control" id="ex4" name="season" required>
-                                            <option value="">Seleziona</option>
                                             <option value="invernali">Invernali</option>
                                             <option value="estive">Estive</option>
                                             <option value="quattro stagioni">Quattro Stagioni</option>

@@ -74,7 +74,7 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img src="/gommastore/css/img/index1.jpg" />
+                                <img src="/gommastore/css/img/Bridgestone1.jpg" />
                                 <div class="carousel-caption">
                                     <h1 class="carousel-caption-header">Winter is coming</h1>
                                     <p class="carousel-caption-text hidden-sm hidden-xs">
@@ -84,7 +84,7 @@
                             </div>
 
                             <div class="item">
-                                <img src="/gommastore/css/img/index2.jpg" />
+                                <img src="/gommastore/css/img/Dunlop.jpg" />
                                 <div class="carousel-caption">
                                     <h1 class="carousel-caption-header">Passion</h1>
                                     <p class="carousel-caption-text hidden-sm hidden-xs">
@@ -94,7 +94,7 @@
                             </div>
 
                             <div class="item">
-                                <img src="/gommastore/css/img/index3.jpg" />
+                                <img src="/gommastore/css/img/Pirelli.jpg" />
                                 <div class="carousel-caption">
                                     <h1 class="carousel-caption-header">Stop</h1>
                                     <p class="carousel-caption-text hidden-sm hidden-xs">

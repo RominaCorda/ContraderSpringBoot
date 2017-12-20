@@ -39,10 +39,11 @@
     </div>
 </c:if>
 
+<img id ="underNav" src="/gommastore/css/img/InserisciPneumatico.jpg">
+
  <div align="center" class="page-body">
         <c:url var="url" value="/gomme/insertGomme" />
         <form action="${url}" method="post">
-            <h3> Nuovo pneumatico </h3><br>
             <table>
                 <tr>
                     <td>Modello</td>

@@ -3,6 +3,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="headerReg.jsp" />
 <body>
+<img id ="underNav" src="/gommastore/css/img/InserisciPneumatico.jpg">
+
 <div class="page-body">
     <c:url var="url" value="/login/regControl" />
     <c:if test="${msg!=null}">
@@ -16,14 +18,6 @@
     <form action="${url}" method="post" ModelAttribute="User">
         <fieldset>
         <div class="container" style=" width: 400px" >
-
-            <div class="row">
-                <div class=" col-xs-6 col-sm-8 col-md-10 col-lg-12">
-                    <div class="form-group">
-                        <h4>REGISTRAZIONE NUOVO UTENTE</h4>
-                    </div>
-                </div>
-            </div>
 
 
             <div class="row">

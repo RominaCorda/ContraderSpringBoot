@@ -21,7 +21,7 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/gommastore/">Home</a></li>
-            <li><a href="/gommastore/login/page">Log In</a></li>
+            <li><a href="loginPage.jsp"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
         </ul>
     </div>
 </nav>

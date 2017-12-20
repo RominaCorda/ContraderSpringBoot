@@ -20,3 +20,17 @@ footer div img {
 .navbar-fixed-top {
     position: sticky;
 }
+img#underNav{
+    width: 100%;
+    margin-bottom: 40px;
+}
+.iconmenu
+{
+    width: 32px;
+    height: 32px;
+}
+nav.navbar
+{
+    margin-bottom: 0px;
+    border-bottom: 0px;
+}
