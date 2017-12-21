@@ -21,6 +21,7 @@ footer div img {
     position: sticky;
 }
 img#underNav{
+    height: 50px;
     width: 100%;
     margin-bottom: 40px;
 }

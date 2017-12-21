@@ -9,7 +9,7 @@
     <title>MenuAdmin </title>
 </head>
 <body>
-<img id ="underNav" src="/gommastore/css/img/menuAdmin.jpg">
+<img id ="underNav" src="/gommastore/css/img/menuad.jpg">
 
 <c:if test="${msg!=null}">
     <div id="msg" class="alert alert-success alert-dismissable">

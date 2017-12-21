@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="headerReg.jsp" />
 <body>
-<img id ="underNav" src="/gommastore/css/img/Regutente.jpg">
+<img id ="underNav" src="/gommastore/css/img/registrazionenuvoutente.jpg">
 
 <div class="page-body">
     <c:url var="url" value="/login/regControl" />

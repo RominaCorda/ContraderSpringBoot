@@ -4,7 +4,7 @@
 
 <jsp:include page="headerAdmin.jsp" />
 
-<img id ="underNav" src="/gommastore/css/img/ListaVeicoli.jpg">
+<img id ="underNav" src="/gommastore/css/img/listavei.jpg">
 
 <div class="page-body">
 

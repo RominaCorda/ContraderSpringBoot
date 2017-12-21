@@ -10,7 +10,7 @@
     </div>
 </c:if>
 
-<img id ="underNav" src="/gommastore/css/img/InserisciPneumatico.jpg">
+<img id ="underNav" src="/gommastore/css/img/inseriscipneu.jpg">
 
  <div class="page-body">
         <c:url var="url" value="/gomme/insertGomme" />

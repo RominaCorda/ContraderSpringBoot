@@ -3,7 +3,7 @@
 
 <jsp:include page="headerUser.jsp" />
 
-<img id ="underNav" src="/gommastore/css/img/menuUser.jpg">
+<img id ="underNav" src="/gommastore/css/img/menuu.jpg">
 
 <c:if test="${msg!=null}">
     <div id="msg" class="alert alert-success alert-dismissable">

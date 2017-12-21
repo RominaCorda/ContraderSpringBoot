@@ -15,7 +15,7 @@
             ${msg}
     </div>
 </c:if>
-<img id ="underNav" src="/gommastore/css/img/InserisciVeicolo.jpg">
+<img id ="underNav" src="/gommastore/css/img/insertvei.jpg">
 <div class="page-body">
     <c:url var="url" value="/vehicle/insertVehicle" />
     <form action="${url}" method="get" ModelAttribute="vehicle">
