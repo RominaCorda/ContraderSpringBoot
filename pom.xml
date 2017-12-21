@@ -10,6 +10,12 @@
     <description>The GommaStore project</description>
     <packaging>war</packaging>
 
+    <parent>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-parent</artifactId>
+            <version>1.5.9.RELEASE</version>
+    </parent>
+
 
     <dependencies>
         <dependency>

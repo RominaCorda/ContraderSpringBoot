@@ -10,7 +10,7 @@
 
 <jsp:include page="headerUser.jsp" />
 
-<img id ="underNav" src="/gommastore/css/img/ListaPneumatici.jpg">
+<img id ="underNav" src="/gommastore/css/img/listapneu.jpg">
 
 <div class="page-body">
 
