@@ -3,35 +3,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="headerAdmin.jsp" />
 
-<style>
-    input[type=text], select {
-        width: 100%;
-        padding: 12px 50px;
-        margin: 15px 15px;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-    input[type=submit] {
-         width: 100%;
-         color: black;
-         padding: 14px 20px;
-         border: none;
-         border-radius: 4px;
-         cursor: pointer;
-     }
-    input[type=reset] {
-        width: 100%;
-        color: black;
-        padding: 14px 20px;
-        margin: 34px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-</style>
-
 <c:if test="${msg!=null}">
     <div id="msg" class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -41,9 +12,69 @@
 
 <img id ="underNav" src="/gommastore/css/img/InserisciPneumatico.jpg">
 
- <div align="center" class="page-body">
+ <div class="page-body">
         <c:url var="url" value="/gomme/insertGomme" />
         <form action="${url}" method="post">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3" >
+                    </div>
+                    <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="model">Modello</label>
+                            <input type="text" class="form-control" name="model" id="model" placeholder="Inserisci modello" required>
+
+                            <label for="manufacturer">Produttore</label>
+                            <input type="text" class="form-control" name="manufacturer" id="manufacturer" placeholder="Inserisci produttore" required>
+
+                            <label for="price">Prezzo</label>
+                            <input type="text" class="form-control" name="price" id="price" placeholder="Inserisci prezzo" required>
+
+                            <label for="width">Larghezza</label>
+                            <input type="text" class="form-control" name="width" id="width" placeholder="Inserisci larghezza" required>
+
+                            <label for="height">Altezza</label>
+                            <input type="text" class="form-control" name="height" id="height" placeholder="Inserisci altezza" required>
+
+                            <label for="diameter">Diametro</label>
+                            <input type="text" class="form-control" name="diameter" id="diameter" placeholder="Inserisci diametro" required>
+
+                            <label for="weight">Carico</label>
+                            <input type="text" class="form-control" name="weight" id="weight" placeholder="Inserisci carico" required>
+
+                            <label for="speed">Velocità</label>
+                            <input type="text" class="form-control" name="speed" id="speed" placeholder="Inserisci velocità" required>
+
+                            <label for="typeVehicle">Tipo veicolo</label>
+                            <select class="form-control" id="typeVehicle" name="typeVehicle" required>
+                                <option value="auto">auto</option>
+                                <option value="moto">moto</option>
+                                <option value="commerciale">commerciale</option>
+                            </select>
+
+                            <label for="season">Stagione</label>
+                            <select class="form-control" id="season" name="season" required>
+                                <option value="invernali">invernali</option>
+                                <option value="estive">estive</option>
+                                <option value="quattro stagioni">quattro stagioni</option>
+                            </select>
+
+                            <label for="quantity">Quantità</label>
+                            <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Inserisci quantità" required>
+
+                        </div>
+                        <button type="submit" class="btn btn-default">Inserisci</button>
+                    </div>
+
+
+                    <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3" >
+                    </div>
+                </div>
+            </div>
+        </form>
+ </div>
+
+        <!--
             <table>
                 <tr>
                     <td>Modello</td>
@@ -108,7 +139,7 @@
 
             </table>
         </form>
- </div>
+ </div>-->
 
 <jsp:include page="footer.jsp" />
 </html>

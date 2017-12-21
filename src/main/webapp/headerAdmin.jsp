@@ -18,7 +18,7 @@
             <li><a href="/gommastore/menuAdmin.jsp">Menu</a></li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Inserisci <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/gommastore/insertGomma.jsp">Inserisci gomma</a></li>
+                    <li><a href="/gommastore/insertGomma.jsp">Inserisci pneumatico</a></li>
                     <li><a href="/gommastore/insertVehicle.jsp">Inserisci veicolo</a></li>
                 </ul>
             </li>
